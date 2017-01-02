@@ -1,0 +1,340 @@
+﻿  <html lang="pt" ng-app="mwl.calendar.docs" ng-controller="sgeCtrl as vm" >
+  <head>
+    <head>
+    <% include ../partes/head %>
+
+    <!-- calendario -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdn.rawgit.com/jkbrzt/rrule/v2.1.0/lib/rrule.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="//mattlewis92.github.io/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/css/colorpicker.min.css" rel="stylesheet">
+    <link href="//mattlewis92.github.io/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+
+
+  <script src="/assets/js/calendar.js"></script>
+   
+  <style type="text/css">
+     
+    .calendar{
+     /*width: 800px;*/
+      height: 650 px;
+    }
+
+    .addEvento{
+      background:#fff;
+      position:absolute; 
+      z-index:100;        
+      margin-left:20%;
+      margin-top: 5%;      
+      padding:20px;
+      width: 50%;
+      box-shadow: 0px 0px 10px;
+      border-radius: 15px;
+      box-sizing: border-box;
+    }
+
+     /*estilo do raio btn color*/
+
+      input[type='radio'] {
+        width:30px;
+        height:30px;
+        background-color: : black;
+      }
+
+      input[type='radio']:before {
+        content:'';
+        display:block;
+        width:110%;
+        height:110%;
+        margin: -10% -10% auto;    
+        border-radius:100%;    
+      }
+
+      input[type='radio']:checked:before {width:35px; height:35px;}
+      input[type='radio']:nth-of-type(1):checked:before { background:#DC143C;}
+      input[type='radio']:nth-of-type(2):checked:before { background:#708090;}
+      input[type='radio']:nth-of-type(3):checked:before { background:#800080;}
+      input[type='radio']:nth-of-type(4):checked:before { background:#FFD700;}
+      input[type='radio']:nth-of-type(5):checked:before { background:#4169E1;}
+      input[type='radio']:nth-of-type(6):checked:before { background:#008000;}
+
+
+
+      textarea { 
+         resize:vertical;/*will prevent resizing horizontally*/ 
+      }
+  </style>
+
+
+  <script>
+    //setTimeout(function(){window.location.reload(1);}, 100000);
+
+    $(document).ready(function(){ //
+      $("#addEvento").hide(); 
+      $("#editEvento").hide();
+      
+
+      // esconde a div addEventopelo btn
+      $("#btEvento" ).click(function() {
+        if($('#addEvento:visible').length) { $('#addEvento').hide(100);}
+        else { $('#addEvento').show(100);}        
+      });
+
+      // // esconde a div addEventopela ação do mouse
+      $(document).mouseup(function (e) {
+        var div = $("#addEvento");
+        if (!div.is(e.target) && div.has(e.target).length === 0) { div.hide(50);}
+      });      
+
+      // $(document).mouseup(function (e) {
+      //   var div = $("#editEvento");
+      //   if (!div.is(e.target) && div.has(e.target).length === 0) { div.hide(50);}
+      // });      
+      
+
+
+      // lista de turmas em addEvento 
+      $("#addEventoTurmaS").hide();
+      $("#addEventoTurmaCb:checkbox").change(function () 
+      {
+        if(this.checked) {$('#addEventoTurmaS').show(150);}
+        else{ $('#addEventoTurmaS').hide(150);  
+          //$('#nometurma').empty();
+         // $('#nometurma').val("").change();
+        }
+      
+      });
+
+      $.ajax({
+            url: "/mostraturma", 
+            type: "POST",   
+            dataType: "json", 
+            contentType: "application/json",
+            cache: false,
+            timeout: 5000,
+            complete: function() {},
+            success: function(data) { 
+              $("#nometurma").empty();
+              $("#nometurma").append($("<option selected='selected'/>").val('').text('Sem turma'));
+              for(var i = 0; i < data.length; i++) { $("#nometurma").append($("<option />").val(data[i]).text(data[i]));}
+            },
+            error: function() { console.log('process error');},
+      });
+
+      $("#fecharEditarEvntos").click(function(){
+        $("#editEvento").hide(150);
+      });
+      
+      });
+
+  </script>
+
+</head>
+<body >
+  <div class="all">
+
+      <% include ../partes/topmenu.ejs %>
+
+            <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                <% include ../partes/sidemenu.ejs %>
+            </div>
+
+    <div class="row">
+
+      <div class="container-fluid">
+        <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+
+        <div id="addEvento" class="form-group addEvento">
+            
+            <!-- <form  name="cadastroEvento" method="Post" action="/cadastroEvento"> -->
+            <form>
+
+              <label for="Evento">Evento:</label>
+              <input type="text" class="form-control" ng-model="addEvento.title" name="title" placeholder="Ex: Feira de livro" autofocus>
+              <label for="Evento">Descrição:</label>
+              <textarea type="text" class="form-control" ng-model="addEvento.descricao" name="descricao" placeholder="Ex: Atividade ..." value='0' ></textarea>
+              <label style=" margin:5px; ">Disponibilizar para turma  <input type="checkbox" id="addEventoTurmaCb" style="width:20px; height:20px;"> </label>
+
+              <div id="addEventoTurmaS">
+                
+                <label >Turma:</label> 
+                <!-- <input type="text" name="nometurma" value="IN313"> -->
+                <select class="form-control" id="nometurma" name="nometurma" ng-model="addEvento.turma"></select>
+              </div>
+              <br>
+              <label for="data">Data:</label> 
+              <p>Inicio
+              <input type="datetime-local" id="dhora" class="form-control" ng-model="addEvento.startsAt" name="startsAt">
+              </p>
+              <p>Fim
+              <input type="datetime-local" id="dhora" class="form-control" ng-model="addEvento.endsAt" name="endsAt" >
+              </p>
+
+              <label >cor:</label>
+              <div class="form-inline" ng-model="addEvento.color.primary">                  
+                  <input type="radio" name="cor" value="1"><span style="margin:0 5px 0 5px;" >Vermelho</span> 
+                  <input type="radio" name="cor" value="2"><span style="margin:0 5px 0 5px;" >Cinza</span> 
+                  <input type="radio" name="cor" value="3"><span style="margin:0 5px 0 5px;" >Roxo</span> 
+                  <input type="radio" name="cor" value="4"><span style="margin:0 5px 0 5px;" >Amarelho</span> 
+                  <input type="radio" name="cor" value="5" checked=""><span style="margin:0 5px 0 5px;" >Azul</span> 
+                  <input type="radio" name="cor" value="6"><span style="margin:0 5px 0 5px;" >Verde</span>
+
+
+              </div>
+              <br>
+              <!-- <input type="submit" class="btn btn-default"  value="Cadastrar" ng-disabled="!addEvento.title || !addEvento.startsAt || !addEvento.endsAt " ng-click="addEvento()"></input>
+               -->
+
+               <input type="submit" class="btn btn-default"  value="Cadastrar"  ng-click="addEvento()"></input>
+              </form>
+          
+        </div>     
+
+        <div id="editEvento" class="form-group addEvento">
+
+            <!-- <form  name="editEvento" method="Post" action="/editEvento">                 -->
+            <form>
+
+              <label for="Evento">Evento: {{vm.editar.op}}</label>
+
+              <input class="hidden" type="text" name="editCodevento" ng-value="vm.editar.cod_evento">
+              <!-- <input class="hidden" type="text" name="editOpcao" ng-value="vm.editar.op"> -->
+
+              <div ng-show="vm.editar.op =='Deletar'">
+                <p>Titulo :  {{vm.editar.titulo}}</p>
+                <p>Descrição : {{vm.editar.descricao}}</p>
+                <p>Data e Hora :  {{vm.editar.startsAt}}</p>
+                <p>Data e Hora :  {{vm.editar.endsAt}}</p>
+                <p>Turma : {{vm.editar.turma}}</p>   
+
+              </div>
+
+              <div ng-show="vm.editar.op =='Editar' "> 
+                <input class="form-control" type="text" name="editTitulo" ng-value="vm.editar.titulo" autofocus="autofocus">
+                <label for="Evento">Descrição:</label>
+                <textarea class="form-control" name="editDescricao" ng-model="vm.editar.descricao"> </textarea> 
+                
+                <label style=" margin:5px; ">Disponibilizar para turma  
+                <!--   
+                  <input type="checkbox" id="addEventoTurmaCb" style="width:20px; height:20px;"> 
+                <select class="form-control" id="#nometurma" ng-value="vm.editar.turma"></select> -->
+                <!-- <input class="form-control" type="text" name="editTurma" ng-value="vm.editar.turma"> -->
+                <select class="form-control" id="nometurma" name="editTurma" ng-model="addEvento.turma"></select>
+                </label>
+
+                <!-- <div id="addEventoTurmaS">                
+                  <label >Turma:</label> 
+                  <select class="form-control" id="nometurma" name="nometurma" ng-model="addEvento.turma"></select>
+                </div> -->
+
+                <br>
+                <label for="data">Data:</label> 
+                <!-- <input class="form-control" type="datetime-local" name="editDate" ng-model="vm.editar.startsAt">
+                <input class="form-control" type="datetime-local" name="editDateFim" ng-model="vm.editar.endsAt">
+                -->
+                <p>Inicio
+                <input type="datetime-local"  class="form-control" name="editDate" ng-model="vm.editar.startsAt">
+                </p>
+                <p>Fim
+                <input type="datetime-local"  class="form-control" name="editDateFim" ng-model="vm.editar.endsAt">
+                </p>
+                
+                
+                <label >cor:</label>
+                <div class="form-inline" ng-model="vm.editar.cor">                  
+                    <input type="radio" name="editCor" value="1"><span style="margin:0 5px 0 5px;" >Vermelho</span> 
+                    <input type="radio" name="editCor" value="2"><span style="margin:0 5px 0 5px;" >Cinza</span> 
+                    <input type="radio" name="editCor" value="3"><span style="margin:0 5px 0 5px;" >Roxo</span> 
+                    <input type="radio" name="editCor" value="4"><span style="margin:0 5px 0 5px;" >Amarelho</span> 
+                    <input type="radio" name="editCor" value="5" checked><span style="margin:0 5px 0 5px;" >Azul</span> 
+                    <input type="radio" name="editCor" value="6"><span style="margin:0 5px 0 5px;" >Verde</span>
+               </div>
+               
+                <br> 
+              </div>
+
+              <button id="fecharEditarEvntos" class="btn btn-default" >Cancelar</button>
+              <button class="btn btn-danger"  name="editOpcao1" value="Deletar" ng-click="editarEventoDel(vm.editar)" >Deletar</button>
+              <button class="btn btn-success" name="editOpcao2" value="Editar" ng-show="vm.editar.op=='Editar'" ng-click="editarEventoEdit(vm.editar)">Editar</button>
+              </form>
+          
+        </div>     
+
+        <div class="calendar">
+          <div class="row form-inline text-center ">
+            <div class="btn-group">
+                <button
+                  class="btn btn-primary btn-sm"
+                  mwl-date-modifier
+                  date="vm.viewDate"
+                  decrement="vm.calendarView">
+                  Voltar
+                </button>
+                <button
+                  class="btn btn-default btn-sm"
+                  mwl-date-modifier
+                  date="vm.viewDate"
+                  set-to-today>
+                  Hoje
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  mwl-date-modifier
+                  date="vm.viewDate"
+                  increment="vm.calendarView">
+                  Avançar
+                </button>
+            </div>
+            <label>  {{ vm.calendarTitle }}  </label>
+            <div class="btn-group">
+            <label class="btn btn-primary btn-sm" ng-model="vm.calendarView" uib-btn-radio="'year'">Ano</label>
+            <label class="btn btn-primary btn-sm" ng-model="vm.calendarView" uib-btn-radio="'month'">Mês</label>
+            <label class="btn btn-primary btn-sm" ng-model="vm.calendarView" uib-btn-radio="'week'">Semana</label>
+            <label class="btn btn-primary btn-sm" ng-model="vm.calendarView" uib-btn-radio="'day'">Dia</label>
+            </div>
+            <button id="btEvento" class="btn btn-info">adicionar evento</button>
+
+          </div>
+
+          <mwl-calendar
+            events="vm.events"
+            view="vm.calendarView"
+            view-date="vm.viewDate"
+            cell-is-open="true"
+            view-title="vm.calendarTitle"
+            day-view-start="05:00"
+            day-view-end="21:00"
+            day-view-split="60"
+            
+            >
+
+    
+          </mwl-calendar>
+        </div>
+        
+        <br>
+
+        <br>
+
+
+</div>
+
+</div>
+<div class="footer">
+  <footer>
+    <% include ../partes/footer %>
+  </footer>
+</div> 
+</body>
+
+
+
+
+</html>

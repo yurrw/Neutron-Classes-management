@@ -1,0 +1,44 @@
+/*
+==================================================================
+=== Media_Queries ================================================
+==================================================================
+*/
+
+@media screen and (max-width: 1366px) {
+    #sid{
+        width: 260px;
+        /*z-index: -1;*/
+    }
+
+}
+@media screen and (min-width: 1030px) {
+  #panel{
+    left: -12%;
+  }
+  #sid{
+    z-index: 999;
+  }
+
+}
+
+@media screen and (max-width: 990px) {
+  #dropTarget{
+    /*width: 100%;  */
+    border:10px solid black!important;
+  }
+
+}
+@media screen and (min-width: 1025px) {
+
+  .slideout-panel {
+    margin-left: 256px;
+  }
+
+  .slideout-menu {
+    display: block;
+  }
+
+  .toggle-button{
+    display: none;
+  }
+}

@@ -1,0 +1,245 @@
+<html lang="pt">
+<head>
+    <% include ../partes/head %>
+    <script>
+    var autor;
+    //Carrega disciplina de acordo com o autor
+    $( function() {
+
+
+        var autor = "<%= user %>";
+
+
+        $.ajax({
+          url: "/pesqDisc",  // AQUI É A URL QUE SERA ENVIADO
+          type: "POST",   //TIPO DE ENVIO
+          dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+          data:JSON.stringify({
+            autor: autor
+          }),
+
+          contentType: "application/json",
+          cache: false,
+          timeout: 5000,
+          complete: function() {
+            console.log('process complete');
+          },
+          success: function(data) {
+            console.log(disciplina);
+            console.log('process sucess');
+            $("#disciplina").empty();
+            $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+            for(var i = 0; i < data.length; i++) {
+              $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+              console.log(data[i]);
+            }
+          },
+
+          error: function() {
+            console.log('process error');
+          },
+        });
+
+
+        if(autor == "Outro"){
+          $("#autor").replaceWith('<input type="text" id="autor" name="autor" class="form-control" placeholder="Autor" style="width:300px;"required autofocus>');
+          $("#autor").focus();
+        }
+
+    });
+
+
+    //Carrega matéria de acordo com a disciplina
+    $(function() {
+      $("#disciplina").change(function(){
+
+        var disciplina = $('#disciplina').val();
+
+        $("#materia").empty();
+        $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
+
+        console.log(disciplina);
+
+        $.ajax({
+          url: "/pesqMat",  // AQUI É A URL QUE SERA ENVIADO
+          type: "POST",   //TIPO DE ENVIO
+          dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+          data:JSON.stringify({
+            disciplina: disciplina
+          }),
+
+          contentType: "application/json",
+          cache: false,
+          timeout: 5000,
+          complete: function() {
+            console.log('process complete');
+          },
+          success: function(data) {
+            console.log(disciplina);
+            console.log('process sucess');
+            for(var i = 0; i < data.length; i++) {
+              $("#materia").append($("<option />").val(data[i]).text(data[i]));
+              console.log(data[i]);
+            }
+          },
+
+          error: function() {
+            console.log('process error');
+          },
+        });
+      });
+    });
+
+    //Carrega os campos de respostas e gabarito
+    $(function() {
+      $("#tipo").change(function(){
+
+        var tipo = $('#tipo').val();
+        $("#dadosQuest").empty();
+
+        if (tipo == "Discursiva") {
+          $('#dadosQuest').append($('<textarea name="gabarito" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Gabarito" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<input type="number" name="nLinhas" value="" placeholder="Linhas para resposta" class="form-control" style="width:200px;" required/>'));
+          $('#dadosQuest').append(" ");
+          $('#dadosQuest').append(" ");
+
+          $('#dadosQuest').append($('<label"/>')
+          .append($('<input type="checkbox" name="linhasAparentes" class="form-control" style="margin-left:5%; margin-right:1%" />'))
+          .append('Linhas aparentes?'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+        }
+
+        else if (tipo == "Objetiva") {
+          $('#dadosQuest').append($('<input type="text" name="opcA" value="" placeholder="Opção A" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<input type="text" name="opcB" value="" placeholder="Opção B" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<input type="text" name="opcC" value="" placeholder="Opção C" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<input type="text" name="opcD" value="" placeholder="Opção D" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<input type="text" name="opcE" value="" placeholder="Opção E" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+
+          $('#dadosQuest').append($('<select class="form-control" name="gabarito" style="width:110px;" required/>')
+            .append($('<option disabled selected/>').val("Gabarito").text("Gabarito"))
+            .append($('<option/>').val("Opção A").text("Opção A"))
+            .append($('<option/>').val("Opção B").text("Opção B"))
+            .append($('<option/>').val("Opção C").text("Opção C"))
+            .append($('<option/>').val("Opção D").text("Opção D"))
+            .append($('<option/>').val("Opção E").text("Opção E")));
+          $('#dadosQuest').append($('<br />'));
+          $('#dadosQuest').append($('<br />'));
+        }
+
+        $('#dadosQuest').append($('<button type="submit" name="cadastrar" class="btn btn-default">').val("Cadastrar").text("Cadastrar"));
+
+      });
+    });
+
+
+
+
+    </script>
+</head>
+<body>
+    <div class="all">
+  <div class="layout">
+
+            <% include ../partes/topmenu.ejs %>
+
+            <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                <% include ../partes/sidemenu.ejs %>
+            </div>
+            </div>
+          <div class="row">
+        <div class="container-fluid">
+
+          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+            <H3>Cadastro de questões</H3>
+
+            <% if (message.length > 0) { %>
+                <div class="alert alert-info" style="text-align: center;"><%= message %></div>
+            <% } %>
+
+            <br>
+
+            <form class="form-inline" method="Post" action="/cadastroQuest" name="cadastroQuestao">
+
+
+              <select class="form-control" id="autor"  name="autor" style="width:300px;" required>
+                <option disabled selected>Autor</option>
+
+                <option >   <%= user %>    </option>
+                <option>Outro</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" id="visibilidade" name="visibilidade" style="width:300px;" required>
+                <option disabled selected>Visibilidade</option>
+                <option>Privada</option>
+                <option>Pública</option>
+              </select><br><br>
+
+              <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
+                <option disabled selected>Disciplina</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" id="materia" name="materia" style="width:300px;" required>
+                <option disabled selected>Materia</option>
+              </select><br><br>
+
+              <select class="form-control" id="serie" name="serie" style="width:300px;" required>
+                <option disabled selected>Série</option>
+                <option>1º ano</option>
+                <option>2º ano</option>
+                <option>3º ano</option>
+              </select>&nbsp&nbsp
+
+              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" required><br><br>
+
+              <select class="form-control" id="tipo" name="tipo" style="width:300px;" required>
+                <option disabled selected>Tipo</option>
+                <option>Discursiva</option>
+                <option>Objetiva</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" id="nivel" name="nivel" style="width:300px;" required>
+                <option disabled selected>Nível</option>
+                <option>Básica</option>
+                <option>Mediana</option>
+                <option>Avançada</option>
+              </select><br><br>
+
+              <textarea id="enunciado" name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado" required></textarea><br><br>
+
+              <div class="" id="dadosQuest" name="dadosQuest" style="text-align:center; margin-left:0px;width:610px;" required>
+
+              </div>
+
+
+          </div>
+        </form>
+          <div class="footer">
+            <footer>
+                <% include ../partes/footer %>
+            </footer>
+          </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

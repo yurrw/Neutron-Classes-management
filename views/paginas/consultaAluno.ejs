@@ -1,0 +1,116 @@
+<html lang="pt">
+<head>
+    <% include ../partes/head %>
+    <script>
+    $(function pesqDisciplina(){
+             $.post("/pesqDisc",function(data){
+                $("#disciplina").empty();
+                $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+
+               for(var i = 0; i < data.length; i++) {
+                //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
+                 $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+               }
+             });
+    });
+    </script>
+</head>
+<body>
+    <div class="all">
+
+            <% include ../partes/topmenu.ejs %>
+            <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                <% include ../partes/sidemenu.ejs %>
+            </div>
+
+          <div class="row">
+            <div class="container-fluid">
+            <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+              <H3>Consulta de questões</H3>
+             <br><div class="" style="float: left; position: relative;">
+
+            <form class="form-inline" action="/consultaQuest" method="post" name="consultaQuest">
+
+
+              <select class="form-control" name="autor"  id="autor" onchange="consulQuest()" style="width:300px;">
+                <option disabled selected>Autor</option>
+
+                <option >   <%= user %>    </option>
+                <option>Outro</option>
+              </select>&nbsp&nbsp
+
+
+
+              <select class="form-control" id="disciplina"  style="width:300px;">
+                <option disabled selected>Disciplina</option>
+              </select>&nbsp&nbsp <br><br>
+
+              <select class="form-control" name="materia" id="materia" style="width:300px;">
+                <option disabled selected>Materia</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" name="serie" style="width:300px;">
+                <option disabled selected>Série</option>
+                <option>1º ano</option>
+                <option>2º ano</option>
+                <option>3º ano</option>
+              </select>&nbsp&nbsp<br><br>
+
+              <input type="text" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;">&nbsp&nbsp
+
+              <select class="form-control" name="tipo"  style="width:300px;">
+                <option disabled selected>Tipo</option>
+                <option>Discursiva</option>
+                <option>Objetiva</option>
+              </select><br><br>
+
+              <select class="form-control" name="nivel" style="width:300px;">
+                <option disabled selected>Nível</option>
+                <option>Básica</option>
+                <option>Mediana</option>
+                <option>Avançada</option>
+              </select><br><br>
+
+              <textarea name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado"></textarea><br><br>
+            </form></div>
+
+
+
+            <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; float:left; height:100%; text-align: center;">
+              <table class="table" style="width:750px; margin-left: 50px;">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th class="celulasCB">#</th>
+                    <th class="celulasCB">Matéria</th>
+                    <th>Enunciado</th>
+                    <th class="celulasCB">Remover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td>1</td>
+                    <td>Bunda</td>
+                    <td>Sim ou não?</td>
+                    <td width="10px"><button class="btn btn-danger btn-block">Remover</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="footer">
+            <footer>
+                <% include ../partes/footer %>
+            </footer>
+          </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

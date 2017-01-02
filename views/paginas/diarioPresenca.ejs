@@ -1,0 +1,450 @@
+﻿<html lang="pt">
+<head>
+    <% include ../partes/head %>
+
+       <script>
+
+       
+
+   $(function() {
+      $("#disc").hide();
+      $("#data").hide();
+      $("#dadoos").hide();
+
+
+     var mat = <%= userMat %>; //isso da cerriato
+       $('#txtSelectedDate').val($.datepicker.formatDate('dd/mm/yy', new Date()));
+
+               $.ajax({
+                   url: "/mostraturma", // AQUI É A URL QUE SERA ENVIADO
+                   type: "POST", //TIPO DE ENVIO
+                   dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+                   data: JSON.stringify({
+
+                       matricula: mat
+
+                   }),
+                   contentType: "application/json",
+                   cache: false,
+                   timeout: 5000,
+                   complete: function() {
+                       //called when complete
+                       console.log('process complete');
+                   },
+
+                   success: function(data) {
+                       console.log(data + "kbc");
+                       var ginea = data +" ";
+                       var spt = ginea.split(",");
+                        for(var x=0; x< spt.length; x++){
+                          alert("oi");
+                          $("#nometurma").append('<option value='+spt[x]+'>'+spt[x]+'</option> ');
+                        }
+                       var name = [];
+                       name = data;
+                       //document.getElementById("btn-mostraturma").innerHTML = name.toString();
+                      // nometurma
+                       console.log('process sucess');
+                   },
+
+                   error: function() {
+                       console.log('process error');
+                   },
+               });
+
+               $("#txtSelectedDate").datepicker({
+                   yearRange: '1900:2050',
+                   changeMonth: true,
+                   changeYear: true,
+                   altFormat: "dd/mm/yy",
+                   dateFormat: "dd/mm/yy",
+                   altField: "#alt-date"
+               });
+               $("#nomedisciplina").change(function(){
+                $("#data").show();
+                $("#dadoos").show();
+                brotheragem();
+
+               });
+               $("#nometurma").change(function() {
+      $("#disc").show();
+
+                   $.ajax({
+
+                           url: "/pesqDiscProf",
+                           type: "POST", //TIPO DE ENVIO
+                           dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+                           data: JSON.stringify({
+
+                               matricula: mat
+
+                           }),
+                           contentType: "application/json",
+                           cache: false,
+                           timeout: 5000,
+                           complete: function() {
+                               //called when complete
+                               console.log('process complete');
+                           },
+
+                           success: function(data) {
+                               console.log(data);
+                               var opcoes = [];
+                               opcoes = data;
+
+
+
+                          var mySelect = $('#nomedisciplina');
+                          $.each(opcoes, function(val, text) {
+                              mySelect.append(
+                                  $('<option></option>').html(text)
+                              );
+                          });
+
+
+
+                               console.log('process sucess');
+
+
+                           },
+
+                           error: function() {
+                               console.log('process error');
+                           },
+                       });
+                 });
+
+
+var brotheragem = function() {
+             var nometurma = $('#nometurma').val();
+                    var  data= $('#txtSelectedDate').val();
+
+
+
+                     $.ajax({
+                       url: "/pegaaula", // AQUI É A URL QUE SERA ENVIADO
+                       type: "POST", //TIPO DE ENVIO
+                       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+                       data: JSON.stringify({
+                               txtSelectedDate:  data,
+                               nometurma: nometurma
+                       }),
+                       contentType: "application/json",
+                       cache: false,
+                       timeout: 5000,
+                       complete: function() {
+                           console.log('process complete');
+                       },
+
+                       success: function(data) {
+
+
+
+
+
+          console.log('process sucess');
+          $("#IzaMyLuv").empty();
+          var tamanho=data.length;
+          var txt="";
+         for(var i = 0; i < data.length  ; i++) {
+                if (!(i == data.length - 1)){
+                  if(data[i][2] == "true" ){
+
+         $("#IzaMyLuv").append($("<tr/>")
+                                   .append($("<td />").val(i + 1).text(i + 1))
+
+           .append($("<td/>").val(data[i][1]).text(data[i][1]))
+           .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
+        //   .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
+          
+                                  .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', true))
+     
+
+
+
+
+           .append($("<td  style='align:right; width:100px;'/>")
+         
+         ));
+            }
+            else {
+                       $("#IzaMyLuv").append($("<tr/>")
+                                   .append($("<td />").val(i + 1).text(i + 1))
+
+           .append($("<td/>").val(data[i][1]).text(data[i][1]))
+           .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
+               .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
+
+
+
+
+
+           .append($("<td  style='align:right; width:100px;'/>")
+         
+         ));
+
+
+            }
+                }
+                  else {
+                    $('#textAreas').val(data[i][0]);
+                  }
+
+            
+  
+     
+
+          //$('#textAreas').val(data[tamanho])
+         }
+
+
+                       },
+
+                       error: function() {
+                 
+                    $('#textAreas').val("");
+
+
+                           console.log('process error');
+                       },
+                   });
+
+
+
+}
+
+
+                      $("#btDiaAnterior").click(function() {
+
+
+                   var data = $("#txtSelectedDate").datepicker("getDate");
+                   $("#txtSelectedDate").datepicker("setDate", new Date(data.getFullYear(), data.getMonth(), data.getDate() - 1));
+
+           brotheragem();
+
+               });
+               $("#btDiaPosterior").click(function() {
+                   var data = $("#txtSelectedDate").datepicker("getDate");
+                   $("#txtSelectedDate").datepicker("setDate", new Date(data.getFullYear(), data.getMonth(), data.getDate() + 1));
+           brotheragem();
+
+               });
+ 
+
+              $("#btAreas").click(function() {
+ var nometurma = $('#nometurma').val();
+                    var  data= $('#txtSelectedDate').val();
+                     var coment= $('#textAreas').val();
+            
+                    var disciplina= $('#nomedisciplina').val();
+
+              //      var i = 1;
+
+              //      $('input[type=checkbox]').each(function() {
+
+
+
+
+              //          if (this.checked) {
+
+              //              //   console.log("value='"+i+"'");
+              //              $("#chkHidden[alt='" + i + "']").prop('disabled', true);
+              //              console.log('desabilitou ');
+              //          } else {
+              //              //   document.getElementById("chkHidden").disabled=false;
+              //              // console.log('false');
+
+              //          }
+              //          i++;
+
+
+              //      });
+
+
+
+             var table = document.getElementById('tabletop');
+
+              var checks =[];
+                  $('input[type=checkbox]').each(function(){
+                          //if(this.checked){
+                                checks.push(this.checked);
+
+                       //   }
+
+                  });
+
+
+                  
+
+                      var tabela = [];
+
+
+
+              
+              for(var r = 1, i =0 ; r < table.rows.length; r++,i++){
+                tabela[i] = table.rows[r].cells[1].innerHTML;
+
+
+              }
+
+
+               // console.log(table);
+
+
+                   $.ajax({
+                       url: "/cadastroDiario", // AQUI É A URL QUE SERA ENVIADO
+                       type: "POST", //TIPO DE ENVIO
+                       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+                       data: JSON.stringify({
+                        chk:chk,
+                           matriculaProf:mat,
+                           txtSelectedDate:data,
+                           disciplina:disciplina,
+                           comentario:coment,
+                           turma: nometurma,
+                           matriculas:tabela,
+                           chks:checks
+
+                       }),
+                       contentType: "application/json",
+                       cache: false,
+                       timeout: 5000,
+                       complete: function() {
+                           console.log('process complete');
+                       },
+
+                       success: function(data) {
+
+
+                           console.log('process sucess');
+                       },
+
+                       error: function() {
+                           console.log('process error');
+                       },
+                   });
+
+
+
+               });
+
+
+
+   });
+
+
+</script>
+</head>
+<body >
+    <div class="all">
+
+  <% include ../partes/topmenu.ejs %>
+
+            <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed" style="" >
+                <% include ../partes/sidemenu.ejs %>
+            </div>
+        <div class="container-fluid">
+
+
+
+          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+            <H3>Diário de Presença</H3>
+
+            <br>
+
+
+            <form class="form-inline" name="cadastroQuestao" method="post">
+            <input type="hidden" value= <%= userMat %> name="matriculaProf">
+
+ Turma: <select class="form-control" id="nometurma" name="turma" style="width:300px;">
+              <option disabled selected>Selecione uma turma</option>
+              <option id="btn-mostraturma">
+            </select>&nbsp&nbsp
+
+          <div id="disc">
+              Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" style="width:300px;">
+                <option disabled selected>Selecione uma disciplina</option>
+                <option id="btn-mostradisc">
+              </select>&nbsp&nbsp
+          </div>
+          <div id="data">
+            <button class="btn btn-primary" type="button" id="btDiaAnterior">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+
+            </button>
+            <input class="form-control" type="text" id="txtSelectedDate" name="txtSelectedDate" />
+            <button class="btn btn-primary" type="button" id="btDiaPosterior">
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+            </button>
+          </div>
+
+
+            <br><br>
+
+<!--             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" name="consultar" id="btn-consultar"  class="btn btn-default">Consultar</button>
+ -->
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="dadoos">
+              <table class="table" name="tabletop" id="tabletop" style="width:750px; margin-left: 50px;">
+                <thead class="thead-inverse">
+                  <tr>
+                  <th class="celulasCB"   >N° Chamada</th>
+                    <th class="celulasCB" >Matrículas</th>
+                    <th class="celulasCB" >Nomes dos Alunos</th>
+                    <th class="celulasCB" >Presença</th>
+
+
+                  </tr>
+
+                </thead>
+                <tbody id="IzaMyLuv">
+
+                </tbody>
+              </table>
+              <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea> 
+              <br>
+              <input type='button' id="btAreas" type="button" value="Enviar" class="btn btn-primary">
+              </div>
+              
+
+            </div>
+
+</form>
+
+
+          </div>
+
+
+          <div class="footer">
+            <footer>
+                <% include ../partes/footer %>
+            </footer>
+          </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+        <!-- Large modal -->
+<script type="text/javascript">
+
+    $( function() {
+var drdg=0;
+
+$("#dropTarget").attr("src", "<%=photoID %>");
+	function fileSelect(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	    if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+	      if (drdg==1){
+	var files = evt.dataTransfer.files;
+	      }else var files =    evt.target.files;
+	drdg=0;
+
+	        var result = '';
+	        var file;
+	        for (var i = 0; file = files[i]; i++) {
+	              if (!file.type.match('image.*')) {
+	                continue;
+	            }
+
+	            reader = new FileReader();
+	            reader.onload = (function (tFile) {
+	                return function (evt) {
+	                     dropTarget.src = evt.target.result;
+	                };
+	            }(file));
+	            reader.readAsDataURL(file);
+	            var mtrs=<%= userMat %>;
+              console.log(mtrs);
+	            result += '<li>' + mtrs + ' ' + file.size + ' bytes</li>';
+	        }
+	    } else {
+	        alert('The File APIs are not fully supported in this browser.');
+	    }
+	}
+	 function dragOver(evt) {
+	    evt.stopPropagation();
+	    evt.preventDefault();
+	    evt.dataTransfer.dropEffect = 'copy';
+	    drdg=1;
+	}
+
+
+
+
+
+
+
+var gamb;
+
+	var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input )
+	{
+	  var label  = input.nextElementSibling,
+	    labelVal = label.innerHTML;
+
+	  input.addEventListener( 'change', function( e )
+	  {
+	    var fileName = '';
+	    if( this.files && this.files.length > 1 )
+	      fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+	    else
+	      fileName = e.target.value.split( '\\' ).pop();
+      gamb=fileName;
+	      console.log(fileName);
+	    // if( fileName )
+	    // label.querySelector( 'span' ).innerHTML = fileName;
+	    // else
+	    //   label.innerHTML = labelVal;
+	  });
+	});
+
+
+
+	var dropTarget = document.getElementById('dropTarget');
+	dropTarget.addEventListener('dragover', dragOver, false);
+	dropTarget.addEventListener('drop', fileSelect, false);
+
+	document.getElementById('userPhoto').addEventListener('change', fileSelect, false);
+        validaNasc("#editNasctxt");
+
+        validaCelular("#editTeltxt");
+
+         $("#editNametxt").hide();
+         $("#editEmailtxt").hide();
+         $("#editTeltxt").hide();
+         $("#editNasctxt").hide();
+
+         $("#editNasc").click(function(){
+
+           var clicks = $(this).data('clicks');
+           if (clicks) {
+             $("#editNasctxt").show();
+             $("#NascUsr").hide();
+           }else{
+             $("#editNasctxt").hide();
+             $("#NascUsr").show();
+           }
+           $(this).data("clicks", !clicks);
+
+
+
+        });
+
+         $("#editTel").click(function(){
+
+           var clicks = $(this).data('clicks');
+           if (clicks) {
+             $("#editTeltxt").show();
+             $("#TelUsr").hide();
+           }else{
+             $("#editTeltxt").hide();
+             $("#TelUsr").show();
+           }
+           $(this).data("clicks", !clicks);
+
+
+
+        });
+
+        $("#editName").click(function(){
+
+          var clicks = $(this).data('clicks');
+          if (clicks) {
+            $("#editNametxt").show();
+            $("#nameUsr").hide();
+          }else{
+            $("#editNametxt").hide();
+            $("#nameUsr").show();
+          }
+          $(this).data("clicks", !clicks);
+
+
+
+        });
+  $("#editEmail").click(function(){
+
+
+
+    var clicks = $(this).data('clicks');
+  if (clicks) {
+    $("#editEmailtxt").show();
+    $("#EmailUsr").hide();
+     // odd clicks
+  } else {
+    $("#editEmailtxt").hide();
+    $("#EmailUsr").show();
+     // even clicks
+  }
+  $(this).data("clicks", !clicks);
+
+
+  })
+
+      $('#modalEdit').on('hidden.bs.modal', function () {
+          $(this).find("input,textarea,select").val('').end();
+            $("#editNametxt").hide();
+          $("#nameUsr").show();
+      });
+      $("#Atualizar").click(function(){
+
+        alert($("#editNasctxt").val() );
+            $.ajax({
+              url:"/UpPerfil",
+              type:"POST",
+              dataType:"json",
+              contentType: "application/json",
+              data:JSON.stringify({
+                nome: $("#editNametxt").val() ,
+                data_nasc: $("#editNasctxt").val() ,
+                tel_cel: $("#editTeltxt").val() ,
+                email: $("#editEmailtxt").val() ,
+
+              }),
+              cache:false,
+              timeout:5000,
+              complete: function(){},
+              success: function(){},
+              error: function(){},
+          });
+
+      });
+
+    });
+// UpPerfil
+</script>
+<div class="modal fade modalPerfil" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="ModalDoPerfil" aria-hidden="true">
+
+  <div class="modal-dialog modal-lg" id="ModalConteudo">
+
+    <div class="modal-content">
+        <div class="modal-header no-border">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&#10006;</span>
+            </button>
+        </div>
+      <div id="leftPart">
+
+        <div class="modal-body" id="foto">
+          <form enctype="multipart/form-data" method="post" action="/UpFoto">
+              <!-- <img src="/ups/thumbs/25-userPhoto-1481673375785.png"/> -->
+             <!-- <img src= src > -->
+
+    		<div class="form-group" id="ph-user">
+    		      <div class="newDatas">
+    		                        <label for="userPhoto">
+
+    		   <img id="dropTarget" ></img>
+
+    		                        </label>
+    		    <br>
+    		  <input type='file' name="userPhoto"  id="userPhoto" value="VIADAO"   filename="VIADAO" class="inputfile" name='userPhoto[]' />
+    		                    <label for="userPhoto"  >
+    		                    <span>Selecionar Foto</span>
+    		                    </label>
+    <br>
+
+                      <!--
+                      @TODO: ATIVAR O BOTAO COM A FUNCIONALIDADE DE ENVIAR
+                      -->
+                            <!--<input type="submit" name="env" Value="env">-->
+
+    		  </div>
+          </div>
+         </form>
+		</div>
+    </div>
+        <div id="RightPart" class="container">
+
+            <h1>Perfil do usuario</h1>
+
+     <form id="PerfilDados">
+    <div class="row" id="r1">
+          <div class="form-group col-md-3 " >
+              <label class="lblPerfil">Email</label>
+              <span id="editEmail" data-clicks="true" class="glyphicon glyphicon-pencil edpencil" aria-hidden="true"></span>
+
+              <p id="EmailUsr"  class="form-control no-border"> <%= email%> </p>
+
+              <input type="text" class="form-control " placeholder=<%= email%> id="editEmailtxt">
+
+
+          </div>
+        <div class="form-group col-md-3 ">
+    		    <label class="lblPerfil" >Nome  </label>
+            <span id="editName" data-clicks="true" class="glyphicon glyphicon-pencil edpencil" aria-hidden="true"></span>
+
+            <p id="nameUsr"  class="form-control no-border"> <%= user%> </p>
+            <input type="text" class="form-control " placeholder=<%= user%> id="editNametxt">
+
+    		</div>
+
+     </div>
+      <div  class="row" id="r2">
+        <div class="form-group col-md-3" >
+            <label class="lblPerfil2" >Telefone</label>
+            <span id="editTel" data-clicks="true" class="glyphicon glyphicon-pencil edpencil" aria-hidden="true"></span>
+
+            <p id="TelUsr"  class="form-control no-border"> <%= tel_cel%> </p>
+
+            <input type="text" class="form-control " placeholder=<%= tel_cel%> id="editTeltxt">
+
+        </div>
+        <div class="form-group col-md-3" >
+            <label class="lblPerfil" >Data de Nascimento</label>
+            <span id="editNasc" data-clicks="true" class="glyphicon glyphicon-pencil edpencil" aria-hidden="true"></span>
+
+            <p id="NascUsr"  class="form-control no-border"> <%= data_nasc %> </p>
+
+            <input type="text" class="form-control " placeholder=<%= data_nasc %> id="editNasctxt">
+
+        </div>
+      </div>
+
+
+
+			<!-- <div class="form-group">
+               <label for="recipient-name" class="form-control-label">Recipient:</label>
+               <input type="text" class="form-control" id="recipient-name">
+           </div>
+           <div class="form-group">
+              <label for="message-text" class="form-control-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+           </div> -->
+     </form>
+
+            <button type="submit" id="Atualizar" class="btn btn-primary no-border">Atualizar</button>
+
+        </div>
+
+    </div>
+        <div class="modal-footer no-border">
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

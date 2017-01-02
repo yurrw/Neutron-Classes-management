@@ -1,0 +1,66 @@
+<nav class="navbar"  id="sid" role="navigation">
+<h1>Neutron</h1>
+
+<label>menu</label>
+   <ul class="nav sidebar-nav " id="smenu">
+      <ul class=" nav sidebar-nav" >
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle " id="criar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+               <i class="fa fa-fw fa-plus"></i> 
+
+                    <span >  CRIAR 
+          
+                  </span>     <i class="fa fa-sort-desc" id="create" ></i> 
+            
+
+            </a>
+            <script type="text/javascript">
+                $(function(){
+                    $("#criar").on('click',function(){
+                        $("#create").toggleClass( "fa-sort-asc" );
+                    });
+                    $("#consultas").on('click',function(){
+                        $("#cons").toggleClass( "fa-sort-asc" );
+                    });
+                })
+            </script>
+            <ul class="dropdown-menu subsmenu " role="menu">
+               <li> <a href="/cadastroQuest">Questões</a> </li>
+               <li> <a href="/cadastroProvas">  Prova </a> </li>
+            </ul>
+         </li>
+      </ul>
+
+      <li>
+         <a href="/index"> <i class="fa fa-fw fa-home"></i> <span> INÍCIO </span>
+         </a>
+      </li>
+
+      <li class="dropdown">
+         <a href="#" class="dropdown-toggle " id="consultas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="glyphicon glyphicon-search"></i> <span>  CONSULTAS </span>
+               <i class="fa fa-sort-desc" id="cons"></i> 
+
+         </a>
+         <ul class="dropdown-menu subsmenu " role="menu">
+            <li> <a href="/consultaTurma">  Minhas Turmas </a> </li>
+            <li> <a href="/consultaQuest">  Questoes     </a> </li>
+            <li> <a href="/consultaProvas">  Provas       </a> </li>
+
+         </ul>
+      </li>
+
+      <li>
+         <a href="/calendario"> <i class="fa fa-calendar"></i> <span> CALENDARIO </span> </a>
+      </li>
+      <li>
+         <a href="/diario"> <i class="fa fa-book"></i> <span> DIARIO </span> </a>
+      </li>
+
+      <li>
+         <a href="#"> <i class="fa fa-fw fa-folder"></i> <span>  ARQUIVOS </span> </a>
+      </li>
+
+   </ul>
+
+</nav>

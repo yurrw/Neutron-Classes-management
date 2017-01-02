@@ -1,0 +1,99 @@
+ body {
+     background-color: #56AEDA!important;
+     font-family: Roboto, Arial, Tahoma, Sans-serif;
+ }
+ main {
+     z-index: 15;
+     margin: 5% 0 0 0px;
+ }
+ .all {
+     border-radius: 2px;
+     -webkit-box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
+     -moz-box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
+     box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
+ }
+
+#userPhoto {} 
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    color: #f1e5e6;
+    background-color: #44BD33;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    width: 220px;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    background-color: #44BD33;
+    display: inline-block;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #2F8423;
+}
+.inputfile + label {
+    cursor: pointer;
+    /* "hand" cursor */
+}
+.dados_preCad {
+    margin-left: -10px!important;
+    text-align: center;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+
+}
+.dados_preCad>label {
+ 
+    font-weight: 600;
+ 
+}
+.highlight {
+    padding: 0px 0 150px;
+    background-size: cover;
+    text-align: center;
+    color: #000;
+}
+.highlight h1 {
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 700;
+    /*text-transform: uppercase;*/
+    font-size: 3.5rem;
+}
+#uploadForm{
+    background-color:white;
+    height:650px;
+    display: block;
+    padding: 50px;
+}
+.newDatas{
+     margin-left: 39%;
+     margin-top: -10%;
+
+}
+#dropTarget{
+    width: 220px;
+    height: 250px; 
+    border: 1px #ccc solid;
+
+}
+.dados_preCad{
+     margin-left: 40%;
+
+}
+.top1{
+    width: 100%;
+    height: 200px;
+    background-color: #2C405C;
+    display: block;
+    position: absolute;
+    z-index: -999;
+}

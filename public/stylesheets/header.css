@@ -1,0 +1,261 @@
+#cabecalho{float:right;}
+#topnav{border: none!important;}
+#imgUsr{ 
+  float: right; 
+  margin-top:-5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+ }
+#NamUser{
+	padding-right: 20px;
+	margin-top: -5px;
+	text-decoration: none!important;
+	color: #3d464d;
+	cursor: pointer;
+}
+
+
+#cabecalho .dropdown-menu{
+	position: absolute;
+	background-color: #E8E8E8;
+	/*border-color: ;*/
+  border: 1px solid #e2e2e2;
+
+}
+#cabecalho .dropdown-menu>li>a {
+    line-height: 20px!important;
+
+}
+/*
+.dropdown-menu {
+	position: relative;
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+}
+*/
+#cabecalho .dropdown-menu:after, #cabecalho .dropdown-menu:before {
+	bottom: 100%;
+	left: 90%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#cabecalho .dropdown-menu:after {
+	/*border-color: rgba(136, 183, 213, 0);*/
+	border-bottom-color: #E8E8E8;
+	border-width: 10px;
+	margin-left: -30px;
+}
+#cabecalho .dropdown-menu:before {
+	/*border-color: rgba(194, 225, 245, 0);*/
+	border-bottom:1px solid #e2e2e2;
+	border-width: 11px;
+	margin-left: -31px;
+}
+/*
+==================================================================
+=== MODAL_PERFIL ==============================================
+==================================================================
+*/
+
+#dropTarget{
+    width: 220px;
+    height: 250px;
+    border: 1px #ccc solid;
+
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    color: #f1e5e6;
+    background-color: #3987BF;
+    letter-spacing: 3px;
+    font-weight: 100;
+   font-family: 'Francois One', sans-serif;;
+    font-size: 1.2em;
+    width: 220px;
+    text-align: center;
+    margin-top:30px;
+    color: white;
+    display: inline-block;
+
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #0497C3;
+}
+.inputfile + label {
+    cursor: pointer;
+    /* "hand" cursor */
+}
+#ph-user{
+    float: left;
+    z-index: 99999;
+    /*background-color: black;*/
+}
+
+#data2{
+    float: left;
+    padding-left: 40px;
+}
+
+#nameUsr,#EmailUsr,#TelUsr,#NascUsr{
+    font-size:1.4rem;
+
+}
+.no-border {
+    border: 0!important;
+    box-shadow: none!important; /* You may want to include this as bootstrap applies these styles too */
+}
+/*#r1,#r2{position:absolute;}*/
+/*#r2{*/
+  /*float: right!important;*/
+  /*margin-top: -400px;*/
+   /*margin-left: 500px;*/
+/*}*/
+.modal-content{
+border-radius: 0px!important;
+    height:500px;
+    width:1000px;
+    /*box-shadow: none!important; !* You may want to include this as bootstrap applies these styles too *!*/
+
+    border: 0!important;
+    background-color: #3987BF!important;
+
+
+}
+#leftPart{
+	background-color: #EFEDEF;
+	float: left;
+    height:100%;
+}
+#RightPart{
+    color: #F5F4F8;
+    position: absolute;
+
+    margin-left:300px!important;
+}#RightPart >h1 {
+     margin-top:25px;
+     margin-left:-20px;
+     padding-bottom: 40px;
+     font-size:4rem;
+     letter-spacing:2px;
+     /*font-weight:600;*/
+     font-family: 'Francois One', sans-serif;
+
+
+ }
+
+#foto{
+    margin-top:60px;
+    margin-left:5px;
+}
+#PerfilDados div{
+    /*padding-right:70px;*/
+    /*padding-bottom:30px;*/
+    /*margin-right:10px;*/
+    /*margin-top:500px;*/
+}
+.edpencil{
+    font-size: 1.4rem;
+    cursor: pointer;
+    opacity: 0.5;
+    /*padding-left:30px;*/
+    float: left;
+    /*position: absolute;*/
+    margin-left:170px;
+    margin-top:-30px;
+    display: inline-block;
+
+}
+.edpencil:hover{
+    opacity: 1;
+}
+
+.lblPerfil{
+    display: block;
+    /*position: absolute;*/
+    padding-right:30px!important;
+}
+.lblPerfil2{
+    display: block;
+}
+#PerfilDados input, #PerfilDados p{
+    /*height:40px!important;*/
+    background-color:#2B668F;
+    color: #f4f5f6!important;
+    /*border-radius: 5px!important;*/
+    /*margin-top:-5px;*/
+    height:35px;
+    font-size:1.3rem;
+    vertical-align:middle ;
+}
+#PerfilDados label{
+    font-size:1.5rem;
+    letter-spacing:1px;
+    font-weight: 100;
+}
+#r1{
+    height:100px;
+}
+#r2{
+    margin-top:10px;
+}
+
+::-webkit-input-placeholder {
+    color: white!important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: white!important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: white!important;
+}
+
+:-ms-input-placeholder {
+    color: white!important;
+}
+/*
+   BOTAO DE ATUALIZAR PERFIL
+*/
+.modal-footer{
+    margin-top:-20px!important;
+    z-index: 9999!important;
+    /*top: 0!important;*/
+}
+#Atualizar{
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    margin-top:19px;
+    margin-left:470px;
+    letter-spacing:1px;
+    /*background-color: white;*/
+}
+/*BOTAO DE FECHAR*/
+.modal-header{
+    /*padding:0!important;*/
+    position:absolute;
+    right: 0;
+    z-index: 1;
+    /**/
+    /*float: right!important;*/
+}
+#ModalConteudo .modal-header > .close{
+    font-size: 3rem;
+    font-weight: 100;
+    color: #fff;
+}

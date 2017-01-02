@@ -1,0 +1,69 @@
+<div class="modal fade modalPriv" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="ModalPrivacidade" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">Perfil</h4>
+        </div>
+
+
+        <div class="modal-body">
+          <label>Senha Atual</label>
+          <input type="password" id="oldOne" class="form-control" >
+
+          <label>Nova Senha</label>
+          <input type="password" id="NewOne" class="form-control" >
+
+          <label>Nova Senha</label>
+          <input type="password" id="NewOne2" class="form-control" >
+
+		    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" id="AtualizarSenha" class="btn btn-primary">Atualizar</button>
+        </div>
+  </div>
+</div>
+</div>
+
+<script>
+$(function()
+{
+  $("#AtualizarSenha").click(function(){
+    if($("#NewOne").val() === $("#NewOne2").val() ){
+      $.ajax({
+      url: "/attPass",  // AQUI É A URL QUE SERA ENVIADO
+      type: "POST",   //TIPO DE ENVIO
+      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+      data:JSON.stringify({
+        oldOne: $("#oldOne").val(),
+        newOne: $("#NewOne").val(),
+      }),
+
+      contentType: "application/json",
+      cache: false,
+      timeout: 5000,
+      complete: function() {
+        // console.log('process complete');
+      },
+      success: function(data) {
+          alert("foii");
+      },
+
+      error: function() {
+        console.log('process error');
+      },
+    });
+
+  }else alert("Senhas novas desiguais");
+    // alert("iguais");
+
+/*
+
+  */
+});
+});
+</script>
