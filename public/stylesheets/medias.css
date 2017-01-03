@@ -21,12 +21,138 @@
 
 }
 
-@media screen and (max-width: 990px) {
-  #dropTarget{
-    /*width: 100%;  */
-    border:10px solid black!important;
+@media screen and (max-width: 990px)
+{
+  #dropTarget
+  {
+    border:2px solid black!important;
+  }
+  .modal-content
+  {
+    width: 100%!important;
+  }
+  #PerfilDados input, #PerfilDados p
+  {
+      width: 30%;
+
+  }
+  #RightPart >h1
+  {
+      font-size:2.5rem;
+      margin-left:5px;
+      padding-bottom:5px;
+
+  }
+  #Atualizar
+  {
+      margin-top:-10px;
+      margin-left: 130px;
   }
 
+
+}
+@media  screen and (max-width: 765px ) {
+    #PerfilDados input, #PerfilDados p {
+        width: 100%;
+
+    }
+
+    #RightPart {
+        margin-left:350px!important;
+    }
+}
+
+@media  screen and (max-width: 586px ) {
+    .modal-content { /*CONTAINER */
+        height: 120%;
+        background-color: #F4F4F5 !important;
+    }
+
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
+        /*width:100%;*/
+        background: none;
+        margin-left: 70px !important;
+    }
+
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        color: #3d464d;
+        margin-left: 50px !important;
+        /*border-top: 3px solid black;*/
+        margin-top: 360px;
+    }
+
+    #dropTarget { /*IMAGEM DO PERFIL*/
+        width: 210px;
+        height: 210px;
+    }
+
+    .edpencil { /*LAPIS PRA EDITAR*/
+        float: right;
+        margin-right: 15px;
+    }
+
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
+        color: #3d464d;
+        position: absolute;
+        margin-left: 27px !important;
+        margin-top: -340px !important;
+        /*top:0!important;*/
+    }
+
+    .inputfile + label { /*BOTAO DE ATUALIZAR FOTO*/
+        width: 210px;
+        margin-top: 10px;
+    }
+
+    #ModalConteudo .modal-header > .close { /*BOTAO DE FECHAR SUPERIOR*/
+        color: #3d464d;
+    }
+
+    #PerfilDados p, #PerfilDados input { /*INPUTS DE TEXTO E OS P'aragrafos'*/
+        width: 270px !important;
+    }
+
+    #Atualizar { /*BOTAO DE ATUALIZAR DADOS*/
+        float: right;
+    }
+}
+@media  screen and (max-width: 400px ) {
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
+        margin-left: 50px !important;
+    }
+
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        margin-left: 30px !important;
+    }
+}
+@media  screen and (max-width: 361px ) {
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        margin-left: 20px !important;
+    }
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
+        margin-left: 45px !important;
+    }
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
+        margin-left: 30px !important;
+
+    }
+}
+@media  screen and (max-width: 321px ) {
+    .modal-content { /*CONTAINER */
+        height: 140%;
+    }
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
+        margin-left: 25px !important;
+    }
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        margin-left: 10px !important;
+    }
+    #ModalConteudo .modal-header > .close { /*BOTAO DE FECHAR SUPERIOR*/
+        font-size:2rem;
+    }
+    #PerfilDados p, #PerfilDados input { /*INPUTS DE TEXTO E OS P'aragrafos'*/
+        width: 250px !important;
+    }
 }
 @media screen and (min-width: 1025px) {
 
