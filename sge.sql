@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 25-Dez-2016 às 22:44
--- Versão do servidor: 10.1.20-MariaDB
--- PHP Version: 7.0.14
+-- Host: 127.0.0.1
+-- Generation Time: 04-Jan-2017 às 20:03
+-- Versão do servidor: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sge`
 --
+CREATE DATABASE IF NOT EXISTS `sge` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `sge`;
 
 -- --------------------------------------------------------
 
@@ -284,7 +286,8 @@ CREATE TABLE `lembretes` (
 --
 
 INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
-(25, '10', '1231312');
+(34, '10', '1231312'),
+(35, '10', 'sdadasdasdasdasdas');
 
 -- --------------------------------------------------------
 
@@ -387,7 +390,10 @@ INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `disciplina
 (12, '10', 'IN314', '2016-10-19', '2', 'renanviado', '2016-12-21 23:47:46'),
 (13, '10', 'IN313', '2016-10-20', '2', 'undefined', '2016-12-21 23:47:46'),
 (14, '10', 'IN313', '2016-10-21', '2', 'undefined', '2016-12-21 23:47:46'),
-(15, '10', 'IN313', '2016-10-22', '2', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2016-12-21 23:47:46');
+(15, '10', 'IN313', '2016-10-22', '2', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2016-12-21 23:47:46'),
+(16, '10', 'IN313', '2016-12-26', '4', 'FODA-LIVRE', '2016-12-26 23:10:13'),
+(17, '10', 'IN313', '2016-12-26', '5', 'FODA-LIVRE', '2016-12-26 23:10:13'),
+(18, '10', 'IN313', '2016-12-26', '6', 'FODA-LIVRE', '2016-12-26 23:10:13');
 
 -- --------------------------------------------------------
 
@@ -439,7 +445,31 @@ INSERT INTO `prof_diario_aluno` (`cod_aula`, `matricula`, `presente`, `data_mod`
 ('15', '12345', 'false', '2016-10-20 03:02:11'),
 ('15', '12346', 'false', '2016-10-20 03:02:11'),
 ('15', '12347', 'false', '2016-10-20 03:02:11'),
-('15', '11223', 'false', '2016-10-20 03:02:11');
+('15', '11223', 'false', '2016-10-20 03:02:11'),
+('16', '12348', 'true', '2016-12-26 23:10:13'),
+('17', '12348', 'true', '2016-12-26 23:10:13'),
+('18', '12348', 'true', '2016-12-26 23:10:13'),
+('16', '12349', 'true', '2016-12-26 23:10:13'),
+('17', '12349', 'true', '2016-12-26 23:10:13'),
+('18', '12349', 'true', '2016-12-26 23:10:13'),
+('16', '24043', 'true', '2016-12-26 23:10:13'),
+('17', '24043', 'true', '2016-12-26 23:10:13'),
+('18', '24043', 'true', '2016-12-26 23:10:13'),
+('16', '98712', 'false', '2016-12-26 23:10:13'),
+('17', '98712', 'false', '2016-12-26 23:10:13'),
+('18', '98712', 'false', '2016-12-26 23:10:13'),
+('16', '12345', 'true', '2016-12-26 23:10:13'),
+('17', '12345', 'true', '2016-12-26 23:10:13'),
+('18', '12345', 'true', '2016-12-26 23:10:13'),
+('16', '12346', 'true', '2016-12-26 23:10:13'),
+('17', '12346', 'true', '2016-12-26 23:10:13'),
+('18', '12346', 'true', '2016-12-26 23:10:13'),
+('16', '12347', 'true', '2016-12-26 23:10:14'),
+('17', '12347', 'true', '2016-12-26 23:10:14'),
+('18', '12347', 'true', '2016-12-26 23:10:14'),
+('16', '11223', 'true', '2016-12-26 23:10:14'),
+('17', '11223', 'true', '2016-12-26 23:10:14'),
+('18', '11223', 'true', '2016-12-26 23:10:14');
 
 -- --------------------------------------------------------
 
@@ -639,7 +669,7 @@ CREATE TABLE `user_photo` (
 
 INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
 ('1', './uploads/1-userPhoto-1481671598038.png', '2016-12-13 23:26:38'),
-('10', '/uploads/10-userPhoto-1481979214206.jpg', '2016-12-17 12:53:34'),
+('10', '/uploads/10-userPhoto-1483162242715.jpg', '2016-12-31 05:30:42'),
 ('2', '/uploads/2-userPhoto-1480221932190.jpg', '2016-11-27 05:29:36'),
 ('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15'),
 ('3', './uploads/3-userPhoto-1481670373902.png', '2016-12-13 23:06:13'),
@@ -667,9 +697,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `data_mod`) VALUES
-('', '', 'c282a6d62b95401a', 'c126a04e50121e690cc0caeb46500632bdd446fa45c9cac382c0adc52479e884d31a7b83ef9f0e00504a2750ae0430279c76e9b572b95da06db885863ee58bd2', 'Professor', '2016-12-14 21:46:46'),
 ('1', 'UM', '', '[object Object]', 'Professor', '2016-12-13 23:26:28'),
-('10', 'Jesus', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Professor', '2016-12-22 18:15:38'),
+('10', 'Jesus', 'bd8ff1cb8fc3f4d2', 'd09f7910f35d18f67f211e013c4e595090c92382560dc23344a86cfd5a8bcd49ab0e60bf9266a59bfc2b212720d8a0d467f6f3c68e87e0531c6ffbdbcd1e7260', 'Professor', '2017-01-04 02:52:54'),
 ('2', 'Matheus viadao', '', '2', 'Professor', '2016-11-27 04:45:26'),
 ('25', 'Kithdris', 'f5711934de245e1b', '554f89c9e39ee963f83e1ca4a7dace2c8ebe28104e20fb9c87126e04caabba8f0386b92b7ab88d7b795c02e822f496335d7a497e787d4b12e36fccdb1c278594', 'Professor', '2016-12-13 23:56:05'),
 ('3', 'Junes', '', '3', 'Professor', '2016-12-13 23:05:58'),
@@ -789,12 +818,12 @@ ALTER TABLE `disciplinas`
 -- AUTO_INCREMENT for table `lembretes`
 --
 ALTER TABLE `lembretes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `prof_diario`
 --
 ALTER TABLE `prof_diario`
-  MODIFY `cod_aula` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=16;
+  MODIFY `cod_aula` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `provas`
 --
