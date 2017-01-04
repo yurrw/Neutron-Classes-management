@@ -124,7 +124,7 @@
   /*margin-top: -400px;*/
    /*margin-left: 500px;*/
 /*}*/
-.modal-content{
+.perfilContent{
     border-radius: 0px!important;
     height:500px;
     /*box-shadow: none!important; !* You may want to include this as bootstrap applies these styles too *!*/
@@ -162,10 +162,10 @@
     margin-top:60px;
     margin-left:5px;
 }
-#PerfilDados div{
+#PerfilDados {
     /*padding-right:70px;*/
     /*padding-bottom:30px;*/
-    /*margin-right:10px;*/
+    margin-left:-15px;
     /*margin-top:500px;*/
 }
 .edpencil{
@@ -242,7 +242,7 @@
     -moz-border-radius:0;
     border-radius:0;
     margin-top:19px;
-    margin-left:470px;
+    margin-left:460px;
     letter-spacing:1px;
     /*background-color: white;*/
 }
@@ -259,4 +259,88 @@
     font-size: 3rem;
     font-weight: 100;
     color: #fff;
+}
+/*
+==================================================================
+=== MODAL_SECURITY ===============================================
+==================================================================
+*/
+
+.modal-header + #TituloPriv{
+    padding-top: 50px;
+    margin-left:37%;
+    /*padding-bottom: 40px;*/
+    /*margin:0 auto!important;*/
+
+    font-size:3.2rem;
+    letter-spacing:3px;
+    /*font-weight:600;*/
+    font-family: 'Francois One', sans-serif;
+    color: #3d464d;
+    text-transform: uppercase;
+    padding-bottom:10px;
+}
+/*.modal-body*/
+/*{width:30px;}*/
+.priv{
+    width:50vmax!important;
+    /*background:black;*/
+    display: block;
+
+}
+.priv > .modal-body{
+    /*margin-left:130px;*/
+    /*margin:0 auto!important;*/
+    margin-left:27%;
+
+}
+.priv > .modal-body div{
+
+    display: block;
+    /*width:280px;*/
+    /*margin-left:30px;*/
+    /*margin:0 auto;*/
+    padding-bottom:20px;
+}
+.bgs{
+
+    -webkit-border-radius:5px!important;
+    -moz-border-radius:5px!important;
+    border-radius:5px!important;
+    background-color: #f6f8fa!important;
+    width:50vmax;
+    margin:0 auto;
+    display: block;
+
+}
+.priv input{
+    width: 400px;
+    /*height:40px!important;*/
+    /*background-color:#2B668F;*/
+    border:3px solid #2B668F;
+    color: black!important;
+    /*border-radius: 5px!important;*/
+    /*margin-top:-5px;*/
+    height:35px;
+    font-size:1.3rem;
+    border-radius:5px!important;
+    -webkit-border-radius:5px!important;
+    -moz-border-radius:5px!important;
+    vertical-align:middle ;
+}
+.footerPriv{
+    margin-top:10px!important;
+    background-color: #00a2ff;
+}
+#AtualizarSenha{
+    display: block;
+    margin:0 auto;
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing:2px;
+    font-weight:600;
+    border:0;
+}
+.msg{
+    width:370px;
 }

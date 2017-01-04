@@ -4,13 +4,25 @@
 ==================================================================
 */
 
-@media screen and (max-width: 1366px) {
+@media screen and (max-width: 1367px) {
     #sid{
         width: 260px;
         /*z-index: -1;*/
     }
+    /*MODAL DE PRIVACIDADE*/
+
+
 
 }
+@media only screen and (max-width: 1367px) {
+    .modal-header + #TituloPriv {
+        /*margin-left:200px;*/
+    }
+    .priv > .modal-body {
+        margin-left:130px;
+    }
+}
+
 @media screen and (min-width: 1030px) {
   #panel{
     left: -12%;
@@ -18,16 +30,32 @@
   #sid{
     z-index: 999;
   }
+    .priv > .modal-body{
+        /*margin-left:-20px!important;*/
 
+    }
+
+}
+@media screen and (max-width: 1030px) {
+    .priv > .modal-body{
+        margin-left:20%;
+
+    }
 }
 
 @media screen and (max-width: 990px)
 {
-  #dropTarget
+    .priv input {
+        width:75%;
+    }
+    .modal-header + #TituloPriv {
+        margin-left:30%;
+    }
+    #dropTarget
   {
     border:2px solid black!important;
   }
-  .modal-content
+  .perfilContent
   {
     width: 100%!important;
   }
@@ -51,6 +79,18 @@
 
 
 }
+@media  screen and (max-width: 768px ) {
+    #r2{
+        padding-top:60px!important;
+    }
+    #Atualizar {
+        margin-left:118px;
+    }
+    .msg{
+        width:260px;
+    }
+
+}
 @media  screen and (max-width: 765px ) {
     #PerfilDados input, #PerfilDados p {
         width: 100%;
@@ -63,7 +103,10 @@
 }
 
 @media  screen and (max-width: 586px ) {
-    .modal-content { /*CONTAINER */
+    .modal-header + #TituloPriv {
+        margin-left:22%;
+    }
+    .perfilContent { /*CONTAINER */
         height: 120%;
         background-color: #F4F4F5 !important;
     }
@@ -116,42 +159,100 @@
         float: right;
     }
 }
+@media  screen and (max-width: 415px ) {
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        margin-left: 60px !important;
+    }
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
+        margin-left: 15px !important;
+
+    }
+    .modal-header + #TituloPriv {
+        margin-left:18%;
+    }
+
+    .priv input{
+        width: 280px;
+    }
+    .msg{
+        width:250px;
+    }
+    .priv > .modal-body {
+        margin-left: 4%;
+    }
+}
 @media  screen and (max-width: 400px ) {
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 50px !important;
     }
 
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
-        margin-left: 30px !important;
+        margin-left: 40px !important;
+    }
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
+        margin-left: 17px !important;
+
+    }
+    .modal-header + #TituloPriv {
+        margin-left:15%;
+    }
+    .priv input{
+        width: 250px;
+    }
+    .msg{
+        width:220px;
+    }
+    .modal-header + #TituloPriv {
+            margin-left:20%;
+        }
+
+    .priv > .modal-body {
+        margin-left: 10%;
     }
 }
 @media  screen and (max-width: 361px ) {
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
-        margin-left: 20px !important;
+        margin-left: 35px !important;
     }
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 45px !important;
     }
     #tituloPerfil { /*MENSAGEM DO TOPO*/
-        margin-left: 30px !important;
+        margin-left: 17px !important;
 
+    }
+    .modal-header + #TituloPriv {
+        margin-left:17%;
+    }
+    .priv > .modal-body {
+        margin-left: 7%;
     }
 }
 @media  screen and (max-width: 321px ) {
-    .modal-content { /*CONTAINER */
+    .perfilContent { /*CONTAINER */
         height: 140%;
     }
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 25px !important;
     }
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
-        margin-left: 10px !important;
+        margin-left: 25px !important;
+    }
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
+        margin-left: 8px !important;
+
     }
     #ModalConteudo .modal-header > .close { /*BOTAO DE FECHAR SUPERIOR*/
         font-size:2rem;
     }
     #PerfilDados p, #PerfilDados input { /*INPUTS DE TEXTO E OS P'aragrafos'*/
         width: 250px !important;
+    }
+    .modal-header + #TituloPriv {
+        margin-left:15%;
+    }
+    .priv > .modal-body {
+        margin-left: 1%;
     }
 }
 @media screen and (min-width: 1025px) {
@@ -167,4 +268,5 @@
   .toggle-button{
     display: none;
   }
+
 }
