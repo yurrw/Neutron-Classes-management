@@ -92,17 +92,7 @@
 
 
 }
-@media  only screen and (max-width: 768px ) {
-    #ModalConteudo .modal-content{
-        /*height:53%;*/
-    }
-    .msg2{
-        position: relative;
-        display: block;
-        width:220px;
-        margin-top:-15px;
-    }
-}
+
 @media  screen and (max-width: 765px ) {
     #PerfilDados input, #PerfilDados p {
         width: 100%;
@@ -142,8 +132,8 @@
     }
 
     .edpencil { /*LAPIS PRA EDITAR*/
-        float: right;
-        margin-right: 15px;
+        /*float: right;*/
+        /*margin-right: 40px!important;*/
     }
 
     #tituloPerfil { /*MENSAGEM DO TOPO*/
@@ -151,6 +141,7 @@
         position: absolute;
         margin-left: 27px !important;
         margin-top: -340px !important;
+
         /*top:0!important;*/
     }
 
@@ -167,8 +158,16 @@
         width: 270px !important;
     }
 
-    #Atualizar { /*BOTAO DE ATUALIZAR DADOS*/
-        float: right;
+    #RightPart #Atualizar { /*BOTAO DE ATUALIZAR DADOS*/
+        clear:both;
+        position: relative;
+        /*float: right;*/
+        margin-right: -400px!important;
+        /*margin-right: 50px;*/
+
+
+        /*position: absolute!important;*/
+        /*margin-right:-40!important;*/
     }
 }
 @media  screen and (max-width: 415px ) {

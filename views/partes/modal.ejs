@@ -162,26 +162,33 @@ var gamb;
           $("#nameUsr").show();
       });
       $("#Atualizar").click(function(){
+       //  var test=  $("#EmailUsr").text() || "sexo";
+      //  alert(test);
 
-        alert($("#editNasctxt").val() );
-            $.ajax({
-              url:"/UpPerfil",
-              type:"POST",
-              dataType:"json",
-              contentType: "application/json",
-              data:JSON.stringify({
-                nome: $("#editNametxt").val() ,
-                data_nasc: $("#editNasctxt").val() ,
-                tel_cel: $("#editTeltxt").val() ,
-                email: $("#editEmailtxt").val() ,
+          if($("#editEmailtxt").val() ||  $("#editTeltxt").val() || $("#editNasctxt").val()  || $("#editNametxt").val()  )
+          {
+              $.ajax({
+                  url:"/UpPerfil",
+                  type:"POST",
+                  dataType:"json",
+                  contentType: "application/json",
+                  data:JSON.stringify({
+                      nome: $("#editNametxt").val() || $("#nameUsr").text().trim() ,
+                      data_nasc: $("#editNasctxt").val() || $("#NascUsr").text().trim(),
+                      tel_cel: $("#editTeltxt").val() || $("#TelUsr").text().trim() ,
+                      email: $("#editEmailtxt").val() ||  $("#EmailUsr").text().trim()  ,
 
-              }),
-              cache:false,
-              timeout:5000,
-              complete: function(){},
-              success: function(){},
-              error: function(){},
-          });
+                  }),
+                  cache:false,
+                  timeout:5000,
+                  complete: function(){},
+                  success: function(){alert("dados grados com sucesso");},
+                  error: function(){alert("erro, favor contatar o admnistrador")},
+              });
+          }else  {
+              alert("Altere algum dos dados para que seja possivel atualizar seus dados.")
+          }
+
 
       });
 

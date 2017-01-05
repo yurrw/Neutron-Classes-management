@@ -93,7 +93,7 @@
 }
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: #0497C3;
+    background-color: #00a2ff;
 }
 .inputfile + label {
     cursor: pointer;
@@ -130,7 +130,7 @@
     /*box-shadow: none!important; !* You may want to include this as bootstrap applies these styles too *!*/
 
     border: 0!important;
-    background-color: #3987BF!important;
+    background-color: #00a2ff!important;
 
 
 }
@@ -185,8 +185,9 @@
 }
 
 .lblPerfil{
-    display: block;
+    /*display: block;*/
     /*position: absolute;*/
+    display: block;
     padding-right:30px!important;
 }
 .lblPerfil2{
@@ -194,7 +195,7 @@
 }
 #PerfilDados input, #PerfilDados p{
     /*height:40px!important;*/
-    background-color:#2B668F;
+    background-color:#1278B2;
     color: #f4f5f6!important;
     /*border-radius: 5px!important;*/
     /*margin-top:-5px;*/
@@ -361,4 +362,16 @@
     margin-left:3px;
     font-size:1.2rem;
     padding-right:10px;
+}
+
+#hbmenu{
+    /*width:40px;*/
+    /*height:40px;*/
+}
+.toggle-button{
+    position: relative;
+    display: block;
+    left:-40px!important;
+    top:15px;
+    background: transparent;
 }

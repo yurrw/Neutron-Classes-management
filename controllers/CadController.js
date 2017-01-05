@@ -50,7 +50,6 @@ exports.attPass = function(req, res){
       }
 };
 exports.UpFoto = function(req,res){
-        console.log('HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');
    var archName ="";
 
      var fs = require('fs');
@@ -116,8 +115,10 @@ exports.UpFoto = function(req,res){
                           console.log("UPOU NAS CARALHA");
 
                      });
-                                                              res.end("File has been uploaded");
-                                  }
+//                                                              return res.render();
+  return                                          res.render('paginas/index',{	user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
+                                        //@TODO: uma pagina de atualizar perfil mesmo, nao um modal.
+                                        }
               });
 
 // console.log('hi');
@@ -143,21 +144,29 @@ exports.UpdatePerfil = function(req,res){
 // console.log('hi');
  var sql = "UPDATE usuario SET username ='"+req.body.nome+"' Where matricula= '"+req.user.matricula+"' ";
  var sql2 = "UPDATE profs SET nome ='"+req.body.nome+"',data_nasc='"+req.body.data_nasc+"', tel_cel='"+req.body.tel_cel+"',email='"+req.body.email+"'  Where matricula= '"+req.user.matricula+"' ";
- console.log(sql +"\n\n\n"+ sql2);
+ console.log(sql2);
 
-//     connDB.query(sql,function(err,rows){
-//       if (err)
-//         console.log('errou');
+     connDB.query(sql,function(err,rows){
+       if (err)
+         console.log('errou');
 
-//       console.log('oi');
-//       req.user.username=req.body.nome;
-//       user =req.body.nome;
-//       console.log(req.user);
-//     // res.render('paginas/index',{ user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
+      // console.log('oi');
+         //@TODO : Retirar o parametro 'rows'
+         connDB.query(sql2,function(err,rows)
+         {
+           if(err)
+             console.log("erro");
 
-//     });
+             res.json("dadosAtualizados");
 
-}
+         });
+     //     req.user.username=req.body.nome;
+     //     user =req.body.nome;
+     //     console.log(req.user);
+     //     res.render('paginas/index',{ user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
+     });
+
+};
 exports.pesquisaDisc = function(req, res){
 
   var disciplinas = [];
