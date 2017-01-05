@@ -41,11 +41,13 @@ exports.attPass = function(req, res){
             if(err) console.log(err);
           })
 
-
+            res.json("updated");
         }
           else {
             console.log("Merdas diferentes");
-        }
+            res.json("wrong");
+
+      }
 };
 exports.UpFoto = function(req,res){
         console.log('HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');

@@ -9,6 +9,7 @@
         </div>
 
         <h1 id="TituloPriv">Privacidade</h1>
+
         <div class="container priv">
 
         <div class="modal-body ">
@@ -33,9 +34,19 @@
                 <strong>Parabéns</strong> Dados Gravados com Sucesso!!
             </div>
             <div id="errorChangePassword" class="alert alert-danger msg">
-                <strong>Erro!!</strong> Favor contatar o administrador.
+                <strong>Erro!!</strong> Senha  atual errada
             </div>
+            <div id="errorChangePasswordFull" class="alert alert-danger msg">
+                <strong>Erro!!</strong> Favor contatar o administrador
             </div>
+            <div id="newDiff" class="alert alert-danger msg">
+                <strong>Erro!!</strong>Senhas novas desiguais
+            </div>
+            <div id="" class="form-group row">
+                <label for="ShowWords" id="lblSh">Mostrar senhas</label>
+                <input type="checkbox" id="ShowWords" class="shPass" >
+            </div>
+        </div>
 		</div>
         <div class="modal-footer no-border footerPriv">
           <button type="submit" id="AtualizarSenha" class="btn btn-primary">Atualizar</button>
@@ -48,9 +59,20 @@
 $(function()
 {
     $(".msg").hide();                                           //ESCONDE AS MENSAGENS DE SUCESSO/ERRO/ETC
+    $("#ShowWords").change(function () {
+        if($(this).prop('checked')){
+            $('#oldOne').attr('type', 'text');
+            $('#NewOne').attr('type', 'text');
+            $('#NewOne2').attr('type', 'text');
 
+        }else {
+            $('#oldOne').attr('type', 'password');
+            $('#NewOne').attr('type', 'password');
+            $('#NewOne2').attr('type', 'password');
+        }
+    });
   $("#AtualizarSenha").click(function(){
-
+    if ($("#NewOne").val()  &&   $("#NewOne2").val() &&  $("#oldOne").val() ){
       if($("#NewOne").val() === $("#NewOne2").val() ){
       $.ajax({
       url: "/attPass",  // AQUI É A URL QUE SERA ENVIADO
@@ -68,22 +90,31 @@ $(function()
         // console.log('process complete');
       },
       success: function(data) {
+            if(data =="updated"){
+          showMessage("#sucessoChangePassword");
 
+            }
+            else if(data == "wrong"){
+                   // alert("senhas diferentes");
+                    //            $("#errorChangePassword").show();
+                              showMessage("#errorChangePassword");
+
+            }
 //          showMessage("sucessoChangePassword");
       },
 
       error: function(x,k,b) {
-          console.log("erro");
-//      showMessage("errorChangePassword");
-
-
-
+            console.log(x+ " "+" "+k+" "+b);
+          showMessage("#errorChangePasswordFull");
       },
     });
 
-  }else alert("Senhas novas desiguais");
+  }else  showMessage("#newDiff");
     // alert("iguais");
+    }else {
+              showMessage("#PreencherChangePassword");
 
+    }
 /*
 
   */

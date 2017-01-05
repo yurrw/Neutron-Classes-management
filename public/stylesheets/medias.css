@@ -90,6 +90,18 @@
         width:260px;
     }
 
+
+}
+@media  only screen and (max-width: 768px ) {
+    #ModalConteudo .modal-content{
+        /*height:53%;*/
+    }
+    .msg2{
+        position: relative;
+        display: block;
+        width:220px;
+        margin-top:-15px;
+    }
 }
 @media  screen and (max-width: 765px ) {
     #PerfilDados input, #PerfilDados p {

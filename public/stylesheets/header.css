@@ -344,3 +344,21 @@
 .msg{
     width:370px;
 }
+.msg2{
+    width:400px;
+    position: absolute;
+    margin-left:-15px;
+}
+.shpass{
+    width:13px!important;
+    height:13px!important;
+}
+#boxShow{
+    float: right;
+}
+#lblSh{
+    font-weight:100;
+    margin-left:3px;
+    font-size:1.2rem;
+    padding-right:10px;
+}
