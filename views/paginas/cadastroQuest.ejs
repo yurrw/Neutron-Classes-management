@@ -171,10 +171,16 @@
           <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
             <H3>Cadastro de questões</H3>
 
-            <% if (message.length > 0) { %>
+            <% if(message.length > 0){ %>
                 <div class="alert alert-info" style="text-align: center;"><%= message %></div>
             <% } %>
+              <script>
+              $(function() {
+                var meu_pau = <%= message %>
+                alert(" <%= message.length %>");
+              })
 
+              </script>
             <br>
 
             <form class="form-inline" method="Post" action="/cadastroQuest" name="cadastroQuestao">

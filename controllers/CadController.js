@@ -171,7 +171,7 @@ exports.pesquisaDisc = function(req, res){
 
   var disciplinas = [];
   var autor = req.body.autor;
-  var query = "SELECT * FROM `disciplinas`, professor_disciplinas, profs WHERE profs.matricula = professor_disciplinas.matricula and disciplinas.disciplina_id = professor_disciplinas.disciplina_id and profs.nome = '"+ autor +"' ORDER BY disciplinas.disciplina_nome ";
+  var query = "SELECT DISTINCT disciplina_nome FROM `disciplinas`  ORDER BY disciplinas.disciplina_nome ";
 
   connDB.query(query, function(err,rows){
     if (err)
@@ -181,18 +181,18 @@ exports.pesquisaDisc = function(req, res){
       for (var i = 0, len = rows.length; i < len; i++) {
         disciplinas.push(rows[i].disciplina_nome);
       }
+      console.log(disciplinas);
       res.json(disciplinas);
     }
 
   });
 };
-
 exports.pesquisaMat = function(request, res){
   var materias = [];
 
   connDB.query("SELECT * FROM `materia`, disciplinas WHERE materia.disciplina_id = disciplinas.disciplina_id AND disciplinas.disciplina_nome = '"+ request.body.disciplina +"'",function(err,rows){
     if (err){
-      request.flash('MSGCadQuest', err);} 
+      request.flash('MSGCadQuest', err);}
     if (rows.length) {
       for (var i = 0, len = rows.length; i < len; i++) {
         materias.push(rows[i].nome);
@@ -333,7 +333,7 @@ exports.cadastroQuest   = function(request, response, next){
     } //Aqui ele retorna a msg se a qstao ja existir
     if (rows.length) {
       request.flash('MSGCadQuest', 'Questão já existente!'); //Aqui ele retorna a msg se a qstao ja existir
-    } 
+    }
     else {
       if(tipo == "Discursiva")
       {
@@ -356,11 +356,33 @@ exports.cadastroQuest   = function(request, response, next){
         var fromClause    = "FROM disciplinas, materia ";
         var whereClause   = "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
         connDB.query(insertClause + selectClause + fromClause + whereClause, function(err,rows){
-          request.flash('MSGCadQuest', 'Questao Cadastrada!');
+          if(err){
+            request.flash('MSGCadQuest', 'Erro ao cadastrar');
+          return  response.redirect('/cadastroQuest');
+            console.log("ERRO");
+
+            }else{
+              request.flash('MSGCadQuest', 'Questao Cadastrada!');
+              return  response.redirect('/cadastroQuest');
+
+              console.log("FOI");
+
+            }
+            console.log("MEUPAU")
+            console.log("MEUPAU")
+            console.log("MEUPAU")
+            console.log("MEUPAU")
+            console.log("MEUPAU")
+console.log("MEUPAU")
         });
       }
     }
-    return   response.render('paginas/cadastroQuest', {message: request.flash('MSGCadQuest','Dados Gravados Com sucesso'), user: request.user.username});
+
+      // res.render('index', { messages: req.flash('info') });
+      //request.flash('MSGCadQuest', 'Questao Cadastrada!');
+
+  //return   request.flash('MSGCadQuest', 'Dados Gravados com sucesso');
+
   });
 };
 
@@ -369,7 +391,7 @@ exports.cadastroQuest   = function(request, response, next){
 exports.cadastroEvento   = function(request, response){
   console.log("\ncadastrando Evento - inicio ");
   // console.log(request.body);
-  
+
   var matricula= request.user.matricula;
   var evento   = request.body.title;
   var descricao= request.body.descricao;
@@ -380,10 +402,10 @@ exports.cadastroEvento   = function(request, response){
   var cor      = request.body.cor;
   var cor2     /*= request.body.corSecondary*/;
 
-  
+
 
   console.log(request.body);
-  
+
   if (turma==0 || turma=='undefined' || turma=='?undefined : undefined ?' || turma=='? unde'|| turma=='' ) {
     turma='';
   }
@@ -401,12 +423,12 @@ exports.cadastroEvento   = function(request, response){
 
 
   var inserEvento = "INSERT INTO `calendario`(`matricula`, `evento`, `descricao`, `datahora`, `datafim`, `allday`, `cor`, `cor2`, `turma`) VALUES ('"+matricula+"','"+evento+"','"+descricao+"','"+date+"','"+datefim+"','"+allday+"','"+cor+"','"+cor2+"','"+turma+"')";
-  
-  connDB.query(inserEvento,function(err,rows){ if (err) request.flash('MSGCadEvento'+matricula+"~"+evento+"~"+date+"~"+cor+"~"+cor2+"~"+descricao+"~"+turma, err);});            
+
+  connDB.query(inserEvento,function(err,rows){ if (err) request.flash('MSGCadEvento'+matricula+"~"+evento+"~"+date+"~"+cor+"~"+cor2+"~"+descricao+"~"+turma, err);});
 
   return  response.render('paginas/calendario',{user: request.user.username});
 
-  
+
   console.log(" cadastrado Evento - fim\n");
 };
 
@@ -438,21 +460,21 @@ exports.editEvento = function(request,response){
   else { cor="#f0f0f0";cor2= "#f0f0f0";}
 
   if (allday != true) {allday=false;}
- 
+
 
   if ( op == 'Deletar'){
-    var qry = "DELETE FROM `calendario` WHERE cod_evento = '"+cod_evento+"' and matricula = '"+matricula+"' ";  
-    connDB.query(qry,function(err,rows){ 
-      if (err) {request.flash('MSGCadEvento'+matricula+"~"+titulo+"~"+date+"~"+cod_evento+"~"+descricao+"~"+turma, err)};            
+    var qry = "DELETE FROM `calendario` WHERE cod_evento = '"+cod_evento+"' and matricula = '"+matricula+"' ";
+    connDB.query(qry,function(err,rows){
+      if (err) {request.flash('MSGCadEvento'+matricula+"~"+titulo+"~"+date+"~"+cod_evento+"~"+descricao+"~"+turma, err)};
       if (err){ requestrequest.flash('MSGCadQuest', err);}
       else { console.log("\tedit evento : del - fim\n");}
-    }); 
+    });
   }
   else if ( op == 'Editar'){
-    var qry = "UPDATE `calendario` SET `evento`='"+titulo+"',`descricao`='"+descricao+"',`datahora`='"+date+"',`turma`='"+turma+"', `cor`='"+cor+"',`cor2`='"+cor2+"' WHERE  cod_evento ='"+cod_evento+"' and matricula='"+matricula+"' ";  
+    var qry = "UPDATE `calendario` SET `evento`='"+titulo+"',`descricao`='"+descricao+"',`datahora`='"+date+"',`turma`='"+turma+"', `cor`='"+cor+"',`cor2`='"+cor2+"' WHERE  cod_evento ='"+cod_evento+"' and matricula='"+matricula+"' ";
     connDB.query(qry,function(err,rows){ if (err){ request.flash('MSGCadQuest', err);}
       else { console.log("  edit evento : edit- fim\n");}
-    }); 
+    });
   }
   else{console.log("\tedit evento : del erro  leks");}
 
