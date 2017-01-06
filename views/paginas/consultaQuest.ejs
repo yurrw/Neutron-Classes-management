@@ -15,7 +15,7 @@
         $.ajax({
           url: "/pescaconsul",
           type: "POST",
-          dataType: "json", 
+          dataType: "json",
           data:JSON.stringify({
               autor: autor,
               disciplina : disciplina,
@@ -51,7 +51,7 @@
             console.log('process error');
             $("#tableQuestoes").empty();
             $("#errorMessage").empty();
-            $("#tableQuestoes").append($("<H3/>").text("Não há questões compatíveis com a consulta"));
+            $("#Message404").append($("<div class='alert alert-danger' style='text-align: center;margin-left:50px;'>").text("Não há questões compatíveis com a consulta"));
           },
         });
       });
@@ -76,7 +76,7 @@
             console.log(disciplina);
             console.log('process sucess');
             $("#materia").empty();
-            $("#materia").append($("<option disable selected />").val('Matéria').text('Matéria'));
+            $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
             for(var i = 0; i < data.length; i++) {
               $("#materia").append($("<option />").val(data[i]).text(data[i]));
               console.log(data[i]);
@@ -124,7 +124,7 @@
     $(function pesqDisciplina(){
       $.post("/pesqDisc",function(data){
         $("#disciplina").empty();
-        $("#disciplina").append($("<option selected />").val('Disciplina').text('Disciplina'));
+        $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
         for(var i = 0; i < data.length; i++) {
         //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
           $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
@@ -132,6 +132,7 @@
         }
       });
     });
+
     </script>
 </head>
 <body>
@@ -162,7 +163,7 @@
               </select> &nbsp&nbsp
 
               <select class="form-control" name="serie" id="serie" style="width:300px;">
-                <option selected>Série</option>
+                <option disabled selected>Série</option>
                 <option>1º ano</option>
                 <option>2º ano</option>
                 <option>3º ano</option>
@@ -171,13 +172,13 @@
               <input type="text" name="creation" id="creation" value="" placeholder="Ano de criação" class="form-control" style= " width:300px;"> &nbsp&nbsp
 
               <select class="form-control" name="tipo" id="tipo"  style="width:300px;">
-                <option selected>Tipo</option>
+                <option disabled selected>Tipo</option>
                 <option>Discursiva</option>
                 <option>Objetiva</option>
               </select><br><br>
 
               <select class="form-control" name="nivel" id="nivel" style="width:300px;">
-                <option selected>Nível</option>
+                <option disabled selected>Nível</option>
                 <option>Basica</option>
                 <option>Mediana</option>
                 <option>Avançada</option>
@@ -205,9 +206,8 @@
 
                 </tbody>
               </table>
-
+                <span id = "Message404"></span>
             </div>
-<p id="errorMessage" style="text-align:center; width: 750px; margin-left: 50px;"></p>
 
 
           </div>

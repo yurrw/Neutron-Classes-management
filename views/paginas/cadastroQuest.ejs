@@ -2,13 +2,29 @@
 <head>
     <% include ../partes/head %>
     <script>
+
+
+    $(document).on('click', '#cadastrar', function(){
+      $("#formulario").submit();
+    });
+
+
+
     var autor;
     //Carrega disciplina de acordo com o autor
-    $( function() {
+    $(function() {
+      $("#autor").change(function(){
+
+        var autor = $('#autor').val();
+
+        if (autor == "Outro") {
+          $("#autor").replaceWith('<input type="text" id="autor" name="autor" class="form-control" placeholder="Autor" style="width:300px;"required autofocus>');
+          $("#autor").focus();
+        }
 
 
-        var autor = "<%= user %>";
 
+        console.log(autor);
 
         $.ajax({
           url: "/pesqDisc",  // AQUI É A URL QUE SERA ENVIADO
@@ -25,27 +41,21 @@
             console.log('process complete');
           },
           success: function(data) {
-            console.log(disciplina);
+            console.log(autor);
             console.log('process sucess');
             $("#disciplina").empty();
-            $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
-            for(var i = 0; i < data.length; i++) {
-              $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
-              console.log(data[i]);
-            }
+                    $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+                    for(var i = 0; i < data.length; i++) {
+                      $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+                      console.log(data[i]);
+                    }
           },
 
           error: function() {
             console.log('process error');
           },
         });
-
-
-        if(autor == "Outro"){
-          $("#autor").replaceWith('<input type="text" id="autor" name="autor" class="form-control" placeholder="Autor" style="width:300px;"required autofocus>');
-          $("#autor").focus();
-        }
-
+      });
     });
 
 
@@ -56,7 +66,7 @@
         var disciplina = $('#disciplina').val();
 
         $("#materia").empty();
-        $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
+        $("#materia").append($("<option disabled selected />").val('Materia').text('Materia'));
 
         console.log(disciplina);
 
@@ -145,7 +155,7 @@
           $('#dadosQuest').append($('<br />'));
         }
 
-        $('#dadosQuest').append($('<button type="submit" name="cadastrar" class="btn btn-default">').val("Cadastrar").text("Cadastrar"));
+        $('#dadosQuest').append($('<button type="submit" id = "cadastrar" name="cadastrar" class="btn btn-default">').val("Cadastrar").text("Cadastrar"));
 
       });
     });
@@ -177,7 +187,7 @@
 
             <br>
 
-            <form class="form-inline" method="Post" action="/cadastroQuest" name="cadastroQuestao">
+            <form class="form-inline" method="Post" action="/cadastroQuest" name="cadastroQuestao" id="formulario">
 
 
               <select class="form-control" id="autor"  name="autor" style="width:300px;" required>
@@ -198,7 +208,7 @@
               </select>&nbsp&nbsp
 
               <select class="form-control" id="materia" name="materia" style="width:300px;" required>
-                <option disabled selected>Materia</option>
+                <option disabled selected>Matéria</option>
               </select><br><br>
 
               <select class="form-control" id="serie" name="serie" style="width:300px;" required>
@@ -208,7 +218,7 @@
                 <option>3º ano</option>
               </select>&nbsp&nbsp
 
-              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" required><br><br>
+              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" min="1900" max="2016" accept=""required><br><br>
 
               <select class="form-control" id="tipo" name="tipo" style="width:300px;" required>
                 <option disabled selected>Tipo</option>
@@ -216,12 +226,20 @@
                 <option>Objetiva</option>
               </select>&nbsp&nbsp
 
-              <select class="form-control" id="nivel" name="nivel" style="width:300px;" required>
-                <option disabled selected>Nível</option>
-                <option>Básica</option>
-                <option>Mediana</option>
-                <option>Avançada</option>
-              </select><br><br>
+              <div class="stars">
+
+
+                  Dificuldade:
+                  <input class="star star_3" id="star_3" type="radio" name="star" value="Difícil" required/>
+                  <label class="star star_3" for="star_3" id="label1"></label>
+                  <input class="star star_2" id="star_2" type="radio" name="star" value="Média" required/>
+                  <label class="star star_2" for="star_2" id="label2"></label>
+                  <input class="star star_1" id="star_1" type="radio" name="star" value="Fácil" required/>
+                  <label class="star star_1" for="star_1" id="label3"></label><br><br>
+
+
+
+              </div>
 
               <textarea id="enunciado" name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado" required></textarea><br><br>
 
