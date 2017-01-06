@@ -2,6 +2,8 @@
 <head>
   <% include ../partes/head %>
   <script>
+
+  //Pesquisa as questões
     $( function() {
       $("#btn-consultar").click(function(){
         var autor = $('#autor').val();
@@ -15,7 +17,7 @@
         $.ajax({
           url: "/pescaconsul",
           type: "POST",
-          dataType: "json", 
+          dataType: "json",
           data:JSON.stringify({
               autor: autor,
               disciplina : disciplina,
@@ -48,15 +50,17 @@
             }
           },
           error: function() {
-            console.log('process error');
+            console.log('Bundaaaaaaaaaaa');
             $("#tableQuestoes").empty();
-            $("#errorMessage").empty();
-            $("#tableQuestoes").append($("<H3/>").text("Não há questões compatíveis com a consulta"));
+            $("#Message404").empty();
+            $("#Message404").append($("<div class='alert alert-danger' style='text-align: center;margin-left:50px;'>").text("Não há questões compatíveis com a consulta"));
           },
         });
       });
     });
 
+
+    //Pesquisa as matérias da disciplina selecionada
     $( function() {
       $("#disciplina").change(function(){
         var disciplina = $('#disciplina').val();
@@ -87,6 +91,8 @@
       });
     });
 
+
+    //Função para remover a questão da tabela
     function removerRow(btn) {
       x--;
       var row = btn.parentNode.parentNode;
@@ -94,7 +100,7 @@
       novaRow[x] = "";
     }
 
-
+    //Remove a questão do banco
     function removerQuest(element){
       var table = document.getElementById('tabelaUnica');
       var r = parseInt(element.parentNode.parentNode.rowIndex);
@@ -121,6 +127,8 @@
       });
     };
 
+
+    //Pesquisa as disciplinas ao carregar a página
     $(function pesqDisciplina(){
       $.post("/pesqDisc",function(data){
         $("#disciplina").empty();
@@ -205,9 +213,9 @@
 
                 </tbody>
               </table>
+              <span id="Message404" style="text-align:center; width: 750px; margin-left: 50px;"></span>
 
             </div>
-<p id="errorMessage" style="text-align:center; width: 750px; margin-left: 50px;"></p>
 
 
           </div>

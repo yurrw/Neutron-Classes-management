@@ -187,6 +187,8 @@ exports.pesquisaDisc = function(req, res){
 
   });
 };
+
+
 exports.pesquisaMat = function(request, res){
   var materias = [];
 
@@ -206,7 +208,7 @@ exports.pesquisaQuest = function(request, response){
   var questoes = [];
   console.log(request.body.materia);
 
-  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id GROUP BY enunciado",function(err,rows){
+  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
     if (err)
     request.flash('MSGCadQuest', err);
     if (rows.length) {
@@ -315,17 +317,20 @@ exports.cadastroQuest   = function(request, response, next){
   var serie          =    request.body.serie;
   var anoC           =    request.body.criacao;
   var tipo           =    request.body.tipo;
-  var nivel          =    request.body.nivel;
+  var nivel          =    request.body.star;
   var enunciado      =    request.body.enunciado;
   var gabarito       =    request.body.gabarito;
   var nLinhas        =    request.body.nLinhas;
   var apLinhas;
+
   if(request.body.linhasAparentes === undefined){
     apLinhas = false;
   }
   else if (request.body.linhasAparentes == 'on') {
     apLinhas = true;
   }
+
+console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.body.disciplina+ " " +request.body.materia+ " " +request.body.serie+ " " +request.body.criacao+ " " +request.body.tipo+ " " +request.body.star+ " " +request.body.enunciado+ " " +request.body.gabarito+ " " +request.body.nLinhas+ " " + apLinhas);
 
   connDB.query("select * from questoes where enunciado = '"+ enunciado +"'",function(err,rows){
     if (err){
@@ -337,11 +342,16 @@ exports.cadastroQuest   = function(request, response, next){
     else {
       if(tipo == "Discursiva")
       {
-        var insertClause  = "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, quant_linhas, linhas_visiveis) ";
-        var selectClause  = "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, '"+ enunciado +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"', '"+ nLinhas +"', "+ apLinhas +" ";
-        var fromClause    = "FROM disciplinas, materia ";
-        var whereClause   = "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
-        connDB.query(insertClause + selectClause + fromClause + whereClause, function(err,rows){});
+        var query  =  "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`," +
+                      " `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, quant_linhas, linhas_visiveis) " +
+
+                      "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, " +
+                      "'"+ enunciado +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"', '"+ nLinhas +"', "+ apLinhas +" " +
+
+                      "FROM disciplinas, materia " +
+
+                      "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
+
       }
       else if (tipo == "Objetiva") {
         var opcoes = {
@@ -351,31 +361,42 @@ exports.cadastroQuest   = function(request, response, next){
           d : request.body.opcD,
           e : request.body.opcE,
          }
-        var insertClause  = "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) ";
-        var selectClause  = "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, '"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' ";
-        var fromClause    = "FROM disciplinas, materia ";
-        var whereClause   = "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
-        connDB.query(insertClause + selectClause + fromClause + whereClause, function(err,rows){
-          if(err){
-            request.flash('MSGCadQuest', 'Erro ao cadastrar');
-          return  response.redirect('/cadastroQuest');
-            console.log("ERRO");
+         var query  =  "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`," +
+                       " `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) "; +
 
-            }else{
-              request.flash('MSGCadQuest', 'Questao Cadastrada!');
-              return  response.redirect('/cadastroQuest');
+                       "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, " +
+                       "'"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"', " +
+                       "'"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' " +
 
-              console.log("FOI");
+                       "FROM disciplinas, materia " +
 
-            }
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-console.log("MEUPAU")
-        });
+                       "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
+
       }
+
+      console.log(query);
+
+      connDB.query(query, function(err,rows){
+        if(err){
+          request.flash('MSGCadQuest', 'Erro ao cadastrar');
+        return  response.redirect('/cadastroQuest');
+          console.log("ERRO");
+
+          }else{
+            request.flash('MSGCadQuest', 'Questao Cadastrada!');
+            return  response.redirect('/cadastroQuest');
+
+            console.log("FOI");
+
+          }
+          console.log("MEUPAU")
+          console.log("MEUPAU")
+          console.log("MEUPAU")
+          console.log("MEUPAU")
+          console.log("MEUPAU")
+      console.log("MEUPAU")
+      });
+
     }
 
       // res.render('index', { messages: req.flash('info') });
