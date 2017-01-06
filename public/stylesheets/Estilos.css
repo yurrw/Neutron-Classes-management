@@ -155,19 +155,44 @@ PARTE DOS MENUS DO RENANLA
 === LOGIN_PAGINA =================================================
 ==================================================================
 */
-
+.contlog{
+    height:100%;
+}
 .loginLogo {
-    padding-top: 50px;
-    margin-left: 14%;
-    padding-bottom: 50px;
+    background: linear-gradient(to bottom,#428FE6,#4994E6);
+    height:100%;
+    width: 400px;
+    float: left;
+    position: relative;
+
+}
+#RightForm{
+    /*display: block;*/
+    /*left:0;*/
+    float: right;
+
+    position: relative;
+    width:400px;
+    background-color: black;
+    height:100%;
+z-index: 9999;
+    /*z-index: 9999!important;*/
+    /*
+    display: block;
+*/
+}
+#formLog{
+    margin-top:100px!important;
+    z-index: 999!important;
 }
 .prpLogo {
-    /*height: 24vh;
-    width: 30vh;*/
-    height: 85%;
-    width: 85%;
+    /*height: 85%;*/
+    height: 100px;
+    /*width: 85%;*/
+    width: 100px;
 }
 .txtBox {
+    z-index: 999999999!important;
     height: 40px!important;
     width: 300px!important;
 }
@@ -184,9 +209,6 @@ PARTE DOS MENUS DO RENANLA
     margin-left: 60px;
 }
 
-#formLog{
-  width: 00px;
-}
 /*
 ==================================================================
 === CADASTRO_PAGINA ==============================================

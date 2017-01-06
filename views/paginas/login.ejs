@@ -16,35 +16,35 @@
 
             .all    
                 {
-                  width: 370px; 
-                  border-radius: 2px;
+                display: block;
+                margin: 0 auto;
+                  width: 800px;
+                height:500px;
+                  border-radius: 8px;
                   -webkit-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
                   -moz-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
                   box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
+
                 }
             #formLog
                 { 
                   margin-left: 35px;  
                 }
-/*   .top1{
-    width: 100%;
-    height: 200px;
-    background-color: #2C405C;
-    display: block;
-    position: absolute;
-    z-index: -999;
-}*/
+        #tudoLogin{
+            display : block;
+            width:100vw;
+            height:100vw;
+        }
    </style>
 
   </head>
 
   <body>
-    <div class="top1"></div>
-  
+
     <main>
         <div class="container" class="cd-index cd-main-content" id="tudoLogin" >
 
-            <div class="col-sm-6 col-sm-offset-4">
+            <div class="col-sm-12 ">
                 <div class="all"  style="background-color:#FEFEFE">
                     <div class="contlog">
 
@@ -58,14 +58,15 @@
                             <% } %>
 
                         <!-- LOGIN FORM -->
+                        <div id="RightForm">
                           <form action="/" method="post" id="formLog" name="formLog" >
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <input type="text" class="form-control txtBox"  name="matricula" id="matricula"  placeholder="Matrícula" required="required" autofocus/>
                             </div>
 
                             <br>
 
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <input type="password" class="form-control txtBox"  name="senha" placeholder="Senha"    required="required"/>
                             </div>
 
@@ -77,12 +78,12 @@
 
                          </form>
 
-
                          <br>
 
                          <div class="form-group " data-animsition-overlay="true">
                               <a href="/cadastro" id="cadlink"  >Ainda não é cadastrado? cadastre-se</a>
                          </div>
+                        </div>
 
 
                         <hr>
