@@ -152,9 +152,11 @@ var fs = require('fs');
             app.post('/pesca/:disciplina', TestCTRL.pesquisaMorte);
             app.post('/pesca', TestCTRL.pesquisaMorte2);
             app.post('/pescaconsul', ConsultCtrl.pesquisateste);
+            app.post('/getprova', ConsultCtrl.provaquests);
+
 
             app.post('/mostraturma', ConsultCtrl.pesquisaturma);
-            
+
             app.post('/pesqDiscProf', ConsultCtrl.pesquisaDiscProf);
             app.post('/pegaaluno', ConsultCtrl.listalunos);
             app.post('/pegaaula', ConsultCtrl.pegaPresenca);
@@ -166,23 +168,23 @@ var fs = require('fs');
 
 
 
-       
+
       /*-----------Calendario---------------------------------*/
         app.post('/pesquisaEvento', ConsultCtrl.pesquisaEvento);
-        app.post('/cadastroEvento', CadController.cadastroEvento);  
-        app.post('/editEvento', CadController.editEvento);  
-        
+        app.post('/cadastroEvento', CadController.cadastroEvento);
+        app.post('/editEvento', CadController.editEvento);
 
-        //app.post('/editEvento', CadController.editEvento);           
-        
+
+        //app.post('/editEvento', CadController.editEvento);
+
         /*-------------ADM-------------------------------------*/
         /*-------------ADM__Consulta-------------------------- */
-        app.post('/ADMpesquisaDisc'   , ConsultCtrl.ADMpesquisaDisc);   
+        app.post('/ADMpesquisaDisc'   , ConsultCtrl.ADMpesquisaDisc);
         app.post('/ADMpesquisaMateria', ConsultCtrl.ADMpesquisaMateria);
         app.post('/ADMpesquisaturma'  , ConsultCtrl.ADMpesquisaturma);
         app.post('/ADMpesquisaProf'   , ConsultCtrl.ADMpesquisaProf);
         /*-------------ADM__Cadastro-------------------------- */
-        app.post('/ADMCadDisc'   , ConsultCtrl.ADMCadDisc);   
+        app.post('/ADMCadDisc'   , ConsultCtrl.ADMCadDisc);
         app.post('/ADMCadMateria', ConsultCtrl.ADMCadMateria);
         app.post('/ADMCadturma'  , ConsultCtrl.ADMCadturma);
         app.post('/ADMCadProf'   , ConsultCtrl.ADMCadProf);

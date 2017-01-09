@@ -303,19 +303,65 @@ function doIt(element) {
       //AQUI EU TRATO OS DADOS
       var ginha =[];
       var num = 1;
+      var linhas ="______________________________________________________________________________________\n";
+      var spc = "\n"
+      var nlinhas = "";
         for(var i=0; i< data.length ;i++)
         {
           switch (data[i].tipo) {
+
             case "Discursiva":
-             ginha[i]=num+") "+data[i].enunciado+"\n\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n\n";
-            // alert("1")
-              num++;
+            if(data[i].linhas_visiveis == 'true')
+            {
+              var number = parseInt(data[i].quant_linhas);
+              console.log(number);
+                ginha[i]=num+")" + data[i].enunciado+"\n\n";
+                for(var j=0; j< number ;j++)
+                {
+
+                  nlinhas += linhas;
+                }
+
+                ginha[i] = ginha[i]+ nlinhas+"\n\n";
+                num++;
+
+                break;
+            }
+            else {
+              var number = parseInt(data[i].quant_linhas);
+              console.log(number);
+                ginha[i]=num+")" + data[i].enunciado+"\n\n";
+                for(var j=0; j< number ;j++)
+                {
+
+                  nlinhas += spc;
+                }
+
+                ginha[i] = ginha[i]+ nlinhas+"\n\n";
+                num++;
+
+                break;
+
+            }
+
+
+            case "true":
+            var number = parseInt(data[i].quant_linhas);
+              for(var j=0; j< number ;j++)
+              {
+                ginha[i]=num+") "+data[i].enunciado+"\n\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n\n";
+               // alert("1")
+                 num++;
+
+              }
               break;
+
 
               case "DiscursivaCALC":
               ginha[i]=num+") "+data[i].enunciado+"\n\n\n\n\n\n\n\n\n\n\n\n";
               num++;
               break;
+
 
 
             case "Objetiva":

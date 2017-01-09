@@ -359,22 +359,14 @@ exports.cadastroQuest   = function(request, response, next){
           if(err){
             request.flash('MSGCadQuest', 'Erro ao cadastrar');
           return  response.redirect('/cadastroQuest');
-            console.log("ERRO");
 
             }else{
               request.flash('MSGCadQuest', 'Questao Cadastrada!');
               return  response.redirect('/cadastroQuest');
 
-              console.log("FOI");
 
             }
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-            console.log("MEUPAU")
-console.log("MEUPAU")
-        });
+                    });
       }
     }
 
