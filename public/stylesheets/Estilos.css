@@ -157,33 +157,51 @@ PARTE DOS MENUS DO RENANLA
 */
 .contlog{
     height:100%;
-}
-.loginLogo {
-    background: linear-gradient(to bottom,#428FE6,#4994E6);
+    background: transparent;
+    }
+
+
+
+.loginSData {
+    background: linear-gradient(to right,#4B98ED,#448FDE);
     height:100%;
-    width: 400px;
+    width: 450px;
     float: left;
     position: relative;
+    display: block;
+z-index: 9999;
+
+    /*border-radius: 10px!important;*/
+    border-bottom-left-radius: 10px;
+       border-top-left-radius:10px;
 
 }
 #RightForm{
-    /*display: block;*/
+    display: block;
     /*left:0;*/
     float: right;
 
     position: relative;
-    width:400px;
-    background-color: black;
+    width:350px;
+    background-color: #FFFFFF;
     height:100%;
 z-index: 9999;
+    border-bottom-right-radius: 10px;
+       border-top-right-radius:10px;
     /*z-index: 9999!important;*/
     /*
     display: block;
 */
 }
 #formLog{
-    margin-top:100px!important;
+    margin-top:130px!important;
     z-index: 999!important;
+}
+#formLog > label{
+    font-weight: 100;
+    color: #b2beca;
+    margin-left: -13px;
+    padding-bottom: 5px;
 }
 .prpLogo {
     /*height: 85%;*/
@@ -193,7 +211,7 @@ z-index: 9999;
 }
 .txtBox {
     z-index: 999999999!important;
-    height: 40px!important;
+    height: 50px!important;
     width: 300px!important;
 }
 /*.loginContainer{
@@ -202,13 +220,66 @@ z-index: 9999;
 
 #bt1 {
     color: #ffffff;
-    height: 40px!important;
+    background-color: #3F91EB;
+    height: 50px!important;
     width: 300px!important;
+    border-radius: 5px!important;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+#bt1:hover{
+    background-color: #3FA2EB;
+    /*background: linear-gradient(up,#448FDE,#3F91EB);*/
+
+
 }
 #cadlink {
-    margin-left: 60px;
+    /*margin-left: 60px;*/
+    margin-top: 200px!important;
 }
+#matr > input{
+/*border-bottom-radius: 5px!import
+ant;*/
+    border-top-right-radius: 5px!important;
+    border-top-left-radius: 5px!important;
 
+}
+#senha > input{ 
+    border-bottom-right-radius: 5px!important;
+    border-bottom-left-radius: 5px!important;
+
+    margin-top: -16px;
+
+ }
+ #createUser{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 0px;
+    width: 100%;
+    background-color: #b2beca;
+    height: 100px;
+    border-bottom-right-radius: 10px!important;
+
+ }
+ #bt2{
+    background: transparent;
+    margin-top: 35px;
+    font-size: 1.3rem;
+    margin-left: 110px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+ }
+ a#cadlink{
+    /*margin: 0 auto;*/
+    color: #e2e2e2;
+ }
+  a#cadlink:hover{
+    text-decoration: none;
+    color: #4B98ED;
+
+}
 /*
 ==================================================================
 === CADASTRO_PAGINA ==============================================
