@@ -3,6 +3,15 @@
     <% include ../partes/head %>
     <script>
     var autor;
+
+    //Pega o ano atual e define como valor mínimo do compo ano de criação
+    $(function(){
+      var currentYear = (new Date).getFullYear();
+      $('#criacao').attr('max', currentYear);
+    });
+
+
+
     //Carrega disciplina de acordo com o autor
     $( function() {
 
@@ -176,14 +185,15 @@
             <% } %>
               <script>
               $(function() {
-                var meu_pau = <%= message %>
+                //Lembrar de mudar isso pra entrega final
+                var meu_pau = "<%= message %>";
                 alert(" <%= message.length %>");
               })
 
               </script>
             <br>
 
-            <form class="form-inline" method="Post" action="/cadastroQuest" name="cadastroQuestao">
+            <form class="form-inline" method="Post" action="/cadastroQuest" name="formulario" id="formulario">
 
 
               <select class="form-control" id="autor"  name="autor" style="width:300px;" required>
@@ -214,20 +224,29 @@
                 <option>3º ano</option>
               </select>&nbsp&nbsp
 
-              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" required><br><br>
+              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" min="1837" required><br><br>
 
               <select class="form-control" id="tipo" name="tipo" style="width:300px;" required>
                 <option disabled selected>Tipo</option>
                 <option>Discursiva</option>
                 <option>Objetiva</option>
               </select>&nbsp&nbsp
+              Dificuldade:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-              <select class="form-control" id="nivel" name="nivel" style="width:300px;" required>
-                <option disabled selected>Nível</option>
-                <option>Básica</option>
-                <option>Mediana</option>
-                <option>Avançada</option>
-              </select><br><br>
+              <div class="stars">
+                <input class="star star_3" id="star_3" type="radio" name="star" value="Difícil" required/>
+                <label class="star star_3" for="star_3" id="label3"></label>
+                <input class="star star_2" id="star_2" type="radio" name="star" value="Média" required/>
+                <label class="star star_2" for="star_2" id="label2"></label>
+              <input class="star star_1" id="star_1" type="radio" name="star" value="Fácil" required/>
+              <label class="star star_1" for="star_1" id="label1"></label>
+
+
+
+
+
+
+              </div><br><br>
 
               <textarea id="enunciado" name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado" required></textarea><br><br>
 

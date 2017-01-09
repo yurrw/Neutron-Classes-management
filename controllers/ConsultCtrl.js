@@ -87,105 +87,86 @@ exports.GetNotas = function(req,res){
   });
 };
 exports.pesquisateste   =   function(req, res){
-  var x = 0; // Variável pra controlar o número de condições 0 = Nenhuma condição
+
   console.log(req.body.autor + req.body.nivel + req.body.tipo + req.body.disciplina + req.body.materia + req.body.creation + req.body.serie);
+
+  var x = 0; // Variável pra controlar o número de condições 0 = Nenhuma condição
+
+  var condicaoAutor = "";
+  var condicaoNivel = "";
+  var condicaoTipo = "";
+  var condicaoDisciplina = "";
+  var condicaoMateria = "";
+  var condicaoAno = "";
+  var condicaoSerie = "";
+  var possivelAND = "";
   //Cria a condição WHERE de autor
-  if(req.body.autor == '' || req.body.autor == null || req.body.autor == undefined){
-
-    var condicaoAutor = "";
-
-  }
-  else {
+  if(!(req.body.autor == '' || req.body.autor == null || req.body.autor == undefined)){//Só entra se estiver preenchido (serve pra todos os ifs principais abaixo)
     var condicaoAutor = " autor= '" + req.body.autor + "'";
     x++;
   }
 
   //Cria a condição WHERE de nível
-  if(req.body.nivel == '' || req.body.nivel == null || req.body.nivel == undefined || req.body.nivel == 'Nível'){
-    var condicaoNivel = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
-    if(x>0) {var condicaoNivel = " AND";}
-    else {var condicaoNivel = "";}
+  if(!(req.body.nivel == '' || req.body.nivel == null || req.body.nivel == undefined || req.body.nivel == 'Nível')){
+    if(x>0) {var condicaoNivel = " AND";} //Esse if testa se já existe alguma outra condição
     condicaoNivel += " nivel= '" + req.body.nivel + "'";
     x++;
   }
 
   //Cria a condição WHERE de tipo
-  if(req.body.tipo == '' || req.body.tipo == null || req.body.tipo == undefined || req.body.tipo == 'Tipo'){
-    var condicaoTipo = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
+  if(!(req.body.tipo == '' || req.body.tipo == null || req.body.tipo == undefined || req.body.tipo == 'Tipo')){
     if(x>0) {var condicaoTipo = " AND";}
-    else {var condicaoTipo = "";}
     condicaoTipo += " tipo = '"+ req.body.tipo +"'";
     x++;
   }
 
   //Cria a condição WHERE de disciplina
-  if(req.body.disciplina == '' || req.body.disciplina == null || req.body.disciplina == undefined || req.body.disciplina == 'Disciplina'){
-    var condicaoDisciplina = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
+  if(!(req.body.disciplina == '' || req.body.disciplina == null || req.body.disciplina == undefined || req.body.disciplina == 'Disciplina')){
     if(x>0) {var condicaoDisciplina = " AND";}
-    else {var condicaoDisciplina = "";}
     condicaoDisciplina += " disciplina_id = (SELECT `disciplina_id` FROM `disciplinas` WHERE disciplina_nome = '"+ req.body.disciplina +"')";
     x++;
   }
 
   //Cria a condição WHERE de matéria
-  if(req.body.materia == '' || req.body.materia == null || req.body.materia == undefined || req.body.materia == 'Matéria'){
-    var condicaoMateria = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
+  if(!(req.body.materia == '' || req.body.materia == null || req.body.materia == undefined || req.body.materia == 'Matéria')){
     if(x>0) {var condicaoMateria = " AND";}
-    else {var condicaoMateria = "";}
     condicaoMateria += " materia_id = (SELECT `materia_id` FROM `materia` WHERE nome = '"+ req.body.materia +"')";
     x++;
   }
 
   //Cria a condição WHERE de ano de criação
-  if(req.body.creation == '' || req.body.creation == null || req.body.creation == undefined){
-    var condicaoAno = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
+  if(!(req.body.creation == '' || req.body.creation == null || req.body.creation == undefined)){
     if(x>0) {var condicaoAno = " AND";}
-    else {var condicaoAno = "";}
     condicaoAno += " ano_letivo = '"+ req.body.creation +"'";
     x++;
   }
 
+
   //Cria a condição WHERE de série
-  if(req.body.serie == '' || req.body.serie == null || req.body.serie == undefined || req.body.serie == 'Série'){
-    var condicaoSerie = "";
-  }
-  else {
-    //Testa se já tem alguma outra condição
+  if(!(req.body.serie == '' || req.body.serie == null || req.body.serie == undefined || req.body.serie == 'Série')){
     if(x>0) {var condicaoSerie = " AND";}
-    else {var condicaoSerie = "";}
     condicaoSerie += " anoserie = '"+ req.body.serie +"'";
+    x++;
   }
 
   // Testa se tem alguma condição
   if(x>0){
-    var whereClause = "WHERE";
-  }
-  else {
-    var whereClause = "";
+    var possivelAND = " AND ";
   }
 
+
+  //Junta todas as condições do where
+  whereClause = "WHERE" + condicaoAutor + condicaoNivel + condicaoTipo + condicaoDisciplina + condicaoMateria + condicaoAno + condicaoSerie + possivelAND + "(autor = '"+  req.username +"' || visibilidade = 'Púb')";
 
   var questoes = [];
-  var qry =  "SELECT questoes.enunciado, questoes.gabarito, questoes.cod_quest FROM questoes "+ whereClause + condicaoAutor + condicaoNivel + condicaoTipo + condicaoDisciplina + condicaoMateria + condicaoAno + condicaoSerie +" GROUP BY enunciado" ;
+  var qry =  "SELECT questoes.enunciado, questoes.gabarito, questoes.cod_quest FROM questoes "+ whereClause +" GROUP BY enunciado" ;
+
   console.log(qry);
+
   connDB.query(qry,function(err,rows){
     if (err)
     req.flash('MSGCadQuest', err);
+
     if (rows.length) {
 
       for (var i = 0, len = rows.length; i < len; i++) {
