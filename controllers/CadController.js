@@ -361,7 +361,6 @@ console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.bod
           d : request.body.opcD,
           e : request.body.opcE,
          }
-<<<<<<< HEAD
         var insertClause  = "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) ";
         var selectClause  = "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, '"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' ";
         var fromClause    = "FROM disciplinas, materia ";
@@ -378,7 +377,6 @@ console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.bod
 
             }
                     });
-=======
          var query  =  "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`," +
                        " `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) "; +
 
@@ -390,7 +388,6 @@ console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.bod
 
                        "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
 
->>>>>>> 7b560dce1a974e584159f15a2b7444a2fc542bf3
       }
 
       console.log(query);
@@ -408,12 +405,7 @@ console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.bod
             console.log("FOI");
 
           }
-          console.log("MEUPAU")
-          console.log("MEUPAU")
-          console.log("MEUPAU")
-          console.log("MEUPAU")
-          console.log("MEUPAU")
-      console.log("MEUPAU")
+
       });
 
     }
