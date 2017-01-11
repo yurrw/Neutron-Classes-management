@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Jan-2017 às 20:03
+-- Generation Time: 11-Jan-2017 às 02:55
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -210,64 +210,30 @@ CREATE TABLE `disciplinas` (
 --
 
 INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`, `anoserie`) VALUES
-(1, 'Português', '1° ano'),
-(2, 'Português', '2° ano'),
-(3, 'Português', '3° ano'),
-(4, 'Literatura', '1° ano'),
-(5, 'Literatura', '2° ano'),
-(6, 'Literatura', '3° ano'),
-(7, 'Matemática I', '1° ano'),
-(8, 'Matemática I', '2° ano'),
-(9, 'Matemática I', '3° ano'),
-(10, 'Matemática II', '1° ano'),
-(11, 'Matemática II', '2° ano'),
-(12, 'Matemática II', '3° ano'),
-(13, 'Quí­mica I', '1° ano'),
-(14, 'Quí­mica I', '2° ano'),
-(15, 'Quí­mica I', '3° ano'),
-(16, 'Quí­mica II', '1° ano'),
-(17, 'Quí­mica II', '2° ano'),
-(18, 'Quí­mica II', '3° ano'),
-(19, 'Sociologia', '1° ano'),
-(20, 'Sociologia', '2° ano'),
-(21, 'Sociologia', '3° ano'),
-(22, 'Geografia', '1° ano'),
-(23, 'Geografia', '2° ano'),
-(24, 'Geografia', '3° ano'),
-(25, 'Biologia', '1° ano'),
-(26, 'Biologia', '2° ano'),
-(27, 'Biologia', '3° ano'),
-(28, 'Físi­ca', '1° ano'),
-(29, 'Físi­ca', '2° ano'),
-(30, 'Físi­ca', '3° ano'),
-(31, 'História', '1° ano'),
-(32, 'História', '2° ano'),
-(33, 'História', '3° ano'),
-(34, 'Filosofia', '1° ano'),
-(35, 'Filosofia', '2° ano'),
-(36, 'Filosofia', '3° ano'),
-(37, 'Inglês', '1° ano'),
-(38, 'Inglês', '2° ano'),
-(39, 'Inglês', '3° ano'),
-(40, 'Espanhol', '1° ano'),
-(41, 'Espanhol', '2° ano'),
-(42, 'Espanhol', '3° ano'),
-(43, 'Francês', '1° ano'),
-(44, 'Francês', '2° ano'),
-(45, 'Francês', '3° ano'),
-(46, 'Ed. Física', '1° ano'),
-(47, 'Ed. Física', '2° ano'),
-(48, 'Ed. Fí­sica', '3° ano'),
-(49, 'Artes', '1Â°ano'),
-(50, 'Música', '1Â°ano'),
-(51, 'Desenho Avançado', '2° ano'),
-(52, 'Desenho Avançado', '3° ano'),
-(53, 'ICC', '1° ano'),
-(54, 'LPI', '1° ano'),
-(55, 'LPII', '2° ano'),
-(56, 'LPIII', '3° ano'),
-(57, 'LPIV', '3° ano'),
-(58, 'Eng. Software', '3° ano');
+(1, 'Português', ''),
+(2, 'Literatura', ''),
+(3, 'Matemática I', ''),
+(4, 'Matemática II', ''),
+(5, 'Química I', ''),
+(6, 'Química II', ''),
+(7, 'Sociologia', ''),
+(8, 'Geografia', ''),
+(9, 'Biologia', ''),
+(10, 'Artes', ''),
+(11, 'Música', ''),
+(12, 'Física', ''),
+(13, 'História', ''),
+(14, 'LPI', ''),
+(15, 'LPII', ''),
+(16, 'LPIII', ''),
+(17, 'LPIV', ''),
+(18, 'Eng. Software', ''),
+(19, 'Filosofia', ''),
+(20, 'Inglês', ''),
+(21, 'Ed. Física', ''),
+(22, 'Espanhol', ''),
+(23, 'Francês', ''),
+(24, 'Desenho Avançado', '');
 
 -- --------------------------------------------------------
 
@@ -280,14 +246,6 @@ CREATE TABLE `lembretes` (
   `user` varchar(15) NOT NULL,
   `content` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `lembretes`
---
-
-INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
-(34, '10', '1231312'),
-(35, '10', 'sdadasdasdasdasdas');
 
 -- --------------------------------------------------------
 
@@ -356,7 +314,7 @@ CREATE TABLE `profs` (
 INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`, `data_mod`) VALUES
 ('', '', '0000-00-00', '', '', '4@4.com', '2016-12-14 21:46:46'),
 ('1', 'Jacinto', '1946-09-06', '1', '1', 'jacintao@gmail.com', '2016-09-22 04:31:13'),
-('10', 'JC', '1010-10-10', '101.010.101-01', '(10)10101-0101', 'jc10@hot10mail.com', '2016-12-14 21:36:46'),
+('10', 'Jesus Christ', '2000-00-01', '101.010.101-01', '(00)00000-0000', 'jesus@HolyGlory.heaven', '2017-01-05 18:58:45'),
 ('2', 'Nunes', '0000-00-00', '2', '(22)22222-2222', '2@gmail.com', '2016-11-27 04:25:44'),
 ('2222222222', '2222222222222222', '0000-00-00', '127', '(22)22222-2222', '22222222222@2.com', '2016-10-25 00:41:18'),
 ('25', 'Kithdris', '0000-00-00', '127', '(12)34567-8900', 'u7@tera.com', '2016-12-13 23:56:05'),
@@ -558,6 +516,8 @@ CREATE TABLE `questoes` (
   `op4` text,
   `op5` text,
   `gabarito` text NOT NULL,
+  `quant_linhas` varchar(2) NOT NULL,
+  `linhas_visiveis` varchar(5) NOT NULL,
   `ano_letivo` varchar(4) NOT NULL,
   `anoserie` varchar(20) NOT NULL,
   `visibilidade` varchar(3) NOT NULL COMMENT 'pub:publico ou pri:privado(disponivel somente para o prof criador da questao)',
@@ -568,19 +528,37 @@ CREATE TABLE `questoes` (
 -- Extraindo dados da tabela `questoes`
 --
 
-INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, `data_mod`) VALUES
-(4, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS4', '', '', '', '', '', 'asdjsauhdsakjdh', '2016', '3º ano', 'Púb', '2016-10-13 04:10:49'),
-(5, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS5', '', '', '', '', '', 'asdjsauhdsakjdh', '2016', '3º ano', 'Púb', '2016-10-13 04:10:51'),
-(7, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Portugues é uma droga?', '', '', '', '', '', 'sim', '2016', '3º ano', 'Púb', '2016-10-13 04:49:45'),
-(8, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '1212', '', '', '', '', '', 'asdasd', '2016', '1º ano', 'Pri', '2016-10-14 17:15:07'),
-(9, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Yuri dá o curdistao', '', '', '', '', '', 'SIM', '2016', '3º ano', 'Púb', '2016-12-10 03:19:22'),
-(10, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'ghgvheh', '', '', '', '', '', '452642', '2016', '3º ano', 'Púb', '2016-12-10 03:38:24'),
-(11, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'vbnvbnvbn', '', '', '', '', '', 'asdasdasd', '2016', '3º ano', 'Púb', '2016-12-10 03:44:52'),
-(12, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '2332', '', '', '', '', '', '2332', '0', '3º ano', 'Púb', '2016-12-10 03:46:28'),
-(13, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'undefined', 'unde', '3º ano', 'Púb', '2016-12-10 03:49:14'),
-(14, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'qweqweqwe', '2016', '3º ano', 'Púb', '2016-12-10 03:49:14'),
-(15, 'Jacinto', 'Mediana', 'Objetiva', '2', '1', 'asdasdasd', '1', '2', '3', '4', '5', 'C', '2016', '3º ano', 'Púb', '2016-12-11 18:20:23'),
-(17, 'Jacinto', 'Mediana', 'DiscursivaCALC', '3', '2', 'Quanto  é 1+1?', NULL, NULL, NULL, NULL, NULL, '2', '2016', '3º ano', 'Púb', '2016-12-12 22:04:28');
+INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `quant_linhas`, `linhas_visiveis`, `ano_letivo`, `anoserie`, `visibilidade`, `data_mod`) VALUES
+(4, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS4', '', '', '', '', '', 'asdjsauhdsakjdh', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:10:49'),
+(5, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS5', '', '', '', '', '', 'asdjsauhdsakjdh', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:10:51'),
+(7, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Portugues é uma droga?', '', '', '', '', '', 'sim', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:49:45'),
+(8, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '1212', '', '', '', '', '', 'asdasd', '', '', '2016', '1º ano', 'Pri', '2016-10-14 17:15:07'),
+(9, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Yuri dá o curdistao', '', '', '', '', '', 'SIM', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:19:22'),
+(10, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'ghgvheh', '', '', '', '', '', '452642', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:38:24'),
+(11, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'vbnvbnvbn', '', '', '', '', '', 'asdasdasd', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:44:52'),
+(12, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '2332', '', '', '', '', '', '2332', '', '', '0', '3º ano', 'Púb', '2016-12-10 03:46:28'),
+(13, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'undefined', '', '', 'unde', '3º ano', 'Púb', '2016-12-10 03:49:14'),
+(14, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'qweqweqwe', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:49:14'),
+(15, 'Jacinto', 'Mediana', 'Objetiva', '2', '1', 'asdasdasd', '1', '2', '3', '4', '5', 'C', '', '', '2016', '3º ano', 'Púb', '2016-12-11 18:20:23'),
+(17, 'Jacinto', 'Mediana', 'DiscursivaCALC', '3', '2', 'Quanto  é 1+1?', NULL, NULL, NULL, NULL, NULL, '2', '2', 'true', '2016', '3º ano', 'Púb', '2017-01-07 01:39:22'),
+(57, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'qwe', '1', '5', '6236', '8', '4', 'Opção A', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:24:45'),
+(58, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'fgndgmt', '1717', '463', '24', 'utdh', '1267ws', 'Opção B', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:33:32'),
+(59, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'zxsdcf', 'kiuytr', '1234', 'mnbvc', 'gn', 'awe', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:36:48'),
+(60, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'asdas da', 'qbwrg ', 'zcvaw e', 'd fgnb', 'gdmm mt sd', 'f sdfq', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:29:55'),
+(61, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'cvxn', 'qwer', '654', 'mnb', 'dnb', 'bvb', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:31:40'),
+(62, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'thhdr', '34', '24', '2', 'fcf', 'ir', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:36:38'),
+(63, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'bjm', 'lu', '5345', '89', 'w4', 'sdf', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:43:48'),
+(64, 'Jesus', 'Avançada', 'Objetiva', '2', '1', '12', '31', '63', 'sdg', 'as', 'bfb', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:45:56'),
+(65, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'hterg', '12a', 'dsa', 'gre', 'qwe', 'qwe12', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:48:34'),
+(66, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'nbvnbn', '345', 'wer', 'jrshf', '324', 'nyity', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:57:56'),
+(67, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ssd', '213', 'gef', 'q25', '1  r', 'asd', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:00:40'),
+(68, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'd', 'q', 'e', 'r', 't', 'y', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:10:38'),
+(69, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'dsad', '2f1', '1t1t ', 'erq', '2c4', '324c', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:22:21'),
+(70, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'asdasd', 'qwe', 'vxcvg', 'hfghr', 'twt3t', 'ue356', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:24:00'),
+(71, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ad aasf', 'hsdhwh', 'tyw', 'wer', 'qwew', '124e', 'Opção B', '', '', '2016', '3º ano', 'Púb', '2017-01-07 01:38:53'),
+(72, 'Jesus', 'Básica', 'Discursiva', '2', '1', 'E primeiro veio o ...?', NULL, NULL, NULL, NULL, NULL, 'verbo', '4', 'true', '0001', '3º ano', 'Púb', '2017-01-07 01:36:25'),
+(73, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ksbdhb', '215retyg', '2983yhor', '08wehf', '86fweg', '9e97gw', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:34:10'),
+(74, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'vj', 'osakdp', 'op', 'ijij', 'uhus', 'aysgd', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:36:30');
 
 -- --------------------------------------------------------
 
@@ -669,7 +647,7 @@ CREATE TABLE `user_photo` (
 
 INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
 ('1', './uploads/1-userPhoto-1481671598038.png', '2016-12-13 23:26:38'),
-('10', '/uploads/10-userPhoto-1483162242715.jpg', '2016-12-31 05:30:42'),
+('10', '/uploads/10-userPhoto-1483641085258.jpg', '2017-01-05 18:31:25'),
 ('2', '/uploads/2-userPhoto-1480221932190.jpg', '2016-11-27 05:29:36'),
 ('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15'),
 ('3', './uploads/3-userPhoto-1481670373902.png', '2016-12-13 23:06:13'),
@@ -698,7 +676,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `data_mod`) VALUES
 ('1', 'UM', '', '[object Object]', 'Professor', '2016-12-13 23:26:28'),
-('10', 'Jesus', 'bd8ff1cb8fc3f4d2', 'd09f7910f35d18f67f211e013c4e595090c92382560dc23344a86cfd5a8bcd49ab0e60bf9266a59bfc2b212720d8a0d467f6f3c68e87e0531c6ffbdbcd1e7260', 'Professor', '2017-01-04 02:52:54'),
+('10', 'Jesus Christ', '9ff025b54b4f0014', '457bdb557467b6af05f3c10e27ea9981e3c9998d10ba4c8ac515fd448712cf9e290a5c644b41f59cc4e6c0e294aa0144f9dd1a7f17d02e076405aa55fee7a566', 'Professor', '2017-01-05 18:32:01'),
 ('2', 'Matheus viadao', '', '2', 'Professor', '2016-11-27 04:45:26'),
 ('25', 'Kithdris', 'f5711934de245e1b', '554f89c9e39ee963f83e1ca4a7dace2c8ebe28104e20fb9c87126e04caabba8f0386b92b7ab88d7b795c02e822f496335d7a497e787d4b12e36fccdb1c278594', 'Professor', '2016-12-13 23:56:05'),
 ('3', 'Junes', '', '3', 'Professor', '2016-12-13 23:05:58'),
@@ -818,7 +796,7 @@ ALTER TABLE `disciplinas`
 -- AUTO_INCREMENT for table `lembretes`
 --
 ALTER TABLE `lembretes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `prof_diario`
 --

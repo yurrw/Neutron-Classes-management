@@ -89,8 +89,33 @@
     .msg{
         width:260px;
     }
+    /*PAGINA DE LOGINHO*/
+    .allLG{
+        width:600px;
+    }
+    .loginSData{
+        width:340px;
+    }
+    #RightForm{
+        width:260px;
+    }
+    .txtBox{
+        width:220px!important;
+    }
+    #bt1{
+        width:220px!important;
+        height:40px!important;
+    }
+    #bt2{
+        margin-left: 60px;
 
-
+    }
+    .loginSData p{
+        font-size:1.4rem;
+    }
+    #loginAlert{
+        margin-left:0;
+    }
 }
 
 @media  screen and (max-width: 765px ) {
@@ -102,6 +127,7 @@
     #RightPart {
         margin-left:350px!important;
     }
+
 }
 
 @media  screen and (max-width: 586px ) {
@@ -170,6 +196,57 @@
         /*margin-right:-40!important;*/
     }
 }
+@media screen and (max-width: 425px){
+/*PAGINA DE LOGINHO*/
+    .loginSData{
+        display: none;
+    }
+    #RightForm{
+        margin-left: 0px;
+        float: left;
+        width:60%;
+        border-radius: 10px;
+
+    }
+    #createUser{
+        border-bottom-left-radius: 10px;
+
+    }
+    #bckbg{
+        margin-top:00px;
+        /*background-position: 100%;*/
+        height:100%!important;
+    }
+    .txtBox{
+        margin-left:10px;
+        width:300px!important;
+    }
+    #bt1{
+        margin-left:-5px;
+        width:300px!important;
+    }
+    #formLog > label{
+        margin-left:0px;
+    }
+    #bt2{
+        margin-left:120px;
+    }
+    #loginAlert {
+        margin-left:50px;
+    }
+    #RightForm > #RFTitle{
+        display: flex;
+        color:#42B7E6;
+        margin-top:50px;
+        margin-left:60px;
+        padding-bottom:10px;
+    }
+    #formLog{
+        margin-top:20px!important;
+    }
+
+}
+
 @media  screen and (max-width: 415px ) {
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 60px !important;
@@ -221,7 +298,17 @@
         margin-left: 10%;
     }
 }
-@media  screen and (max-width: 361px ) {
+@media screen and (max-width: 375px) {
+    #RightForm{
+        margin-left:-22px;
+    }
+    #loginAlert {
+        margin-left:55px;
+    }
+}
+
+
+@media  screen and (max-width: 361px ) {  /*360width*/
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 35px !important;
     }
@@ -237,6 +324,45 @@
     }
     .priv > .modal-body {
         margin-left: 7%;
+    }
+    #RightForm{
+        width: 345px;
+
+    }
+    #RightForm > #RFTitle{
+        margin-left:50px;
+    }
+    .txtBox{
+        margin-left:0px;
+    }
+    #bt1{
+        margin-left:-15px;
+    }
+    #bt2{
+        margin-left:110px;
+    }
+}
+@media screen and (max-width: 325px) {
+    #RightForm > #RFTitle{
+        margin-left:30px;
+    }
+    #RightForm{
+        width: 305px;
+    }
+
+    #formLog > label{
+        margin-left:-20px;
+    }
+    .txtBox{
+        margin-left:-5px;
+        width:275px!important;
+    }
+    #bt1{
+        width:275px!important;
+        margin-left:-20px;
+    }
+    #bt2{
+        margin-left:90px;
     }
 }
 @media  screen and (max-width: 321px ) {

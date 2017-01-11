@@ -176,25 +176,74 @@ z-index: 9999;
        border-top-left-radius:10px;
 
 }
+.allLG
+{
+    display: block;
+    margin: 0 auto;
+    width: 800px;
+    height:500px;
+
+    /*-webkit-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);*/
+    /*-moz-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);*/
+    box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
+
+}
+#formLog
+{
+    margin-left: 35px;
+}
+#tudoLogin{
+    display : block;
+    width:100vw;
+
+    height:100vw;
+}
+#bckbgFundo{
+    background-color: #3d464d;
+    position: fixed;
+    width: 100%;
+    height: 100vw;
+    z-index: 2;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+#bckbg{
+
+    position: fixed;
+    width: 100%;
+    height: 100vw;
+    top: 0;
+    filter: blur(2px);
+    background-image: url("/assets/images/rjbg4.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: block;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+}
+
 #RightForm{
     display: block;
     /*left:0;*/
     float: right;
-
     position: relative;
     width:350px;
     background-color: #FFFFFF;
     height:100%;
-z-index: 9999;
+    z-index: 9999;
     border-bottom-right-radius: 10px;
-       border-top-right-radius:10px;
+    border-top-right-radius:10px;
     /*z-index: 9999!important;*/
     /*
     display: block;
 */
 }
 #formLog{
-    margin-top:130px!important;
+    margin-top:120px!important;
     z-index: 999!important;
 }
 #formLog > label{
@@ -218,7 +267,7 @@ z-index: 9999;
   width: 10vh!important;
 }*/
 
-#bt1 {
+#bt1{
     color: #ffffff;
     background-color: #3F91EB;
     height: 50px!important;
@@ -277,8 +326,62 @@ ant;*/
  }
   a#cadlink:hover{
     text-decoration: none;
-    color: #4B98ED;
+    color: #42B7E6;
 
+}
+  #loginAlert{
+      color: #42B7E6;
+      margin-left:40px;
+      margin-top:-20px;
+  }
+  /*Pt esq*/
+.loginSData>h1 , #RFTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-size:5.5rem;
+    font-weight:700;
+    letter-spacing:2px;
+    color: #f6f8fa;
+    margin-left:40px;
+    margin-top:100px;
+    /*text-transform: lowercase;*/
+
+}
+#RFTitle{
+    display: none;
+}
+.loginSData p{
+    display: block;
+    color: #f6f8fa;
+    margin-left:40px;
+}
+.loginSData i{
+    color: #fff;
+    font-size:2rem;
+    margin-left:40px;
+    padding-bottom: 20px;
+}
+.loginSData span{
+    color: #fff;
+    padding-left:10px;
+    font-size:1.3rem;
+
+    font-weight:100;
+    letter-spacing:1px;
+}
+.loginSData hr{
+    width:100px;
+    border:0;
+    border-top:1px #42B7E6 solid;
+    color: #42B7E6;
+    display: block;
+    height: 1px;
+    font-size: 0;
+    margin-left:40px;
+    margin-top:15px;
+
+}
+#features{
+    margin-top:-20px;
 }
 /*
 ==================================================================

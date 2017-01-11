@@ -254,8 +254,10 @@ exports.cadastroDiario  = function(request,response, next){
 
 exports.cadastroProva   = function(request, response, next){
   var dados = request.body.dados;
-  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.body.nomeP+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.body.autor +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
+  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.body.nomeP+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
   var confirm= 0;
+    console.log(qry);
+    console.log(request.user);
   connDB.query(qry,function(err,rows){
     if (err){
       console.log("erro ao inserir la na prova");
