@@ -254,7 +254,7 @@ exports.cadastroDiario  = function(request,response, next){
 
 exports.cadastroProva   = function(request, response, next){
   var dados = request.body.dados;
-  var qry= "INSERT INTO `provas`(`matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.body.autor +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
+  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.body.nomeP+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.body.autor +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
   var confirm= 0;
   connDB.query(qry,function(err,rows){
     if (err){

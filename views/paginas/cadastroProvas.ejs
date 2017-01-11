@@ -148,6 +148,7 @@ $(function(){
   $("#cadastrar").click(function(){
     var table = document.getElementById('tableSelecionadas');
     var dados = [];
+    var nomeP = $("#nomeP").val();
     var autor = $("#autor").val();
     var disciplina = $("#disciplina").val();
     var serie = $("#serie").val();
@@ -163,6 +164,7 @@ $(function(){
           data:JSON.stringify({
               dados : dados,
               autor : autor,
+              nomeP : nomeP,
               disciplina : disciplina,
               serie : serie,
               tipo : tipo
@@ -265,6 +267,9 @@ var novaRow = [];
                   <option>Teste</option>
                   <option>Segunda chamada</option>
                 </select><br><br>
+
+                <input type="text"  id="nomeP" placeholder="Nome da Avaliação" class="form-control" style="width:612px;"><br>
+
               </form>
 
                   <hr style="border: 0.3px solid #DDD; width:610px; margin-left:0px;">
