@@ -262,6 +262,8 @@ z-index: 9999;
     z-index: 999999999!important;
     height: 50px!important;
     width: 300px!important;
+    font-family:Roboto, FontAwesome;
+    color: #000;
 }
 /*.loginContainer{
   width: 10vh!important;
