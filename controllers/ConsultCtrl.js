@@ -321,8 +321,66 @@ exports.pegaPresenca   =   function(req, res){
 
 exports.consulProva = function(req, res){
 
+  console.log("--------------------------------!@#!@#!@#");
+  console.log(req.body.autor);
+
+  var x = 0;//Vc vai entender daqui a pouco
+
+  var whereDiscPart = "";
+  var  andSerie = "";
+  var andTipo = "";
+  var andMuchaCosaAutor = "";
+  var possivelWhere = "";
+
+
+  if(!(req.body.disciplina == "" || req.body.serie == null || req.body.serie == undefined))//No meu passa como undefined D:
+   {
+     whereDiscPart =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas WHERE disciplina_nome =  '" + req.body.disciplina + "')"+
+                          " AND disciplinas.disciplina_id= provas.cod_disciplina";
+     x++;
+   }
+
+
+
+
+   if(!(req.body.serie == "" || req.body.serie == null))
+   {
+     if (x > 0) {//Se já tiver filtrado pela disciplina.... Tendeu? sim, eu acho. Achar já é o sufuci
+       andSerie = " AND";
+     }
+     andSerie += " provas.anoserie = '" + req.body.serie + "'";
+     x++;
+   }
+
+
+
+   if(!(req.body.tipo == "" || req.body.tipo == null))
+   {
+     if (x >0) {
+       andTipo = " AND";
+     }
+     andTipo += " tipo_avaliacao = '" + req.body.tipo + "'";
+     x++;
+   }
+
+   if(!(req.body.autor == ""))
+   {
+     if (x >0) {
+       andMuchaCosaAutor = " AND";//Seria esse aqui... Estranho não, agr simmuito bem, jovem :D Tava só te testando :D aham
+     }//Jumento
+     andMuchaCosaAutor += " provas.matricula IN (SELECT matricula FROM profs where nome = '" + req.body.autor + "' )";//Qie IN é esse? pra pegar a matrícula do prof pelo nome. Se funciona, tá bom
+
+   }
+
+   if (x > 0) {
+     possivelWhere = "WHERE";
+   }
+
+   var resolveSporra =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas '" + whereDiscPart + "') AND"
+
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "SELECT DISTINCT provas.cod_prova, provas.tipo_avaliacao, provas.anoserie FROM provas, profs,disciplinas WHERE provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas WHERE disciplina_nome = '"+ req.body.disciplina +"') AND disciplinas.disciplina_id= provas.cod_disciplina AND provas.anoserie = '" + req.body.serie + "'AND tipo_avaliacao = '" + req.body.tipo + "' AND provas.matricula IN (SELECT matricula FROM profs where nome = '" + req.body.autor + "' )";
+  var qry = "SELECT DISTINCT provas.cod_prova, provas.tipo_avaliacao, provas.anoserie, provas.matricula  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
+  console.log(qry);
   connDB.query(qry,function(err,rows){
       for (var i = 0, len = rows.length; i < len; i++)
         {

@@ -128,14 +128,58 @@ $(function pesqDisciplina(){
          });
 });
 
+
+
 $(function(){
   $("#consultarProva").click(function(){
+
+    var buscafiltrada = [$("#autor").val(), $("#disciplina").val(), $("#serie").val(), $("#tipo").val()];
+    // var algo = buscafiltrada.filter(filtraBusca);
+
+    if(buscafiltrada[0] != "" && buscafiltrada[1] != null)
+    {
+        var autor = buscafiltrada[0];
+    }
+    else
+    {
+       var autor = "";
+    }
+    if(buscafiltrada[1] != "" && buscafiltrada[1] != "Disciplina" && buscafiltrada[1] != null)
+    {
+        var disciplina = buscafiltrada[1];
+    }
+    else
+    {
+       var disciplina = "";
+    }
+    if(buscafiltrada[2] != "" && buscafiltrada[1] != "Série" && buscafiltrada[1] != null)
+    {
+        var serie = buscafiltrada[2];
+    }
+    else
+    {
+       var serie = "";
+    }
+    if(buscafiltrada[3] != "" && buscafiltrada[1] != "Tipo" && buscafiltrada[1] != null)
+    {
+        var tipo = buscafiltrada[3];
+    }
+    else
+    {
+       var tipo = "";
+    }
+    console.log("------------------------");
+    console.log(autor);
+    console.log(disciplina);
+    console.log(serie);
+    console.log(tipo);
+
     var table = document.getElementById('tableSelecionadas');
     var dados = [];
-    var autor = $("#autor").val();
-    var disciplina = $("#disciplina").val();
-    var serie = $("#serie").val();
-    var tipo = $("#tipo").val();
+    // var autor = $("#autor").val();
+    // var disciplina = $("#disciplina").val();
+    // var serie = $("#serie").val();
+    // var tipo = $("#tipo").val();
     alert(table.rows.length);
     for(var r = 1; r < table.rows.length; r++)
       dados[r] = table.rows[r].cells[1].innerHTML;
@@ -357,10 +401,7 @@ function doIt(element) {
               break;
 
 
-              case "DiscursivaCALC":
-              ginha[i]=num+") "+data[i].enunciado+"\n\n\n\n\n\n\n\n\n\n\n\n";
-              num++;
-              break;
+          
 
 
 

@@ -4,3 +4,9 @@ function showMessage(divID) {                               //MOSTRA MENSAGEM DE
         $(this).slideUp().dequeue();                    //slideUp pra div desparecer
     });
 }
+
+function filtraBusca(resultado){
+
+  return resultado != "" && resultado != "Disciplina" && resultado != "Série" && resultado != "Tipo" && resultado != null;
+
+};
