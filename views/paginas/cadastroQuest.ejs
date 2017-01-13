@@ -16,11 +16,11 @@
     $( function() {
 
 
-        var autor = "<%= user %>";
+        var autor = "<%= userMat %>";
 
 
         $.ajax({
-          url: "/pesqDisc",  // AQUI É A URL QUE SERA ENVIADO
+          url: "/pesqDiscProfII",  // AQUI É A URL QUE SERA ENVIADO
           type: "POST",   //TIPO DE ENVIO
           dataType: "json", //TIPO DE DADO QUE SERA PASSADO
           data:JSON.stringify({
@@ -37,7 +37,7 @@
             console.log(disciplina);
             console.log('process sucess');
             $("#disciplina").empty();
-            $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+            $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
             for(var i = 0; i < data.length; i++) {
               $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
               console.log(data[i]);
@@ -49,12 +49,6 @@
           },
         });
 
-
-        if(autor == "Outro"){
-          $("#autor").replaceWith('<input type="text" id="autor" name="autor" class="form-control" placeholder="Autor" style="width:300px;"required autofocus>');
-          $("#autor").focus();
-        }
-
     });
 
 
@@ -65,7 +59,7 @@
         var disciplina = $('#disciplina').val();
 
         $("#materia").empty();
-        $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
+        $("#materia").append($("<option disabled selected />").val('Materia').text('Materia'));
 
         console.log(disciplina);
 
@@ -196,12 +190,7 @@
             <form class="form-inline" method="Post" action="/cadastroQuest" name="formulario" id="formulario">
 
 
-              <select class="form-control" id="autor"  name="autor" style="width:300px;" required>
-                <option disabled selected>Autor</option>
-
-                <option >   <%= user %>    </option>
-                <option>Outro</option>
-              </select>&nbsp&nbsp
+              <input type="text" class="form-control" id="autor"  name="autor" style="width:300px;" value="<%= user %>"required disabled>&nbsp&nbsp
 
               <select class="form-control" id="visibilidade" name="visibilidade" style="width:300px;" required>
                 <option disabled selected>Visibilidade</option>
