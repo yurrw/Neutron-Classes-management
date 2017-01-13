@@ -34,7 +34,17 @@
 //   });
 //   } );
 
-
+//Pesquisa os professores ao carregar a página
+$(function pesqProfs(){
+  $.post("/pesqProfs",function(data){
+    $("#autor").empty();
+    $("#autor").append($("<option selected disabled/>").val('Autor').text('Autor'));
+    for(var i = 1; i < data.length; i++) {
+      $("#autor").append($("<option />").val(data[i]).text(data[i]));
+      console.log(data[i]);
+    }
+  });
+});
 
   $( function() {
     $("#disciplina").change(function(){
@@ -455,7 +465,9 @@ function doIt(element) {
 
               <form class="form-inline"  method="post" action="" name="cadastroProvas">
 
-                <input type="text" id="autor" placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
+                <select class="form-control" id="autor"  style="width:300px;">
+                  <option disabled selected>Autor</option>
+                </select> &nbsp&nbsp
 
                 <select class="form-control" id="disciplina" style="width:300px;">
                   <option disabled selected>Disciplina</option>

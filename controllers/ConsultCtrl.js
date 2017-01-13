@@ -102,7 +102,7 @@ exports.pesquisateste   =   function(req, res){
   var possivelAND = "";
   //Cria a condição WHERE de autor
   if(!(req.body.autor == '' || req.body.autor == null || req.body.autor == undefined)){//Só entra se estiver preenchido (serve pra todos os ifs principais abaixo)
-    var condicaoAutor = " autor= '" + req.body.autor + "'";
+    var condicaoAutor = " autor= (SELECT `matricula` FROM `profs` WHERE nome = '" + req.body.autor + "')";
     x++;
   }
 
@@ -156,10 +156,10 @@ exports.pesquisateste   =   function(req, res){
 
 
   //Junta todas as condições do where
-  whereClause = "WHERE" + condicaoAutor + condicaoNivel + condicaoTipo + condicaoDisciplina + condicaoMateria + condicaoAno + condicaoSerie + possivelAND + "(autor = '"+  req.username +"' || visibilidade = 'Púb')";
+  whereClause = "WHERE" + condicaoAutor + condicaoNivel + condicaoTipo + condicaoDisciplina + condicaoMateria + condicaoAno + condicaoSerie + possivelAND + "(autor = '"+  req.user.matricula +"' || visibilidade = 'Púb')";
 
   var questoes = [];
-  var qry =  "SELECT questoes.enunciado, questoes.gabarito, questoes.cod_quest FROM questoes "+ whereClause +" GROUP BY enunciado" ;
+  var qry =  "SELECT questoes.enunciado, questoes.gabarito, questoes.cod_quest, questoes.autor FROM questoes "+ whereClause +" GROUP BY enunciado" ;
 
   console.log(qry);
 
@@ -170,7 +170,7 @@ exports.pesquisateste   =   function(req, res){
     if (rows.length) {
 
       for (var i = 0, len = rows.length; i < len; i++) {
-        questoes.push([rows[i].enunciado, rows[i].gabarito, rows[i].cod_quest ]);
+        questoes.push([rows[i].enunciado, rows[i].gabarito, rows[i].cod_quest, rows[i].autor ]);
       }
 
       console.log(questoes);
@@ -178,6 +178,30 @@ exports.pesquisateste   =   function(req, res){
     }
   });
 };
+
+
+exports.pesquisaProfessores	=	function(req, res){
+
+  var professores = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
+  var qry = "SELECT `nome` FROM `profs` ORDER BY nome";
+  connDB.query(qry,function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        professores.push(rows[i].nome);
+      }
+
+      console.log(professores);
+      res.json(professores);
+    }
+  });
+
+
+};
+
 
 exports.listalunos	=	function(req, res){
 

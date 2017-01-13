@@ -148,6 +148,7 @@ var fs = require('fs');
             app.post('/deletarQuest', ConsultCtrl.removerQuest);
             app.post('/pesqMat', CadController.pesquisaMat);
             app.post('/pesqDisc', CadController.pesquisaDisc);
+            app.post('/pesqDiscProfII', CadController.pesquisaDiscProf);
             app.post('/pesqQuest', CadController.pesquisaQuest);
             app.post('/pesca/:disciplina', TestCTRL.pesquisaMorte);
             app.post('/pesca', TestCTRL.pesquisaMorte2);
@@ -159,6 +160,7 @@ var fs = require('fs');
 
             app.post('/pesqDiscProf', ConsultCtrl.pesquisaDiscProf);
             app.post('/pegaaluno', ConsultCtrl.listalunos);
+            app.post('/pesqProfs', ConsultCtrl.pesquisaProfessores);
             app.post('/pegaaula', ConsultCtrl.pegaPresenca);
             app.post('/consultandoProva', ConsultCtrl.consulProva);
             app.post('/UpPerfil', CadController.UpdatePerfil);

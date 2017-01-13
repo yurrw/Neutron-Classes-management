@@ -39,7 +39,7 @@
           $("#questCandidatas").empty();
           $("#questSelecionadas").empty();
           $("#materia").empty();
-          $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
+          $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
           for(var i = 0; i < data.length; i++) {
             $("#materia").append($("<option />").val(data[i]).text(data[i]));
             console.log(data[i]);
@@ -77,11 +77,31 @@
           console.log(materia);
           console.log('process sucess');
           $("#questCandidatas").empty();
+          var dificuldade;
+          // <input class="star star_1" id="star_1" type="radio" name="star" value="Fácil" required/>
+          // <label class="star star_1" for="star_1" id="label1"></label>
+
+
+
          for(var i = 0; i < data.length; i++) {
+
+           if (data[i][1] == "Fácil") {
+             dificuldade = '<input class="star star_1" id="star_1" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_1" for="star_1" id="label1">';
+           }
+           else if (data[i][1] == "Mediana" || data[i][1] == "Média") {
+             dificuldade =  '<input class="star star_2" id="star_2" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_2" for="star_2" id="label2">'+
+                            '<input class="star star_2" id="star_2" type="radio" name="B'+data[i][3]+'" checked disabled/><label class="star star_2" for="star_2" id="label2">';
+           }
+           else if (data[i][1] == "Difícil") {
+             dificuldade = '<input class="star star_3" id="star_3" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">' +
+                           '<input class="star star_3" id="star_3" type="radio" name="B'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">' +
+                           '<input class="star star_3" id="star_3" type="radio" name="C'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">';
+           }
+
            $("#questCandidatas").append($("<tr/>")
            .append($("<td/>").val(data[i][0]).text(data[i][0]))
-           .append($("<td style='text-align:center;'/>").val(data[i][1]).text(data[i][1]))
            .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
+           .append($("<td style='text-align:center;'/>").append(dificuldade))
            .append($("<td  style='align:right; width:100px;'/>")
            .append($("<button class='btn btn-primary btn-block' onclick='trocarTabela(this)'>").text("Adicionar"))
          ));
@@ -121,7 +141,7 @@
           console.log(disciplina);
           console.log('process sucess');
           $("#disciplina").empty();
-          $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+          $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
           for(var i = 0; i < data.length; i++) {
             $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
             console.log(data[i]);
@@ -274,15 +294,17 @@ var novaRow = [];
 
                   <hr style="border: 0.3px solid #DDD; width:610px; margin-left:0px;">
                 <H4>Questões</H4><br>
+
                 <select class="form-control" id="materia" style="width:300px;">
                   <option disabled selected>Matéria</option>
                 </select><br><br>
+
                 <table class="table" style="width:610px;" id="tableCandidatas">
                   <thead class="thead-inverse">
                     <tr>
                       <th>Enunciado</th>
-                      <th style="width: 100px; align:right; text-align:center;">Nível</th>
-                      <th style="width: 100px; align:right; text-align:center;">Tipo</th>
+                      <th style="align:right; text-align:center;">Tipo</th>
+                      <th style="align:right; text-align:center;">Nível</th>
                       <th style="align:right; width:75px; text-align:center;">Adicionar</th>
                     </tr>
                   </thead>

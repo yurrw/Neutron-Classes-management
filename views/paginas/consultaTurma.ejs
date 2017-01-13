@@ -3,7 +3,7 @@
   <% include ../partes/head %>
   <script>
     var mat = <%= userMat %>; //isso da cerriato
-    
+
     $(function(){
       $('#textAreas').hide();
       $('#btAreas').hide();
@@ -28,9 +28,9 @@
       $("#btn-consultar").click(function(){
         var  nometurma = $('#nometurma').val();
         $.ajax({
-          url: "/pegaaluno", 
+          url: "/pegaaluno",
           type: "POST",
-          dataType: "json", 
+          dataType: "json",
           data:JSON.stringify({
             nometurma : nometurma
           }),
@@ -66,7 +66,7 @@
       if (umaChecked){ //NAO TA CERTO MASSSSSSSSSS FUNCIONA
         $('#textAreas').show();
         $('#btAreas').show();
-      } 
+      }
       else{
         $('#textAreas').hide();
         $('#btAreas').hide();
@@ -94,7 +94,6 @@
             <br>
             Turma: <select class="form-control" id="nometurma" name="turman" style="width:300px;">
             <option disabled selected>Selecione uma turma</option>
-            <option id="btn-mostraturma">
             </select>&nbsp&nbsp<br><br>
 
             <button  name="consultar" id="btn-consultar"  class="btn btn-default">Consultar</button>
@@ -103,7 +102,7 @@
 
 
 
-          <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; 
+          <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px;
           float:left; height:100%; text-align: center;">
           <table class="table" style="width:750px; margin-left: 50px;">
             <thead class="thead-inverse">

@@ -170,7 +170,6 @@ exports.UpdatePerfil = function(req,res){
 exports.pesquisaDisc = function(req, res){
 
   var disciplinas = [];
-  var autor = req.body.autor;
   var query = "SELECT DISTINCT disciplina_nome FROM `disciplinas`  ORDER BY disciplinas.disciplina_nome ";
 
   connDB.query(query, function(err,rows){
@@ -188,6 +187,25 @@ exports.pesquisaDisc = function(req, res){
   });
 };
 
+exports.pesquisaDiscProf = function(request, res){
+
+  var disciplinas = [];
+  var query = "SELECT `disciplina_nome` FROM `disciplinas`, professor_disciplinas WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.body.autor +"'";
+
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        disciplinas.push(rows[i].disciplina_nome);
+      }
+      console.log(disciplinas);
+      res.json(disciplinas);
+    }
+
+  });
+};
 
 exports.pesquisaMat = function(request, res){
   var materias = [];
@@ -208,12 +226,12 @@ exports.pesquisaQuest = function(request, response){
   var questoes = [];
   console.log(request.body.materia);
 
-  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
+  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
     if (err)
     request.flash('MSGCadQuest', err);
     if (rows.length) {
       for (var i = 0, len = rows.length; i < len; i++) {
-        questoes.push([rows[i].enunciado, rows[i].nivel, rows[i].tipo]);
+        questoes.push([rows[i].enunciado, rows[i].nivel, rows[i].tipo, rows[i].cod_quest]);
       }
       response.json(questoes);
     }
@@ -254,7 +272,7 @@ exports.cadastroDiario  = function(request,response, next){
 
 exports.cadastroProva   = function(request, response, next){
   var dados = request.body.dados;
-  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.body.nomeP+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
+  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.user.matricula+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
   var confirm= 0;
     console.log(qry);
     console.log(request.user);
@@ -278,6 +296,7 @@ exports.cadastroProva   = function(request, response, next){
     }
   }
 };
+
 exports.cadastroNotas   = function(request, response, next){
   var notas = [];
   notas  = request.body.nota;
@@ -312,7 +331,7 @@ exports.cadastroNotas   = function(request, response, next){
 
 exports.cadastroQuest   = function(request, response, next){
 
-  var autor          =    request.body.autor;
+  var autor          =    request.user.matricula;
   var visibilidade   =    request.body.visibilidade;
   var disciplina     =    request.body.disciplina;
   var materia        =    request.body.materia;

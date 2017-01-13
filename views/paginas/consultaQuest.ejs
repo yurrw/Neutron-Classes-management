@@ -38,14 +38,20 @@
             console.log('process sucess');
             $("#tableQuestoes").empty();
             $("#errorMessage").empty();
+            var possivelBotao; //Se o user for o autor, o botão de remover é inserido
 
             for(var i = 0; i < data.length; i++) {
+              if(data[i][3] == "<%= userMat %>")
+              possivelBotao = "<button class='btn btn-danger btn-block' onclick=removerQuest(this)>";
+              else
+              possivelBotao = "";
+
               $("#tableQuestoes").append($("<tr/>")
               .append($("<td/>").val(data[i][2]).text(data[i][2]))
               .append($("<td/>").val(data[i][0]).text(data[i][0]))
               .append($("<td/>").val(data[i][1]).text(data[i][1]))
               .append($("<td width='10px'/>")
-              .append($("<button class='btn btn-danger btn-block' onclick=removerQuest(this)>").val("Remover").text("Remover"))));
+              .append($(possivelBotao).val("Remover").text("Remover"))));
               console.log(data[i]);
             }
           },
@@ -80,7 +86,7 @@
             console.log(disciplina);
             console.log('process sucess');
             $("#materia").empty();
-            $("#materia").append($("<option disable selected />").val('Matéria').text('Matéria'));
+            $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
             for(var i = 0; i < data.length; i++) {
               $("#materia").append($("<option />").val(data[i]).text(data[i]));
               console.log(data[i]);
@@ -127,12 +133,23 @@
       });
     };
 
+    //Pesquisa os professores ao carregar a página
+    $(function pesqProfs(){
+      $.post("/pesqProfs",function(data){
+        $("#autor").empty();
+        $("#autor").append($("<option selected disabled/>").val('Autor').text('Autor'));
+        for(var i = 1; i < data.length; i++) {
+          $("#autor").append($("<option />").val(data[i]).text(data[i]));
+          console.log(data[i]);
+        }
+      });
+    });
 
     //Pesquisa as disciplinas ao carregar a página
     $(function pesqDisciplina(){
       $.post("/pesqDisc",function(data){
         $("#disciplina").empty();
-        $("#disciplina").append($("<option selected />").val('Disciplina').text('Disciplina'));
+        $("#disciplina").append($("<option selected disabled/>").val('Disciplina').text('Disciplina'));
         for(var i = 0; i < data.length; i++) {
         //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
           $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
@@ -159,7 +176,9 @@
 
             <form class="form-inline" method="get" name="consultaQuestForm">
 
-              <input type="text" name="autor" id="autor" value="" placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
+              <select class="form-control" id="autor"  style="width:300px;">
+                <option disabled selected>Autor</option>
+              </select> &nbsp&nbsp
 
               <select class="form-control" id="disciplina"  style="width:300px;">
                 <option disabled selected>Disciplina</option>
@@ -170,7 +189,7 @@
               </select> &nbsp&nbsp
 
               <select class="form-control" name="serie" id="serie" style="width:300px;">
-                <option selected>Série</option>
+                <option selected disabled>Série</option>
                 <option>1º ano</option>
                 <option>2º ano</option>
                 <option>3º ano</option>
@@ -179,13 +198,13 @@
               <input type="text" name="creation" id="creation" value="" placeholder="Ano de criação" class="form-control" style= " width:300px;"> &nbsp&nbsp
 
               <select class="form-control" name="tipo" id="tipo"  style="width:300px;">
-                <option selected>Tipo</option>
+                <option selected disabled>Tipo</option>
                 <option>Discursiva</option>
                 <option>Objetiva</option>
               </select><br><br>
 
               <select class="form-control" name="nivel" id="nivel" style="width:300px;">
-                <option selected>Nível</option>
+                <option selected disabled>Nível</option>
                 <option>Basica</option>
                 <option>Mediana</option>
                 <option>Avançada</option>
