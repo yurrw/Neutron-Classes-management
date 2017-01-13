@@ -224,8 +224,8 @@ $(function(){
               .append($("<td />").val(data[i][1]).text(data[i][0]))
               .append($("<td />").val(data[i][0]).text(data[i][1]))
               .append($("<td />").val(data[i][2]).text(data[i][2]))
-              .append("<button type='button' class='btn btn-danger id = 'gen' onclick = 'doIt(this)' name = '"+i+"'>Gerar PDF</button>")
               .append($("<td  />")
+                .append("<button type='button' class='btn btn-danger id = 'gen' onclick = 'doIt(this)' name = '"+i+"'>Gerar PDF</button>")
            ));
             console.log(data[i]);
            }
@@ -411,7 +411,7 @@ function doIt(element) {
               break;
 
 
-          
+
 
 
 
@@ -506,7 +506,7 @@ function doIt(element) {
 
               <form class="form-inline"  method="post" action="" name="cadastroProvas">
 
-                <select class="form-control" id="autor"  style="width:300px;">
+                <select class="form-control" id="autor" name = "autor" style="width:300px;">
                   <option disabled selected>Autor</option>
                 </select> &nbsp&nbsp
 

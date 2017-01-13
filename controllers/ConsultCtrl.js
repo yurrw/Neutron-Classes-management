@@ -367,7 +367,7 @@ exports.consulProva = function(req, res){
 
 
 
-   if(!(req.body.serie == "" || req.body.serie == null))
+   if(!(req.body.serie == "" || req.body.serie == null || req.body.serie == undefined))
    {
      if (x > 0) {//Se já tiver filtrado pela disciplina.... Tendeu? sim, eu acho. Achar já é o sufuci
        andSerie = " AND";
@@ -378,7 +378,7 @@ exports.consulProva = function(req, res){
 
 
 
-   if(!(req.body.tipo == "" || req.body.tipo == null))
+   if(!(req.body.tipo == "" || req.body.tipo == null || req.body.tipo == undefined))
    {
      if (x >0) {
        andTipo = " AND";
@@ -387,7 +387,7 @@ exports.consulProva = function(req, res){
      x++;
    }
 
-   if(!(req.body.autor == ""))
+   if(!(req.body.autor == "" || req.body.tipo == null || req.body.tipo == undefined))
    {
      if (x >0) {
        andMuchaCosaAutor = " AND";//Seria esse aqui... Estranho não, agr simmuito bem, jovem :D Tava só te testando :D aham

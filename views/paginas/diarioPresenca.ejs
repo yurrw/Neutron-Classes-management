@@ -4,7 +4,7 @@
 
        <script>
 
-       
+
 
    $(function() {
       $("#disc").hide();
@@ -156,15 +156,15 @@ var brotheragem = function() {
            .append($("<td/>").val(data[i][1]).text(data[i][1]))
            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
         //   .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
-          
+
                                   .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', true))
-     
+
 
 
 
 
            .append($("<td  style='align:right; width:100px;'/>")
-         
+
          ));
             }
             else {
@@ -173,14 +173,15 @@ var brotheragem = function() {
 
            .append($("<td/>").val(data[i][1]).text(data[i][1]))
            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-               .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
+
 
 
 
 
 
            .append($("<td  style='align:right; width:100px;'/>")
-         
+           .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
+
          ));
 
 
@@ -190,9 +191,9 @@ var brotheragem = function() {
                     $('#textAreas').val(data[i][0]);
                   }
 
-            
-  
-     
+
+
+
 
           //$('#textAreas').val(data[tamanho])
          }
@@ -201,7 +202,7 @@ var brotheragem = function() {
                        },
 
                        error: function() {
-                 
+
                     $('#textAreas').val("");
 
 
@@ -229,13 +230,13 @@ var brotheragem = function() {
            brotheragem();
 
                });
- 
+
 
               $("#btAreas").click(function() {
  var nometurma = $('#nometurma').val();
                     var  data= $('#txtSelectedDate').val();
                      var coment= $('#textAreas').val();
-            
+
                     var disciplina= $('#nomedisciplina').val();
 
               //      var i = 1;
@@ -274,13 +275,13 @@ var brotheragem = function() {
                   });
 
 
-                  
+
 
                       var tabela = [];
 
 
 
-              
+
               for(var r = 1, i =0 ; r < table.rows.length; r++,i++){
                 tabela[i] = table.rows[r].cells[1].innerHTML;
 
@@ -423,11 +424,11 @@ var brotheragem = function() {
 
                 </tbody>
               </table>
-              <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea> 
+              <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea>
               <br>
               <input type='button' id="btAreas" type="button" value="Enviar" class="btn btn-primary">
               </div>
-              
+
 
             </div>
 
