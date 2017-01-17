@@ -14,13 +14,13 @@
 	font-weight: 600;
 	vertical-align: middle;
 	/*margin: 0 auto;*/
-	margin-top: 30px;
+	margin-top: 15px;
 	margin-left: 30px;
 }
 #sid>label{
 	padding-left   : 25px;
 	padding-bottom : 5px;
-	padding-top    : 50px;
+	padding-top    : 30px;
 	text-transform : uppercase;
 	letter-spacing : 2px;
 	color          : white;
@@ -63,6 +63,10 @@
 	padding-left: 10px;
 	 vertical-align: middle;
 	 margin-top: -5px;
+    color: #2bd7d8;
+}
+.fa-sort-desc , .fa-sort-asc{
+    color: #fff!important;
 }
 .glyphicon, .fa-calendar, .fa-book{
 	margin-right: -15px;
@@ -101,13 +105,13 @@
 	visibility: visible;
     /*transition: width 0.4s ease-in;*/
     z-index: 10;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 #sid .sidebar-nav>li:active:before ,#sid .sidebar-nav>li:focus:before   {
     /*transition: width 0.4s ease-in;*/
 	visibility: visible;
     z-index: 5;
-    margin-top: 5px;
+    margin-top: 2px;
 
 }
 
@@ -130,9 +134,9 @@
     width: 1%;
     content: ' ';
     height: 20%;
-    left: 4;
+    left: 4px;
     position: absolute;
-    margin-top: -1px;
+    margin-top: -2px;
     z-index: -1;
     background-color: #00ADCE;
  }
@@ -141,7 +145,7 @@
     width: 1%;
     height: 70%;
     position: absolute;
-    left: 4;
+    left: 4px;
     top: 0;
     z-index: -1;
  	background-color: #00ADCE;
@@ -195,3 +199,4 @@
   background-color: rgba(0,0,0,.5);
   z-index: 99;
 }
+

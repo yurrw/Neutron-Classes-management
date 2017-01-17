@@ -24,15 +24,18 @@
 }
 
 @media screen and (min-width: 1030px) {
-  #panel{
-    left: -12%;
-  }
-  #sid{
-    z-index: 999;
-  }
+    #panel{
+        left: -12%;
+    }
+    #sid{
+        z-index: 999;
+    }
     .priv > .modal-body{
         /*margin-left:-20px!important;*/
 
+    }
+    #indexContent{
+        left:-200px;
     }
 
 }
@@ -40,6 +43,10 @@
     .priv > .modal-body{
         margin-left:20%;
 
+    }
+    #indexContent {
+        margin-left:-210px;
+        width:100vw!important;
     }
 }
 
@@ -52,30 +59,30 @@
         margin-left:30%;
     }
     #dropTarget
-  {
-    border:2px solid black!important;
-  }
-  .perfilContent
-  {
-    width: 100%!important;
-  }
-  #PerfilDados input, #PerfilDados p
-  {
-      width: 30%;
+    {
+        border:2px solid black!important;
+    }
+    .perfilContent
+    {
+        width: 100%!important;
+    }
+    #PerfilDados input, #PerfilDados p
+    {
+        width: 30%;
 
-  }
-  #RightPart >h1
-  {
-      font-size:2.5rem;
-      margin-left:5px;
-      padding-bottom:5px;
+    }
+    #RightPart >h1
+    {
+        font-size:2.5rem;
+        margin-left:5px;
+        padding-bottom:5px;
 
-  }
-  #Atualizar
-  {
-      margin-top:-10px;
-      margin-left: 130px;
-  }
+    }
+    #Atualizar
+    {
+        margin-top:-10px;
+        margin-left: 130px;
+    }
 
 
 }
@@ -197,7 +204,7 @@
     }
 }
 @media screen and (max-width: 425px){
-/*PAGINA DE LOGINHO*/
+    /*PAGINA DE LOGINHO*/
     .loginSData{
         display: none;
     }
@@ -291,8 +298,8 @@
         width:220px;
     }
     .modal-header + #TituloPriv {
-            margin-left:20%;
-        }
+        margin-left:20%;
+    }
 
     .priv > .modal-body {
         margin-left: 10%;
@@ -394,16 +401,16 @@
 }
 @media screen and (min-width: 1025px) {
 
-  .slideout-panel {
-    margin-left: 256px;
-  }
+    .slideout-panel {
+        margin-left: 256px;
+    }
 
-  .slideout-menu {
-    display: block;
-  }
+    .slideout-menu {
+        display: block;
+    }
 
-  .toggle-button{
-    display: none;
-  }
+    .toggle-button{
+        display: none;
+    }
 
 }

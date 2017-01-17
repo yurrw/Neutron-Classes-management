@@ -1,50 +1,51 @@
- <!DOCTYPE html>
+<!--@TODO: acrescentar a opcao de alterar senha-->
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <% include ../partes/head %>
 
     <style >
-            body 
-                {
-                  /*background-color:#56AEDA;*/
-                  overflow: hidden ;
-                    /*background-attachment: fixed;*/
-                    /*background-position: center;*/
- /**/
- background: transparent;
-                }
-            main 
-                { 
-                  /*z-index: 15;*/
-                  margin: 8% 0 0 0px;
+        body
+        {
+            /*background-color:#56AEDA;*/
+            overflow: hidden ;
+            /*background-attachment: fixed;*/
+            /*background-position: center;*/
+            /**/
+            background: transparent;
+        }
+        main
+        {
+            /*z-index: 15;*/
+            margin: 8% 0 0 0px;
 
-                }
+        }
 
 
-   </style>
+    </style>
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-                <div id="bckbg">            </div>
-                <div id="bckbgFundo">                </div>
-    
-    <main>
+<div id="bckbg">            </div>
+<div id="bckbgFundo">                </div>
 
-        <div class="container " class="cd-index cd-main-content" id="tudoLogin" >
-            <div class="col-sm-12 " >
+<main>
 
-                <div class="allLG"  >
+    <div class="container " class="cd-index cd-main-content" id="tudoLogin" >
+        <div class="col-sm-12 " >
 
-                    <div class="contlog">
+            <div class="allLG"  >
 
-                        <div class="loginSData">
-                            <h1>Neutron</h1>
-                            <p>Uma forma rápida de gerenciar seu trabalho</p>
-                            <hr>
+                <div class="contlog">
 
-                            <br>
+                    <div class="loginSData">
+                        <h1>Neutron</h1>
+                        <p>Uma forma rápida de gerenciar seu trabalho</p>
+                        <hr>
+
+                        <br>
                         <div id="features">
 
 
@@ -59,24 +60,24 @@
                             <i class="fa fa-bug" aria-hidden="true"></i>
                             <span>Cheio de bugs</span>
                             <br>
-<!--
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            <span>Feito com amor</span>
-                            <br>
+                            <!--
+                                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                                        <span>Feito com amor</span>
+                                                        <br>
 
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            <span>Cadastre as notas online</span>
-                            <br>
--->                         </div>
-                        </div>
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <span>Cadastre as notas online</span>
+                                                        <br>
+                            -->                         </div>
+                    </div>
 
 
-                        <!-- LOGIN FORM -->
-                        <div id="RightForm">
-                            <h1 id="RFTitle" >Neutron</h1>
+                    <!-- LOGIN FORM -->
+                    <div id="RightForm">
+                        <h1 id="RFTitle" >Neutron</h1>
 
-                            <form action="/" method="post" id="formLog" name="formLog" >
-                          <label>Coloque seus dados </label>
+                        <form action="/" method="post" id="formLog" name="formLog" >
+                            <label>Coloque seus dados </label>
                             <div class="form-group row" id="matr">
                                 <input type="text" class="form-control txtBox"  name="matricula" id="matricula"  placeholder="&#xf007;  Matrícula" required="required" autofocus/>
                             </div>
@@ -89,44 +90,44 @@
                             <br>
 
                             <div class="form-group">
-                                 <button type="submit"   id="bt1" class="btn btn-primary form-control ">Entrar</button>
-                             </div>
-                              <!-- MESSAGEM DE LOGIN -->
-                              <% if (message.length > 0) { %>
-                              <div class="alert " id="loginAlert"><%= message %></div>
-                              <% } %>
+                                <button type="submit"   id="bt1" class="btn btn-primary form-control ">Entrar</button>
+                            </div>
+                            <!-- MESSAGEM DE LOGIN -->
+                            <% if (message.length > 0) { %>
+                            <div class="alert " id="loginAlert"><%= message %></div>
+                            <% } %>
                             <div  id="createUser">
-                            <button id="bt2" class="btn "><a href="/cadastro" id="cadlink"  >cadastre-se</a> </button>
-                                 
-
-                             </div>
-
-                         </form>
+                                <button id="bt2" class="btn "><a href="/cadastro" id="cadlink"  >cadastre-se</a> </button>
 
 
-                    
-                        </div>
+                            </div>
+
+                        </form>
 
 
-                        <hr>
 
                     </div>
 
-               </div>
+
+                    <hr>
+
+                </div>
+
             </div>
-
         </div>
-    </main>
+
+    </div>
+</main>
 
 
 
-  <script >
+<script >
     $(function(){
-      var campo= "#matricula";
+        var campo= "#matricula";
         onlyNumber(campo);
     });
 
-  </script>
+</script>
 
-  </body>
+</body>
 </html>

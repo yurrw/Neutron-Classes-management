@@ -163,7 +163,7 @@ PARTE DOS MENUS DO RENANLA
 
 
 .loginSData {
-    background: linear-gradient(to right,#4B98ED,#448FDE);
+    background: linear-gradient(to right,#4B98ED,#4B98ED);
     height:100%;
     width: 450px;
     float: left;
@@ -214,8 +214,10 @@ z-index: 9999;
     height: 100vw;
     top: 0;
     filter: blur(2px);
+    /*background-image: url("/assets/images/rjbg4.jpg");*/
     background-image: url("/assets/images/rjbg4.jpg");
     background-position: center;
+
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

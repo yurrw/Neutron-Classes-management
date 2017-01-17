@@ -1,17 +1,161 @@
- .eventos{
-      overflow-y: auto;
-      overflow-x: hidden; 
-      text-align: left;
-      text-justify: inter-word; 
-      height: 90%;
-    }
+/*.eventos{
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: left;
+    text-justify: inter-word;
+    height: 90%;
+}
+.evento{
+    !*box-sizing: 10px;*!
+    padding: 1px;
+    word-break: break-all;
+}
+#evento{
+    width: 100%;
+}*/
 
-    .evento{
-      /*box-sizing: 10px;*/
-      padding: 1px;
-      word-break: break-all;
-    }
+.evento{
+    color:#3d464d;
+}
+#indexContent{
 
-    #evento{
-      width: 100%;
-    }
+    position: absolute;
+    /*right:0;*/
+    display: block;
+    width:85vw;
+    left:170px;
+    /*@TODO: os paddings estao dando erro nas resolucoes pra celular*/
+    padding-left:30px;
+    padding-right:30px;
+
+}
+
+#indBack{
+    background-color: #fff!important;
+}
+#pgName{
+    position: absolute;
+    top:20px;
+    color: #3d464d;
+    /*font-weight:800;*/
+    font-weight: bold;
+}
+#pgAtual{
+    color: #00a2ff ;
+
+}
+#traco{
+    padding-left:10px;
+    padding-right:10px;
+}
+.greyBG{
+    display: block;
+    width:85vw;
+    /*height:100vw;*/
+    /*bottom: 0;*/
+    /*top:0;*/
+    margin-left:-200px;
+}
+.dashElements{
+    /*margin-top:100px;*/
+    color: white;
+    background-color: #f6f8fa;
+    width:86.5vw;
+    height:46vw;
+    margin-top:64px;
+    margin-left:-60px;
+    padding-top:50px;
+}
+.bloco{
+    background-color:#fff;
+    border:2px solid #e2e2e2;
+    padding:30px;
+    display: block;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    display: block;
+}
+
+/*Titulo dos Blocos*/
+.blocoCnt >p {
+    background-color:#f6f8fa;
+    color: #3d464d;
+}
+.blocoCnt >p>span {
+    margin-left:30px;
+}
+.eventos{
+    padding-top:30px;
+}
+.evento{
+    margin-left:35px;
+    /*display: block;*/
+    /*height:5%;*/
+    margin-top:-18px;
+
+}
+.evento >p{
+
+    font-size:1.5rem;
+
+}
+.evento > p > span{
+    color: #19cfa2;
+    padding-right:15px;
+}
+
+.descEvt > p{
+    font-size: 1.5rem;
+    margin-left:60px;
+    color:#00a2ff;
+    padding-bottom:0px;
+}
+.blocoCnt .fa-calendar{
+    color: #ff3f57;
+    /*color:#00a2ff;*/
+
+    /*color: #19cfa2;*/
+
+    font-size:2.5rem;
+    position: absolute;
+    right:60px;
+    bottom:50px;
+}
+
+.blocoCnt .fa-calendar:hover{
+    color:#ff0074;
+}
+.clndNext{
+    position: absolute;
+    display: block;
+    right:30px;
+}
+.anotacoes{
+    display: block;
+    position: absolute;
+    left:0;
+    height:320px;
+    width:1000px;
+}
+.TurmasBlc{
+    position: absolute;
+    top:500px;
+    left:30px;
+}
+.NotasBlc{
+    position: absolute;
+    left:650px;
+    top:500px;
+
+}
+/*NOTAS */
+ ul li div.colour1 {
+     background: #ffc;
+ }
+ ul li div.colour2 {
+     background: #cfc;
+ }
+ ul li div.colour3 {
+          background: #ccf;
+      }

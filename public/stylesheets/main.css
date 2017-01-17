@@ -51,9 +51,7 @@ ul li div {
 	height: 150px;
 	width: 150px;
 	padding: 10px;
-	-moz-box-shadow: 5px 5px 7px rgba(33, 33, 33, 1);
-	-webkit-box-shadow: 5px 5px 7px  rgba(33, 33, 33, .7);
-	box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+
 	-moz-transition: -moz-transform .15s linear;
 	-o-transition: -o-transform .15s linear;
 	-webkit-transition: -webkit-transform .15s linear;
@@ -71,27 +69,49 @@ ul li div img {
 }
 
 ul li textarea {
-	font-family: 'Chewy', arial, sans-serif;
+	font-family: 'Roboto', arial, sans-serif;
 	background: rgba(0, 0, 0, 0); /* transparent background */
 	resize: none;
 	padding: 3px;
 	border-style: none;
 }
 
-.note-title {
-	font-size: 140%;
-	font-weight: bold;
-	height: 35px;
-	width: 70%;
-}
 
 .note-content {
 	font-size:120%;
 	height: 100px;
 	width: 95%;
+
+	border: none;
+	overflow: auto;
+	outline: none;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+ul#notes li div:hover ,  ul#notes li div:focus {
+
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	position:relative;
+	z-index:5;
+
+
 }
 
-/*ul li:nth-child(even) div {
+.close-notes{
+	position: absolute;
+	right:10px;
+	top:10px;
+	z-index:-999;
+}
+ul#notes li div:hover,  ul#notes li div:focus .close-notes{
+
+}
+/*
+ul li:nth-child(even) div {
   -o-transform:rotate(4deg);
   -webkit-transform:rotate(4deg);
   -moz-transform:rotate(4deg);
@@ -114,7 +134,7 @@ ul li:nth-child(5n) div {
   position:relative;
   top:-10px;
 }
-*/
+
 ul#notes li div:hover, ul#notes li div:focus {
   -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
   -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
@@ -126,3 +146,4 @@ ul#notes li div:hover, ul#notes li div:focus {
   z-index:5;
 }
 
+*/

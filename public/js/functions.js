@@ -10,3 +10,9 @@ function filtraBusca(resultado){
   return resultado != "" && resultado != "Disciplina" && resultado != "Série" && resultado != "Tipo" && resultado != null;
 
 };
+
+function openDesc(i){
+    // $(".descEvt").show();
+
+    $("#subDesc"+i+"").toggle();
+}

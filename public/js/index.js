@@ -1,11 +1,22 @@
 (function($, window, document) {
 
 
-
   $(function() { // Quando a página estiver carregada
-      var notes, count = 0;
+      var count = 0;
       var xerox        = 0;
       var notes        = $("#notes");
+
+      var anotacoesLocal = localStorage.getItem("notes");
+
+      if(anotacoesLocal){
+          var anotacoesArray = JSON.parse(anotacoesLocal);
+              count          = anotacoesArray.length;
+
+              for (var y=0; y < count ; y++ ){
+                  var anotacaoArmazenada = anotacoesArray[y];
+                  addNewNote(anotacaoArmazenada.Colour,anotacaoArmazenada.Conteudo , anotacaoArmazenada.Index);
+              }
+      }
 
 
    /*-------------------------------------------- 
@@ -23,25 +34,162 @@
                 contentType : "application/json", //
                 cache       : false,                    //nega cache ao browser
                 timeout     : 5000,                     //espera até 5000 mls 
-                async       : asnc,
+                async       : asnc
               });  
 
     }
     function svNotes(){
-            var lembretesConteudo = $(".note-content");
 
-        var content = [];
-        lembretesConteudo.each(function() {   //trocar por map depois
+        var anotacoesArray = new Array();
+
+        notes.find("li > div").each(function (i, e){
+            var conteudo = $(e).find("textarea.note-content");
+            anotacoesArray.push({Index: i, Conteudo: conteudo.val() });
+        });
+
+        var jsonParse= JSON.stringify(anotacoesArray);
+/*
+        console.log("SVNOTES");
+
+        var keys = Object.keys(anotacoesArray);
+        var last = keys[keys.length-1];
+            console.log(last);
+       */ 
+       localStorage.setItem("notes", jsonParse);
+       
+        var lembretesConteudo = $(".note-content");
+
+        var anotacoesData = [];
+        lembretesConteudo.each(function(i , e ) {  
           // var content = ;
-            content.push($(this).val());
-         });
-          ajaxCall("/SaveNotes",content,false);
+          // alert($(this).val());
+            anotacoesData.push({
+                id:i,
+                conteudo: $(this).val()
+            });
+        }
+         );
 
-    };
+        /*
+        var myAssociativeArr = [];
+        for (var i=0; i < idArray.length; i++) {
+        myAssociativeArr.push({
+            id: idArray[i],
+            lname: lnameArray[i],
+            fname: fnameArray[i]
+        });
+        }
 
-    $("#btnSave").click(function () {
+        */
+            console.log(anotacoesData);
+         ajaxCall("/SaveNotes",anotacoesData);
+      
+    }
+
+      // pega referência da lista de notas
+
+      //clicar em nova nota adiciona nota na lista
+      $("#btnNew").click(function ()
+      {
+          var QTDEAnotacoes = 0;
+  
+          notes.find("li > div").each(function (i, e){
+              QTDEAnotacoes++;
+          });
+
+          addNewNote(null, null, QTDEAnotacoes);
+      });
+
+
+
+      // adiciona nota na lista se nçao tiver nenhuma
+      if (count === 0) {
+          $("#btnNew").click();
+
+      }
+      function addNewNote(classC,content,ID) {
+
+            if(!classC){
+                classC = "colour" + Math.ceil(Math.random() * 3);
+            }
+
+          // adiciona nova nota para final da lista de notas
+          notes.append("<li><div  class='"+classC+"' >" +
+              "<input type='hidden' value="+ID+" class='idNote'>"+
+              "<textarea class='note-content' />" +
+              "<i class='fa fa-trash-o close-notes' aria-hidden='true'></i>"+
+              "</div></li>");
+          // linka a nova nota com seu botão de fechar
+          var newNote = notes.find("li:last");
+
+          newNote.find("i").click(function () {
+             // ajaxCall('/delNTS',newNote.find("input.idNote").val());
+
+
+
+              /*
+
+                    var anotacoesLocal = localStorage.getItem("notes");
+
+               if(anotacoesLocal){
+               var anotacoesArray = JSON.parse(anotacoesLocal);
+               count          = anotacoesArray.length;
+
+               for (var y=0; y < count ; y++ ){
+               var anotacaoArmazenada = anotacoesArray[y];
+               addNewNote(anotacaoArmazenada.Colour,anotacaoArmazenada.Conteudo , y);
+               }
+              * */
+              // console.log(newNote)
+              console.log(newNote.find("input.idNote").val());
+
+
+
+              newNote.remove();
+              svNotes();
+          });
+
+          // hook up event handlers <-- sei lá || pra mostrar/esconder botão de fechar
+          addNoteEvent(newNote);
+
+          // se um conteúdo for dado, coloca como conteúdo da nova nota
+          if (content) {
+              newNote.find("textarea.note-content").val(content);
+          }
+
+          // salvar
+           svNotes();
+      }
+      function addNoteEvent(noteElement) {
+          var div = noteElement.children("div");
+          var closeImg = div.find("i");
+
+          div.focus(function () {
+              closeImg.removeClass("hide");
+          });
+
+          div.children().focus(function () {
+              closeImg.removeClass("hide");
+          });
+
+          div.hover(function () {
+              closeImg.removeClass("hide");
+          }, function () {
+              closeImg.addClass("hide");
+              svNotes();
+          });
+
+          div.children().hover(function () {
+              closeImg.removeClass("hide");
+          }, function () {
+              closeImg.addClass("hide");
+          });
+      }
+
+
+
+      $("#btnSave").click(function () {
        // saveNotes();
-       alert("salvando");
        svNotes();
     });
 
@@ -57,90 +205,37 @@
         turma.append('</div>');
 
             /*PREENCHE OS LEMBRETES DO PROFESSOR*/
-        if(data2[0]){
+      /*  if(data2[0]){
                  for (var i = 0; i <data2[0].length; i++) {
                     var storedNote = data2[0][i];
                     addNewNote(storedNote[0],storedNote[1]);
              }
-        }
+        }*/
         /*PRÓXIMOS EVENTOS DO PROFESSOR*/
         if(evts[0]){
-           var datanow = new Date();
-           var evt = $("#evento");
+           var evt = $(".eventos");
            for (var i= evts[0].length -1 ; i>=0; i--){
              //PEGA A DATA DE INICIO DO EVENTO
               mes = evts[0][i].startsAt.split('-')[1];
-                    dia = evts[0][i].startsAt.split('-')[2][0]+""+evts[0][i].startsAt.split('-')[2][1];
-                    hora= evts[0][i].startsAt.split('-')[2][3]+""+evts[0][i].startsAt.split('-')[2][4];
-                    mim = evts[0][i].startsAt.split('-')[2][6]+""+evts[0][i].startsAt.split('-')[2][7];
-                    data="("+ dia+"/"+mes+", "+hora+":"+mim+")";
-             //PEGA A DATA DE FIM DO EVENTO 
-                    mesf = evts[0][i].endsAt.split('-')[1];
-                    diaf = evts[0][i].endsAt.split('-')[2][0]+""+evts[0][i].endsAt.split('-')[2][1];
-                    horaf= evts[0][i].endsAt.split('-')[2][3]+""+evts[0][i].endsAt.split('-')[2][4];
-                    mimf = evts[0][i].endsAt.split('-')[2][6]+""+evts[0][i].endsAt.split('-')[2][7];
-
-                    if (datanow.getUTCMonth()+1 <= mes || datanow.getUTCMonth()+1 <= mesf) 
-                       if (datanow.getUTCDate()+1 <= dia || datanow.getUTCDate()+1 <= diaf) {
-                          evt.append('<div class="evento" style="background-color:'+evts[0][i].color.secondary+'"><p style="font-size: 10pt;">'+data+'<b>'+evts[0][i].titulo+'</b> - '+evts[0][i].descricao+'</p></div>');
-           }
+              dia = evts[0][i].startsAt.split('-')[2][0]+""+evts[0][i].startsAt.split('-')[2][1];
+              data=" "+ dia+"/"+mes+" ";
+                          //</b> - '+evts[0][i].descricao+'
+                          evt.append('<div class="evento "  onclick="openDesc('+i+')" id='+i+' ><p><span>'+data+'</span><b>'+evts[0][i].titulo+'</p></div>');
+               $("#"+i+"").append('<div class="descEvt" id="subDesc'+i+'"><p>'+evts[0][i].descricao+'</p></div><br>');
           }
         }
+         $(".descEvt").toggle();
 
      });
 
-     
+          // $("#0","#1","#2","#3","#4").click(function(){
+          //     alert('ola');
+          // });
 
 
 
 
 
-    // pega referência da lista de notas
-
-    //clicar em nova nota adiciona nota na lista
-    $("#btnNew").click(function () {
-        addNewNote();
-    });
-
-
-
-    // adiciona nota na lista se nçao tiver nenhuma
-    if (count === 0) {
-        $("#btnNew").click();
-
-    }
-    function addNewNote(content,ID) {
-
-      // adiciona nova nota para final da lista de notas
-      notes.append("<li><div >" +
-          "<input type='hidden' value="+ID+" class='idNote'>"+
-          "<textarea class='note-content' placeholder='O que você deve se lembrar?'/>" +
-          "<img src='/assets/images/close.png'/>" +
-          "</div></li>");
-      // linka a nova nota com seu botão de fechar
-      var newNote = notes.find("li:last");
-      newNote.find("img").click(function () {
-            ajaxCall('/delNTS',newNote.find("input.idNote").val());
-            newNote.remove();
-        //  //saveNotes();
-      });
-
-      // hook up event handlers <-- sei lá || pra mostrar/esconder botão de fechar
-      addNoteEvent(newNote);
-
-        // se um conteúdo for dado, coloca como conteúdo da nova nota
-      if (content) {
-        newNote.find("textarea.note-content").val(content);
-        }
-
-        // salvar
-       // saveNotes();
-    }
-    function addNoteEvent(noteElement) {
-        var div = noteElement.children("div");
-
-    
-    }
 
 
   });

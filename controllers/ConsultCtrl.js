@@ -13,20 +13,22 @@ exports.removerQuest   = 	function(req, res){
 };
 
 exports.SaveNts = function(req,res){
+
   var dados = [];
   var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"'";
-  console.log("AQUI");
-  console.log(req.body.obj[1]);
-  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
+    // console.log(req.body.obj[0].id);
+
+  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});  
   for (var i=0; i< req.body.obj.length ; i++){
-    var qry = "INSERT INTO `lembretes`( `user`, `content`)  VALUES ('"+req.user.matricula+"','"+req.body.obj[i]+"')";
+    var qry = "INSERT INTO `lembretes`( `ID`,`user`, `content`)  VALUES ('"+req.body.obj[i].id+"','"+req.user.matricula+"','"+req.body.obj[i].conteudo+"')";
        connDB.query(qry,function(err,rows){
        if (err) console.log(err);
     });
   }
-    return res.ok();
+  // */
+  return res.json("all ok");
 
-  console.log("NOTAS SALVAS");
+  // console.log("NOTAS SALVAS");
 
 };
 exports.DelNts  = function (req,res){
@@ -424,7 +426,13 @@ exports.consulProva = function(req, res){
 exports.pesquisaEvento  = function(req, res){
   console.log("\ncolsulta eventos pedido");
   var eventos = [];
-  var qry = "SELECT  `cod_evento`, `evento`, `descricao`, `datahora`, `cor`, `cor2`,`turma`,`datafim`, `allday` FROM `calendario` WHERE `matricula`='"+req.user.matricula+"' ORDER BY datahora DESC  ";
+    var dataHj = new Date().toJSON().split('T'); //Pega a Data do dia da pessoa
+    var qry = "SELECT  `cod_evento`, `evento`, `descricao`, `datahora`, `cor`, `cor2`,`turma`,`datafim`, `allday`" +
+              " FROM `calendario`" +
+              "WHERE `matricula`='"+req.user.matricula+"' AND datahora > '"+dataHj[0]+"' ORDER BY datahora DESC LIMIT 10 ";
+
+     console.log(qry);
+
   connDB.query(qry,function(err,rows){
     for (var i = 0, len = rows.length; i < len; i++)
     {
@@ -448,7 +456,9 @@ exports.pesquisaEvento  = function(req, res){
     res.json(eventos);
     //console.log(eventos+"\n"+qry);
     console.log("   consulta evento entregue \n");
+
   });
+
 };
 
 /*----------------ADM__pesquisa------------------*/
