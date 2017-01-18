@@ -378,6 +378,7 @@ function doIt(element) {
 
                 ginha[i] = ginha[i]+ nlinhas+"\n\n";
                 num++;
+                nlinhas = "";
 
                 break;
             }
@@ -393,22 +394,12 @@ function doIt(element) {
 
                 ginha[i] = ginha[i]+ nlinhas+"\n\n";
                 num++;
+                nlinhas = "";
 
                 break;
 
             }
 
-
-            case "true":
-            var number = parseInt(data[i].quant_linhas);
-              for(var j=0; j< number ;j++)
-              {
-                ginha[i]=num+") "+data[i].enunciado+"\n\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n"+"______________________________________________________________________________________"+"\n\n";
-               // alert("1")
-                 num++;
-
-              }
-              break;
 
 
 

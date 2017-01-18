@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Jan-2017 às 02:55
+-- Generation Time: 14-Jan-2017 às 02:01
 -- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `sge`
 --
-CREATE DATABASE IF NOT EXISTS `sge` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+CREATE DATABASE IF NOT EXISTS `sge` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `sge`;
 
 -- --------------------------------------------------------
@@ -201,39 +201,39 @@ INSERT INTO `calendario` (`cod_evento`, `matricula`, `evento`, `descricao`, `dat
 
 CREATE TABLE `disciplinas` (
   `disciplina_id` int(5) NOT NULL,
-  `disciplina_nome` varchar(16) NOT NULL,
-  `anoserie` varchar(6) NOT NULL
+  `disciplina_nome` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `disciplinas`
 --
 
-INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`, `anoserie`) VALUES
-(1, 'Português', ''),
-(2, 'Literatura', ''),
-(3, 'Matemática I', ''),
-(4, 'Matemática II', ''),
-(5, 'Química I', ''),
-(6, 'Química II', ''),
-(7, 'Sociologia', ''),
-(8, 'Geografia', ''),
-(9, 'Biologia', ''),
-(10, 'Artes', ''),
-(11, 'Música', ''),
-(12, 'Física', ''),
-(13, 'História', ''),
-(14, 'LPI', ''),
-(15, 'LPII', ''),
-(16, 'LPIII', ''),
-(17, 'LPIV', ''),
-(18, 'Eng. Software', ''),
-(19, 'Filosofia', ''),
-(20, 'Inglês', ''),
-(21, 'Ed. Física', ''),
-(22, 'Espanhol', ''),
-(23, 'Francês', ''),
-(24, 'Desenho Avançado', '');
+INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`) VALUES
+(1, 'Português'),
+(2, 'Literatura'),
+(7, 'Matemática I'),
+(10, 'Matemática II'),
+(13, 'Quí­mica I'),
+(16, 'Quí­mica II'),
+(19, 'Sociologia'),
+(22, 'Geografia'),
+(25, 'Biologia'),
+(28, 'Físi­ca'),
+(31, 'História'),
+(34, 'Filosofia'),
+(37, 'Inglês'),
+(40, 'Espanhol'),
+(43, 'Francês'),
+(46, 'Ed. Física'),
+(49, 'Artes'),
+(50, 'Música'),
+(51, 'Desenho Avançado'),
+(53, 'ICC'),
+(54, 'LPI'),
+(55, 'LPII'),
+(56, 'LPIII'),
+(57, 'LPIV'),
+(58, 'Eng. Software');
 
 -- --------------------------------------------------------
 
@@ -246,6 +246,13 @@ CREATE TABLE `lembretes` (
   `user` varchar(15) NOT NULL,
   `content` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `lembretes`
+--
+
+INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
+(25, '10', '1231312');
 
 -- --------------------------------------------------------
 
@@ -270,58 +277,6 @@ INSERT INTO `materia` (`materia_id`, `nome`, `descricao`, `disciplina_id`) VALUE
 (3, 'Eletromagnetismo', 'Conjunto de fenômenos que dizem respeito à interação entre campos elétricos e magnéticos e sua inter-relação', '12'),
 (4, 'Relevo', 'Estudo das diferentes formas que moldam a superfície terrestre', '8'),
 (5, 'Relevo', 'Estudo das diferentes formas que moldam a superfície terrestre', '8');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `professor_disciplinas`
---
-
-CREATE TABLE `professor_disciplinas` (
-  `matricula` varchar(10) NOT NULL,
-  `disciplina_id` varchar(5) NOT NULL,
-  `ano_letivo` year(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `professor_disciplinas`
---
-
-INSERT INTO `professor_disciplinas` (`matricula`, `disciplina_id`, `ano_letivo`) VALUES
-('10', '1', 2016),
-('10', '2', 2016);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `profs`
---
-
-CREATE TABLE `profs` (
-  `matricula` varchar(10) NOT NULL,
-  `nome` char(100) NOT NULL,
-  `data_nasc` date NOT NULL,
-  `cpf` char(15) NOT NULL,
-  `tel_cel` varchar(15) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `profs`
---
-
-INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`, `data_mod`) VALUES
-('', '', '0000-00-00', '', '', '4@4.com', '2016-12-14 21:46:46'),
-('1', 'Jacinto', '1946-09-06', '1', '1', 'jacintao@gmail.com', '2016-09-22 04:31:13'),
-('10', 'Jesus Christ', '2000-00-01', '101.010.101-01', '(00)00000-0000', 'jesus@HolyGlory.heaven', '2017-01-05 18:58:45'),
-('2', 'Nunes', '0000-00-00', '2', '(22)22222-2222', '2@gmail.com', '2016-11-27 04:25:44'),
-('2222222222', '2222222222222222', '0000-00-00', '127', '(22)22222-2222', '22222222222@2.com', '2016-10-25 00:41:18'),
-('25', 'Kithdris', '0000-00-00', '127', '(12)34567-8900', 'u7@tera.com', '2016-12-13 23:56:05'),
-('3', 'Junes', '0000-00-00', '127', '(22)22222-2222', '3@3.com.br', '2016-12-13 23:05:58'),
-('4', 'Quatro', '0000-00-00', '127', '(44)44444-4444', '4@4.com', '2016-12-13 23:24:09'),
-('4343', 'fsfsdfds', '0000-00-00', '127', '(32)33333-3333', '3333333333333333333333', '2016-12-14 17:12:14'),
-('5', 'CINCO', '0000-00-00', '127', '(55)55555-5555', '5@5.com', '2016-12-13 23:30:41');
 
 -- --------------------------------------------------------
 
@@ -454,25 +409,54 @@ INSERT INTO `prof_turma` (`matricula`, `cod_turma`, `disciplina`, `ano_letivo`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `provas`
+-- Estrutura da tabela `professor_disciplinas`
 --
 
-CREATE TABLE `provas` (
-  `cod_prova` int(12) NOT NULL,
-  `nome` varchar(30) NOT NULL,
+CREATE TABLE `professor_disciplinas` (
   `matricula` varchar(10) NOT NULL,
-  `cod_disciplina` varchar(5) NOT NULL,
-  `anoserie` varchar(5) NOT NULL,
-  `tipo_avaliacao` varchar(20) NOT NULL,
+  `disciplina_id` varchar(5) NOT NULL,
+  `ano_letivo` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `professor_disciplinas`
+--
+
+INSERT INTO `professor_disciplinas` (`matricula`, `disciplina_id`, `ano_letivo`) VALUES
+('10', '1', 2016),
+('10', '2', 2016);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `profs`
+--
+
+CREATE TABLE `profs` (
+  `matricula` varchar(10) NOT NULL,
+  `nome` char(100) NOT NULL,
+  `data_nasc` date NOT NULL,
+  `cpf` char(15) NOT NULL,
+  `tel_cel` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `provas`
+-- Extraindo dados da tabela `profs`
 --
 
-INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`, `data_mod`) VALUES
-(1, 'Prova de Modernismo', '10', '2', '3º an', 'Prova', '2016-12-21 23:52:00');
+INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`, `data_mod`) VALUES
+('', '', '0000-00-00', '', '', '4@4.com', '2016-12-14 21:46:46'),
+('1', 'Jacinto', '1946-09-06', '1', '1', 'jacintao@gmail.com', '2016-09-22 04:31:13'),
+('10', 'Jesus', '1010-10-10', '101.010.101-01', '(10)10101-0101', 'jc10@hot10mail.com', '2017-01-02 21:43:08'),
+('2', 'Nunes', '0000-00-00', '2', '(22)22222-2222', '2@gmail.com', '2016-11-27 04:25:44'),
+('2222222222', '2222222222222222', '0000-00-00', '127', '(22)22222-2222', '22222222222@2.com', '2016-10-25 00:41:18'),
+('25', 'Kithdris', '0000-00-00', '127', '(12)34567-8900', 'u7@tera.com', '2016-12-13 23:56:05'),
+('3', 'Junes', '0000-00-00', '127', '(22)22222-2222', '3@3.com.br', '2016-12-13 23:05:58'),
+('4', 'Quatro', '0000-00-00', '127', '(44)44444-4444', '4@4.com', '2016-12-13 23:24:09'),
+('4343', 'fsfsdfds', '0000-00-00', '127', '(32)33333-3333', '3333333333333333333333', '2016-12-14 17:12:14'),
+('5', 'CINCO', '0000-00-00', '127', '(55)55555-5555', '5@5.com', '2016-12-13 23:30:41');
 
 -- --------------------------------------------------------
 
@@ -494,7 +478,78 @@ INSERT INTO `prova_questoes` (`cod_prova`, `cod_quest`) VALUES
 ('1', '5'),
 ('1', '17'),
 ('1', '17'),
-('1', '15');
+('1', '15'),
+('1', '8'),
+('2', '8'),
+('3', '8'),
+('4', '8'),
+('1', '12'),
+('2', '12'),
+('3', '12'),
+('4', '12'),
+('1', '15'),
+('2', '15'),
+('3', '15'),
+('4', '15'),
+('1', '4'),
+('2', '4'),
+('3', '4'),
+('4', '4'),
+('1', '5'),
+('2', '5'),
+('3', '5'),
+('4', '5'),
+('1', '10'),
+('2', '10'),
+('3', '10'),
+('4', '10'),
+('1', '15'),
+('2', '15'),
+('3', '15'),
+('4', '15'),
+('5', '15'),
+('1', '4'),
+('2', '4'),
+('3', '4'),
+('4', '4'),
+('5', '4'),
+('1', '5'),
+('2', '5'),
+('3', '5'),
+('4', '5'),
+('5', '5'),
+('1', '21'),
+('2', '21'),
+('3', '21'),
+('4', '21'),
+('5', '21');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `provas`
+--
+
+CREATE TABLE `provas` (
+  `cod_prova` int(12) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `matricula` varchar(10) NOT NULL,
+  `cod_disciplina` varchar(5) NOT NULL,
+  `anoserie` varchar(5) NOT NULL,
+  `tipo_avaliacao` varchar(20) NOT NULL,
+  `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `provas`
+--
+
+INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`, `data_mod`) VALUES
+(1, 'Prova de Modernismo', '10', '2', '3º an', 'Prova', '2016-12-21 23:52:00'),
+(2, '', '10', '1', '1º an', 'Prova', '2017-01-05 15:36:08'),
+(3, '', '10', '2', '1º an', 'Prova', '2017-01-05 15:36:08'),
+(4, '', '10', '3', '1º an', 'Prova', '2017-01-05 15:36:08'),
+(5, '10', '10', '2', 'null', 'null', '2017-01-13 18:38:59');
 
 -- --------------------------------------------------------
 
@@ -516,11 +571,11 @@ CREATE TABLE `questoes` (
   `op4` text,
   `op5` text,
   `gabarito` text NOT NULL,
-  `quant_linhas` varchar(2) NOT NULL,
-  `linhas_visiveis` varchar(5) NOT NULL,
   `ano_letivo` varchar(4) NOT NULL,
   `anoserie` varchar(20) NOT NULL,
   `visibilidade` varchar(3) NOT NULL COMMENT 'pub:publico ou pri:privado(disponivel somente para o prof criador da questao)',
+  `quant_linhas` text NOT NULL,
+  `linhas_visiveis` tinyint(1) NOT NULL,
   `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -528,37 +583,27 @@ CREATE TABLE `questoes` (
 -- Extraindo dados da tabela `questoes`
 --
 
-INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `quant_linhas`, `linhas_visiveis`, `ano_letivo`, `anoserie`, `visibilidade`, `data_mod`) VALUES
-(4, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS4', '', '', '', '', '', 'asdjsauhdsakjdh', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:10:49'),
-(5, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS5', '', '', '', '', '', 'asdjsauhdsakjdh', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:10:51'),
-(7, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Portugues é uma droga?', '', '', '', '', '', 'sim', '', '', '2016', '3º ano', 'Púb', '2016-10-13 04:49:45'),
-(8, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '1212', '', '', '', '', '', 'asdasd', '', '', '2016', '1º ano', 'Pri', '2016-10-14 17:15:07'),
-(9, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Yuri dá o curdistao', '', '', '', '', '', 'SIM', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:19:22'),
-(10, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'ghgvheh', '', '', '', '', '', '452642', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:38:24'),
-(11, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'vbnvbnvbn', '', '', '', '', '', 'asdasdasd', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:44:52'),
-(12, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '2332', '', '', '', '', '', '2332', '', '', '0', '3º ano', 'Púb', '2016-12-10 03:46:28'),
-(13, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'undefined', '', '', 'unde', '3º ano', 'Púb', '2016-12-10 03:49:14'),
-(14, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'qweqweqwe', '', '', '2016', '3º ano', 'Púb', '2016-12-10 03:49:14'),
-(15, 'Jacinto', 'Mediana', 'Objetiva', '2', '1', 'asdasdasd', '1', '2', '3', '4', '5', 'C', '', '', '2016', '3º ano', 'Púb', '2016-12-11 18:20:23'),
-(17, 'Jacinto', 'Mediana', 'DiscursivaCALC', '3', '2', 'Quanto  é 1+1?', NULL, NULL, NULL, NULL, NULL, '2', '2', 'true', '2016', '3º ano', 'Púb', '2017-01-07 01:39:22'),
-(57, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'qwe', '1', '5', '6236', '8', '4', 'Opção A', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:24:45'),
-(58, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'fgndgmt', '1717', '463', '24', 'utdh', '1267ws', 'Opção B', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:33:32'),
-(59, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'zxsdcf', 'kiuytr', '1234', 'mnbvc', 'gn', 'awe', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 21:36:48'),
-(60, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'asdas da', 'qbwrg ', 'zcvaw e', 'd fgnb', 'gdmm mt sd', 'f sdfq', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:29:55'),
-(61, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'cvxn', 'qwer', '654', 'mnb', 'dnb', 'bvb', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:31:40'),
-(62, 'Jesus', 'Mediana', 'Objetiva', '2', '1', 'thhdr', '34', '24', '2', 'fcf', 'ir', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:36:38'),
-(63, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'bjm', 'lu', '5345', '89', 'w4', 'sdf', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:43:48'),
-(64, 'Jesus', 'Avançada', 'Objetiva', '2', '1', '12', '31', '63', 'sdg', 'as', 'bfb', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:45:56'),
-(65, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'hterg', '12a', 'dsa', 'gre', 'qwe', 'qwe12', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:48:34'),
-(66, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'nbvnbn', '345', 'wer', 'jrshf', '324', 'nyity', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 22:57:56'),
-(67, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ssd', '213', 'gef', 'q25', '1  r', 'asd', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:00:40'),
-(68, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'd', 'q', 'e', 'r', 't', 'y', 'Opção E', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:10:38'),
-(69, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'dsad', '2f1', '1t1t ', 'erq', '2c4', '324c', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:22:21'),
-(70, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'asdasd', 'qwe', 'vxcvg', 'hfghr', 'twt3t', 'ue356', 'Opção C', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:24:00'),
-(71, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ad aasf', 'hsdhwh', 'tyw', 'wer', 'qwew', '124e', 'Opção B', '', '', '2016', '3º ano', 'Púb', '2017-01-07 01:38:53'),
-(72, 'Jesus', 'Básica', 'Discursiva', '2', '1', 'E primeiro veio o ...?', NULL, NULL, NULL, NULL, NULL, 'verbo', '4', 'true', '0001', '3º ano', 'Púb', '2017-01-07 01:36:25'),
-(73, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'ksbdhb', '215retyg', '2983yhor', '08wehf', '86fweg', '9e97gw', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:34:10'),
-(74, 'Jesus', 'Avançada', 'Objetiva', '2', '1', 'vj', 'osakdp', 'op', 'ijij', 'uhus', 'aysgd', 'Opção D', '', '', '2016', '3º ano', 'Púb', '2017-01-05 23:36:30');
+INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, `quant_linhas`, `linhas_visiveis`, `data_mod`) VALUES
+(4, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS4', '', '', '', '', '', 'asdjsauhdsakjdh', '2016', '3º ano', 'Púb', '', 0, '2016-10-13 04:10:49'),
+(5, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS5', '', '', '', '', '', 'asdjsauhdsakjdh', '2016', '3º ano', 'Púb', '', 0, '2016-10-13 04:10:51'),
+(7, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Portugues é uma droga?', '', '', '', '', '', 'sim', '2016', '3º ano', 'Pri', '', 0, '2017-01-06 22:59:46'),
+(8, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '1212', '', '', '', '', '', 'asdasd', '2016', '1º ano', 'Pri', '', 0, '2016-10-14 17:15:07'),
+(9, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Yuri dá o curdistao', '', '', '', '', '', 'SIM', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:19:22'),
+(10, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'ghgvheh', '', '', '', '', '', '452642', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:38:24'),
+(11, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'vbnvbnvbn', '', '', '', '', '', 'asdasdasd', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:44:52'),
+(13, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'undefined', 'unde', '3º ano', 'Púb', '', 0, '2016-12-10 03:49:14'),
+(14, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'qweqweqwe', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:49:14'),
+(15, 'Jacinto', 'Mediana', 'Objetiva', '2', '1', 'asdasdasd', '1', '2', '3', '4', '5', 'C', '2016', '3º ano', 'Púb', '', 0, '2016-12-11 18:20:23'),
+(17, 'Jacinto', 'Mediana', 'DiscursivaCALC', '3', '2', 'Quanto  é 1+1?', NULL, NULL, NULL, NULL, NULL, '2', '2016', '3º ano', 'Púb', '', 0, '2016-12-12 22:04:28'),
+(18, 'Jesus', 'Média', 'Discursiva', '2', '1', 'dsghuihfduih', NULL, NULL, NULL, NULL, NULL, 'huhsdfaiudshiadshdsaiudsa', '1851', '2º ano', 'Pri', '16', 1, '2017-01-06 22:26:19'),
+(19, 'Jesus', 'Média', 'Discursiva', '2', '1', 'lllllllllllllllllll', NULL, NULL, NULL, NULL, NULL, 'lllllllllllllllllllllll', '1837', '2º ano', 'Pri', '-9', 0, '2017-01-06 22:45:20'),
+(20, 'undefined', 'Média', 'Discursiva', '2', '1', 'hufsahfsuhdsa', NULL, NULL, NULL, NULL, NULL, 'kkkkkkk', '1930', '2º ano', 'Púb', '11', 1, '2017-01-11 18:53:12'),
+(21, 'undefined', 'Média', 'Discursiva', '2', '1', 'ewrewrwe', NULL, NULL, NULL, NULL, NULL, 'rwerewrrrrrrrrrrrrrrrrrr', '1980', '2º ano', 'Pri', '1', 1, '2017-01-11 18:54:49'),
+(22, 'undefined', 'Difícil', 'Discursiva', '2', '1', 'tdsdstrrfdsf', NULL, NULL, NULL, NULL, NULL, 'fffffffffffffffffffffffffffffffffff', '1837', '2º ano', 'Pri', '1', 0, '2017-01-11 18:57:59'),
+(23, 'undefined', 'Média', 'Discursiva', '2', '1', 'gbffbfv', NULL, NULL, NULL, NULL, NULL, 'oooooooooooooooooooooooooo', '1837', '2º ano', 'Pri', '1', 0, '2017-01-11 19:02:11'),
+(24, 'undefined', 'Fácil', 'Discursiva', '2', '1', 'mnfdklmgklmkdlk', NULL, NULL, NULL, NULL, NULL, 'ppppppppppoooooooooooooooooooooooooooooowwwwwwwwww', '1837', '3º ano', 'Púb', '8', 0, '2017-01-11 19:03:19'),
+(25, '10', 'Fácil', 'Discursiva', '2', '1', 'ddddddddddd', NULL, NULL, NULL, NULL, NULL, 'ddddddddddddddddddddddddddddd', '1964', '2º ano', 'Pri', '9', 1, '2017-01-11 19:06:14'),
+(26, '10', 'Média', 'Discursiva', '2', '1', 'Aheooooooooooo', NULL, NULL, NULL, NULL, NULL, 'Sim, sim', '1860', '2º ano', 'Pri', '12', 1, '2017-01-13 15:48:45');
 
 -- --------------------------------------------------------
 
@@ -647,7 +692,7 @@ CREATE TABLE `user_photo` (
 
 INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
 ('1', './uploads/1-userPhoto-1481671598038.png', '2016-12-13 23:26:38'),
-('10', '/uploads/10-userPhoto-1483641085258.jpg', '2017-01-05 18:31:25'),
+('10', '/uploads/10-userPhoto-1483162242715.jpg', '2016-12-31 05:30:42'),
 ('2', '/uploads/2-userPhoto-1480221932190.jpg', '2016-11-27 05:29:36'),
 ('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15'),
 ('3', './uploads/3-userPhoto-1481670373902.png', '2016-12-13 23:06:13'),
@@ -676,7 +721,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `data_mod`) VALUES
 ('1', 'UM', '', '[object Object]', 'Professor', '2016-12-13 23:26:28'),
-('10', 'Jesus Christ', '9ff025b54b4f0014', '457bdb557467b6af05f3c10e27ea9981e3c9998d10ba4c8ac515fd448712cf9e290a5c644b41f59cc4e6c0e294aa0144f9dd1a7f17d02e076405aa55fee7a566', 'Professor', '2017-01-05 18:32:01'),
+('10', 'Jesus', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Professor', '2016-12-22 18:15:38'),
 ('2', 'Matheus viadao', '', '2', 'Professor', '2016-11-27 04:45:26'),
 ('25', 'Kithdris', 'f5711934de245e1b', '554f89c9e39ee963f83e1ca4a7dace2c8ebe28104e20fb9c87126e04caabba8f0386b92b7ab88d7b795c02e822f496335d7a497e787d4b12e36fccdb1c278594', 'Professor', '2016-12-13 23:56:05'),
 ('3', 'Junes', '', '3', 'Professor', '2016-12-13 23:05:58'),
@@ -731,18 +776,6 @@ ALTER TABLE `materia`
   ADD PRIMARY KEY (`materia_id`);
 
 --
--- Indexes for table `professor_disciplinas`
---
-ALTER TABLE `professor_disciplinas`
-  ADD PRIMARY KEY (`matricula`,`disciplina_id`,`ano_letivo`);
-
---
--- Indexes for table `profs`
---
-ALTER TABLE `profs`
-  ADD PRIMARY KEY (`matricula`);
-
---
 -- Indexes for table `prof_diario`
 --
 ALTER TABLE `prof_diario`
@@ -753,6 +786,18 @@ ALTER TABLE `prof_diario`
 --
 ALTER TABLE `prof_turma`
   ADD PRIMARY KEY (`matricula`,`cod_turma`,`disciplina`,`ano_letivo`);
+
+--
+-- Indexes for table `professor_disciplinas`
+--
+ALTER TABLE `professor_disciplinas`
+  ADD PRIMARY KEY (`matricula`,`disciplina_id`,`ano_letivo`);
+
+--
+-- Indexes for table `profs`
+--
+ALTER TABLE `profs`
+  ADD PRIMARY KEY (`matricula`);
 
 --
 -- Indexes for table `provas`
@@ -796,7 +841,7 @@ ALTER TABLE `disciplinas`
 -- AUTO_INCREMENT for table `lembretes`
 --
 ALTER TABLE `lembretes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `prof_diario`
 --
@@ -806,12 +851,12 @@ ALTER TABLE `prof_diario`
 -- AUTO_INCREMENT for table `provas`
 --
 ALTER TABLE `provas`
-  MODIFY `cod_prova` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cod_prova` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `questoes`
 --
 ALTER TABLE `questoes`
-  MODIFY `cod_quest` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=18;
+  MODIFY `cod_quest` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
