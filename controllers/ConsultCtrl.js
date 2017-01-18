@@ -20,6 +20,7 @@ exports.SaveNts = function(req,res){
 
   connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});  
   for (var i=0; i< req.body.obj.length ; i++){
+    console.log(req.body.obj[i].id);
     var qry = "INSERT INTO `lembretes`( `ID`,`user`, `content`)  VALUES ('"+req.body.obj[i].id+"','"+req.user.matricula+"','"+req.body.obj[i].conteudo+"')";
        connDB.query(qry,function(err,rows){
        if (err) console.log(err);
@@ -34,7 +35,8 @@ exports.SaveNts = function(req,res){
 exports.DelNts  = function (req,res){
     console.log(req.body);
     var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"' AND ID='"+req.body.obj+"'";
-    connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
+    
+    // connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
 
 }
 exports.LoadNts = function(req,res){

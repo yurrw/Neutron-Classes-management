@@ -111,19 +111,30 @@
     color:#00a2ff;
     padding-bottom:0px;
 }
-.blocoCnt .fa-calendar{
+.blocoCnt .fa-calendar {
     color: #ff3f57;
     /*color:#00a2ff;*/
 
     /*color: #19cfa2;*/
+    cursor: pointer;
 
     font-size:2.5rem;
     position: absolute;
     right:60px;
     bottom:50px;
 }
-
-.blocoCnt .fa-calendar:hover{
+.new-note{
+    position: absolute;
+    color:#ff3f57;
+    bottom: 40px;
+    right: 30px;
+    cursor: pointer;
+    font-size:  2.5rem!important;
+}
+.new-note:hover{
+    color: #ff0074;
+}
+.blocoCnt .fa-calendar:hover  {
     color:#ff0074;
 }
 .clndNext{
@@ -134,7 +145,7 @@
 .anotacoes{
     display: block;
     position: absolute;
-    left:0;
+    left:30px;
     height:320px;
     width:1000px;
 }
@@ -151,11 +162,14 @@
 }
 /*NOTAS */
  ul li div.colour1 {
-     background: #ffc;
+     background: #00adce;
  }
  ul li div.colour2 {
-     background: #cfc;
+     background: #ff3f57;
  }
  ul li div.colour3 {
-          background: #ccf;
-      }
+          background: #ffc;
+}
+ ul li div.colour4 {
+          background: #c36cf2;
+}

@@ -2,6 +2,7 @@
 
 
   $(function() { // Quando a página estiver carregada
+
       var count = 0;
       var xerox        = 0;
       var notes        = $("#notes");
@@ -20,7 +21,7 @@
 
 
    /*-------------------------------------------- 
-    FAZ REQUISICAO AJAX PELO POST
+     FAZ REQUISICAO AJAX PELO POST
      Parametro uri  : url que sera chamada
      Parametro obj  : dados que serao enviados
    ----------------------------------------------*/
@@ -48,13 +49,13 @@
         });
 
         var jsonParse= JSON.stringify(anotacoesArray);
-/*
+        /*
         console.log("SVNOTES");
 
         var keys = Object.keys(anotacoesArray);
         var last = keys[keys.length-1];
             console.log(last);
-       */ 
+        */ 
        localStorage.setItem("notes", jsonParse);
        
         var lembretesConteudo = $(".note-content");
@@ -81,7 +82,6 @@
         }
 
         */
-            console.log(anotacoesData);
          ajaxCall("/SaveNotes",anotacoesData);
       
     }
@@ -89,32 +89,34 @@
       // pega referência da lista de notas
 
       //clicar em nova nota adiciona nota na lista
-      $("#btnNew").click(function ()
+      // $(".new-note").click(function ()
+      $(".new-note").click(function ()
       {
           var QTDEAnotacoes = 0;
   
           notes.find("li > div").each(function (i, e){
               QTDEAnotacoes++;
           });
-
-          addNewNote(null, null, QTDEAnotacoes);
+          if (!(QTDEAnotacoes ===4)){
+            addNewNote(null, null, QTDEAnotacoes);
+          }else alert("Favor deletar uma nota antes de continuar");
       });
 
 
 
       // adiciona nota na lista se nçao tiver nenhuma
       if (count === 0) {
-          $("#btnNew").click();
-
+        addNewNote(null, null, 0);
       }
+
       function addNewNote(classC,content,ID) {
 
             if(!classC){
-                classC = "colour" + Math.ceil(Math.random() * 3);
+                classC = "colour" + Math.ceil(Math.random() * 4);
             }
 
           // adiciona nova nota para final da lista de notas
-          notes.append("<li><div  class='"+classC+"' >" +
+          notes.append("<li><div  class='tryteste "+classC+"' >" +
               "<input type='hidden' value="+ID+" class='idNote'>"+
               "<textarea class='note-content' />" +
               "<i class='fa fa-trash-o close-notes' aria-hidden='true'></i>"+
@@ -122,29 +124,8 @@
           // linka a nova nota com seu botão de fechar
           var newNote = notes.find("li:last");
 
-          newNote.find("i").click(function () {
-             // ajaxCall('/delNTS',newNote.find("input.idNote").val());
-
-
-
-              /*
-
-                    var anotacoesLocal = localStorage.getItem("notes");
-
-               if(anotacoesLocal){
-               var anotacoesArray = JSON.parse(anotacoesLocal);
-               count          = anotacoesArray.length;
-
-               for (var y=0; y < count ; y++ ){
-               var anotacaoArmazenada = anotacoesArray[y];
-               addNewNote(anotacaoArmazenada.Colour,anotacaoArmazenada.Conteudo , y);
-               }
-              * */
-              // console.log(newNote)
-              console.log(newNote.find("input.idNote").val());
-
-
-
+          newNote.find(".close-notes").click(function () {
+              ajaxCall('/delNTS',newNote.find("input.idNote").val());
               newNote.remove();
               svNotes();
           });
@@ -162,36 +143,23 @@
       }
       function addNoteEvent(noteElement) {
           var div = noteElement.children("div");
-          var closeImg = div.find("i");
-
-          div.focus(function () {
-              closeImg.removeClass("hide");
-          });
-
-          div.children().focus(function () {
-              closeImg.removeClass("hide");
-          });
 
           div.hover(function () {
-              closeImg.removeClass("hide");
-          }, function () {
-              closeImg.addClass("hide");
               svNotes();
           });
 
-          div.children().hover(function () {
-              closeImg.removeClass("hide");
-          }, function () {
-              closeImg.addClass("hide");
-          });
       }
 
 
 
-      $("#btnSave").click(function () {
-       // saveNotes();
-       svNotes();
-    });
+        /*      
+        if(localStorage.getItem("notes") === null)
+        {
+          alert('oi');
+        }else{
+          alert('Ola');
+        }
+        */
 
              //O CODIGO SEGUINTE FAZ AS REQUISIÇÕES INICIAIS DA PÁGINA. AS QUAIS SOLICITARÃO, AS TURMAS DO PROFESSOR, SEUS LEMBRETES, E OS PROXIMOS EVENTOS.
      $.when(ajaxCall("/mostraturma"), ajaxCall("/LoadNotes"), ajaxCall("/pesquisaEvento")).done(function( data,data2,evts ){
@@ -203,15 +171,6 @@
                 turma.append('<div ><a href="#">'+data[0][i]+'</a></div>');            
                }
         turma.append('</div>');
-
-            /*PREENCHE OS LEMBRETES DO PROFESSOR*/
-      /*  if(data2[0]){
-                 for (var i = 0; i <data2[0].length; i++) {
-                    var storedNote = data2[0][i];
-                    addNewNote(storedNote[0],storedNote[1]);
-             }
-        }*/
-        /*PRÓXIMOS EVENTOS DO PROFESSOR*/
         if(evts[0]){
            var evt = $(".eventos");
            for (var i= evts[0].length -1 ; i>=0; i--){
@@ -224,6 +183,22 @@
                $("#"+i+"").append('<div class="descEvt" id="subDesc'+i+'"><p>'+evts[0][i].descricao+'</p></div><br>');
           }
         }
+            /*PREENCHE OS LEMBRETES DO PROFESSOR*/
+        if(data2[0]){
+
+                if(localStorage.getItem("notes") == null)
+                  {
+                                   for (var i = 0; i <data2[0].length; i++) {
+                           var storedNote = data2[0][i];
+                         console.log(storedNote);
+                        addNewNote(null, storedNote[0], i);
+                     }
+                  }
+
+
+        }
+        /*PRÓXIMOS EVENTOS DO PROFESSOR*/
+
          $(".descEvt").toggle();
 
      });
