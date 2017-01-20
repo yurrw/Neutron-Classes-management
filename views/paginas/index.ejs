@@ -83,23 +83,41 @@
 
 
                                  <div class="row">
-                                    <div class="bloco col-md-4 TurmasBlc">
-                                        <div class="blocoCnt">
-                                            <p><span>Minhas Turmas</span></p>
-                                            <!--TURMAS DO PROFESSOR-->
-                          <div class="bloco">
-                                               <p>Turmas</p>
-                                               <div id="turma"></div>
-                                 </div>
-                            </div>
-                        </div>
                         <div class="bloco col-md-4 NotasBlc">
                             <div class="blocoCnt">
-                                <p><span>NOTAS</span></p>
+                                <p><span>Notas dos Alunos</span></p>
+                                <div id="legendaGrafico">
+                                        <div class="blockNotaGrafico1 blockNotaGrafico"></div>
+                                         <span>Notas acima de 7</span>
+                                          <br><br>
+                                        <div class="blockNotaGrafico2 blockNotaGrafico"></div>
+                                         <span>Notas entre 5 e 7</span>
+                                          <br><br>
+                                        <div class="blockNotaGrafico3 blockNotaGrafico"></div>
+                                         <span>Notas abaixo de 5</span>
+
+
+                                </div>
                                 <!--GRAFICO-->
                                        <canvas id="skills" width="300" height="300"></canvas>
                                     </div>
                                 </div>
+                                            <!--TURMAS DO PROFESSOR-->
+
+                                    <div class="bloco TurmasBlc">
+                                        <div class="blocoCnt">
+                                            <p><span>Minhas Turmas</span></p>
+                                               <div id="turma"></div>
+
+                                              <a href="/consultaTurma">
+<br>
+                                               <i class="fa fa-users" aria-hidden="true"></i> </a>
+                                               <br><br>
+                            </div>
+                        </div>
+
+
+
                             </div>
                                 </div>
 
@@ -218,17 +236,17 @@ var ctx = document.getElementById('skills').getContext('2d');
 
                     value: seteper,
                     label: 'Notas maiores que 7',
-                    color: '#000000'
+                    color: '#00a2ff'
                  },
                  {
                     value: cincoper,
                     label: 'Notas entre 5-7',
-                    color: '#FFFFFF'
+                    color: '#19cfa2'
                  },
                  {
                     value: zeroper,
                     label: 'Notas menores que 5',
-                    color: '#D18177'
+                    color: '#ff3f57'
                  }
               ];
 

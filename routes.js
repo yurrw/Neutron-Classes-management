@@ -103,8 +103,14 @@ var fs = require('fs');
 
 
 
-
+/*
         //Pagninas Principais
+        app.get('/consultaTurma/:Turma', function (request, response) {
+  // res.send(req.params)
+  response.render('paginas/consultaTurma',{   turma: request.params ,user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
+
+})
+*/
             app.get('/index',isLogged,HomeController.index);
             app.get('/teste',isLogged,HomeController.teste);
             app.post('/ttt',isLogged,HomeController.ttt)

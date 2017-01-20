@@ -168,9 +168,10 @@
         /*PREENCHE O CAMPO DA TURMA */
         turma.append('<div style="display: inline-block;>');      
         for (var i = 0 ; i <data[0].length; i++) {  
-                turma.append('<div ><a href="#">'+data[0][i]+'</a></div>');            
+                turma.append('<div >'+data[0][i]+'</div>');            
                }
         turma.append('</div>');
+
         if(evts[0]){
            var evt = $(".eventos");
            for (var i= evts[0].length -1 ; i>=0; i--){
