@@ -3,12 +3,70 @@
 === Media_Queries ================================================
 ==================================================================
 */
-
+/*PRINCIPAL EM NOTEBOOKS*/
 @media screen and (max-width: 1367px) {
     #sid{
         width: 260px;
         /*z-index: -1;*/
     }
+
+    /*INDEX PAGINA*/
+    #pgName{
+        left: -25px;
+    }
+    #cabecalho{
+        margin-right: 80px;
+    }
+    #imgUsr , #NamUser{
+        margin-top: 0;
+    }
+    #cabecalho .dropdown-menu{
+        top: 65px;
+    }
+    .dashElements{
+        left: 10;
+        margin-left: 0;
+        height: 51.6vw!important;
+        width:81.5vw!important;
+    }
+    .anotacoes{
+        width: 670px!important;
+        height: 300px!important;
+    }    
+    .clndNext{
+        width: 350px;
+        height: 640px!important;
+    }
+    .evento{
+        margin-left: 10px!important;
+    }
+
+    ul#notes{
+        padding-left: 5px;
+        padding-right: 0;
+    }
+    ul li div {
+
+        height: 130px;
+        width: 130px;
+        font-size: 1.1rem;
+    }
+    .TurmasBlc{
+        right: 415px!important;
+        height: 320px!important;
+        top: 370px!important;
+        width: 250px!important;
+    }
+    .NotasBlc{
+        top: 370px!important;
+        width: 400px!important;
+        height: 320px!important;
+    }
+    #skills{
+        width: 150px!important;
+        height: 150px!important;
+    }
+   /*------------*/
     /*MODAL DE PRIVACIDADE*/
 
 

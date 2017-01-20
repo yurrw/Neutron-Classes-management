@@ -9,7 +9,7 @@
     !*box-sizing: 10px;*!
     padding: 1px;
     word-break: break-all;
-}
+}greyBG2
 #evento{
     width: 100%;
 }*/
@@ -32,6 +32,7 @@
 
 #indBack{
     background-color: #fff!important;
+    overflow-x: hidden;
 }
 #pgName{
     position: absolute;
@@ -60,6 +61,8 @@
     /*margin-top:100px;*/
     color: white;
     background-color: #f6f8fa;
+    /*#f6f8fa*/
+    position: absolute;
     width:86.5vw;
     height:46vw;
     margin-top:64px;
@@ -129,12 +132,14 @@
     cursor: pointer;
     position: absolute;
     right: 40px;
+    bottom:30px;
     padding-bottom: 20px;
-
 }
-  .fa-users:hover{
+
+.fa-users:hover{
     color: #ff0074;
-  }
+}
+
 .new-note{
     position: absolute;
     color:#ff3f57;
@@ -167,6 +172,7 @@
     top:500px;
     right:600px;
     width: 400px;
+    height: 405px;
 }
 #turma{
     color: #3d464d;
