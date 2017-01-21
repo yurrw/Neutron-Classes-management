@@ -190,9 +190,9 @@
         margin-left:130px;
     }
 }
-/*
-POR 1280 e 1024 dps
-@media  screen and (max-width: 1280px) {
+
+/*POR 1280 e 1024 dps */
+@media  screen and (max-width: 1280px) and (min-width: 1280px) {
     .dashElements{
         left: 0px!important;
         height: 100vh!important;
@@ -220,7 +220,8 @@ POR 1280 e 1024 dps
 
 
 }
-*/
+
+
 @media screen and (min-width: 1030px) {
 
     #panel{
@@ -298,7 +299,27 @@ POR 1280 e 1024 dps
         width:100vw!important;
     }
 }
-
+@media  screen and (max-width: 1024px) and (min-width: 1024px) 
+                and (max-height: 768px) and (min-height: 768px){
+    .clndNext{
+            right: 25px!important;
+            height: 320px!important;
+    }
+    .dashElements{
+        width:135vh!important;
+    }
+    .NotasBlc{
+        width: 35vw!important;
+        /*height: 320px!important;*/
+    } 
+    .TurmasBlc{
+        /*right:      405px!important;*/
+        /*height: 320px!important;*/
+        top: 370px!important;
+        left: 405px;
+        /*width: 250px!important;*/
+    }
+}
 @media screen and (max-width: 990px)
 {
     .priv input {

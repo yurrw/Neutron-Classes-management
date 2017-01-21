@@ -32,7 +32,7 @@
 
 #indBack{
     background-color: #fff!important;
-    /*overflow-x: hidden;*/
+    overflow-x: hidden;
     /*TODO: por overflow dps*/
 }
 #pgName{
@@ -61,9 +61,9 @@
 .dashElements{
     /*margin-top:100px;*/
     color: white;
-        background-color: black!important;
+        /*background-color: black!important;*/
 
-    /*background-color: #f6f8fa;*/
+    background-color: #f6f8fa;
     /*#f6f8fa*/
     position: absolute;
     width:86.5vw;
