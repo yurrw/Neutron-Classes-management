@@ -190,7 +190,37 @@
         margin-left:130px;
     }
 }
+/*
+POR 1280 e 1024 dps
+@media  screen and (max-width: 1280px) {
+    .dashElements{
+        left: 0px!important;
+        height: 100vh!important;
+    }
 
+     .anotacoes{
+        width: 48vw!important;
+    } 
+        ul li div {
+
+        height: 115px;
+        width: 115px;
+        font-size: 1.2rem;
+    }
+    .clndNext{
+        height: 640px!important;
+    }
+    .TurmasBlc{
+        width: 225px!important;
+      left: 430px!important;
+    }
+    .NotasBlc{
+        width: 30vw!important;
+    }
+
+
+}
+*/
 @media screen and (min-width: 1030px) {
 
     #panel{
@@ -306,6 +336,23 @@
 
 }
 @media  screen and (max-width: 768px ) {
+    /*PAGINA INDEX*/
+    ul li div {
+
+        height: 130px;
+        width: 130px;
+        font-size: 1.1rem;
+    }
+    .clndNext{
+        width: 300px;
+        height: 580px!important;
+            right: 50px!important;
+    }
+    .TurmasBlc{
+        top: 700px!important;
+        height: 250px!important;
+    }
+    /*------------*/
     #r2{
         padding-top:60px!important;
     }
@@ -474,6 +521,66 @@
 }
 
 @media  screen and (max-width: 415px ) {
+    /*Pagina Index*/
+    .dashElements{
+        left: 90px;
+        height: 200vh!important;
+        /*height: 100vh!important;*/
+        /*width:80v/h!important;*/
+    }
+    .backTopper{
+        left: -10px;
+    }
+    #imgUsr{
+        position: absolute;
+        right: -25px;
+        top: 7px;
+    }
+    #NamUser{
+        position: absolute;
+        right: 55px;
+        top: 7px;
+    }
+    .toggle-button{
+        left: 10px!important;
+    }
+    #cabecalho .dropdown-menu{
+        top: 55px;
+        left: -11px;
+    }
+    .anotacoes{
+        top: 15px!important;
+        left: 20px!important;
+        height: 400px!important;
+    }
+    ul#notes{
+        padding-left: 15px;
+        padding-right: 0;
+    }
+    .clndNext{
+            width: 393px!important;
+            height: 350px!important;
+            top: 430px;
+            left: 30px!important;
+    }
+    .NotasBlc{
+        width:  393px!important;
+        height: 250px!important;
+        top: 800px!important;
+        left: 20px!important;
+    }
+    .TurmasBlc{
+        left: 30px;
+        width: 393px!important;
+        height: 200px!important;
+        top: 1065px!important;
+    }
+
+         #skills{
+        margin-top: -20px;
+    }
+
+    /*------------*/
     #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 60px !important;
     }
@@ -523,6 +630,45 @@
     .priv > .modal-body {
         margin-left: 10%;
     }
+    /*PAGINA INDEX*/
+     .anotacoes{
+        top: 15px!important;
+        left: 20px!important;
+        height: 400px!important;
+    }
+    ul#notes{
+        padding-left: 5px;
+        padding-right: 0;
+    }
+    ul li div {
+
+        height: 120px;
+        width: 120px;
+        font-size: 1.2rem;
+    }
+    .new-note{
+        right: 20px!important;
+    }
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 355px!important;
+    }
+    #skills{
+        width: 120px!important;
+        height: 120px!important;
+    }
+/*    .NotasBlc{
+        width:  393px!important;
+        height: 250px!important;
+        top: 800px!important;
+        left: 20px!important;
+    }
+    .TurmasBlc{
+        left: 30px;
+        width: 393px!important;
+        height: 200px!important;
+        top: 1065px!important;
+    }
+    /*------------*/
 }
 @media screen and (max-width: 375px) {
     #RightForm{
@@ -567,6 +713,33 @@
     #bt2{
         margin-left:110px;
     }
+    /*PAGINA INDEX*/
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 342px!important;
+    }
+    #pgName{
+        display: none;
+    }
+    ul li div {
+
+        height: 100px;
+        width: 100px;
+        font-size: 1.1rem;
+    }
+    ul#notes{
+        padding-left: 20px;
+        padding-right: 0;
+    }
+    .fa-calendar{
+        right: 40px!important;
+    }
+     .toggle-button{
+        left: 20px!important;
+    }
+    #cabecalho .dropdown-menu{
+    right: 0px!important;
+    }   
+    /*------------*/
 }
 @media screen and (max-width: 325px) {
     #RightForm > #RFTitle{
@@ -590,6 +763,36 @@
     #bt2{
         margin-left:90px;
     }
+    /*INDEX PAGINA*/
+
+    ul li div {
+        height: 100px;
+        width: 100px;
+        font-size: 1.1rem;
+    }
+    ul#notes{
+        padding-left: 0px;
+        padding-right: 0;
+    }
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 305px!important;
+    }
+        .TurmasBlc{
+        height: 150px!important;
+    }
+    .fa-calendar{
+        bottom: 30px!important;
+    }
+    #legendaGrafico {
+        right: 20px!important;
+    }
+    #skills{
+        left: -50px!important;
+    }
+    .dashElements{
+        height: 215vh!important;
+    }
+    /*------------*/
 }
 @media  screen and (max-width: 321px ) {
     .perfilContent { /*CONTAINER */
@@ -618,6 +821,7 @@
         margin-left: 1%;
     }
 }
+
 @media screen and (min-width: 1025px) {
 
     .slideout-panel {
