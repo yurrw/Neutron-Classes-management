@@ -367,13 +367,22 @@
 }
 
 #hbmenu{
+    /*position: absolute;*/
     /*width:40px;*/
     /*height:40px;*/
 }
 .toggle-button{
-    position: relative;
+    position: absolute;
     display: block;
-    left:-40px!important;
+    left:0px!important;
     top:15px;
-    background: transparent;
+    background: transparent!important;
+    box-shadow:0;
+}
+.backTopper{
+    position: absolute;
+    width:100vw;
+    left: -60;
+    height: 65px;
+    background-color: #fff; 
 }

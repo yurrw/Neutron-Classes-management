@@ -3,19 +3,12 @@
 === Media_Queries ================================================
 ==================================================================
 */
-/*PRINCIPAL EM NOTEBOOKS*/
-@media screen and (max-width: 1367px) {
-    #sid{
-        width: 260px;
-        /*z-index: -1;*/
-    }
-
-    /*INDEX PAGINA*/
-    #pgName{
-        left: -25px;
-    }
+@media screen and (max-width: 1600px){
     #cabecalho{
         margin-right: 80px;
+    }
+    #pgName{
+        left: -25px;
     }
     #imgUsr , #NamUser{
         margin-top: 0;
@@ -23,17 +16,130 @@
     #cabecalho .dropdown-menu{
         top: 65px;
     }
+    #sid{
+        width: 250px;
+        /*z-index: -1;*/
+    }
+    .dashElements{
+        left: 0;
+        height:50vw!important;
+    }    
+    .anotacoes{
+        margin-left: 10px;
+
+        width: 900px!important;
+        height: 300px!important;
+    }
+    .clndNext{
+        width: 400px;
+        height: 710px!important;
+    }
+    .evento{
+        margin-left: 15px!important;
+    }
+
+    ul#notes{
+        padding-left: 10px;
+        padding-right: 0;
+    }
+    ul li div {
+
+        height: 150px;
+        width: 150px;
+        font-size: 1.2rem;
+    }
+    .TurmasBlc{
+        right: 445px!important;
+        height: 370px!important;
+        top: 390px!important;
+        width: 250px!important;
+    }
+    .NotasBlc{
+        margin-left: 10px;
+
+        top: 390px!important;
+        width: 600px!important;
+        height: 370px!important;
+    }
+    #skills{
+        margin-top: -10px;
+        width: 270px!important;
+        height: 270px!important;
+    }
+    .backTopper{
+        left: -82px;
+    }
+
+}
+@media screen and (max-width: 1440px){
+    .dashElements{
+        height: 58vw!important;
+    }
+    .anotacoes{
+        width: 750px!important;
+        height: 300px!important;
+    }
+    ul li div {
+
+        height: 140px;
+        width: 140px;
+        font-size: 1.2rem;
+    }
+    .NotasBlc{
+        margin-left: 10px;
+        top: 390px!important;
+        width: 480px!important;
+        height: 370px!important;
+    } 
+    #skills{
+        margin-top: -10px;
+        width: 250px!important;
+        height: 250px!important;
+    }
+    .clndNext{
+        right: 70px!important;
+        width: 370px;
+        height: 710px!important;
+    }
+    .TurmasBlc{
+        right: 455px!important;
+    }
+    .backTopper{
+        left: -100px;
+    }
+    #imgUsr{
+        margin-right: 40px;
+    }
+    #cabecalho .dropdown-menu{
+    right: 35px;
+    top: 60px;
+    }   
+
+}
+/*PRINCIPAL EM NOTEBOOKS*/
+@media screen and (max-width: 1367px) {
+      #cabecalho .dropdown-menu{
+    right: 45px;
+}
+    #sid{
+        width: 260px;
+        /*z-index: -1;*/
+    }
+
+    /*INDEX PAGINA*/
     .dashElements{
         left: 10;
         margin-left: 0;
         height: 51.6vw!important;
         width:81.5vw!important;
     }
+
     .anotacoes{
         width: 670px!important;
         height: 300px!important;
     }    
     .clndNext{
+        right: 30px!important;
         width: 350px;
         height: 640px!important;
     }
@@ -52,7 +158,7 @@
         font-size: 1.1rem;
     }
     .TurmasBlc{
-        right: 415px!important;
+        right: 405px!important;
         height: 320px!important;
         top: 370px!important;
         width: 250px!important;
@@ -63,8 +169,12 @@
         height: 320px!important;
     }
     #skills{
+        margin-top: 30px;
         width: 150px!important;
         height: 150px!important;
+    }
+    #imgUsr{
+        margin-right: 50px;
     }
    /*------------*/
     /*MODAL DE PRIVACIDADE*/
@@ -82,6 +192,7 @@
 }
 
 @media screen and (min-width: 1030px) {
+
     #panel{
         left: -12%;
     }
@@ -98,12 +209,62 @@
 
 }
 @media screen and (max-width: 1030px) {
+    #pgName{
+        left: 75px;
+    }
+    #cabecalho{
+        margin-right: -50px;
+        width: 100vw!important;
+        background-color: white;
+    }
+    .backTopper{
+        width: 105vw;
+        left: -35px;
+    }
+    /*------------*/
+    /*INDEX PAGINA*/
+    .dashElements{
+        left: 65px;
+        height: 100vh!important;
+        width:80vh!important;
+    }
+    .anotacoes{
+        width: 95vw!important;
+        height: 300px!important;
+    }    
+    .clndNext{
+            top: 370px;
+            right: 80px!important;
+    }
+    .NotasBlc{
+        top: 370px!important;
+        width: 55vw!important;
+        height: 320px!important;
+    } 
+    ul li div {
+
+        height: 150px;
+        width: 150px;
+        font-size: 1.1rem;
+    }
+    .TurmasBlc{
+        /*right:      405px!important;*/
+        /*height: 320px!important;*/
+        top: 725px!important;
+        left: 40px;
+        /*width: 250px!important;*/
+    }
+    /*------------*/
+    /*------------*/
+    /*------------*/
     .priv > .modal-body{
         margin-left:20%;
 
     }
     #indexContent {
-        margin-left:-210px;
+        position: absolute;
+        left: 0;
+        margin-left:-200px;
         width:100vw!important;
     }
 }
