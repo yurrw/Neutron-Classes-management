@@ -23,6 +23,21 @@ html {
     position: absolute;
     bottom: 0;
 }
+#pgName{
+    position: absolute;
+    top:20px;
+    color: #3d464d;
+    /*font-weight:800;*/
+    font-weight: bold;
+}
+#pgAtual{
+    color: #00a2ff ;
+
+}
+#traco{
+    padding-left:10px;
+    padding-right:10px;
+}
 #panel{
     width: 90vw;
     margin:0 auto;
