@@ -31,6 +31,7 @@
         height: 300px!important;
     }
     .clndNext{
+        right: 70px!important;
         width: 400px;
         height: 710px!important;
     }
@@ -49,7 +50,7 @@
         font-size: 1.2rem;
     }
     .TurmasBlc{
-        right: 445px!important;
+        right: 500px!important;
         height: 370px!important;
         top: 390px!important;
         width: 250px!important;
@@ -76,7 +77,7 @@
         height: 58vw!important;
     }
     .anotacoes{
-        width: 750px!important;
+        width: 800px!important;
         height: 300px!important;
     }
     ul li div {
@@ -97,7 +98,7 @@
         height: 250px!important;
     }
     .clndNext{
-        right: 70px!important;
+        right: 80px!important;
         width: 370px;
         height: 710px!important;
     }
@@ -255,6 +256,7 @@
     /*------------*/
     /*INDEX PAGINA*/
     .dashElements{
+        margin-left:-100px!important;
         left: 65px;
         height: 100vh!important;
         width:80vh!important;

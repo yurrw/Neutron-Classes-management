@@ -66,10 +66,10 @@
     background-color: #f6f8fa;
     /*#f6f8fa*/
     position: absolute;
-    width:86.5vw;
+    width:90vw;
     height:46vw;
     margin-top:64px;
-    margin-left:-100px;
+    margin-left:-120px;
     padding-top:50px;
 }
 .bloco{
@@ -160,7 +160,7 @@
 .clndNext{
     position: absolute;
     display: block;
-    right:30px;
+    right:45px;
     height: 775px;
 }
 .anotacoes{
@@ -168,7 +168,7 @@
     position: absolute;
     left:30px;
     height:320px;
-    width:1000px;
+    width:1070px;
 }
 .TurmasBlc{
     position: absolute;
