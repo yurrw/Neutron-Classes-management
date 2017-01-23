@@ -1,12 +1,11 @@
 <html lang="pt">
 <head>
     <% include ../partes/head %>
-    <script>
-   
-    </script>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+
 
 </head>
-<body>
+<body id="Cdq">
   <div class="all">
 
 
@@ -17,8 +16,8 @@
 
   </div>
 
-<main id="panel" class="allPage ">
-    <div id="cadQuestContent">
+<main id="panel" class="allPage cadquestPage">
+    <div id="cadQuestContent" class="layout">
   <div class="backTopper">
   </div>
   <% include ../partes/topmenu.ejs %>
@@ -35,11 +34,10 @@
     </button>
     <!-- ***************** -->
 
+          <div class="backPages">
 
-
-
-          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
-            <H3>Cadastro de questões</H3>
+          <div class="content layoutInner " id="cadquestCT" >
+            <H3>Cadastrar questões</H3>
 
             <% if(message.length > 0){ %>
                 <div class="alert alert-info" style="text-align: center;"><%= message %></div>
@@ -50,21 +48,26 @@
             <form class="form-inline" method="Post" action="/cadastroQuest" name="formulario" id="formulario">
 
 
-              <input type="text" class="form-control" id="autor"  name="autor" style="width:300px;" value="<%= user %>"required disabled>&nbsp&nbsp
+            <!--   <input type="text" class="form-control" id="autor"  name="autor" style="width:300px;" value="<%= user %>"required disabled>&nbsp&nbsp -->
+          <div class="form-group row  col-md-12">
 
               <select class="form-control" id="visibilidade" name="visibilidade" style="width:300px;" required>
                 <option disabled selected>Visibilidade</option>
                 <option>Privada</option>
                 <option>Pública</option>
-              </select><br><br>
+              </select>&nbsp&nbsp
 
               <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
                 <option disabled selected>Disciplina</option>
               </select>&nbsp&nbsp
+          
+          </div>
+          <br><br>
+          <div class="form-group row  col-md-12">
 
               <select class="form-control" id="materia" name="materia" style="width:300px;" required>
                 <option disabled selected>Materia</option>
-              </select><br><br>
+              </select>&nbsp&nbsp
 
               <select class="form-control" id="serie" name="serie" style="width:300px;" required>
                 <option disabled selected>Série</option>
@@ -72,30 +75,60 @@
                 <option>2º ano</option>
                 <option>3º ano</option>
               </select>&nbsp&nbsp
+          
+          </div>
+           <br><br>
+          <div class="form-group row  col-md-12">
 
-              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" min="1837" required><br><br>
+              <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" min="1837" required>&nbsp&nbsp
 
               <select class="form-control" id="tipo" name="tipo" style="width:300px;" required>
                 <option disabled selected>Tipo</option>
                 <option>Discursiva</option>
                 <option>Objetiva</option>
               </select>&nbsp&nbsp
-              Dificuldade:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         
+          </div>
+           <br>
+         
+         
 
-              <div class="stars">
-                <input class="star star_3" id="star_3" type="radio" name="star" value="Difícil" required/>
+          <div class="form-group row  col-md-12">
+          
+              <span id="lvlQuest"> Dificuldade: </span>
+       <!--    <div class="rating">
+
+             
+
+
+              <input class="star star_1" id="star3" type="radio" name="star" value="Fácil" required/>
+                <label class="star star_1" for="star3" id="label1"></label>
+              <input class="star star_2" id="star2" type="radio" name="star" value="Média" required/>
+                <label class="star star_2" for="star2" id="label2"></label>
+
+
+      <input class="star star_3" id="star_3" type="radio" name="star" value="Difícil" required/>
                 <label class="star star_3" for="star_3" id="label3"></label>
-                <input class="star star_2" id="star_2" type="radio" name="star" value="Média" required/>
-                <label class="star star_2" for="star_2" id="label2"></label>
-              <input class="star star_1" id="star_1" type="radio" name="star" value="Fácil" required/>
-              <label class="star star_1" for="star_1" id="label1"></label>
 
 
+              </div> -->
+
+<div class="rating">
+
+    <input type="radio" id="star3" class="star" name="star" value="Dificil" />
+      <label class = "full" for="star3" title="Difícil"></label>
+
+    <input type="radio" id="star2" class="star" name="star" value="Media" />
+      <label class = "full" for="star2" title="Média"></label>
+
+    <input type="radio" id="star1" class="star" name="star" value="Facil" />
+      <label class = "full" for="star1" title="Fácil"></label>
+
+</div>
 
 
-
-
-              </div><br><br>
+          </div>
+           <br><br><br>
 
               <textarea id="enunciado" name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado" required></textarea><br><br>
 
@@ -108,10 +141,11 @@
           </div>
 
       </div>
+
+      </div>
       </div>
 </main>
 
-<script type="text/javascript" src="/assets/js/index.js"></script>
 <!-- <script src="/assets/js/test.js"></script> -->
 
 <script>

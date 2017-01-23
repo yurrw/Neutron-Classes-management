@@ -160,6 +160,7 @@ var fs = require('fs');
             app.post('/pesca', TestCTRL.pesquisaMorte2);
             app.post('/pescaconsul', ConsultCtrl.pesquisateste);
             app.post('/getprova', ConsultCtrl.provaquests);
+            app.post('/enviaremail', CadController.enviaremail);
 
 
             app.post('/mostraturma', ConsultCtrl.pesquisaturma);

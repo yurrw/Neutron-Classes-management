@@ -4,6 +4,11 @@
 ==================================================================
 */
 @media screen and (max-width: 1600px){
+    /*CADQUEST PAGINA*/
+    .layout{
+        padding-right: 15px;
+    }
+    /*--------------*/
     #cabecalho{
         margin-right: 80px;
     }
@@ -73,6 +78,11 @@
 
 }
 @media screen and (max-width: 1440px){
+    /*CADQUEST PAGINA*/
+    #cadquestCT{
+        margin-left: -50px!important;
+    }
+    /*---------------*/
     .dashElements{
         height: 58vw!important;
     }
@@ -127,6 +137,11 @@
         /*z-index: -1;*/
     }
 
+    /*CADQUEST PAGINA*/
+    #cadquestCT{
+        margin-left: 80px!important;
+    }
+    /*---------------*/
     /*INDEX PAGINA*/
     .dashElements{
         left: 10;
@@ -253,7 +268,26 @@
         width: 105vw;
         left: -35px;
     }
+    /*cadQuest Pagina*/
+     #cadQuestContent{
+        width: 100vw!important;
+        left: -45px!important;
+     }
+
+     .backPages{
+        margin-top: -50px!important;
+        padding-top: 50px;
+            margin-left: -110px;
+            height: 105vh!important;
+     }
+     .layout{
+                padding-right: 30px!important;
+     }
+    #cadquestCT{
+        margin-left: 225px!important;
+    }
     /*------------*/
+
     /*INDEX PAGINA*/
     .dashElements{
         margin-left:-100px!important;
@@ -359,6 +393,39 @@
 
 }
 @media  screen and (max-width: 768px ) {
+    /*cadQuest Pagina*/
+     /*#cadQuestContent{
+        width: 100vw!important;
+        left: -45px!important;
+     }
+
+     .backPages{
+        margin-top: -50px!important;
+        padding-top: 50px;
+            margin-left: -110px;
+            height: 105vh!important;
+     }
+     .layout{
+                padding-right: 30px!important;
+     } 
+    #cadquestCT{
+        margin-left: 200px!important;
+    }
+    #cadquestCT select , #cadquestCT input {
+            width: 200px!important;
+    }
+    #cadquestCT textarea{
+        width: 415px!important;
+    }
+    */
+    .rating {
+        width: 100px;
+    } 
+      #cadquestCT{
+        margin-left: 75px!important;
+    }
+    /*------------*/
+
     /*PAGINA INDEX*/
     ul li div {
 
@@ -493,6 +560,41 @@
     }
 }
 @media screen and (max-width: 425px){
+    /*cadQuest Pagina*/
+     #cadQuestContent{
+        left: -70px!important;
+     }
+  .backPages{
+            height: 230vh!important;
+     }
+    #cadquestCT{
+        margin-left: 90px!important;
+    }
+    #cadquestCT textarea,  .opsCadQuest{
+        width: 300px!important;
+    }
+     .opsCadQuest{
+        float: left;
+     }
+     .btCadQuest{
+        margin-left: -300px;
+     }
+     .lnAppear{
+
+        width: 15px;
+        height: 15px;
+        float: left;
+     }
+     .lnAppearSpn{
+        float: left;
+     }
+.layoutInner > h3{
+    margin-left: -15px!important;
+    width: 400px!important;
+    font-size: 3.5rem!important;
+}
+
+    /*------------*/
     /*PAGINA DE LOGINHO*/
     .loginSData{
         display: none;
@@ -544,6 +646,12 @@
 }
 
 @media  screen and (max-width: 415px ) {
+    /*CADASTRO QUESTAO*/
+     #cadQuestContent{
+        /*width: 100vw!important;*/
+        left: -70px!important;
+     }
+    /*----------------*/
     /*Pagina Index*/
     .dashElements{
         left: 90px;
@@ -694,6 +802,12 @@
     /*------------*/
 }
 @media screen and (max-width: 375px) {
+    /*cadQuest Pagina*/
+
+    #cadquestCT{
+        margin-left: 70px!important;
+    }
+    /*------------*/
     #RightForm{
         margin-left:-22px;
     }
@@ -765,6 +879,15 @@
     /*------------*/
 }
 @media screen and (max-width: 325px) {
+    /*CADASTRO PAGINA QUESTAO*/
+            #cadquestCT{
+        margin-left: 50px!important;
+        }         
+        .layoutInner > h3{
+            margin-left: 5px!important;
+                font-size: 3rem!important;
+        }
+    /*-----------------------*/
     #RightForm > #RFTitle{
         margin-left:30px;
     }

@@ -12,16 +12,13 @@
     $( function() {
 
 
-        var autor = "<%= userMat %>";
+
 
 
         $.ajax({
           url: "/pesqDiscProfII",  // AQUI É A URL QUE SERA ENVIADO
           type: "POST",   //TIPO DE ENVIO
           dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-          data:JSON.stringify({
-            autor: autor
-          }),
 
           contentType: "application/json",
           cache: false,
@@ -106,30 +103,30 @@
           $('#dadosQuest').append(" ");
 
           $('#dadosQuest').append($('<label"/>')
-          .append($('<input type="checkbox" name="linhasAparentes" class="form-control" style="margin-left:5%; margin-right:1%" />'))
-          .append('Linhas aparentes?'));
+          .append($('<br><input type="checkbox" name="linhasAparentes" class="form-control lnAppear" style="margin-left:5%; margin-right:1%" />'))
+          .append('<span class="lnAppearSpn" >Linhas aparentes?</span>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
         }
 
         else if (tipo == "Objetiva") {
-          $('#dadosQuest').append($('<input type="text" name="opcA" value="" placeholder="Opção A" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<input type="text" class="opsCadQuest form-control" name="opcA" value="" placeholder="Opção A" class="form-control" style="width:610px;" required/>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
-          $('#dadosQuest').append($('<input type="text" name="opcB" value="" placeholder="Opção B" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<input type="text" class="opsCadQuest form-control" name="opcB" value="" placeholder="Opção B" class="form-control" style="width:610px;" required/>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
-          $('#dadosQuest').append($('<input type="text" name="opcC" value="" placeholder="Opção C" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<input type="text" class="opsCadQuest form-control" name="opcC" value="" placeholder="Opção C" class="form-control" style="width:610px;" required/>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
-          $('#dadosQuest').append($('<input type="text" name="opcD" value="" placeholder="Opção D" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<input type="text" class="opsCadQuest form-control" name="opcD" value="" placeholder="Opção D" class="form-control" style="width:610px;" required/>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
-          $('#dadosQuest').append($('<input type="text" name="opcE" value="" placeholder="Opção E" class="form-control" style="width:610px;" required/>'));
+          $('#dadosQuest').append($('<input type="text" class="opsCadQuest form-control" name="opcE" value="" placeholder="Opção E" class="form-control" style="width:610px;" required/>'));
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
@@ -144,7 +141,7 @@
           $('#dadosQuest').append($('<br />'));
         }
 
-        $('#dadosQuest').append($('<button type="submit" name="cadastrar" class="btn btn-default">').val("Cadastrar").text("Cadastrar"));
+        $('#dadosQuest').append($('<button type="submit" name="cadastrar" class="btn btn-default btCadQuest">').val("Cadastrar").text("Cadastrar"));
 
       });
     });

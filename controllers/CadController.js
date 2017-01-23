@@ -1,6 +1,7 @@
-var connDB = require('../models/mysqlmodule.js');
-var multer              =   require('multer');
-var crypto = require('crypto');
+var connDB     = require('../models/mysqlmodule.js');
+var multer     = require('multer');
+var crypto     = require('crypto');
+var nodemailer = require('nodemailer');
 
 
 var genRandomString = function(length){
@@ -190,7 +191,8 @@ exports.pesquisaDisc = function(req, res){
 exports.pesquisaDiscProf = function(request, res){
 
   var disciplinas = [];
-  var query = "SELECT `disciplina_nome` FROM `disciplinas`, professor_disciplinas WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.body.autor +"'";
+  var query = "SELECT `disciplina_nome` FROM `disciplinas`, professor_disciplinas"+
+  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"'";
 
   connDB.query(query, function(err,rows){
     if (err)
@@ -329,6 +331,54 @@ exports.cadastroNotas   = function(request, response, next){
   return   response.render('paginas/cadastroNotas', {message: request.flash('MSGCadQuest','Dados Gravados Com sucesso'), user: request.user.username, matricula: request.user.matricula});
 };
 
+exports.enviaremail = function(req, res){
+  console.log("**********************************************************");
+  console.log(req.body.textCont);
+  console.log(req.body.textAreas);
+  console.log(req.body.turman);
+  var emailt = [];
+  var query = "SELECT DISTINCT email FROM turma WHERE cod_turma='"+req.body.turman+"'";
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+
+        emailt.push(rows[0].email);
+
+      console.log(emailt);
+
+    }
+
+  });
+  // var transporter = nodemailer.createTransport('smtps://matheusnunes.games@gmail.com:huntersdream@smtp.gmail.com');
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'neutronsge@gmail.com',
+        pass: 'ps4>all123'
+    }
+});
+
+
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: '"Neutron" <neutronsge@gmail.com>', // sender address
+    to: emailt, // list of receivers
+    subject: req.body.textCont, // Subject line
+    text: req.body.textAreas, // plaintext body
+    html: req.body.textAreas // html body
+};
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
+};
+
 exports.cadastroQuest   = function(request, response, next){
 
   var autor          =    request.user.matricula;
@@ -344,6 +394,8 @@ exports.cadastroQuest   = function(request, response, next){
   var nLinhas        =    request.body.nLinhas;
   var apLinhas;
 
+  console.log(nivel);
+
   if(request.body.linhasAparentes === undefined){
     apLinhas = false;
   }
@@ -351,7 +403,7 @@ exports.cadastroQuest   = function(request, response, next){
     apLinhas = true;
   }
 
-console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.body.disciplina+ " " +request.body.materia+ " " +request.body.serie+ " " +request.body.criacao+ " " +request.body.tipo+ " " +request.body.star+ " " +request.body.enunciado+ " " +request.body.gabarito+ " " +request.body.nLinhas+ " " + apLinhas);
+/*
 
   connDB.query("select * from questoes where enunciado = '"+ enunciado +"'",function(err,rows){
     if (err){
@@ -437,6 +489,7 @@ console.log(request.body.autor+ " " +request.body.visibilidade+ " " +request.bod
   //return   request.flash('MSGCadQuest', 'Dados Gravados com sucesso');
 
   });
+  */
 };
 
 

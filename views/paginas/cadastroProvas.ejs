@@ -39,6 +39,8 @@ var novaRow = [];
   novaRow[x] = "";
 }
 </script>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadProva.css">
 
 </head>
 <body >
@@ -46,13 +48,14 @@ var novaRow = [];
 
 
 
-<div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
-<% include ../partes/sidemenu.ejs %>
-</div>
+    <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+    <% include ../partes/sidemenu.ejs %>
+    </div>
 
 </div>
 
-<main id="panel" class="allPage ">
+<main id="panel" class="allPage cadProvaPage">
+<div id="cadProvaPG" class="layout">
 <div class="backTopper">
 </div>
 <% include ../partes/topmenu.ejs %>
@@ -67,14 +70,14 @@ var novaRow = [];
         <img id="hbmenu" src="/assets/images/menu.png">
     </button>
 
-        <div class="container-fluid">
+        <div class="backPages">
 
-          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
-            <H3>Cadastro de Provas</H3>
+          <div class="content layoutInner" id="cadprovaCT">
+            <h3>Cadastro de Provas</h3>
             <br>
-            <div class="" style="float: left; position: relative;">
+            <!-- <div class="" style="float: left; position: relative;"> -->
 
-              <form class="form-inline"  method="post" action="" name="cadastroProvas">
+              <form class="form-inline"  method="Post" action="" name="cadastroProvas">
 
                 <input type="text" disabled id="autor" value=<%= user %> placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
 
@@ -121,7 +124,7 @@ var novaRow = [];
                   </tbody>
                 </table>
 
-            </div>
+            <!-- </div> -->
 
             <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; float:left; height:100%; text-align: center;">
               <table class="table" style="width:750px; margin-left: 50px;" id="tableSelecionadas">
@@ -143,8 +146,8 @@ var novaRow = [];
           </div>
 
         </div>
-
-        </main>
+    </div>
+  </main>
 <script type="text/javascript" src="/assets/js/cadprova.js"></script>
 
 <script>
