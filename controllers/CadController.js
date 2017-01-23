@@ -365,10 +365,12 @@ exports.enviaremail = function(req, res){
 var mailOptions = {
     from: '"Neutron" <neutronsge@gmail.com>', // sender address
     to: emailt, // list of receivers
-    subject: req.body.textCont, // Subject line
-    text: req.body.textAreas, // plaintext body
-    html: req.body.textAreas // html body
+    subject: req.body.tituloCT, // Subject line
+    text: req.body.emailCT, // plaintext body
+    html: req.body.emailCT // html body
 };
+
+
 
 // send mail with defined transport object
 transporter.sendMail(mailOptions, function(error, info){
@@ -377,6 +379,8 @@ transporter.sendMail(mailOptions, function(error, info){
     }
     console.log('Message sent: ' + info.response);
 });
+
+ return res.json(200);
 };
 
 exports.cadastroQuest   = function(request, response, next){

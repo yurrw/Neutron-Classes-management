@@ -16,6 +16,31 @@
         },
         error: function() {console.log('process error mostraturma');},
       });
+
+      $("#btAreas").click(function(){
+
+              $.ajax({
+
+          url: "/enviaremail",
+          type: "POST",
+          dataType: "json",
+          contentType: "application/json",
+          cache: false,
+          data:JSON.stringify({
+            turman   : $("#nometurma").val() ,
+            emailCT  : $("#textAreas").val() ,
+            tituloCT : $("#textCont").val(),
+          }),
+          timeout: 5000,
+          complete: function() {},
+          success: function(data) {
+          },
+          error: function() {},
+          
+          });
+      });
+
+
     });
 
 
