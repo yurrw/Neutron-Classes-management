@@ -5,6 +5,7 @@
 	width:750px;
 
 }
+#contfluids > span {padding-left: 110px;}
 #div2{
 	position: absolute; 
 	border-left:1px solid #DDD;
