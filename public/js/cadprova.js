@@ -11,6 +11,10 @@
 
 
   $( function() {
+  
+  $("#div2").hide();
+
+
     $("#disciplina").change(function(){
       var disciplina = $('#disciplina').val();
 
@@ -81,22 +85,19 @@
          for(var i = 0; i < data.length; i++) {
 
            if (data[i][1] == "Fácil") {
-             dificuldade = '<input class="star star_1" id="star_1" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_1" for="star_1" id="label1">';
+             dificuldade = 'Facil';
            }
            else if (data[i][1] == "Mediana" || data[i][1] == "Média") {
-             dificuldade =  '<input class="star star_2" id="star_2" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_2" for="star_2" id="label2">'+
-                            '<input class="star star_2" id="star_2" type="radio" name="B'+data[i][3]+'" checked disabled/><label class="star star_2" for="star_2" id="label2">';
+             dificuldade =  'Mediana';
            }
            else if (data[i][1] == "Difícil") {
-             dificuldade = '<input class="star star_3" id="star_3" type="radio" name="A'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">' +
-                           '<input class="star star_3" id="star_3" type="radio" name="B'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">' +
-                           '<input class="star star_3" id="star_3" type="radio" name="C'+data[i][3]+'" checked disabled/><label class="star star_3" for="star_3" id="label3">';
+             dificuldade = 'Difícil';
            }
 
            $("#questCandidatas").append($("<tr/>")
            .append($("<td/>").val(data[i][0]).text(data[i][0]))
            .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
-           .append($("<td style='text-align:center;'/>").append(dificuldade))
+           .append($("<td style='text-align:center;' />").append(dificuldade +"</div>"))
            .append($("<td  style='align:right; width:100px;'/>")
            .append($("<button class='btn btn-primary btn-block' onclick='trocarTabela(this)'>").text("Adicionar"))
          ));
@@ -168,7 +169,7 @@ $(function(){
     var disciplina = $("#disciplina").val();
     var serie = $("#serie").val();
     var tipo = $("#tipo").val();
-    alert(table.rows.length);
+
     for(var r = 1; r < table.rows.length; r++)
       dados[r] = table.rows[r].cells[1].innerHTML;
 

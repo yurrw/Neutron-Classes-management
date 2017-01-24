@@ -1,3 +1,18 @@
 .cadProvaPage{
 	margin-left: -45px!important;
 }
+#tableSelecionadas{
+	width:750px;
+
+}
+#div2{
+	position: absolute; 
+	border-left:1px solid #DDD;
+	right: 20px;
+	top: 190px;
+	height:100%;
+	text-align: center;
+}
+#cadprovaCT{
+	margin-left: 70px;
+}

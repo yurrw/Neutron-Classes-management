@@ -10,6 +10,7 @@
 var novaRow = [];
   var x = 0;
   function trocarTabela(element){
+  $("#div2").show();
 
     var questRepetida = false;
     var table = document.getElementById('tableCandidatas');
@@ -19,6 +20,7 @@ var novaRow = [];
 
     for(i = 0; i< novaRow.length-1; i++){
       if (novaRow[x] == novaRow[i]) {
+
         alert("Questão já selecionada!");
         questRepetida = true;
         break;
@@ -126,8 +128,8 @@ var novaRow = [];
 
             <!-- </div> -->
 
-            <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; float:left; height:100%; text-align: center;">
-              <table class="table" style="width:750px; margin-left: 50px;" id="tableSelecionadas">
+            <div id="div2" style="">
+              <table class="table" style="" id="tableSelecionadas">
                 <thead class="thead-inverse">
                   <tr>
                     <th class="celulasCB">Matéria</th>
