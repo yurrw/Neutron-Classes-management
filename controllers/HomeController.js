@@ -41,7 +41,7 @@ exports.consultaProf		=	function(request, response){
     response.render('paginas/consultaProf',{    user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
 };
 exports.consultaTurma		=	function(request, response){
-  response.render('paginas/consultaTurma',{     user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
+  response.render('paginas/consultaTurma',{   message: request.flash('MSGConsulTurma'),    user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
 
 };
 exports.consultaAluno		=	function(request, response){

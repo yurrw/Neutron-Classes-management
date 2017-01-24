@@ -2,7 +2,7 @@
 <head>
   <% include ../partes/head %>
   <script>
-  
+
 
   </script>
 </head>
@@ -22,7 +22,7 @@
 <% include ../partes/topmenu.ejs %>
 
 <div class="container-fluid " >
-    <span id="pgName"> Consultar 
+    <span id="pgName"> Consultar
       <span id="traco"> > </span>
       <span id="pgAtual">Turmas </span>
     </span>
@@ -32,12 +32,15 @@
     </button>
 
 
-    
+
 
       <div class="container-fluid">
 
         <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
           <H3>Consulta de Turmas </H3>
+
+              <div class="alert alert-info " id="MsgconsTurma" style="text-align: center;"><%= message %></div>
+
           <div class="" style="float: left; position: relative;">
 
             <br>
@@ -70,11 +73,11 @@
             </tbody>
             <p></p>
           </table>
-        
+
          <input type="text" placeholder="Título" name = "textCont" id="textCont"><br>
-        
+
         <textarea rows="10"  cols="50" name = "textAreas" id="textAreas"> </textarea> <br>
-         <button type="submit" id="btAreas" value="Enviar" class="btn btn-primary" name="send" >Enviar 
+         <button type="submit" id="btAreas" value="Enviar" class="btn btn-primary" name="send" >Enviar
         </button>
 
 <!--<input id="btAreas" type="button" value="Enviar" class="btn btn-primary"> -->

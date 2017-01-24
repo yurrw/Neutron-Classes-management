@@ -16,7 +16,7 @@
         },
         error: function() {console.log('process error mostraturma');},
       });
-
+      $("#MsgconsTurma").hide();
       $("#btAreas").click(function(){
 
               $.ajax({
@@ -34,9 +34,14 @@
           timeout: 5000,
           complete: function() {},
           success: function(data) {
+            $("#MsgconsTurma").show();
+
           },
-          error: function() {},
-          
+          error: function() {
+            $("#MsgconsTurma").show();
+
+          },
+
           });
       });
 

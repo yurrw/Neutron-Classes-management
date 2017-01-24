@@ -339,8 +339,12 @@ exports.enviaremail = function(req, res){
   var emailt = [];
   var query = "SELECT DISTINCT email FROM turma WHERE cod_turma='"+req.body.turman+"'";
   connDB.query(query, function(err,rows){
-    if (err)
-    req.flash('MSGCadQuest', err);
+
+
+
+
+    // if (err)
+    // req.flash('MSGCadQuest', err);
     if (rows.length) {
 
 
@@ -363,7 +367,7 @@ exports.enviaremail = function(req, res){
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
-    from: '"Neutron" <neutronsge@gmail.com>', // sender address
+    from: req.user.username +'<neutronsge@gmail.com>', // sender address
     to: emailt, // list of receivers
     subject: req.body.tituloCT, // Subject line
     text: req.body.emailCT, // plaintext body
@@ -371,16 +375,17 @@ var mailOptions = {
 };
 
 
-
+var errc="";
 // send mail with defined transport object
 transporter.sendMail(mailOptions, function(error, info){
     if(error){
-        return console.log(error);
+        errc = error;
     }
     console.log('Message sent: ' + info.response);
 });
 
- return res.json(200);
+  return res.json(errc);
+
 };
 
 exports.cadastroQuest   = function(request, response, next){
@@ -407,7 +412,7 @@ exports.cadastroQuest   = function(request, response, next){
     apLinhas = true;
   }
 
-/*
+
 
   connDB.query("select * from questoes where enunciado = '"+ enunciado +"'",function(err,rows){
     if (err){
@@ -493,7 +498,7 @@ exports.cadastroQuest   = function(request, response, next){
   //return   request.flash('MSGCadQuest', 'Dados Gravados com sucesso');
 
   });
-  */
+
 };
 
 
