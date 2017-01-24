@@ -3,7 +3,7 @@
 <head>
     <% include ../partes/head %>
 <script>
- 
+
 
 </script>
 <script type="text/javascript">
@@ -63,7 +63,7 @@ var novaRow = [];
 <% include ../partes/topmenu.ejs %>
 
 <div class="container-fluid " >
-    <span id="pgName"> Criar 
+    <span id="pgName"> Criar
       <span id="traco"> > </span>
       <span id="pgAtual">Prova </span>
     </span>
@@ -83,9 +83,8 @@ var novaRow = [];
 
                 <input type="text" disabled id="autor" value=<%= user %> placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
 
-                <select class="form-control" id="disciplina" style="width:300px;">
+                <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
                   <option disabled selected>Disciplina</option>
-
                 </select><br><br>
 
                 <select class="form-control" id="serie" style="width:300px;">

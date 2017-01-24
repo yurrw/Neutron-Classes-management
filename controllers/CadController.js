@@ -337,14 +337,11 @@ exports.enviaremail = function(req, res){
   console.log(req.body.textAreas);
   console.log(req.body.turman);
   var emailt = [];
-  var query = "SELECT DISTINCT email FROM turma WHERE cod_turma='"+req.body.turman+"'";
-  connDB.query(query, function(err,rows){
+  var emailp = [];
+  var queryMailTurma = "SELECT DISTINCT email FROM turma WHERE cod_turma='"+req.body.turman+"'";
+  connDB.query(queryMailTurma, function(err,rows){
 
 
-
-
-    // if (err)
-    // req.flash('MSGCadQuest', err);
     if (rows.length) {
 
 
@@ -355,6 +352,20 @@ exports.enviaremail = function(req, res){
     }
 
   });
+
+  // var queryMailProf = "SELECT DISTINCT email FROM profs WHERE nome = '"+req.user.username+"'";
+  // connDB.query(queryMailProf, function(err,rows){
+  //
+  //   if (rows.length) {
+  //
+  //
+  //       emailp.push(rows[0].email);
+  //
+  //     console.log(emailp);
+  //
+  //   }
+  // });
+
   // var transporter = nodemailer.createTransport('smtps://matheusnunes.games@gmail.com:huntersdream@smtp.gmail.com');
   var transporter = nodemailer.createTransport({
     service: 'gmail',

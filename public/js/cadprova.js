@@ -11,12 +11,42 @@
 
 
   $( function() {
-  
+
   $("#div2").hide();
+
+  $.ajax({
+    url: "/pesqDiscProfII",  // AQUI É A URL QUE SERA ENVIADO
+    type: "POST",   //TIPO DE ENVIO
+    dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+
+    contentType: "application/json",
+    cache: false,
+    timeout: 5000,
+    complete: function() {
+      console.log('process complete');
+    },
+    success: function(data) {
+      console.log(disciplina);
+      console.log('process sucess');
+      $("#disciplina").empty();
+  $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
+      for(var i = 0; i < data.length; i++) {
+        $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+      //  alert(data[i]);
+      }
+
+    },
+
+    error: function() {
+      console.log('process error');
+    },
+  });
 
 
     $("#disciplina").change(function(){
       var disciplina = $('#disciplina').val();
+  $("#materia").empty();
+  $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
 
       $.ajax({
         url: "/pesqMat",  // AQUI É A URL QUE SERA ENVIADO
@@ -37,11 +67,10 @@
           console.log('process sucess');
           $("#questCandidatas").empty();
           $("#questSelecionadas").empty();
-          $("#materia").empty();
-          $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
+
           for(var i = 0; i < data.length; i++) {
             $("#materia").append($("<option />").val(data[i]).text(data[i]));
-            console.log(data[i]);
+          //  alert(data[i]);
           }
         },
 
@@ -113,50 +142,7 @@
   });
 
 
-  $(function(){
 
-
-      var autor = $('#autor').val();
-
-
-      $.ajax({
-        url: "/pesqDisc",  // AQUI É A URL QUE SERA ENVIADO
-        type: "POST",   //TIPO DE ENVIO
-        dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-        data:JSON.stringify({
-          autor: autor
-        }),
-
-        contentType: "application/json",
-        cache: false,
-        timeout: 5000,
-        complete: function() {
-          console.log('process complete');
-        },
-        success: function(data) {
-          console.log(disciplina);
-          console.log('process sucess');
-          $("#disciplina").empty();
-          $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
-          for(var i = 0; i < data.length; i++) {
-            $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
-            console.log(data[i]);
-          }
-        },
-
-        error: function() {
-          console.log('process error');
-        },
-      });
-
-
-      if(autor == "Outro"){
-        $("#autor").replaceWith('<input type="text" id="autor" name="autor" class="form-control" placeholder="Autor" style="width:300px;"required autofocus>');
-        $("#autor").focus();
-      }
-
-
-    });
 
 
 
