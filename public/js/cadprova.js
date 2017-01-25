@@ -26,7 +26,7 @@
       console.log('process complete');
     },
     success: function(data) {
-      console.log(disciplina);
+      // console.log(disciplina);
       console.log('process sucess');
       $("#disciplina").empty();
   $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
@@ -122,7 +122,8 @@
            else if (data[i][1] == "Difícil") {
              dificuldade = 'Difícil';
            }
-
+           data[i][3] = "<button class='btn btn-primary btn-block btn-pass' onclick='trocarTabela(this)'> Adicionar </button>";
+/*
            $("#questCandidatas").append($("<tr/>")
            .append($("<td/>").val(data[i][0]).text(data[i][0]))
            .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
@@ -131,13 +132,58 @@
            .append($("<button class='btn btn-primary btn-block' onclick='trocarTabela(this)'>").text("Adicionar"))
          ));
           console.log(data[i]);
+
+*/
+
          }
+         
+          $("#tableCandidatas").dataTable({
+            "iDisplayLength": 5,
+            "aLengthMenu": [[5, 10, 50, 100,  -1], [5, 10, 50, 100, "All"]],
+            data: data,
+            columns: [
+                { title: "Name" },
+                { title: "Position" },
+                { title: "Office" },
+                { title: "Extn." }
+            ]
+          });
+
+          /*
+          $(document).ready(function() {
+    var t = $('#example').DataTable();
+    var counter = 1;
+ 
+    $('#addRow').on( 'click', function () {
+        t.row.add( [
+            counter +'.1',
+            counter +'.2',
+            counter +'.3',
+            counter +'.4',
+            counter +'.5'
+        ] ).draw( false );
+ 
+        counter++;
+    } );
+ 
+    // Automatically add a first row of data
+    $('#addRow').click();
+} );
+          
+          */
+
+
         },
 
         error: function() {
           console.log('process error');
         },
       });
+
+  
+
+
+   
     });
   });
 
