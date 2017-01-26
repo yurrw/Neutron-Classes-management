@@ -44,7 +44,7 @@ $(function(){
     timeout: 5000,
     complete: function() {
       console.log('process complete');
-      
+
     },
     success: function(data) {
       console.log('process sucess');
@@ -63,7 +63,7 @@ $(function(){
 
 
   //PEsquisa as turmas
-  var autor = <%= matricula %>;
+  var autor = <%= user.matricula %>;
 
   $.ajax({
     url: "/mostraturma",  // AQUI É A URL QUE SERA ENVIADO

@@ -128,6 +128,7 @@ var fs = require('fs');
             app.get('/calendario', isLogged, HomeController.calendario);
             app.get('/testePDF',isLogged, HomeController.testePDF);
             app.get('/consultaProvas',isLogged, HomeController.consultaProvas);
+            app.get('/ADMPage',isLogged, HomeController.ADMPage);
 
 
 

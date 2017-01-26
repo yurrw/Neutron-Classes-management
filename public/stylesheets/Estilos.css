@@ -222,6 +222,28 @@ z-index: 9999;
     opacity: 0.4;
     filter: alpha(opacity=40);
 }
+
+#bckbgADM{
+
+    position: fixed;
+    width: 100%;
+    height: 100vw;
+    top: 0;
+    filter: blur(2px);
+    /*background-image: url("/assets/images/rjbg4.jpg");*/
+    background-image: url("/assets/images/usePC.jpg");
+    background-position: center;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: block;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+}
+
 #bckbg{
 
     position: fixed;
@@ -241,6 +263,33 @@ z-index: 9999;
     right: 0;
     z-index: 1;
 
+}
+
+.title-adm{
+
+
+    line-height: 90px;
+    font-size: 10rem;
+    font-family: 'Francois One', sans-serif;
+    color: white;
+}
+
+#CenterForm{
+    display: block;
+    /*left:0;*/
+    margin:auto;
+    position: relative;;
+    width:100%;
+    /*background-color: #FFFFFF;*/
+    height:100%;
+    z-index: 9999;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius:10px;
+    text-align:center;
+    /*z-index: 9999!important;*/
+    /*
+    display: block;
+*/
 }
 
 #RightForm{
@@ -301,6 +350,58 @@ z-index: 9999;
 
 
 }
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+
+#bt2a{
+    color: #ffffff;
+    background-color: #3F91EB;
+    height: 50px!important;
+    width: 300px!important;
+    border-radius: 5px!important;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+#bt2:hover{
+    background-color: #3FA2EB;
+    /*background: linear-gradient(up,#448FDE,#3F91EB);*/
+
+
+}
+#bt3{
+    color: #ffffff;
+    background-color: #3F91EB;
+    height: 50px!important;
+    width: 300px!important;
+    border-radius: 5px!important;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+#bt3:hover{
+    background-color: #3FA2EB;
+    /*background: linear-gradient(up,#448FDE,#3F91EB);*/
+
+
+}
 #cadlink {
     /*margin-left: 60px;*/
     margin-top: 200px!important;
@@ -312,7 +413,7 @@ ant;*/
     border-top-left-radius: 5px!important;
 
 }
-#senha > input{ 
+#senha > input{
     border-bottom-right-radius: 5px!important;
     border-bottom-left-radius: 5px!important;
 
@@ -524,14 +625,14 @@ label.star:before {
 
 /*@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*/
 
-.rating { 
+.rating {
   padding-top: 10px;
   border: none;
   float: left;
 }
 
-.rating > input { display: none; } 
-.rating > label:before { 
+.rating > input { display: none; }
+.rating > label:before {
   margin: 5px;
   font-size: 1.25em;
   font-family: FontAwesome;
@@ -539,14 +640,14 @@ label.star:before {
   content: "\f005";
 }
 
-.rating > .half:before { 
+.rating > .half:before {
   content: "\f089";
   position: absolute;
 }
 
-.rating > label { 
-  color: #ddd; 
- float: right; 
+.rating > label {
+  color: #ddd;
+ float: right;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -558,5 +659,5 @@ label.star:before {
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 /*---------------------------------fim das estrelas--------------------------------------------*/

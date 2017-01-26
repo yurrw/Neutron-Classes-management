@@ -28,6 +28,11 @@ exports.cadastroQuest		=	function(request, response){
     response.render('paginas/cadastroQuest',{  message: request.flash('MSGCadQuest'),  user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha    });
 
 };
+exports.ADMPage		=	function(request, response){
+
+    response.render('paginas/ADMPage',{  message: request.flash('MSGCadQuest'),  user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha    });
+
+};
 exports.consultaProvas      =   function(request, response){
     response.render('paginas/consultaProvas',{  user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
 };
