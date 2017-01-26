@@ -243,15 +243,17 @@ exports.cadastroDiario  = function(request,response, next){
   var datasplit     = data.split("/");
   var dataformatada = datasplit[2] +'-'+ datasplit[1] +'-'+ datasplit[0];
   var confirm       = 0;
-  var qry           = "INSERT INTO prof_diario(matricula,turma,data,disciplina_id,comentario) SELECT '"+request.user.matricula+"','"+request.body.turma+"','"+dataformatada+"',disciplina_id , '"+request.body.comentario +"' from disciplinas where disciplina_nome= '"+request.body.disciplina+"' ";
-  var qryDEL        = "DELETE FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id = '"+request.body.nomedisciplina+"' AND data = '"+dataformatada+"' AND comentario = '"+request.body.textAreas+"'";
-  var qry2DEL       = "DELETE FROM prof_diario_aluno WHERE cod_aula IN (SELECT cod_aula FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id = '"+request.body.nomedisciplina+"' AND data = '"+dataformatada+"' AND comentario = '"+request.body.textAreas+"'";
+  var qry           = "INSERT INTO prof_diario(matricula,turma,data,disciplina_id,comentario) SELECT '"+request.user.matricula+"','"+request.body.turma+"','"+dataformatada+"',disciplina_id , '"+request.body.comentario +"' from disciplinas where disciplina_nome= '"+request.body.nomedisciplina+"' ";
+  var qryDEL        = "DELETE FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id = '"+request.body.nomedisciplina+"' AND data = '"+dataformatada+"' AND comentario = '"+request.body.comentario+"'";
+  var qry2DEL       = "DELETE FROM prof_diario_aluno WHERE cod_aula IN (SELECT cod_aula FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id = '"+request.body.nomedisciplina+"' AND data = '"+dataformatada+"' AND comentario = '"+request.body.textAreas+"')";
   console.log(qryDEL);
   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   console.log(qry2DEL);
   console.log("------------------------------------");
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  console.log(qry);
 
-  connDB.query(qryDEL,function(err,rows){
+  connDB.query(qry2DEL,function(err,rows){
     if (err)
         console.log(err);
 
@@ -259,7 +261,7 @@ exports.cadastroDiario  = function(request,response, next){
 
 });
 
-connDB.query(qry2DEL,function(err,rows){
+connDB.query(qryDEL,function(err,rows){
   if (err)
       console.log(err);
 

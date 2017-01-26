@@ -1,5 +1,6 @@
 ﻿<html lang="pt">
 <head>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
     <% include ../partes/head %>
 
        <script>
@@ -290,7 +291,8 @@ var brotheragem = function() {
                            textAreas:coment,
                            turma: nometurma,
                            matriculas:tabela,
-                           chks:checks
+                           chks:checks,
+                        comentario:coment
 
                        }),
                        contentType: "application/json",
@@ -332,8 +334,9 @@ var brotheragem = function() {
 </div>
 
 </div>
-<main id="panel" class="allPage ">
-<div class="backTopper">
+<main id="panel" class="allPage cadquestPage ">
+    <div id="cadQuestContent" class="layout">
+<div class="backTopper correctDiarioPresenca">
 </div>
 <% include ../partes/topmenu.ejs %>
         <div class="container-fluid">
@@ -349,7 +352,7 @@ var brotheragem = function() {
         </button>
 
 
-          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+          <div class="backPages">
             <H3>Diário de Presença</H3>
 
             <br>
@@ -360,7 +363,7 @@ var brotheragem = function() {
 
  Turma: <select class="form-control" id="nometurma" name="turma" style="width:300px;">
               <option disabled selected>Selecione uma turma</option>
-              <option id="btn-mostraturma"></option>
+              <option id="btn-mostraturma" disabled></option>
             </select>&nbsp&nbsp
 
           <div id="disc">
@@ -439,7 +442,7 @@ var brotheragem = function() {
 
 
       </div>
-
+    </div>
     </main>
 
 <script>
