@@ -5,6 +5,9 @@
 
 
   </script>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/consTurma.css">
+
 </head>
 <body>
   <div class="all">
@@ -16,77 +19,81 @@
   </div>
 
   </div>
-    <main id="panel" class="allPage ">
-      <div class="backTopper">
-</div>
-<% include ../partes/topmenu.ejs %>
+    <main id="panel" class="allPage consturmaPage">
+      <div id="consTurmaContent" class="layout">
 
-<div class="container-fluid " >
-    <span id="pgName"> Consultar
-      <span id="traco"> > </span>
-      <span id="pgAtual">Turmas </span>
-    </span>
-    <!-- BOTAO PARA CELULAR -->
-    <button class="toggle-button no-border" data-toggle="button" >
-        <img id="hbmenu" src="/assets/images/menu.png">
-    </button>
+          <div class="backTopper correctConsTurma">
+          </div>
+    <% include ../partes/topmenu.ejs %>
+
+    <div class="container-fluid" style="padding: 0px;">
+        <span id="pgName"> Consultar
+          <span id="traco"> > </span>
+          <span id="pgAtual">Turmas </span>
+        </span>
+        <!-- BOTAO PARA CELULAR -->
+        <button class="toggle-button no-border" data-toggle="button" >
+            <img id="hbmenu" src="/assets/images/menu.png">
+        </button>
+        <!-- ***************** -->
+
+          <div class="backPages">
+
+            <div id="consultaTurmaCT" class="content layoutInner">
+              <H3>Consulta de Turmas </H3>
+
+                  <div class="alert alert-info " id="MsgconsTurma" style="text-align: center;"><%= message %></div>
+
+              <div class="" style="float: left; position: relative;">
+
+                <br>
+
+                <select class="form-control" id="nometurma" name="turman" style="">
+                <option disabled selected>Selecione uma turma</option>
+                </select><br>
+                <button type="button" name="consultar" id="btn-consultar"  class="btn btn-default">Consultar</button>
+
+              </div>
 
 
 
+              <div class="" style="position: relative;
+               height: auto; text-align: center;" id="divDados">
+              <table class="table" style="" id="tabelaAlunos">
+                <thead class="thead-inverse" style="width:100%">
+                  <tr>
+                    <th class="cellMeio" style="width:5%">#</th>
+                    <th class="cellMeio" style="width:20%">Matrícula</th>
+                    <th class="" style="width:75%">Aluno</th>
 
-      <div class="container-fluid">
+                  </tr>
 
-        <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
-          <H3>Consulta de Turmas </H3>
+                </thead>
+                <tbody id="IzaMyLuv" >
 
-              <div class="alert alert-info " id="MsgconsTurma" style="text-align: center;"><%= message %></div>
+                </tbody>
+                <p></p>
+              </table>
 
-          <div class="" style="float: left; position: relative;">
 
-            <br>
+              <button type="button" id="contact" class="btn btn-info">Contatar Turma</button>
 
-            Turma: <select class="form-control" id="nometurma" name="turman" style="width:300px;">
-            <option disabled selected>Selecione uma turma</option>
-            </select>&nbsp&nbsp<br><br>
+<br><br>
 
-            <button type="button" name="consultar" id="btn-consultar"  class="btn btn-default">Consultar</button>
+             <input type="text" placeholder="Título" name = "textCont" id="textCont" class="form-control" style="width:375px; margin-left: 50px; float:center;"><br>
+
+            <textarea rows="10"  cols="50" name = "textAreas" id="textAreas" class="form-control" style="resize:none; width:750px; margin-left: 50px; align:center; float:center;"> </textarea> <br>
+             <button type="submit" id="btAreas" value="Enviar" class="btn btn-primary" name="send" style="margin-bottom: 5%;">Enviar
+            </button>
+
+    <!--<input id="btAreas" type="button" value="Enviar" class="btn btn-primary"> -->
+            </div>
 
           </div>
 
 
-
-          <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px;
-          float:left; height:100%; text-align: center;">
-          <table class="table" style="width:750px; margin-left: 50px;">
-            <thead class="thead-inverse">
-              <tr>
-                <th class="celulasCB"   >N° Chamada</th>
-                <th class="celulasCB" >Matrículas</th>
-                <th class="celulasCB" >Nomes dos Alunos</th>
-                <th class="celulasCB" >Contatar</th>
-
-              </tr>
-
-            </thead>
-            <tbody id="IzaMyLuv">
-
-            </tbody>
-            <p></p>
-          </table>
-
-         <input type="text" placeholder="Título" name = "textCont" id="textCont"><br>
-
-        <textarea rows="10"  cols="50" name = "textAreas" id="textAreas"> </textarea> <br>
-         <button type="submit" id="btAreas" value="Enviar" class="btn btn-primary" name="send" >Enviar
-        </button>
-
-<!--<input id="btAreas" type="button" value="Enviar" class="btn btn-primary"> -->
         </div>
-
       </div>
-
-
-    </div>
   </main>
 </body>
 <script type="text/javascript" src="/assets/js/consturma.js"></script>
