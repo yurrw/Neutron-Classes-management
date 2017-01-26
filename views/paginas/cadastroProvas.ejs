@@ -82,62 +82,64 @@ var novaRow = [];
 
               <form class="form-inline"  method="Post" action="" name="cadastroProvas">
 
-                <input type="text" disabled id="autor" value=<%= user %> placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
+                <!--<input type="text" disabled id="autor" value=<%= user %> placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp-->
 
-                <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
+                <select class="form-control" id="disciplina" name="disciplina"  required>
                   <option disabled selected>Disciplina</option>
-                </select><br><br>
+                </select>&nbsp&nbsp
 
-                <select class="form-control" id="serie" style="width:300px;">
+                <select class="form-control" id="serie" >
                   <option disabled selected>Série</option>
                   <option>1º ano</option>
                   <option>2º ano</option>
                   <option>3º ano</option>
-                </select>&nbsp&nbsp
+                </select>
+                <br><br>
 
-                <select class="form-control" id="tipo" style="width:300px;">
+                <select class="form-control" id="tipo" >
                   <option disabled selected>Tipo</option>
                   <option>Prova</option>
                   <option>Teste</option>
                   <option>Segunda chamada</option>
-                </select><br><br>
+                </select>&nbsp&nbsp
 
-                <input type="text"  id="nomeP" placeholder="Nome da Avaliação" class="form-control" style="width:612px;"><br>
-
+                <input type="text"  id="nomeP" placeholder="Nome da Avaliação" class="form-control" ><br>
               </form>
 
-                  <hr style="border: 0.3px solid #DDD; width:610px; margin-left:0px;">
+                  <hr  id="hrCadProva">
                 <H4>Questões</H4><br>
 
-                <select class="form-control" id="materia" style="width:300px;">
+                <select class="form-control" id="materia" >
                   <option disabled selected>Matéria</option>
                 </select><br><br>
-
-                <table class="table table-bordered " style="width:610px;"  cellspacing="0"  width="100%"  id="tableCandidatas">
+                  <div id="tableQuestCandidatas">
+                    
+                <table class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tableCandidatas">
 
                   <thead class="thead-inverse">
                     <tr>
                       <th>Enunciado</th>
                       <th style="align:right; text-align:center;">Tipo</th>
                       <th style="align:right; text-align:center;">Nível</th>
-                      <th style="align:right; width:75px; text-align:center;">Adicionar</th>
+                      <th style="align:right; text-align:center;">Adicionar</th>
                     </tr>
                   </thead>
                   <tbody id="questCandidatas">
                   </tbody>
                 </table>
-
+                  </div>
             <!-- </div> -->
 
             <div id="div2" style="">
-              <table class="table" style="" id="tableSelecionadas">
+              <label>Prova</label>
+              <table class="table table-bordered order-column hover table-responsive" style="" id="tableSelecionadas">
                 <thead class="thead-inverse">
                   <tr>
                     <th class="celulasCB">Matéria</th>
                     <th>Enunciado</th>
-                    <th style="width: 100px; align:right; text-align:center;">Nível</th>
-                    <th style="width: 100px; align:right; text-align:center;">Tipo</th>
-                    <th  style="align:right; width:75px;">Remover</th>
+                    <th style=" align:right; text-align:center;">Nível</th>
+                    <th style=" align:right; text-align:center;">Tipo</th>
+                    <th  style="align:right; width:50px;">Remover</th>
                   </tr>
                 </thead>
                 <tbody id="questSelecionadas">

@@ -85,14 +85,14 @@
   $( function() {
     $("#materia").change(function(){
       var materia = $('#materia').val();
-      var autor = $('#autor').val();
+      var table = $('#tableCandidatas').DataTable();
+          table.destroy();
       $.ajax({
         url: "/pesqQuest",  // AQUI É A URL QUE SERA ENVIADO
         type: "POST",   //TIPO DE ENVIO
         dataType: "json", //TIPO DE DADO QUE SERA PASSADO
         data:JSON.stringify({
           materia: materia,
-          autor: autor
         }),
 
         contentType: "application/json",
@@ -139,14 +139,28 @@
          
           $("#tableCandidatas").dataTable({
             "iDisplayLength": 5,
-            "aLengthMenu": [[5, 10, 50, 100,  -1], [5, 10, 50, 100, "All"]],
+            "bLengthChange": false,
             data: data,
             columns: [
-                { title: "Name" },
-                { title: "Position" },
-                { title: "Office" },
-                { title: "Extn." }
-            ]
+                { title: "Enunciado" },
+                { title: "Dificuldade" },
+                { title: "Tipo" },
+                { title: " " }
+            ],
+            //  "pagingType": "simple_numbers",
+             "pagingType": "numbers",
+             "language": {
+               "sSearch": "Pesquisar: ",
+               "info": "página _PAGE_ de _PAGES_",
+               "zeroRecords": "Nenhuma questão encontrada",
+                "infoEmpty": "Nenhuma questão encontrada",
+                "infoFiltered": " ",
+                 "oPaginate": {
+                  "sPrevious": "<",
+                  "sNext": ">",
+                 }
+             },
+
           });
 
           /*
@@ -194,13 +208,15 @@
 
 $(function(){
   $("#cadastrar").click(function(){
-    var table = document.getElementById('tableSelecionadas');
-    var dados = [];
-    var nomeP = $("#nomeP").val();
-    var autor = $("#autor").val();
-    var disciplina = $("#disciplina").val();
-    var serie = $("#serie").val();
-    var tipo = $("#tipo").val();
+      var nomeP = $("#nomeP").val();
+      var disciplina = $("#disciplina").val();
+      var serie = $("#serie").val();
+      var tipo = $("#tipo").val();
+      var materia = $("#materia").val();
+
+    if($('#tableSelecionadas tr').length > 1 && materia && nomeP && disciplina && serie && tipo){
+      var dados = [];
+       var table = document.getElementById('tableSelecionadas');
 
     for(var r = 1; r < table.rows.length; r++)
       dados[r] = table.rows[r].cells[1].innerHTML;
@@ -211,7 +227,6 @@ $(function(){
           dataType: "json", //TIPO DE DADO QUE SERA PASSADO
           data:JSON.stringify({
               dados : dados,
-              autor : autor,
               nomeP : nomeP,
               disciplina : disciplina,
               serie : serie,
@@ -233,5 +248,14 @@ $(function(){
             console.log('process error');
           },
         });
+
+        
+
+    }else {
+      alert("Por favor, preencha todos os campos ");
+
+    }
+        
+   
   });
 });

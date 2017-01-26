@@ -8,20 +8,138 @@
 #contfluids > span {padding-left: 110px;}
 #div2{
 	position: absolute; 
-	border-left:1px solid #DDD;
-	right: 20px;
-	top: 190px;
+	/*border-left:1px solid #DDD;*/
+	right: 70px;
+	top: 160px;
 	height:100%;
 	text-align: center;
 }
-
 .correctCadProva{
 	margin-left: -150px;
 }
+#tableQuestCandidatas{
+	width: 680px;
+}
+#hrCadProva{	
+	border: 0.3px solid #DDD;
+ 	width:680px;
+ 	margin-left:0px;	
+}
+#tableCandidatas_filter > label{
+	position: absolute!important;
+	right:18px;
+	top: -75px;
+}
+.pagination{
 
-@media screen and (max-width: 1600px){
-	#div2 td {
-		width: 50px!important;
+	width: 83%;
+	background-color:transparent;
+	position: absolute;
+	right: -205px;
+	top: -30px;
+}
+	#disciplina, #serie, #tipo, #nomeP, #materia{
+	width:330px;
+	}
+@media screen and (max-width: 1680px){
+	#disciplina, #serie, #tipo, #nomeP,#materia{
+		width: 250px;
+	}
+	#materia{
+		position: absolute;
+	}
+	#hrCadProva{
+		width: 525px;
+	}
+	#tableCandidatas{
+		width: 510px!important;
+	}
+	.pagination{
+		right:-35px; 
+	}
+	#tableCandidatas_filter > label{
+	right: 124px!important;
+	top: -75px;
+	}
+	#tableSelecionadas{width: 500px;}	
+	#div2{right: 180px;}
+
+}
+@media screen and (max-width: 1440px){
+	#cadprovaCT{
+	margin-left: -100px!important;
+		
 	}
 }
+@media screen and (max-width: 1366px){
+	#disciplina, #serie, #tipo, #nomeP,#materia{
+		width: 225px;
+	}
+	#hrCadProva{
+		width: 500px;
+	}
+	#tableCandidatas{
+		width: 470px!important;
+	}
+	#tableQuestCandidatas{
+		width: 640px!important;
+	}
+	.pagination{
+	right: -20px!important;
+	}
+	#div2{right: 160px;}
 
+}
+@media screen and (max-width: 1024px){
+	.correctCadProva{
+		margin-left: -05px!important;
+	}
+	#cadprovaCT{
+		margin-left: 300px!important;
+	}
+	#hrCadProva{	
+		width: 465px!important;
+	}	
+		#tableCandidatas{
+		width: 465px!important;
+	}
+	#tableQuestCandidatas{
+		width: 620px!important;
+	}	
+	#div2{right: 295px;top: 800px!important;}
+	#tableSelecionadas{width: 465px!important;}
+
+}
+@media screen and (max-width: 768px){
+		#cadprovaCT{
+		margin-left: 175px!important;
+	}
+	#cadprovaCT > h3{
+		margin-left: 30px;
+	}
+	#div2{right: 160px;}
+	
+}
+@media screen and (max-width: 414px){
+		#cadprovaCT{
+			margin-left: 135px!important;
+		}	
+		#cadprovaCT > h3{
+
+			margin-left: -55px!important;
+		}
+		#hrCadProva{
+			margin-left: -05px;
+			width: 235px!important;
+		}	
+		#tableCandidatas{
+			width: 300px!important;
+			margin-left: -35px;
+		}
+			#tableQuestCandidatas{
+		width: 300px!important;
+	}	
+	btn-pass{
+		width: 30px!important;
+	}
+}

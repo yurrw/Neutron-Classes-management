@@ -228,7 +228,7 @@ exports.pesquisaQuest = function(request, response){
   var questoes = [];
   console.log(request.body.materia);
 
-  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
+  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.user.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
     if (err)
     request.flash('MSGCadQuest', err);
     if (rows.length) {
@@ -276,8 +276,6 @@ exports.cadastroProva   = function(request, response, next){
   var dados = request.body.dados;
   var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.user.matricula+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
   var confirm= 0;
-    console.log(qry);
-    console.log(request.user);
   connDB.query(qry,function(err,rows){
     if (err){
       console.log("erro ao inserir la na prova");
