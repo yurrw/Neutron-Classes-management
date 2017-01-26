@@ -5,6 +5,7 @@
 	width:750px;
 
 }
+#contfluids > span {padding-left: 110px;}
 #div2{
 	position: absolute; 
 	border-left:1px solid #DDD;
@@ -13,6 +14,14 @@
 	height:100%;
 	text-align: center;
 }
-#cadprovaCT{
-	margin-left: 70px;
+
+.correctCadProva{
+	margin-left: -150px;
 }
+
+@media screen and (max-width: 1600px){
+	#div2 td {
+		width: 50px!important;
+	}
+}
+

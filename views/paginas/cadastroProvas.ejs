@@ -7,6 +7,8 @@
 
 </script>
 <script type="text/javascript">
+
+   
 var novaRow = [];
   var x = 0;
   function trocarTabela(element){
@@ -45,7 +47,7 @@ var novaRow = [];
 <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadProva.css">
 
 </head>
-<body >
+<body id="Cdq" >
 <div class="all">
 
 
@@ -56,13 +58,12 @@ var novaRow = [];
 
 </div>
 
-<main id="panel" class="allPage cadProvaPage">
-<div id="cadProvaPG" class="layout">
-<div class="backTopper">
+<main id="panel" class="allPage cadquestPage">
+<div id="cadQuestContent" class="layout">
+<div class="backTopper correctCadProva">
 </div>
 <% include ../partes/topmenu.ejs %>
-
-<div class="container-fluid " >
+<div class="container-fluid">
     <span id="pgName"> Criar
       <span id="traco"> > </span>
       <span id="pgAtual">Prova </span>
@@ -112,7 +113,8 @@ var novaRow = [];
                   <option disabled selected>Matéria</option>
                 </select><br><br>
 
-                <table class="table" style="width:610px;" id="tableCandidatas">
+                <table class="table table-bordered " style="width:610px;"  cellspacing="0"  width="100%"  id="tableCandidatas">
+
                   <thead class="thead-inverse">
                     <tr>
                       <th>Enunciado</th>
@@ -184,8 +186,11 @@ $(window).resize(function(){
         slideout.open();
     }
 });
-});
 
+
+
+       
+});
 
 
 </script>
