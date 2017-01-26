@@ -1,0 +1,143 @@
+.correctConsProva{
+	margin-left: -150px;
+}
+#tipo, #serie , #disciplina, #autor{
+    width: 300px;
+}
+    #tableProvasSelecionadas{
+        width: 1350px;
+        
+    }
+#barConsProva{
+    border: 0.3px solid #DDD;
+     width:1350px; 
+    margin-left:0px;
+}
+    #tableProvasSelecionadas{
+        margin-top: 50px;
+    }
+@media screen and (max-width: 1600px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 225px;
+    }
+
+    #barConsProva{
+        width: 1050px;
+    }
+    #tableProvasSelecionadas{
+        width: 1050px;
+        
+    }
+}
+@media screen and (max-width: 1440px){
+    #consultaProvaCT{
+        margin-left: -50px;
+    }
+    #tipo, #serie , #disciplina, #autor{
+        width: 200px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 950px;
+    }
+}
+@media screen and (max-width: 1366px){
+        #consultaProvaCT{
+        margin-left: -80px;
+    }
+}
+@media screen and (max-width: 1280px) and (min-width: 1280px){
+            #consultaProvaCT{
+        margin-left: -100px;
+    }
+        #tipo, #serie , #disciplina, #autor{
+        width: 180px;
+    }
+        #barConsProva, #tableProvasSelecionadas{
+        width: 880px;
+    }
+}
+@media screen and (max-width: 1024px){
+    .correctConsProva{
+	margin-left: 00px;
+}
+     #consultaProvaCT{
+        margin-left:100px;
+    }
+     #tipo, #serie , #disciplina, #autor{
+        width: 175px;
+    }
+    #consultarProva{
+        position: absolute!important;
+        right: 50px;
+        /*top: 0;*/
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 850px;
+    }
+
+}
+@media screen and (max-width: 768px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 130px;
+    }
+    #consultarProva{right: 70px;}
+    #consultaProvaCT{
+        margin-left:75px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 660px;
+    }
+}
+@media screen and (max-width: 414px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 300px;
+    }
+    #consultarProva{right: 55px; top: 430px;}
+    #consultaProvaCT{
+        margin-left:95px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 350px;
+        margin-left:-20px;
+    }
+}
+
+@media screen and (max-width: 375px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 300px;
+    }
+    #consultarProva{right: 35px; top: 430px;}
+    #consultaProvaCT{
+        margin-left:75px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 350px;
+        margin-left:-20px;
+    }
+}
+@media screen and (max-width: 360px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 300px;
+    }
+    #consultarProva{right: 25px; top: 430px;}
+    #consultaProvaCT{
+        margin-left:67px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 330px;
+        margin-left:-13px;
+    }
+}
+@media screen and (max-width: 320px){
+    #tipo, #serie , #disciplina, #autor{
+        width: 290px;
+    }
+    #consultarProva{right: 10px; top: 430px;}
+    #consultaProvaCT{
+        margin-left:55px;
+    }
+    #barConsProva, #tableProvasSelecionadas{
+        width: 300px;
+        margin-left:-5px;
+    }
+}
