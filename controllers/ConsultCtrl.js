@@ -407,14 +407,14 @@ exports.consulProva = function(req, res){
    var resolveSporra =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas '" + whereDiscPart + "') AND"
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "SELECT DISTINCT provas.cod_prova, provas.tipo_avaliacao, provas.anoserie, provas.matricula  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
+  var qry = "SELECT DISTINCT provas.nome, provas.tipo_avaliacao, provas.anoserie, provas.matricula  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
   console.log(qry);
   connDB.query(qry,function(err,rows){
       for (var i = 0, len = rows.length; i < len; i++)
         {
           //console.log()
           //listaalunos.push(rows[i].nome);
-        listaalunos.push([rows[i].cod_prova, rows[i].tipo_avaliacao, rows[i].anoserie]);
+        listaalunos.push([rows[i].nome, rows[i].tipo_avaliacao, rows[i].anoserie]);
 
             }
             console.log(listaalunos);

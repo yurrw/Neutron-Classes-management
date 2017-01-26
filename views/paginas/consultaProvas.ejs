@@ -2,6 +2,8 @@
 <html>
 <head>
     <% include ../partes/head %>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/consprova.css">
 
 <script>
 
@@ -38,20 +40,21 @@
 </script>
 
 </head>
-<body  >
+<body id="Cdq"  >
 
 <div class="all">
 
 
 
-<div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
-<% include ../partes/sidemenu.ejs %>
-</div>
+  <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+  <% include ../partes/sidemenu.ejs %>
+  </div>
 
 </div>
 
-<main id="panel" class="allPage ">
-<div class="backTopper">
+<main id="panel" class="allPage cadquestPage">
+   <div id="cadQuestContent" class="layout">
+<div class="backTopper correctConsProva">
 </div>
 <% include ../partes/topmenu.ejs %>
 
@@ -66,31 +69,31 @@
     <button class="toggle-button no-border" data-toggle="button" >
         <img id="hbmenu" src="/assets/images/menu.png">
     </button>
-        <div class="container-fluid">
+        <div class="backPages">
 
-          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+          <div class="content layoutInner " id="consultaProvaCT">
             <H3>Consulta de Provas</H3>
             <br>
 
               <form class="form-inline"  method="post" action="" name="cadastroProvas">
 
-                <select class="form-control" id="autor" name = "autor" style="width:300px;">
+                <select class="form-control form-group " id="autor" name = "autor" >
                   <option disabled selected>Autor</option>
                 </select> &nbsp&nbsp
 
-                <select class="form-control" id="disciplina" style="width:300px;">
+                <select class="form-control form-group" id="disciplina">
                   <option disabled selected>Disciplina</option>
 
                 </select>&nbsp&nbsp
 
-                <select class="form-control" id="serie" style="width:300px;">
+                <select class="form-control" id="serie" >
                   <option disabled selected>Série</option>
                   <option>1º an</option>
                   <option>2º an</option>
                   <option>3º an</option>
                 </select>&nbsp&nbsp
 
-                <select class="form-control" id="tipo" style="width:300px;">
+                <select class="form-control" id="tipo" >
                   <option disabled selected>Tipo</option>
                   <option>Prova</option>
                   <option>Teste</option>
@@ -101,16 +104,16 @@
 
               </form>
 
-                  <hr style="border: 0.3px solid #DDD; width:1350px; margin-left:0px;">
+                  <hr  id="barConsProva" style="">
 
             <div class="" style="position: relative; float:left; height:100%; text-align: left;">
-              <table class="table" style="width:1300px; margin-left: 50px;" id="tableSelecionadas">
+              <table class="table" cellspacing="0" id="tableProvasSelecionadas">
                 <thead class="thead-inverse">
                   <tr>
                     <th class="celulasCB">Nome da Prova</th>
-                    <th class="celulasCB" style="width: 200px; align:left; text-align:left;">Tipo</th>
-                    <th class="celulasCB" style="width: 100px; align:left; text-align:left;">Nível</th>
-                    <th class="celulasCB" style="width: 50px; align:center; text-align:center;"></th>
+                    <th class="celulasCB" style="align:left; text-align:left;">Tipo</th>
+                    <th class="celulasCB" style=" align:left; text-align:left;">Nível</th>
+                    <th class="celulasCB" style=" align:center; text-align:center;"></th>
                   </tr>
                 </thead>
                 <tbody id="IzaMyLuv">
@@ -121,7 +124,7 @@
           </div>
 
         </div>
-
+</div>
 </main>
       <script type="text/javascript" src="/assets/js/consprova.js"></script>
 <!-- <script src="/assets/js/test.js"></script> -->

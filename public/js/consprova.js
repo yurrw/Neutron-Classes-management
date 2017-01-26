@@ -11,6 +11,8 @@ $(function pesqProfs(){
 });
 
   $( function() {
+     $("#tableProvasSelecionadas").hide();
+    
     $("#disciplina").change(function(){
       var disciplina = $('#disciplina').val();
 
@@ -105,6 +107,7 @@ $(function pesqDisciplina(){
 
 
 $(function(){
+  
   $("#consultarProva").click(function(){
 
     var buscafiltrada = [$("#autor").val(), $("#disciplina").val(), $("#serie").val(), $("#tipo").val()];
@@ -148,7 +151,7 @@ $(function(){
     console.log(serie);
     console.log(tipo);
 
-    var table = document.getElementById('tableSelecionadas');
+    var table = document.getElementById('tableProvasSelecionadas');
     var dados = [];
     // var autor = $("#autor").val();
     // var disciplina = $("#disciplina").val();
@@ -195,6 +198,7 @@ $(function(){
            }
 
 
+     $("#tableProvasSelecionadas").show();
 
 
             $("#materia").empty();
@@ -272,7 +276,7 @@ var novaRow = [];
 
 
 function doIt(element) {
-  var table = document.getElementById('tableSelecionadas');
+  var table = document.getElementById('tableProvasSelecionadas');
   var row =table.rows.length;
   // console.log(row);
   console.log(table.rows[row-1].cells[0].innerHTML);

@@ -28,7 +28,7 @@
     .dashElements{
         left: 0;
         height:50vw!important;
-    }    
+    }
     .anotacoes{
         margin-left: 10px;
 
@@ -76,6 +76,16 @@
         left: -82px;
     }
 
+    .backPages{
+      margin-left: -80px;
+    }
+
+    #tabelaAlunos , #textAreas{
+      width: 725px!important;
+    }
+    #textCont{
+      width: 362.5px!important;
+    }
 }
 @media screen and (max-width: 1440px){
     /*CADQUEST PAGINA*/
@@ -101,7 +111,7 @@
         top: 390px!important;
         width: 480px!important;
         height: 370px!important;
-    } 
+    }
     #skills{
         margin-top: -10px;
         width: 250px!important;
@@ -124,8 +134,13 @@
     #cabecalho .dropdown-menu{
     right: 35px;
     top: 60px;
-    }   
-
+    }
+    #tabelaAlunos , #textAreas{
+      width: 625px!important;
+    }
+    #textCont{
+      width: 312.5px!important;
+    }
 }
 /*PRINCIPAL EM NOTEBOOKS*/
 @media screen and (max-width: 1367px) {
@@ -153,7 +168,7 @@
     .anotacoes{
         width: 670px!important;
         height: 300px!important;
-    }    
+    }
     .clndNext{
         right: 30px!important;
         width: 350px;
@@ -194,9 +209,16 @@
     }
    /*------------*/
     /*MODAL DE PRIVACIDADE*/
+    #tabelaAlunos , #textAreas{
+      width: 590px!important;
+    }
+    #textCont{
+      width: 295px!important;
+    }
 
-
-
+    #nometurma{
+      width: 275px!important;
+    }
 }
 @media only screen and (max-width: 1367px) {
     .modal-header + #TituloPriv {
@@ -216,7 +238,7 @@
 
      .anotacoes{
         width: 48vw!important;
-    } 
+    }
         ul li div {
 
         height: 115px;
@@ -234,7 +256,22 @@
         width: 30vw!important;
     }
 
+    #tabelaAlunos , #textAreas{
+      width: 590px!important;
+      margin-left: 35px!important;
+    }
+    #textCont{
+      width: 295px!important;
+      margin-left: 35px!important;
+    }
 
+    #nometurma{
+      width: 250px!important;
+    }
+
+    #divDados{
+      margin-left: 35px!important;
+    }
 }
 
 
@@ -277,7 +314,7 @@
      .backPages{
         margin-top: -50px!important;
         padding-top: 50px;
-            margin-left: -110px;
+            margin-left: -125px;
             height: 105vh!important;
      }
      .layout{
@@ -298,7 +335,7 @@
     .anotacoes{
         width: 95vw!important;
         height: 300px!important;
-    }    
+    }
     .clndNext{
             top: 370px;
             right: 80px!important;
@@ -307,7 +344,7 @@
         top: 370px!important;
         width: 55vw!important;
         height: 320px!important;
-    } 
+    }
     ul li div {
 
         height: 150px;
@@ -334,8 +371,33 @@
         margin-left:-200px;
         width:100vw!important;
     }
+    #divDados{
+      margin:50px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
+    }
+
+    #tabelaAlunos{
+      width:750px!important;
+      margin: 50px 0px 0px 0px!important;
+    }
+
+    #textCont{
+      width: 375px!important;
+      margin-left: 0px!important;
+    }
+    #textAreas{
+      width:750px!important;
+      margin-left: 0px!important;
+    }
+    .correctConsTurma{
+      margin-left: -50px;
+      padding-left: 0px;
+    }
 }
-@media  screen and (max-width: 1024px) and (min-width: 1024px) 
+
+@media  screen and (max-width: 1024px) and (min-width: 1024px)
                 and (max-height: 768px) and (min-height: 768px){
     .clndNext{
             right: 25px!important;
@@ -347,13 +409,38 @@
     .NotasBlc{
         width: 35vw!important;
         /*height: 320px!important;*/
-    } 
+    }
     .TurmasBlc{
         /*right:      405px!important;*/
         /*height: 320px!important;*/
         top: 370px!important;
         left: 405px;
         /*width: 250px!important;*/
+    }
+
+    #divDados{
+      margin:50px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
+    }
+
+    #tabelaAlunos{
+      width:750px!important;
+      margin: 50px 0px 0px 0px!important;
+    }
+
+    #textCont{
+      width: 375px!important;
+      margin-left: 0px!important;
+    }
+    #textAreas{
+      width:750px!important;
+      margin-left: 0px!important;
+    }
+    .correctConsTurma{
+      margin-left: -50px;
+      padding-left: 0px;
     }
 }
 @media screen and (max-width: 990px)
@@ -407,7 +494,7 @@
      }
      .layout{
                 padding-right: 30px!important;
-     } 
+     }
     #cadquestCT{
         margin-left: 200px!important;
     }
@@ -420,7 +507,7 @@
     */
     .rating {
         width: 100px;
-    } 
+    }
       #cadquestCT{
         margin-left: 75px!important;
     }
@@ -479,6 +566,29 @@
     #loginAlert{
         margin-left:0;
     }
+
+    #divDados{
+      margin:40px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
+    }
+
+    #tabelaAlunos{
+      width:650px!important;
+      margin: 40px 0px 0px 0px!important;
+    }
+
+    #textCont{
+      width: 325px!important;
+      margin-left: 0px!important;
+    }
+    #textAreas{
+      width:650px!important;
+      margin-left: 0px!important;
+    }
+
+
 }
 
 @media  screen and (max-width: 765px ) {
@@ -491,10 +601,30 @@
         margin-left:350px!important;
     }
 
+#divDados{
+  text-align: center;
+}
+
+    #tabelaAlunos{
+      width:568px!important;
+      margin: 20px 0px 10px 0px!important;
+      font-size: 12px!important;
+    }
+
+    #textCont{
+      width: 284px!important;
+      margin-left: 0px!important;
+    }
+    #textAreas{
+      width:568px!important;
+      margin-left: 0px!important;
+    }
+
 }
 
 @media  screen and (max-width: 586px ) {
-    .modal-header + #TituloPriv {
+
+  .modal-header + #TituloPriv {
         margin-left:22%;
     }
     .perfilContent { /*CONTAINER */
@@ -558,6 +688,26 @@
         /*position: absolute!important;*/
         /*margin-right:-40!important;*/
     }
+
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
+    }
+
+        #tabelaAlunos{
+          width:508px!important;
+          margin: 20px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
+
+        #textCont{
+          width: 254px!important;
+          margin-left: 0px!important;
+        }
+        #textAreas{
+          width:508px!important;
+          margin-left: 0px!important;
+        }
+
 }
 @media screen and (max-width: 425px){
     /*cadQuest Pagina*/
@@ -732,6 +882,23 @@
     .priv > .modal-body {
         margin-left: 4%;
     }
+
+#divDados{
+  margin: 20px 0px 0px 0px!important;
+}
+
+    #tabelaAlunos{
+      width:350px!important;
+      margin: 20px 0px 10px 0px!important;
+      font-size: 12px!important;
+    }
+
+    #textCont, #textAreas{
+      width: 350px!important;
+      margin-left: 0px!important;
+    }
+
+
 }
 @media  screen and (max-width: 400px ) {
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
@@ -814,6 +981,23 @@
     #loginAlert {
         margin-left:55px;
     }
+
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
+    }
+
+        #tabelaAlunos{
+          width:320px!important;
+          margin: 10px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
+
+        #textAreas, #textCont{
+          width:320px!important;
+          margin-left: 0px!important;
+        }
+
+
 }
 
 
@@ -875,17 +1059,17 @@
     }
     #cabecalho .dropdown-menu{
     right: 0px!important;
-    }   
+    }
     /*------------*/
 }
 @media screen and (max-width: 325px) {
     /*CADASTRO PAGINA QUESTAO*/
             #cadquestCT{
         margin-left: 50px!important;
-        }         
+        }
         .layoutInner > h3{
             margin-left: 5px!important;
-                font-size: 3rem!important;
+                font-size: 2.6rem!important;
         }
     /*-----------------------*/
     #RightForm > #RFTitle{
@@ -966,6 +1150,26 @@
     .priv > .modal-body {
         margin-left: 1%;
     }
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
+    }
+
+        #tabelaAlunos{
+          width:280px!important;
+          margin: 10px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
+
+        #textCont{
+          width: 280px!important;
+          margin-left: 0px!important;
+        }
+        #textAreas{
+          width:280px!important;
+          margin-left: 0px!important;
+        }
+
+
 }
 
 @media screen and (min-width: 1025px) {

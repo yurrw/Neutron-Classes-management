@@ -3,6 +3,8 @@
       $('#textCont').hide();
       $('#textAreas').hide();
       $('#btAreas').hide();
+      $('#contact').hide();
+
       $.ajax({
         url: "/mostraturma",
         type: "POST",
@@ -70,36 +72,54 @@
             $("#IzaMyLuv").empty();
             for(var i = 0; i < data.length; i++) {
               $("#IzaMyLuv").append($("<tr/>")
-                .append($("<td />").val(i+1).text(i+1))
-                .append($("<td />").val(data[i][1]).text(data[i][1]))
-                .append($("<td />").val(data[i][0]).text(data[i][0]))
-                .append($("<td />").val(data[i][2]).text(data[i][2]))
-                // // .append($("<td  />")
-                // // .append("<input type='checkbox' id='chk' name='chk'  /> ")
-                //
-                //   )
+                .append($("<td class='cellMeio' style='width:5%'/>").val(i+1).text(i+1))
+                .append($("<td class='cellMeio' style='width:20%'/>").val(data[i][1]).text(data[i][1]))
+                .append($("<td class='' style='width:75%'/>").val(data[i][0]).text(data[i][0]))
+                // .append($("<td />").val(data[i][2]).text(data[i][2]))
               );
-              // $( "<b>Deseja contatar essa turma?</b>" ).appendTo( "body" );
               console.log(data[i]);
+              $("#contact").show();
             }
-            $("tbody").append("<br>");
-            $("tbody").append("Deseja contatar essa turma? <input type='checkbox' id='chk' name='chk'  /> ");
             console.log('process sucess');
           },
           error: function() { console.log('process error');},
         });
       });
     });
-    $(document).on('change', '[type=checkbox]',function(e){
-      var umaChecked = $('input[name="chk"]:checked').length > 0;
-      if (umaChecked){ //NAO TA CERTO MASSSSSSSSSS FUNCIONA
+
+    $(document).on('click', '#contact', function(){
+      if($("#textCont").is(":hidden")){
+        $('#contact').text("Não contatar");
         $('#textCont').show();
         $('#textAreas').show();
         $('#btAreas').show();
       }
-      else{
+      else {
+        $('#contact').text("Contatar turma");
         $('#textCont').hide();
         $('#textAreas').hide();
         $('#btAreas').hide();
       }
+
     });
+
+    // $( function(){
+    //   $("#contact").on('click', function(){
+    //     console.log("Aheooooooooooo");
+    //     );
+    // });
+
+
+    // $(document).on('change', '[type=checkbox]',function(e){
+    //   var umaChecked = $('input[name="chk"]:checked').length > 0;
+    //   if (umaChecked){ //NAO TA CERTO MASSSSSSSSSS FUNCIONA
+    //     $('#textCont').show();
+    //     $('#textAreas').show();
+    //     $('#btAreas').show();
+    //   }
+    //   else{
+    //     $('#textCont').hide();
+    //     $('#textAreas').hide();
+    //     $('#btAreas').hide();
+    //   }
+    // });
