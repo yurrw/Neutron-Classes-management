@@ -11,33 +11,23 @@
       $("#data").hide();
       $("#dadoos").hide();
 
-
-     var mat = <%= userMat %>; //isso da cerriato
        $('#txtSelectedDate').val($.datepicker.formatDate('dd/mm/yy', new Date()));
 
                $.ajax({
                    url: "/mostraturma", // AQUI É A URL QUE SERA ENVIADO
                    type: "POST", //TIPO DE ENVIO
                    dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                   data: JSON.stringify({
-
-                       matricula: mat
-
-                   }),
                    contentType: "application/json",
                    cache: false,
                    timeout: 5000,
                    complete: function() {
                        //called when complete
-                       console.log('process complete');
                    },
 
                    success: function(data) {
-                       console.log(data + "kbc");
                        var ginea = data +" ";
                        var spt = ginea.split(",");
                         for(var x=0; x< spt.length; x++){
-                          alert("oi");
                           $("#nometurma").append('<option value='+spt[x]+'>'+spt[x]+'</option> ');
                         }
                        var name = [];
@@ -66,6 +56,7 @@
                 brotheragem();
 
                });
+
                $("#nometurma").change(function() {
       $("#disc").show();
 
@@ -74,11 +65,6 @@
                            url: "/pesqDiscProf",
                            type: "POST", //TIPO DE ENVIO
                            dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                           data: JSON.stringify({
-
-                               matricula: mat
-
-                           }),
                            contentType: "application/json",
                            cache: false,
                            timeout: 5000,
@@ -237,7 +223,7 @@ var brotheragem = function() {
                     var  data= $('#txtSelectedDate').val();
                      var coment= $('#textAreas').val();
 
-                    var disciplina= $('#nomedisciplina').val();
+                    var nomedisciplina= $('#nomedisciplina').val();
 
               //      var i = 1;
 
@@ -298,10 +284,10 @@ var brotheragem = function() {
                        dataType: "json", //TIPO DE DADO QUE SERA PASSADO
                        data: JSON.stringify({
                         chk:chk,
-                           matriculaProf:mat,
+
                            txtSelectedDate:data,
-                           disciplina:disciplina,
-                           comentario:coment,
+                           nomedisciplina:nomedisciplina,
+                           textAreas:coment,
                            turma: nometurma,
                            matriculas:tabela,
                            chks:checks
@@ -351,7 +337,7 @@ var brotheragem = function() {
 </div>
 <% include ../partes/topmenu.ejs %>
         <div class="container-fluid">
-     <span id="pgName"> Neutron 
+     <span id="pgName"> Neutron
           <span id="traco"> > </span>
           <span id="pgAtual">Presença </span>
         </span>
@@ -455,7 +441,7 @@ var brotheragem = function() {
       </div>
 
     </main>
-    
+
 <script>
 
 // Default Open

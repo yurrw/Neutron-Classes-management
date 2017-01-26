@@ -18,7 +18,7 @@ exports.SaveNts = function(req,res){
   var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"'";
     // console.log(req.body.obj[0].id);
 
-  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});  
+  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
   for (var i=0; i< req.body.obj.length ; i++){
     console.log(req.body.obj[i].id);
     var qry = "INSERT INTO `lembretes`( `ID`,`user`, `content`)  VALUES ('"+req.body.obj[i].id+"','"+req.user.matricula+"','"+req.body.obj[i].conteudo+"')";
@@ -35,7 +35,7 @@ exports.SaveNts = function(req,res){
 exports.DelNts  = function (req,res){
     console.log(req.body);
     var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"' AND ID='"+req.body.obj+"'";
-    
+
     // connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
 
 }
@@ -307,7 +307,7 @@ exports.pegaPresenca   =   function(req, res){
       var dataFormatada = datasplit[2] +'-'+ datasplit[1] +'-'+ datasplit[0];
 
 
-      var qry = "select nome, aluno.matricula, presente, comentario,prof_diario.cod_aula  FROM aluno, turma_aluno, prof_diario_aluno,prof_diario            where cod_turma = '"+req.body.nometurma+"'and prof_diario.matricula='"+req.user.matricula+"' and cod_turma=prof_diario.turma             AND aluno.matricula=turma_aluno.matricula and  aluno.matricula =  prof_diario_aluno.matricula            and  prof_diario.data = '"+ dataFormatada +"'      and prof_diario.turma='"+req.body.nometurma+"'       and prof_diario.matricula ='"+req.user.matricula+"'                            AND      prof_diario.turma='"+req.body.nometurma+"'      and prof_diario.cod_aula=prof_diario_aluno.cod_aula ORDER BY nome";
+      var qry = "select DISTINCT nome, aluno.matricula, presente, comentario,prof_diario.cod_aula  FROM aluno, turma_aluno, prof_diario_aluno,prof_diario            where cod_turma = '"+req.body.nometurma+"'and prof_diario.matricula='"+req.user.matricula+"' and cod_turma=prof_diario.turma             AND aluno.matricula=turma_aluno.matricula and  aluno.matricula =  prof_diario_aluno.matricula            and  prof_diario.data = '"+ dataFormatada +"'      and prof_diario.turma='"+req.body.nometurma+"'       and prof_diario.matricula ='"+req.user.matricula+"'                            AND      prof_diario.turma='"+req.body.nometurma+"'      and prof_diario.cod_aula=prof_diario_aluno.cod_aula ORDER BY nome";
        connDB.query(qry,function(err,rows){
          if (err)
          req.flash('MSGCadQuest', err);
@@ -325,7 +325,7 @@ exports.pegaPresenca   =   function(req, res){
 
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry2 = "select nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.nometurma+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
+  var qry2 = "select DISTINCT nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.nometurma+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
   connDB.query(qry2,function(err,rows){
     for (var i = 0, len = rows.length; i < len; i++)
       {
