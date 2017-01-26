@@ -1,0 +1,22 @@
+#nometurma{
+  width:300px;
+}
+
+#tabelaAlunos{
+  width:750px;
+  margin-left: 50px;
+}
+
+#divDados{
+  margin-left:50px;
+  float:left;
+  border-left:1px solid #DDD;
+}
+
+.cellMeio{
+  text-align: center;
+}
+
+.correctConsTurma{
+  margin-left: -150px;
+}
