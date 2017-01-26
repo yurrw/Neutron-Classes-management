@@ -587,12 +587,8 @@
       width:650px!important;
       margin-left: 0px!important;
     }
-    .backPages{
-      margin-left: -225px;
-    }
-    .correctConsTurma{
-      margin-left: -150px;
-    }
+
+
 }
 
 @media  screen and (max-width: 765px ) {

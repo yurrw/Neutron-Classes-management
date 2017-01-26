@@ -20,3 +20,40 @@
 .correctConsTurma{
   margin-left: -150px;
 }
+
+
+@media only screen and (max-width: 1024px) {
+#consultaTurmaCT{
+  margin-left: 150px;
+}
+.correctConsTurma{
+  margin-left: 0px;
+}
+}
+
+@media only screen and (max-width: 768px) {
+#consultaTurmaCT{
+  margin-left: 100px;
+}
+.correctConsTurma{
+  margin-left: 0px;
+}
+}
+ @media only screen and (max-width: 412px) {
+ #consultaTurmaCT{
+  margin-left: 90px;
+}
+  #consultaTurmaCT > h3{
+    margin-left: 0px!important;
+  }
+ }
+@media only screen and (max-width: 375px) {
+ #consultaTurmaCT{
+  margin-left: 85px;
+}
+ }
+ @media only screen and (max-width: 360px) {
+ #consultaTurmaCT{
+  margin-left: 75px;
+}
+ }
