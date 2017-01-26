@@ -5,6 +5,7 @@
 	width:750px;
 
 }
+
 #contfluids > span {padding-left: 110px;}
 #div2{
 	position: absolute; 
@@ -40,6 +41,10 @@
 }
 	#disciplina, #serie, #tipo, #nomeP, #materia{
 	width:330px;
+	}
+		.btn-removes{
+		/*font-size: 1.3rem;*/
+		width: 80px!important;
 	}
 @media screen and (max-width: 1680px){
 	#disciplina, #serie, #tipo, #nomeP,#materia{
@@ -134,12 +139,93 @@
 		}	
 		#tableCandidatas{
 			width: 300px!important;
-			margin-left: -35px;
+			margin-left: -70px;
 		}
 			#tableQuestCandidatas{
+				position: absolute;
 		width: 300px!important;
+		top: 650px;
 	}	
-	btn-pass{
-		width: 30px!important;
+	.btn-pass{
+		font-size: 1.3rem;
+		width: 80px!important;
+	}	
+
+	#div2{
+		top: 1100px!important;
+		right: 105px!important;
 	}
+		.btn-removes{
+		width: 65px!important;
+		font-size: 1rem;
+	}
+	#tableSelecionadas,#div2{
+		width: 300px!important;
+	}
+	#div2 >label, #cadastrar{
+		margin-left: 100px;
+	}
+
+		.pagination{
+			top: -45px;
+	right: -135px!important;
+	}
+	#tableCandidatas_filter > label{
+		top: -80px!important;
+		right: 90px!important;
+		width: 225px;
+	}	
+
+}
+@media screen and (max-width: 412px){
+	#div2{
+		right: 150px!important;
+		width: 250px!important;
+	}
+	#tableSelecionadas{width: 250px!important;}
+#tableSelecionadas tr{width: 20px!important;}
+	.btn-removes{font-size: 0rem;
+	width: 10px!important;height: 10px!important;}
+}
+@media screen and (max-width: 375px){
+		#cadprovaCT > h3{
+			margin-left: -60px!important;
+		}
+		#cadprovaCT{
+			margin-left: 115px!important;
+		}	
+		#tableCandidatas{
+		margin-left: -72px!important;
+		}	
+
+		.btn-removes{
+		width: 60px!important;
+		font-size: 1rem;
+		height: 25px!important;
+	}
+	#tableSelecionadas{
+		font-size: 1.1rem;
+		width: 200px!important;
+		
+	}	
+	#div2{right: 115px!important;}
+
+}
+@media screen and (max-width: 360px){
+		#cadprovaCT{
+			margin-left: 107px!important;
+		}	
+		#cadprovaCT > h3{
+			margin-left: -57px!important;
+		}
+		.btn-pass{
+		font-size: 1.1rem;
+		width: 70px!important;
+		}
+		#tableCandidatas{
+		margin-left: -67px!important;
+		}	
+		.pagination{
+			right: -130px!important;
+		}	
 }

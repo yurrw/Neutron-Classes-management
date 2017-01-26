@@ -18,7 +18,7 @@ var novaRow = [];
     var table = document.getElementById('tableCandidatas');
     var row = parseInt(element.parentNode.parentNode.rowIndex);
 
-    novaRow[x] = '<tr><td style="text-align: left;width:125px;">'+ document.getElementById("materia").value +'</td><td style="text-align: left;">' + table.rows[row].cells[0].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[1].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[2].innerHTML + '</td><td><button class="btn btn-danger btn-block" onclick="removerRow(this)">Remover</button></td></tr>';
+    novaRow[x] = '<tr word-wrap: break-word;><td style="text-align: left">'+ document.getElementById("materia").value +'</td><td style="text-align: left;">' + table.rows[row].cells[0].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[1].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[2].innerHTML + '</td><td><button class="btn btn-danger btn-block btn-removes" onclick="removerRow(this)">Remover</button></td></tr>';
 
     for(i = 0; i< novaRow.length-1; i++){
       if (novaRow[x] == novaRow[i]) {
@@ -114,14 +114,14 @@ var novaRow = [];
                 </select><br><br>
                   <div id="tableQuestCandidatas">
                     
-                <table class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tableCandidatas">
+                <table  class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tableCandidatas">
 
                   <thead class="thead-inverse">
                     <tr>
                       <th>Enunciado</th>
                       <th style="align:right; text-align:center;">Tipo</th>
                       <th style="align:right; text-align:center;">Nível</th>
-                      <th style="align:right; text-align:center;">Adicionar</th>
+                      <th id="btadd" style="align:right; width:70px text-align:center;">Adicionar</th>
                     </tr>
                   </thead>
                   <tbody id="questCandidatas">
@@ -132,14 +132,14 @@ var novaRow = [];
 
             <div id="div2" style="">
               <label>Prova</label>
-              <table class="table table-bordered order-column hover table-responsive" style="" id="tableSelecionadas">
+              <table  class="table table-bordered order-column hover table-responsive"  cellspacing="0"  style="" id="tableSelecionadas">
                 <thead class="thead-inverse">
                   <tr>
                     <th class="celulasCB">Matéria</th>
                     <th>Enunciado</th>
                     <th style=" align:right; text-align:center;">Nível</th>
                     <th style=" align:right; text-align:center;">Tipo</th>
-                    <th  style="align:right; width:50px;">Remover</th>
+                    <th  style="align:right;"></th>
                   </tr>
                 </thead>
                 <tbody id="questSelecionadas">
