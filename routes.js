@@ -165,7 +165,7 @@ var fs = require('fs');
 
             app.post('/mostraturma', ConsultCtrl.pesquisaturma);
 
-            app.post('/pesqDiscProf', ConsultCtrl.pesquisaDiscProf);
+            app.post('/pesqDiscProf',  CadController.pesquisaDiscProf);
             app.post('/pegaaluno', ConsultCtrl.listalunos);
             app.post('/pesqProfs', ConsultCtrl.pesquisaProfessores);
             app.post('/pegaaula', ConsultCtrl.pegaPresenca);
