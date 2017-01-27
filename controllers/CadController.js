@@ -272,7 +272,7 @@ connDB.query(qryDEL,function(err,rows){
           console.log(err);
 
           console.log("chegou aqui");
-
+          console.log(qry);
         confirm=1;
 
 
