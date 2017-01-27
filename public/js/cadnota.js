@@ -4,37 +4,7 @@ $( function() {
 
 
 
-   var turminha = $("#turminha").val();
-    $.ajax({
-      url: "/pesqDiscProfIII",  // AQUI É A URL QUE SERA ENVIADO
-      type: "POST",   //TIPO DE ENVIO
-      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-      data: JSON.stringify({
 
-          turminha   : turminha,
-
-               }),
-      contentType: "application/json",
-      cache: false,
-      timeout: 5000,
-      complete: function() {
-        console.log('process complete');
-      },
-      success: function(data) {
-        console.log(disciplina);
-        console.log('process sucess');
-        $("#disciplina").empty();
-        $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
-        for(var i = 0; i < data.length; i++) {
-          $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
-          console.log(data[i]);
-        }
-      },
-
-      error: function() {
-        console.log('process error');
-      },
-    });
 
 });
 
@@ -211,10 +181,44 @@ $( function() {
               $('#disciplina').show();
             }
             console.log('process sucess');
+
+            
           },
           error: function() { console.log('process error');},
         });
+    $.ajax({
+      url: "/pesqDiscProfIII",  // AQUI É A URL QUE SERA ENVIADO
+      type: "POST",   //TIPO DE ENVIO
+      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+      data: JSON.stringify({
+
+          turminha   : turminha,
+
+               }),
+      contentType: "application/json",
+      cache: false,
+      timeout: 5000,
+      complete: function() {
+        console.log('process complete');
+      },
+      success: function(data) {
+        console.log(disciplina);
+        console.log('process sucess');
+        $("#disciplina").empty();
+        $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
+        for(var i = 0; i < data.length; i++) {
+          $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+          console.log(data[i]);
+        }
+      },
+
+      error: function() {
+        console.log('process error');
+      },
+    });
+
       });
+
     });
 
 

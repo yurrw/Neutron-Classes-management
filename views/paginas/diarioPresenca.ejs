@@ -8,12 +8,14 @@
 
 
    $(function() {
+       $('#horaStart').timepicker();
       $("#disc").hide();
       $("#data").hide();
       $("#dadoos").hide();
 
        $('#txtSelectedDate').val($.datepicker.formatDate('dd/mm/yy', new Date()));
-
+       $('#txtSelectedDate').timepicker('option',
+                             { 'minTime': '7:00', 'maxTime':'18:00' });
                $.ajax({
                    url: "/mostraturma", // AQUI É A URL QUE SERA ENVIADO
                    type: "POST", //TIPO DE ENVIO
@@ -356,7 +358,7 @@ var brotheragem = function() {
             <H3>Diário de Presença</H3>
 
             <br>
-
+            <input id="horaStart" type="text" data-time-format="H:i:s" />
 
             <form class="form-inline" name="cadastroQuestao" method="post">
             <input type="hidden" value= <%= userMat %> name="matriculaProf">
