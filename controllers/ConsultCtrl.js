@@ -210,7 +210,7 @@ exports.pesquisaProfessores	=	function(req, res){
 exports.listalunos	=	function(req, res){
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "select nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.nometurma+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
+  var qry = "select nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.turminha+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
   connDB.query(qry,function(err,rows){
     for (var i = 0, len = rows.length; i < len; i++)
       {

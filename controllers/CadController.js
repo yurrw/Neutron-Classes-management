@@ -188,6 +188,29 @@ exports.pesquisaDisc = function(req, res){
   });
 };
 
+exports.pesquisaDiscProfTurma = function(request, res){
+
+  var test = request.body.turminha;
+  console.log(test);
+  var disciplinas = [];
+  var query = "SELECT DISTINCT `disciplina_nome` FROM prof_turma, `disciplinas`, professor_disciplinas"+
+  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"' AND prof_turma.cod_turma='"+request.body.turminha+"'";
+console.log(query);
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        disciplinas.push(rows[i].disciplina_nome);
+      }
+      res.json(disciplinas);
+    }
+
+  });
+};
+
+
 exports.pesquisaDiscProf = function(request, res){
 
   var disciplinas = [];
