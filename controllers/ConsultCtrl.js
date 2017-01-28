@@ -307,7 +307,12 @@ exports.pegaPresenca   =   function(req, res){
       var dataFormatada = datasplit[2] +'-'+ datasplit[1] +'-'+ datasplit[0];
 
 
-      var qry = "select DISTINCT nome, aluno.matricula, presente, comentario,prof_diario.cod_aula  FROM aluno, turma_aluno, prof_diario_aluno,prof_diario            where cod_turma = '"+req.body.nometurma+"'and prof_diario.matricula='"+req.user.matricula+"' and cod_turma=prof_diario.turma             AND aluno.matricula=turma_aluno.matricula and  aluno.matricula =  prof_diario_aluno.matricula            and  prof_diario.data = '"+ dataFormatada +"'      and prof_diario.turma='"+req.body.nometurma+"'       and prof_diario.matricula ='"+req.user.matricula+"'                            AND      prof_diario.turma='"+req.body.nometurma+"'      and prof_diario.cod_aula=prof_diario_aluno.cod_aula ORDER BY nome";
+      var qry = "SELECT DISTINCT nome, aluno.matricula, presente, comentario,prof_diario.cod_aula "+ 
+                "FROM aluno, turma_aluno, prof_diario_aluno,prof_diario"+
+                " WHERE cod_turma = '"+req.body.nometurma+"' AND prof_diario.matricula='"+req.user.matricula+"' AND cod_turma=prof_diario.turma"+
+                      " AND aluno.matricula=turma_aluno.matricula AND aluno.matricula =  prof_diario_aluno.matricula and prof_diario.data = '"+ dataFormatada +"' AND prof_diario.turma='"+req.body.nometurma+"'       and prof_diario.matricula ='"+req.user.matricula+"'                            AND  prof_diario.horaStart='"+req.body.initHour+"' AND prof_diario.disciplina_id IN (SELECT disciplinas.disciplina_id from disciplinas where disciplina_nome LIKE'"+req.body.disciplina+"')"+
+                      " AND prof_diario.cod_aula=prof_diario_aluno.cod_aula ORDER BY nome";
+       console.log(qry);
        connDB.query(qry,function(err,rows){
          if (err)
          req.flash('MSGCadQuest', err);
