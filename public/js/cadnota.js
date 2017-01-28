@@ -137,13 +137,63 @@ $( function() {
         error: function() {console.log('process error mostraturma');},
       });
       $("#MsgconsTurma").hide();
+
+
+
+
       $("#cadnota").click(function(){
+
+        var testenotas = [];
+        var provanotas = [];
+
+        $('#tabelaAlunos').each(function()
+        {
+            testenotas.push($(this).find('input.teste').val());
+            console.log(testenotas);
+
+        });
+
+        // $('#tabelaAlunos').each(function()
+        $($('#tabelaAlunos').find('input.prova')).each(function()
+        {
+           provanotas.push($(this).val());
+           console.log(provanotas);
+
+
+        });
+
+
+
+
+      //   var table = document.getElementById('tabelaAlunos');
+      //
+      // for(var r = 1; r < table.rows.length; r++)
+      // {
+      //   testenotas[r] = table.rows[r].cells[3].innerHTML;
+      //   provanotas[r] = table.rows[r].cells[4].innerHTML;
+      // }
+
+
+
+
+
+
+        // var table = document.getElementById('tabelaAlunos');
+        //
+        //  var notas =[];
+        //      $('input[type=textbox]').each(function(){
+        //              //if(this.checked){
+        //                    checks.push(this.checked);
+        //
+        //           //   }
+
+             });
 
 
       });
 
 
-    });
+
 
 
     $( function(){
@@ -170,8 +220,8 @@ $( function() {
                 .append($("<td class='cellMeio' style='width:5%'/>").val(i+1).text(i+1))
                 .append($("<td class='cellMeio' style='width:20%'/>").val(data[i][1]).text(data[i][1]))
                 .append($("<td class='' style='width:15%'/>").val(data[i][0]).text(data[i][0]))
-                .append($("<td class='' style='width:25%; text-align:center;'/>").append($("<input type='text' style='text-align:center;' class='form-control' id='txtt' name='txtt' size='1'/> ")))
-                .append($("<td class='' style='width:25%; text-align:center;'/>").append($("<input type='text' style='text-align:center;' class='form-control' id='txtp' name='txtp' size='1'/> ")))
+                .append($("<td class='' style='width:25%; text-align:center;'/>").append($("<input type='text' style='text-align:center;' class='form-control teste' id='txtt' name='txtt' size='1'/> ")))
+                .append($("<td class='' style='width:25%; text-align:center;'/>").append($("<input type='text' style='text-align:center;' class='form-control prova' id='txtp' name='txtp' size='1'/> ")))
 
                 // .append($("<td />").val(data[i][2]).text(data[i][2]))
               );
@@ -182,7 +232,7 @@ $( function() {
             }
             console.log('process sucess');
 
-            
+
           },
           error: function() { console.log('process error');},
         });
