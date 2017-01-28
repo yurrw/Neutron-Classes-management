@@ -9,25 +9,21 @@
 
 
    $(function() {
-       $('#horaStart').change(function(){
-           alert("teste");
-       })
-           $('#horaStart').timepicker({
-        timeFormat: 'HH:mm',
-        // year, month, day and seconds are not important
-        minTime: new Date(0, 0, 0, 7, 0, 0),
-        maxTime: new Date(0, 0, 0, 18, 0, 0),
-        // time entries start being generated at 6AM but the plugin 
-        // shows only those within the [minTime, maxTime] interval
-        startHour: 7,
-        // the value of the first item in the dropdown, when the input
-        // field is empty. This overrides the startHour and startMinute 
-        // options
-        startTime: new Date(0, 0, 0, 7, 00, 0),
-        // items in the dropdown are separated by at interval minutes
-        interval: 15
-    });
 
+    //   $(".time_element").timepicki();
+      	$('#horaStart').timepicki({
+		show_meridian:false,
+        custom_classes:"correctTimer",
+		min_hour_value:7,
+		max_hour_value:18,
+		step_size_minutes:15,
+		overflow_minutes:true,
+		increase_direction:'up',
+		disable_keyboard_mobile: true,
+        start_time: ["07", "000", "AM"],
+        });
+
+    $('#initAula').hide();
       $("#disc").hide();
       $("#data").hide();
       $("#dadoos").hide();
@@ -71,7 +67,7 @@
                    dateFormat: "dd/mm/yy",
                    altField: "#alt-date"
                });
-               $("#nomedisciplina").change(function(){
+               $("#consultaDiarioTurma").click(function(){
                 $("#data").show();
                 $("#dadoos").show();
                 brotheragem();
@@ -79,9 +75,10 @@
                });
 
                $("#nometurma").change(function() {
+                   $('#initAula').show();
       $("#disc").show();
-      alert($("input.timepicker").val());
-
+    
+                    $('#nomedisciplina').empty();
                    $.ajax({
 
                            url: "/pesqDiscProf",
@@ -124,99 +121,95 @@
 
 
 var brotheragem = function() {
-             var nometurma = $('#nometurma').val();
-                    var  data= $('#txtSelectedDate').val();
+    var nometurma = $('#nometurma').val();
+    var data = $('#txtSelectedDate').val();
+    var hora = $('#horaStart').val();
+  var disc = $('#nomedisciplina').val();
 
 
+    $.ajax({
+        url: "/pegaaula", // AQUI É A URL QUE SERA ENVIADO
+        type: "POST", //TIPO DE ENVIO
+        dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+        data: JSON.stringify({
+            txtSelectedDate: data,
+            disciplina: disc,
+            nometurma: nometurma,
+            initHour : hora
+        }),
+        contentType: "application/json",
+        cache: false,
+        timeout: 5000,
+        complete: function() {
+            console.log('process complete');
+        },
 
-                     $.ajax({
-                       url: "/pegaaula", // AQUI É A URL QUE SERA ENVIADO
-                       type: "POST", //TIPO DE ENVIO
-                       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                       data: JSON.stringify({
-                               txtSelectedDate:  data,
-                               nometurma: nometurma
-                       }),
-                       contentType: "application/json",
-                       cache: false,
-                       timeout: 5000,
-                       complete: function() {
-                           console.log('process complete');
-                       },
-
-                       success: function(data) {
-
-
-
-
-
-          console.log('process sucess');
-          $("#IzaMyLuv").empty();
-          var tamanho=data.length;
-          var txt="";
-         for(var i = 0; i < data.length  ; i++) {
-                if (!(i == data.length - 1)){
-                  if(data[i][2] == "true" ){
-
-         $("#IzaMyLuv").append($("<tr/>")
-                                   .append($("<td />").val(i + 1).text(i + 1))
-
-           .append($("<td/>").val(data[i][1]).text(data[i][1]))
-           .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-        //   .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
-
-                                  .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', true))
+        success: function(data) {
 
 
 
 
+            console.log('process sucess');
+            $("#IzaMyLuv").empty();
+            var tamanho = data.length;
+            var txt = "";
+            for (var i = 0; i < data.length; i++) {
+                if (!(i == data.length - 1)) {
+                    if (data[i][2] == "true") {
 
-           .append($("<td  style='align:right; width:100px;'/>")
+                        $("#IzaMyLuv").append($("<tr/>")
+                            .append($("<td />").val(i + 1).text(i + 1))
 
-         ));
-            }
-            else {
-                       $("#IzaMyLuv").append($("<tr/>")
-                                   .append($("<td />").val(i + 1).text(i + 1))
+                            .append($("<td/>").val(data[i][1]).text(data[i][1]))
+                            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
+                            //   .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
 
-           .append($("<td/>").val(data[i][1]).text(data[i][1]))
-           .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-
-
-
-
-
-
-           .append($("<td  style='align:right; width:100px;'/>")
-           .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
-
-         ));
+                            .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', true))
 
 
-            }
-                }
-                  else {
+
+
+                            .append($("<td  style='align:right; width:100px;'/>")
+
+                            ));
+                    } else {
+                        $("#IzaMyLuv").append($("<tr/>")
+                            .append($("<td />").val(i + 1).text(i + 1))
+
+                            .append($("<td/>").val(data[i][1]).text(data[i][1]))
+                            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
+
+
+
+
+                            .append($("<td  style='align:right; width:100px;'/>")
+                                .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
+
+                            ));
+
+
+                    }
+                } else {
                     $('#textAreas').val(data[i][0]);
-                  }
+                }
 
 
 
 
-
-          //$('#textAreas').val(data[tamanho])
-         }
-
-
-                       },
-
-                       error: function() {
-
-                    $('#textAreas').val("");
+                //$('#textAreas').val(data[tamanho])
+            }
 
 
-                           console.log('process error');
-                       },
-                   });
+        },
+
+        error: function() {
+
+            $('#textAreas').val("");
+
+
+            console.log('process error');
+        },
+    });
 
 
 
@@ -241,102 +234,104 @@ var brotheragem = function() {
 
 
               $("#btAreas").click(function() {
- var nometurma = $('#nometurma').val();
-                    var  data= $('#txtSelectedDate').val();
-                     var coment= $('#textAreas').val();
+                  var nometurma = $('#nometurma').val();
+                  var data = $('#txtSelectedDate').val();
+                  var coment = $('#textAreas').val();
+                  var hora = $('#horaStart').val();
 
-                    var nomedisciplina= $('#nomedisciplina').val();
+                  var nomedisciplina = $('#nomedisciplina').val();
 
-              //      var i = 1;
+                  //      var i = 1;
 
-              //      $('input[type=checkbox]').each(function() {
-
-
-
-
-              //          if (this.checked) {
-
-              //              //   console.log("value='"+i+"'");
-              //              $("#chkHidden[alt='" + i + "']").prop('disabled', true);
-              //              console.log('desabilitou ');
-              //          } else {
-              //              //   document.getElementById("chkHidden").disabled=false;
-              //              // console.log('false');
-
-              //          }
-              //          i++;
-
-
-              //      });
+                  //      $('input[type=checkbox]').each(function() {
 
 
 
-             var table = document.getElementById('tabletop');
 
-              var checks =[];
-                  $('input[type=checkbox]').each(function(){
-                          //if(this.checked){
-                                checks.push(this.checked);
+                  //          if (this.checked) {
 
-                       //   }
+                  //              //   console.log("value='"+i+"'");
+                  //              $("#chkHidden[alt='" + i + "']").prop('disabled', true);
+                  //              console.log('desabilitou ');
+                  //          } else {
+                  //              //   document.getElementById("chkHidden").disabled=false;
+                  //              // console.log('false');
+
+                  //          }
+                  //          i++;
+
+
+                  //      });
+
+
+
+                  var table = document.getElementById('tabletop');
+
+                  var checks = [];
+                  $('input[type=checkbox]').each(function() {
+                      //if(this.checked){
+                      checks.push(this.checked);
+
+                      //   }
 
                   });
 
 
 
 
-                      var tabela = [];
+                  var tabela = [];
 
 
 
 
-              for(var r = 1, i =0 ; r < table.rows.length; r++,i++){
-                tabela[i] = table.rows[r].cells[1].innerHTML;
+                  for (var r = 1, i = 0; r < table.rows.length; r++, i++) {
+                      tabela[i] = table.rows[r].cells[1].innerHTML;
 
 
-              }
+                  }
 
 
-               // console.log(table);
+                  // console.log(table);
 
 
-                   $.ajax({
-                       url: "/cadastroDiario", // AQUI É A URL QUE SERA ENVIADO
-                       type: "POST", //TIPO DE ENVIO
-                       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                       data: JSON.stringify({
-                        chk:chk,
+                  $.ajax({
+                      url: "/cadastroDiario", // AQUI É A URL QUE SERA ENVIADO
+                      type: "POST", //TIPO DE ENVIO
+                      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+                      data: JSON.stringify({
+                          chk: chk,
 
-                           txtSelectedDate:data,
-                           nomedisciplina:nomedisciplina,
-                           textAreas:coment,
-                           turma: nometurma,
-                           matriculas:tabela,
-                           chks:checks,
-                        comentario:coment
+                          txtSelectedDate  : data,
+                          nomedisciplina   : nomedisciplina,
+                          textAreas        : coment,
+                          turma            : nometurma,
+                          matriculas       : tabela,
+                          chks             : checks,
+                          comentario       : coment,
+                          initHour         : hora
 
-                       }),
-                       contentType: "application/json",
-                       cache: false,
-                       timeout: 5000,
-                       complete: function() {
-                           console.log('process complete');
-                       },
+                      }),
+                      contentType: "application/json",
+                      cache: false,
+                      timeout: 5000,
+                      complete: function() {
+                          console.log('process complete');
+                      },
 
-                       success: function(data) {
-
-
-                           console.log('process sucess');
-                       },
-
-                       error: function() {
-                           console.log('process error');
-                       },
-                   });
+                      success: function(data) {
 
 
+                          console.log('process sucess');
+                      },
 
-               });
+                      error: function() {
+                          console.log('process error');
+                      },
+                  });
+
+
+
+              });
 
 
 
@@ -380,21 +375,24 @@ var brotheragem = function() {
 
             <form class="form-inline" name="cadastroQuestao" method="post">
             <input type="hidden" value= <%= userMat %> name="matriculaProf">
-
-        Turma: <select class="form-control" id="nometurma" name="turma" style="width:300px;">
+                <div id="divTurma" class='form-group'>
+        Turma: <select class="form-control" id="nometurma" name="turma" >
               <option disabled selected>Selecione uma turma</option>
               <option id="btn-mostraturma" disabled></option>
             </select>&nbsp&nbsp
-
-          <div id="disc">
-              Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" style="width:300px;">
+</div>
+          <div id="disc" class='form-group'>
+              Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" >
                 <option disabled selected>Selecione uma disciplina</option>
                 <option id="btn-mostradisc"></option>
               </select>&nbsp&nbsp
           </div>
-          <div id="initAula">
-            Início: <select class="timepicker form-control" name="timepicker"  id="horaStart" />          
+          <div id="initAula" class='form-group'>
+            <input placeholder='Às' type="text" name="timepicker" class="time_element form-control" style="width:200px;"   id="horaStart"/>     
+
           </div>
+          <input type="button" value="Pesquisar" id="consultaDiarioTurma"   class="btn btn-default">
+          
           <div id="data">
             <button class="btn btn-primary" type="button" id="btDiaAnterior">
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
