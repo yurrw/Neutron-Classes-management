@@ -210,7 +210,7 @@ exports.pesquisaProfessores	=	function(req, res){
 exports.listalunos	=	function(req, res){
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "select nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.turminha+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
+  var qry = "select nome, aluno.matricula from aluno, turma_aluno where cod_turma = '"+req.body.nometurma+"' AND aluno.matricula=turma_aluno.matricula ORDER BY nome";
   connDB.query(qry,function(err,rows){
     for (var i = 0, len = rows.length; i < len; i++)
       {
@@ -307,7 +307,7 @@ exports.pegaPresenca   =   function(req, res){
       var dataFormatada = datasplit[2] +'-'+ datasplit[1] +'-'+ datasplit[0];
 
 
-      var qry = "SELECT DISTINCT nome, aluno.matricula, presente, comentario,prof_diario.cod_aula "+ 
+      var qry = "SELECT DISTINCT nome, aluno.matricula, presente, comentario,prof_diario.cod_aula "+
                 "FROM aluno, turma_aluno, prof_diario_aluno,prof_diario"+
                 " WHERE cod_turma = '"+req.body.nometurma+"' AND prof_diario.matricula='"+req.user.matricula+"' AND cod_turma=prof_diario.turma"+
                       " AND aluno.matricula=turma_aluno.matricula AND aluno.matricula =  prof_diario_aluno.matricula and prof_diario.data = '"+ dataFormatada +"' AND prof_diario.turma='"+req.body.nometurma+"'       and prof_diario.matricula ='"+req.user.matricula+"'                            AND  prof_diario.horaStart='"+req.body.initHour+"' AND prof_diario.disciplina_id IN (SELECT disciplinas.disciplina_id from disciplinas where disciplina_nome LIKE'"+req.body.disciplina+"')"+

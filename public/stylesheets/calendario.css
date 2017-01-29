@@ -1,0 +1,12 @@
+div.calendar{
+  margin-left: -50px;
+  width: 1400px;
+}
+.cor{
+  margin:0 15px 0 5px;
+}
+.divCor{
+    float: left;
+    width: 125px!important;
+    position: relative;
+}

@@ -91,6 +91,9 @@
       /*text-align: center;*/
     }
 
+    div.calendar{
+      width: 1300px!important;
+    }
 
 }
 @media screen and (max-width: 1440px){
@@ -152,6 +155,10 @@
     }
     #tabelaUnica, #divTabelaConsQuest{
       width:700px!important;
+    }
+
+    div.calendar{
+      width: 1100px!important;
     }
 }
 /*PRINCIPAL EM NOTEBOOKS*/
@@ -237,6 +244,10 @@
     #botaoRemoverConsQ{
       width: 85px!important;
     }
+
+    div.calendar{
+      width: 996px!important;
+    }
 }
 @media only screen and (max-width: 1367px) {
     .modal-header + #TituloPriv {
@@ -312,6 +323,10 @@
 
     #tabelaUnica, #divTabelaConsQuest{
       width: 870px!important;
+    }
+
+    div.calendar{
+      width: 910px!important;
     }
 }
 
@@ -447,6 +462,12 @@
     div#divFiltrosConsQuest .form-control{
       width: 360px!important;
     }
+
+    div.calendar{
+      margin-left: -100px!important;
+      width: 900px!important;
+    }
+
 }
 
 @media  screen and (max-width: 1024px) and (min-width: 1024px)
@@ -494,6 +515,8 @@
       margin-left: -50px;
       padding-left: 0px;
     }
+
+
 
 }
 @media screen and (max-width: 990px)
@@ -667,6 +690,11 @@ div#divFiltrosConsQuest .form-control{
   padding-left: 0px!important;
 }
 
+div.calendar{
+  margin-left: -125px!important;
+  width: 700px!important;
+}
+
 }
 
 @media  screen and (max-width: 765px ) {
@@ -710,6 +738,10 @@ div#divFiltrosConsQuest .form-control{
   width: 575px!important;
 }
 
+div.calendar{
+  margin-left: -135px!important;
+  width: 610px!important;
+}
 }
 
 @media  screen and (max-width: 586px ) {
@@ -805,7 +837,10 @@ div#divFiltrosConsQuest .form-control{
          #divTabelaConsQuest, #tabelaUnica{
            width: 515px!important;
          }
-
+         div.calendar{
+           margin-left: -130px!important;
+           width: 530px!important;
+         }
 }
 @media screen and (max-width: 425px){
     /*cadQuest Pagina*/
@@ -1028,6 +1063,12 @@ div#divFiltrosConsQuest .form-control{
     div#divFiltrosConsQuest .form-control{
       width: 300px!important;
     }
+
+    div.calendar{
+      margin-left: -125px!important;
+      width: 390px!important;
+      font-size: 12px!important;
+    }
 }
 @media  screen and (max-width: 400px ) {
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
@@ -1130,6 +1171,11 @@ div#divFiltrosConsQuest .form-control{
           margin-left: -225px;
         }
 
+        div.calendar{
+          margin-left: -132px!important;
+          width: 350px!important;
+        }
+
 }
 
 
@@ -1197,6 +1243,8 @@ div#divFiltrosConsQuest .form-control{
     div#consQuestContent .backpages{
       margin-left: -235px;
     }
+
+
 }
 @media screen and (max-width: 325px) {
     /*CADASTRO PAGINA QUESTAO*/
@@ -1312,6 +1360,11 @@ div#divFiltrosConsQuest .form-control{
         #tabelaUnica, #divTabelaConsQuest{
           width: 250px!important;
           font-size: 12px;
+        }
+
+        div.calendar{
+          margin-left: -125px!important;
+          width: 300px!important;
         }
 }
 
