@@ -105,7 +105,7 @@ exports.pesquisateste   =   function(req, res){
   var condicaoSerie = "";
   var possivelAND = "";
   //Cria a condição WHERE de autor
-  if(!(req.body.autor == '' || req.body.autor == null || req.body.autor == undefined)){//Só entra se estiver preenchido (serve pra todos os ifs principais abaixo)
+  if(!(req.body.autor == '' || req.body.autor == null || req.body.autor == undefined || req.body.autor == 'Autor')){//Só entra se estiver preenchido (serve pra todos os ifs principais abaixo)
     var condicaoAutor = " autor= (SELECT `matricula` FROM `profs` WHERE nome = '" + req.body.autor + "')";
     x++;
   }
@@ -174,7 +174,7 @@ exports.pesquisateste   =   function(req, res){
     if (rows.length) {
 
       for (var i = 0, len = rows.length; i < len; i++) {
-        questoes.push([rows[i].enunciado, rows[i].gabarito, rows[i].cod_quest, rows[i].autor ]);
+        questoes.push([rows[i].cod_quest, rows[i].enunciado, rows[i].gabarito, rows[i].autor ]);
       }
 
       console.log(questoes);

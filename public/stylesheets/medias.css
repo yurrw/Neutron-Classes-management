@@ -86,6 +86,12 @@
     #textCont{
       width: 362.5px!important;
     }
+    #divFiltrosConsQuest{
+      width: 315px!important;
+      /*text-align: center;*/
+    }
+
+
 }
 @media screen and (max-width: 1440px){
     /*CADQUEST PAGINA*/
@@ -140,6 +146,12 @@
     }
     #textCont{
       width: 312.5px!important;
+    }
+    #divFiltrosConsQuest{
+      width: 320px!important;
+    }
+    #tabelaUnica, #divTabelaConsQuest{
+      width:700px!important;
     }
 }
 /*PRINCIPAL EM NOTEBOOKS*/
@@ -219,6 +231,12 @@
     #nometurma{
       width: 275px!important;
     }
+    #tabelaUnica, #divTabelaConsQuest{
+      width:650px!important;
+    }
+    #botaoRemoverConsQ{
+      width: 85px!important;
+    }
 }
 @media only screen and (max-width: 1367px) {
     .modal-header + #TituloPriv {
@@ -271,6 +289,29 @@
 
     #divDados{
       margin-left: 35px!important;
+    }
+
+    #divFiltrosConsQuest{
+      width: 900px!important;
+      text-align: left;
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 280px!important;
+    }
+
+    #divTabelaConsQuest{
+      border-top:1px solid #DDD;
+      margin-top:10px;
+      padding-top: 10px;
+      float:bottom!important;
+      border-left:0px!important;
+      margin-left:0px!important;
+      padding-left: 0px!important;
+    }
+
+    #tabelaUnica, #divTabelaConsQuest{
+      width: 870px!important;
     }
 }
 
@@ -395,6 +436,17 @@
       margin-left: -50px;
       padding-left: 0px;
     }
+    #divFiltrosConsQuest, #tabelaUnica, #divTabelaConsQuest{
+      width: 750px!important;
+      margin-left: 0px!important;
+      padding-left: 0px!important;
+      border-left: 0px!important;
+
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 360px!important;
+    }
 }
 
 @media  screen and (max-width: 1024px) and (min-width: 1024px)
@@ -442,6 +494,7 @@
       margin-left: -50px;
       padding-left: 0px;
     }
+
 }
 @media screen and (max-width: 990px)
 {
@@ -588,6 +641,31 @@
       margin-left: 0px!important;
     }
 
+div#consQuestContent .backpages{
+  margin-left: -200px;
+}
+
+div#divFiltrosConsQuest .form-control{
+  width: 300px!important;
+}
+
+#divFiltrosConsQuest{
+  width: 620px;
+}
+
+#tabelaUnica, #divTabelaConsQuest{
+  width: 615px!important;
+}
+
+#divTabelaConsQuest{
+  border-top:1px solid #DDD;
+  margin-top:10px;
+  padding-top: 10px;
+  float:bottom!important;
+  border-left:0px!important;
+  margin-left:0px!important;
+  padding-left: 0px!important;
+}
 
 }
 
@@ -619,6 +697,18 @@
       width:568px!important;
       margin-left: 0px!important;
     }
+
+    div#consQuestContent .backpages{
+      margin-left: -250px;
+    }
+
+div#divFiltrosConsQuest .form-control{
+  width: 280px!important;
+}
+
+#divTabelaConsQuest, #tabelaUnica{
+  width: 575px!important;
+}
 
 }
 
@@ -707,6 +797,14 @@
           width:508px!important;
           margin-left: 0px!important;
         }
+
+        div#divFiltrosConsQuest .form-control{
+          width: 250px!important;
+        }
+
+         #divTabelaConsQuest, #tabelaUnica{
+           width: 515px!important;
+         }
 
 }
 @media screen and (max-width: 425px){
@@ -898,7 +996,38 @@
       margin-left: 0px!important;
     }
 
+    #divFiltrosConsQuest{
+      width: 320px!important;
+    }
+    #tabelaUnica, #divTabelaConsQuest{
+      width: 300px!important;
+      font-size: 12px;
+    }
 
+    div#consQuestContent h3{
+      font-size: 2.15em!important;
+    }
+
+    div#tabelaUnica_filter label input{
+      width: 100px;
+    }
+
+    div#tabelaUnica_filter label, div#tabelaUnica_wrapper label{
+      font-size: 12px;
+    }
+
+    div#divTabelaUnica .pagination{
+      width: 31px!important;
+      height: 61px!important;
+    }
+
+    div#consQuestContent .backpages{
+      margin-left: -200px;
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 300px!important;
+    }
 }
 @media  screen and (max-width: 400px ) {
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
@@ -997,6 +1126,9 @@
           margin-left: 0px!important;
         }
 
+        div#consQuestContent .backpages{
+          margin-left: -225px;
+        }
 
 }
 
@@ -1061,6 +1193,10 @@
     right: 0px!important;
     }
     /*------------*/
+
+    div#consQuestContent .backpages{
+      margin-left: -235px;
+    }
 }
 @media screen and (max-width: 325px) {
     /*CADASTRO PAGINA QUESTAO*/
@@ -1169,7 +1305,14 @@
           margin-left: 0px!important;
         }
 
+        div#divFiltrosConsQuest .form-control{
+          width: 250px!important;
+        }
 
+        #tabelaUnica, #divTabelaConsQuest{
+          width: 250px!important;
+          font-size: 12px;
+        }
 }
 
 @media screen and (min-width: 1025px) {

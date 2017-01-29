@@ -136,18 +136,19 @@
 */
 
          }
-         
-          $("#tableCandidatas").dataTable({
-            "iDisplayLength": 5,
-            "bLengthChange": false,
-            data: data,
-            columns: [
+
+          $("#tableCandidatas").dataTable({ //id da tabela
+            "iDisplayLength": 5,            // qtde de resuldados que vao aparecer
+            "bLengthChange": false,         // aqui vc pode abilitar se quer que apareca a mais resultados, olha.
+            data: data,                     //aqui vc passa os dados da tabela dentro de um array, sla.
+            columns: [                    //Aqui vc define as colunas
                 { title: "Enunciado" },
                 { title: "Dificuldade" },
                 { title: "Tipo" },
                 { title: " " }
             ],
             //  "pagingType": "simple_numbers",
+            //ABAIXO PODE DEIXAR ASSIM MESMO hehe
              "pagingType": "numbers",
              "language": {
                "sSearch": "Pesquisar: ",
@@ -155,10 +156,6 @@
                "zeroRecords": "Nenhuma questão encontrada",
                 "infoEmpty": "Nenhuma questão encontrada",
                 "infoFiltered": " ",
-                 "oPaginate": {
-                  "sPrevious": "<",
-                  "sNext": ">",
-                 }
              },
 
           });
@@ -167,7 +164,7 @@
           $(document).ready(function() {
     var t = $('#example').DataTable();
     var counter = 1;
- 
+
     $('#addRow').on( 'click', function () {
         t.row.add( [
             counter +'.1',
@@ -176,14 +173,14 @@
             counter +'.4',
             counter +'.5'
         ] ).draw( false );
- 
+
         counter++;
     } );
- 
+
     // Automatically add a first row of data
     $('#addRow').click();
 } );
-          
+
           */
 
 
@@ -194,10 +191,10 @@
         },
       });
 
-  
 
 
-   
+
+
     });
   });
 
@@ -249,13 +246,13 @@ $(function(){
           },
         });
 
-        
+
 
     }else {
       alert("Por favor, preencha todos os campos ");
 
     }
-        
-   
+
+
   });
 });
