@@ -1,0 +1,345 @@
+/*DIV QUE CONTEM A TABLE E O RESTO LA*/
+#dadoos
+{
+    width: 600px;
+    margin-top: 100px;
+    margin-left: 200px;
+}
+/*TXTBOXES*/
+#nomedisciplina,
+#horaStart,
+#numturma
+{
+    width: 280px;
+    margin-right: 20px;
+}
+#divTurma
+{
+    margin-left: 60px;
+}
+#tabletop
+{
+    width: 800px;
+}
+#formDiario
+{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+/*CONTEUDO DA PAGINA*/
+#diarioCT
+{
+    padding-top: 75px;
+    padding-left: 10px;
+}
+/*DIV CONTENT: DATA E BTS*/
+#data
+{
+    margin-top: -40px;
+    margin-left: 230px;
+    padding-bottom: 65px;
+}
+/*COMENTARIO SOBRE A AULA */
+#textAreas
+{
+    margin-top: 40px;
+    margin-left: 130px;
+}
+/*BOTOES DE IR E VOLTAR A DATA*/
+#btDiaAnterior,
+#btDiaPosterior
+{
+    width: 30px;
+}
+/*SETAS*/
+#btDiaAnterior > span
+{
+    margin-right: 100px!important;
+}
+#btDiaPosterior > span
+{
+    margin-left: -25px!important;
+}
+/*BOTAO DE CADASTRAR AULA NO DIARIO*/
+#btAreas
+{
+    position: absolute;
+    top: 1020px;
+    left: 650px;
+}
+/*ARRUMAR 1680*/
+
+@media screen and (max-width: 1680px)
+{
+}
+@media screen and (max-width: 1600px)
+{
+    #diarioCT
+    {
+        margin-left: -30px;
+    }
+    #textAreas
+    {
+        margin-left: 20px;
+    }
+    #btAreas
+    {
+        left: 550px;
+    }
+}
+@media screen and (max-width: 1440px)
+{
+    #divTurma
+    {
+        margin-left: -45px;
+    }
+    #dadoos
+    {
+        margin-left: 90px;
+    }
+    #textAreas
+    {
+        margin-left: 70px;
+    }
+    #btAreas
+    {
+        left: 450px;
+    }
+}
+@media screen and (max-width: 1366px)
+{
+    #nomedisciplina,
+    #horaStart,
+    #numturma
+    {
+        width: 210px;
+    }
+    #dadoos
+    {
+        margin-left: 10px;
+    }
+    #btAreas
+    {
+        left: 360px;
+    }
+}
+@media screen and (max-width: 1280px)
+{
+    .correctDiarioPresenca
+    {
+        margin-left: -100px;
+    }
+    #diarioCT
+    {
+        margin-left: -80px;
+    }
+    #dadoos
+    {
+        margin-left: 0;
+    }
+    #textAreas
+    {
+        position: absolute;
+        left: 25px;
+    }
+    #btAreas
+    {
+        left: 330px;
+    }
+    #data
+    {
+        margin-left: 250px;
+    }
+}
+@media screen and (max-width: 1024px)
+{
+    .correctDiarioPresenca
+    {
+        margin-left: -0;
+    }
+    #diarioCT
+    {
+        margin-left: 50px;
+    }
+    #formDiario
+    {
+        width: 1000px;
+    }
+    #data
+    {
+        margin-top: 50px;
+        margin-left: 300px;
+    }
+    #tabletop
+    {
+        margin-left: 30px;
+    }
+    #textAreas
+    {
+        left: 110px;
+    }
+    #btAreas
+    {
+        top: 1060px;
+        left: 450px;
+    }
+}
+@media screen and (max-width: 768px)
+{
+    #nomedisciplina,
+    #horaStart,
+    #numturma
+    {
+        width: 150px!important;
+        margin-right: 10px;
+    }
+    .correctTimer
+    {
+        width: 190px!important;
+    }
+    #tabletop
+    {
+        width: 600px;
+        margin-left: 0;
+    }
+    #data
+    {
+        margin-left: 170px;
+    }
+    #textAreas
+    {
+        left: 30px;
+
+        width: 450px!important;
+    }
+    #btAreas
+    {
+        top: 1060px;
+        left: 320px;
+    }
+}
+@media screen and (max-width: 414px)
+{
+    #nomedisciplina,
+    #horaStart,
+    #numturma
+    {
+        width: 300px!important;
+    }
+    #divTurma
+    {
+        margin-left: 0;
+    }
+    #diarioCT > h1
+    {
+        width: 1000px;
+        margin-left: 45px;
+    }
+    #tabletop
+    {
+        width: 325px;
+        margin-left: -10px;
+    }
+    #btAreas
+    {
+        top: 1300px;
+    }
+    #data
+    {
+        width: 220px!important;
+        margin-left: 00px;
+    }
+    #btDiaAnterior
+    {
+        float: left;
+    }
+    #btDiaPosterior
+    {
+        position: absolute;
+        right: 65px;
+    }
+    #txtSelectedDate
+    {
+        position: absolute;
+
+        width: 220px;
+        margin-top: -3px;
+        margin-left: 35px;
+    }
+    #textAreas
+    {
+        left: 40px;
+    }
+}
+@media screen and (max-width: 375px)
+{
+    #diarioCT > h1
+    {
+        margin-left: 45px;
+    }
+    #diarioCT
+    {
+        margin-left: 32px;
+    }
+    #btDiaPosterior
+    {
+        right: 43px;
+    }
+    #btAreas
+    {
+        left: 280px;
+    }
+}
+@media screen and (max-width: 360px)
+{
+    #diarioCT > h1
+    {
+        margin-left: 40px;
+    }
+    #diarioCT
+    {
+        margin-left: 25px;
+    }
+    #btDiaPosterior
+    {
+        right: 30px;
+    }
+    #textAreas
+    {
+        left: 25px;
+    }
+    #btAreas
+    {
+        top: 1240px;
+        left: 275px;
+    }
+    #data
+    {
+        margin-left: 5px;
+    }
+}
+@media screen and (max-width: 320px)
+{
+    #diarioCT > h1
+    {
+        margin-left: 25px;
+    }
+    #nomedisciplina,
+    #horaStart,
+    #numturma
+    {
+        width: 260px!important;
+    }
+    #btAreas
+    {
+        left: 235px;
+    }
+    #tabletop
+    {
+        width: 280px;
+    }
+    #txtSelectedDate
+    {
+        width: 180px;
+    }
+}

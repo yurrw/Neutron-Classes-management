@@ -1,6 +1,7 @@
 ﻿<html lang="pt">
 <head>
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/diario.css">
     <% include ../partes/head %>
 
        <script>
@@ -45,7 +46,7 @@
                        var ginea = data +" ";
                        var spt = ginea.split(",");
                         for(var x=0; x< spt.length; x++){
-                          $("#nometurma").append('<option value='+spt[x]+'>'+spt[x]+'</option> ');
+                          $("#numturma").append('<option value='+spt[x]+'>'+spt[x]+'</option> ');
                         }
                        var name = [];
                        name = data;
@@ -74,7 +75,7 @@
 
                });
 
-               $("#nometurma").change(function() {
+               $("#numturma").change(function() {
                    $('#initAula').show();
       $("#disc").show();
     
@@ -121,7 +122,7 @@
 
 
 var brotheragem = function() {
-    var nometurma = $('#nometurma').val();
+    var nometurma = $('#numturma').val();
     var data = $('#txtSelectedDate').val();
     var hora = $('#horaStart').val();
   var disc = $('#nomedisciplina').val();
@@ -157,35 +158,25 @@ var brotheragem = function() {
                 if (!(i == data.length - 1)) {
                     if (data[i][2] == "true") {
 
-                        $("#IzaMyLuv").append($("<tr/>")
+                        $("#IzaMyLuv").append($("<tr>")  
                             .append($("<td />").val(i + 1).text(i + 1))
 
                             .append($("<td/>").val(data[i][1]).text(data[i][1]))
                             .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-                            //   .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
-
-                            .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', true))
-
-
-
-
-                            .append($("<td  style='align:right; width:100px;'/>")
-
-                            ));
+                            .append($("<td  style='text-align:center;' > ")
+                            .append($(" <input type='checkbox' class='chkPresenca' id='chk' name='chk' value='true' /> ").prop('checked', true))
+                            .append($("</td>")))
+                            ).append($("</tr>"));
                     } else {
-                        $("#IzaMyLuv").append($("<tr/>")
+                        $("#IzaMyLuv").append($("<tr>")
                             .append($("<td />").val(i + 1).text(i + 1))
 
                             .append($("<td/>").val(data[i][1]).text(data[i][1]))
                             .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-
-
-
-
-                            .append($("<td  style='align:right; width:100px;'/>")
-                                .append($("<input type='checkbox' id='chk' name='chk' value='true' /> ").prop('checked', false))
-
-                            ));
+                              .append($("<td  style='text-align:center;'>")
+                            .append($("<input type='checkbox'  class='chkPresenca' id='chk' name='chk' value='true' /> ").prop('checked', false))
+                              .append($("</td>")))
+                            ).append($("</tr>"));
 
 
                     }
@@ -234,7 +225,7 @@ var brotheragem = function() {
 
 
               $("#btAreas").click(function() {
-                  var nometurma = $('#nometurma').val();
+                  var nometurma = $('#numturma').val();
                   var data = $('#txtSelectedDate').val();
                   var coment = $('#textAreas').val();
                   var hora = $('#horaStart').val();
@@ -369,21 +360,23 @@ var brotheragem = function() {
 
 
           <div class="backPages">
-            <H3>Diário de Presença</H3>
+          <div class="content layoutInner " id="diarioCT" >
+
+            <H1>Diário de Presença</H1>
 
             <br>
 
-            <form class="form-inline" name="cadastroQuestao" method="post">
+            <form class="form-inline" name="cadastroDiario" id="formDiario" method="post">
             <input type="hidden" value= <%= userMat %> name="matriculaProf">
                 <div id="divTurma" class='form-group'>
-        Turma: <select class="form-control" id="nometurma" name="turma" >
-              <option disabled selected>Selecione uma turma</option>
+        Turma: <select class="form-control" id="numturma" name="turma" >
+              <option disabled selected>Turma</option>
               <option id="btn-mostraturma" disabled></option>
             </select>&nbsp&nbsp
 </div>
           <div id="disc" class='form-group'>
               Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" >
-                <option disabled selected>Selecione uma disciplina</option>
+                <option disabled selected>Disciplina</option>
                 <option id="btn-mostradisc"></option>
               </select>&nbsp&nbsp
           </div>
@@ -393,53 +386,29 @@ var brotheragem = function() {
           </div>
           <input type="button" value="Pesquisar" id="consultaDiarioTurma"   class="btn btn-default">
           
-          <div id="data">
-            <button class="btn btn-primary" type="button" id="btDiaAnterior">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-
-            </button>
-            <input class="form-control" type="text" id="txtSelectedDate" name="txtSelectedDate" />
-            <button class="btn btn-primary" type="button" id="btDiaPosterior">
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-
-            </button>
-          </div>
-
-
-            <br><br>
-
-<!--             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" name="consultar" id="btn-consultar"  class="btn btn-default">Consultar</button>
- -->
-
-
-                    <br>
-
-
-
-
-
-                    <br>
-
-
-
-
-
-
-
-
-
-
 
 
 
               <div id="dadoos">
-              <table class="table" name="tabletop" id="tabletop" style="width:750px; margin-left: 50px;">
+                        <div id="data">
+                            <button class="btn btn-primary" type="button" id="btDiaAnterior">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+
+                            </button>
+                            <input class="form-control" type="text" id="txtSelectedDate" name="txtSelectedDate" disabled />
+                            <button class="btn btn-primary" type="button" id="btDiaPosterior">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+                            </button>
+                        </div>
+
+              <table class="table" name="tabletop" id="tabletop" style="">
                 <thead class="thead-inverse">
                   <tr>
-                  <th class="celulasCB"   >N° Chamada</th>
-                    <th class="celulasCB" >Matrículas</th>
-                    <th class="celulasCB" >Nomes dos Alunos</th>
-                    <th class="celulasCB" >Presença</th>
+                    <th class="celulasCB" style="width:10%" >#</th>
+                    <th class="celulasCB" style="width:15%" >Matrícula</th>
+                    <th class="celulasCB"  style="width:25%; text-align:center" >Nome</th>
+                    <th class="celulasCB"  style="width:5%; text-align:center" >Presença</th>
 
 
                   </tr>
@@ -451,19 +420,20 @@ var brotheragem = function() {
               </table>
               <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea>
               <br>
-              <input type='button' id="btAreas" type="button" value="Enviar" class="btn btn-primary">
+              <input type='button' id="btAreas" type="button" value="Gravar" class="btn btn-primary">
               </div>
 
             </form>
 
             </div>
-
+</div>
 
 
 
 
       </div>
     </div>
+    <br><br>
     </main>
 
 <script>
