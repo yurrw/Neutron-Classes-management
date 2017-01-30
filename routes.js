@@ -112,6 +112,7 @@ var fs = require('fs');
 })
 */
             app.get('/index',isLogged,HomeController.index);
+            app.get('/admin',isLogged,HomeController.admin);
             app.get('/teste',isLogged,HomeController.teste);
             app.post('/ttt',isLogged,HomeController.ttt)
             app.get('/cadastro',HomeController.cadastro);
@@ -139,11 +140,33 @@ var fs = require('fs');
                         failureFlash : true
                          }));
 
-                app.post('/', passport.authenticate('login', {
+ /*               app.post('/', passport.authenticate('login', {
                 successRedirect : '/index',
                 failureRedirect : '/',
                 failureFlash : true,
-            }));
+                }), function(req,user, res){
+                  console.log("testemiddle");
+                  console.log(req + user +res);
+                });
+*/
+
+app.post('/',
+  passport.authenticate('login',{
+     failureRedirect : '/',
+      failureFlash : true
+  }),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    if(req.user.permissao == "Professor")
+    {
+    res.redirect('/index');
+
+    }else if(req.user.permissao == "Administrador")
+    {
+      res.redirect('/admin');
+    }
+  });
             app.post('/notas', ConsultCtrl.GetNotas);
             app.post('/SaveNotes', ConsultCtrl.SaveNts);
             app.post('/delNTS',ConsultCtrl.DelNts);

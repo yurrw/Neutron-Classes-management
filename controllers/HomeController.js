@@ -1,3 +1,4 @@
+/*GRAVAR A PARADA COMO UMA VARIAVEL E USAR SEMPRE*/
 exports.index		=	function(request, response){
     console.log(request.user);
     response.render('paginas/index',{	user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha });
@@ -15,12 +16,18 @@ exports.logOut		=	function(request, response){
 	request.logout();
 	response.redirect('/');
 };
+
 exports.ttt = function(req, res){
         console.log(req);
 
 };
+var admTeste
 exports.calendario      =   function(request, response){
   response.render('paginas/calendario',{    user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha });
+
+};
+exports.admin      =   function(request, response){
+  response.render('paginas/ADMPage.ejs',{ message: request.flash('MSGAdm'),   user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha });
 
 };
 exports.cadastroQuest		=	function(request, response){
