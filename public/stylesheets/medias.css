@@ -3,456 +3,411 @@
 === Media_Queries ================================================
 ==================================================================
 */
-@media screen and (max-width: 1600px)
-{
+@media screen and (max-width: 1600px){
     /*CADQUEST PAGINA*/
-    .layout
-    {
+    .layout{
         padding-right: 15px;
     }
     /*--------------*/
-    #cabecalho
-    {
+    #cabecalho{
         margin-right: 80px;
     }
-    #pgName
-    {
+    #pgName{
         left: -25px;
     }
-    #imgUsr,
-    #NamUser
-    {
+    #imgUsr , #NamUser{
         margin-top: 0;
     }
-    #cabecalho .dropdown-menu
-    {
+    #cabecalho .dropdown-menu{
         top: 65px;
     }
-    #sid
-    {
+    #sid{
         width: 250px;
         /*z-index: -1;*/
     }
-    .dashElements
-    {
+    .dashElements{
         left: 0;
-
-        height: 50vw!important;
+        height:50vw!important;
     }
-    .anotacoes
-    {
+    .anotacoes{
+        margin-left: 10px;
+
         width: 900px!important;
         height: 300px!important;
-        margin-left: 10px;
     }
-    .clndNext
-    {
+    .clndNext{
         right: 70px!important;
-
         width: 400px;
         height: 710px!important;
     }
-    .evento
-    {
+    .evento{
         margin-left: 15px!important;
     }
 
-    ul#notes
-    {
-        padding-right: 0;
+    ul#notes{
         padding-left: 10px;
+        padding-right: 0;
     }
-    ul li div
-    {
-        font-size: 1.2rem;
+    ul li div {
 
-        width: 150px;
         height: 150px;
+        width: 150px;
+        font-size: 1.2rem;
     }
-    .TurmasBlc
-    {
-        top: 390px!important;
+    .TurmasBlc{
         right: 500px!important;
-
-        width: 250px!important;
         height: 370px!important;
-    }
-    .NotasBlc
-    {
         top: 390px!important;
+        width: 250px!important;
+    }
+    .NotasBlc{
+        margin-left: 10px;
 
+        top: 390px!important;
         width: 600px!important;
         height: 370px!important;
-        margin-left: 10px;
     }
-    #skills
-    {
+    #skills{
+        margin-top: -10px;
         width: 270px!important;
         height: 270px!important;
-        margin-top: -10px;
     }
-    .backTopper
-    {
+    .backTopper{
         left: -82px;
     }
 
-    .backPages
-    {
-        margin-left: -80px;
+    .backPages{
+      margin-left: -80px;
     }
 
-    #tabelaAlunos,
-    #textAreas
-    {
-        width: 725px!important;
+    #tabelaAlunos , #textAreas{
+      width: 725px!important;
     }
-    #textCont
-    {
-        width: 362.5px!important;
+    #textCont{
+      width: 362.5px!important;
     }
+    #divFiltrosConsQuest{
+      width: 315px!important;
+      /*text-align: center;*/
+    }
+
+    div.calendar{
+      width: 1300px!important;
+    }
+
 }
-@media screen and (max-width: 1440px)
-{
+@media screen and (max-width: 1440px){
     /*CADQUEST PAGINA*/
-    #cadquestCT
-    {
+    #cadquestCT{
         margin-left: -50px!important;
     }
     /*---------------*/
-    .dashElements
-    {
+    .dashElements{
         height: 58vw!important;
     }
-    .anotacoes
-    {
+    .anotacoes{
         width: 800px!important;
         height: 300px!important;
     }
-    ul li div
-    {
-        font-size: 1.2rem;
+    ul li div {
 
-        width: 140px;
         height: 140px;
+        width: 140px;
+        font-size: 1.2rem;
     }
-    .NotasBlc
-    {
+    .NotasBlc{
+        margin-left: 10px;
         top: 390px!important;
-
         width: 480px!important;
         height: 370px!important;
-        margin-left: 10px;
     }
-    #skills
-    {
+    #skills{
+        margin-top: -10px;
         width: 250px!important;
         height: 250px!important;
-        margin-top: -10px;
     }
-    .clndNext
-    {
+    .clndNext{
         right: 80px!important;
-
         width: 370px;
         height: 710px!important;
     }
-    .TurmasBlc
-    {
+    .TurmasBlc{
         right: 455px!important;
     }
-    .backTopper
-    {
+    .backTopper{
         left: -100px;
     }
-    #imgUsr
-    {
+    #imgUsr{
         margin-right: 40px;
     }
-    #cabecalho .dropdown-menu
-    {
-        top: 60px;
-        right: 35px;
+    #cabecalho .dropdown-menu{
+    right: 35px;
+    top: 60px;
     }
-    #tabelaAlunos,
-    #textAreas
-    {
-        width: 625px!important;
+    #tabelaAlunos , #textAreas{
+      width: 625px!important;
     }
-    #textCont
-    {
-        width: 312.5px!important;
+    #textCont{
+      width: 312.5px!important;
+    }
+    #divFiltrosConsQuest{
+      width: 320px!important;
+    }
+    #tabelaUnica, #divTabelaConsQuest{
+      width:700px!important;
+    }
+
+    div.calendar{
+      width: 1100px!important;
     }
 }
 /*PRINCIPAL EM NOTEBOOKS*/
-@media screen and (max-width: 1367px)
-{
-    #cabecalho .dropdown-menu
-    {
-        right: 45px;
-    }
-    #sid
-    {
+@media screen and (max-width: 1367px) {
+      #cabecalho .dropdown-menu{
+    right: 45px;
+}
+    #sid{
         width: 260px;
         /*z-index: -1;*/
     }
 
     /*CADQUEST PAGINA*/
-    #cadquestCT
-    {
+    #cadquestCT{
         margin-left: 80px!important;
     }
     /*---------------*/
     /*INDEX PAGINA*/
-    .dashElements
-    {
+    .dashElements{
         left: 10;
-
-        width: 81.5vw!important;
-        height: 51.6vw!important;
         margin-left: 0;
+        height: 51.6vw!important;
+        width:81.5vw!important;
     }
 
-    .anotacoes
-    {
+    .anotacoes{
         width: 670px!important;
         height: 300px!important;
     }
-    .clndNext
-    {
+    .clndNext{
         right: 30px!important;
-
         width: 350px;
         height: 640px!important;
     }
-    .evento
-    {
+    .evento{
         margin-left: 10px!important;
     }
 
-    ul#notes
-    {
-        padding-right: 0;
+    ul#notes{
         padding-left: 5px;
+        padding-right: 0;
     }
-    ul li div
-    {
-        font-size: 1.1rem;
+    ul li div {
 
-        width: 130px;
         height: 130px;
+        width: 130px;
+        font-size: 1.1rem;
     }
-    .TurmasBlc
-    {
-        top: 370px!important;
+    .TurmasBlc{
         right: 405px!important;
-
-        width: 250px!important;
         height: 320px!important;
-    }
-    .NotasBlc
-    {
         top: 370px!important;
-
+        width: 250px!important;
+    }
+    .NotasBlc{
+        top: 370px!important;
         width: 400px!important;
         height: 320px!important;
     }
-    #skills
-    {
+    #skills{
+        margin-top: 30px;
         width: 150px!important;
         height: 150px!important;
-        margin-top: 30px;
     }
-    #imgUsr
-    {
+    #imgUsr{
         margin-right: 50px;
     }
-    /*------------*/
+   /*------------*/
     /*MODAL DE PRIVACIDADE*/
-    #tabelaAlunos,
-    #textAreas
-    {
-        width: 590px!important;
+    #tabelaAlunos , #textAreas{
+      width: 590px!important;
     }
-    #textCont
-    {
-        width: 295px!important;
+    #textCont{
+      width: 295px!important;
     }
 
-    #nometurma
-    {
-        width: 275px!important;
+    #nometurma{
+      width: 275px!important;
+    }
+    #tabelaUnica, #divTabelaConsQuest{
+      width:650px!important;
+    }
+    #botaoRemoverConsQ{
+      width: 85px!important;
+    }
+
+    div.calendar{
+      width: 996px!important;
     }
 }
-@media only screen and (max-width: 1367px)
-{
-    .modal-header + #TituloPriv
-    {
+@media only screen and (max-width: 1367px) {
+    .modal-header + #TituloPriv {
         /*margin-left:200px;*/
     }
-    .priv > .modal-body
-    {
-        margin-left: 130px;
+    .priv > .modal-body {
+        margin-left:130px;
     }
 }
 
 /*POR 1280 e 1024 dps */
-@media  screen and (max-width: 1280px) and (min-width: 1280px)
-{
-    .dashElements
-    {
-        left: 0!important;
-
+@media  screen and (max-width: 1280px) and (min-width: 1280px) {
+    .dashElements{
+        left: 0px!important;
         height: 100vh!important;
     }
 
-    .anotacoes
-    {
+     .anotacoes{
         width: 48vw!important;
     }
-    ul li div
-    {
-        font-size: 1.2rem;
+        ul li div {
 
-        width: 115px;
         height: 115px;
+        width: 115px;
+        font-size: 1.2rem;
     }
-    .clndNext
-    {
+    .clndNext{
         height: 640px!important;
     }
-    .TurmasBlc
-    {
-        left: 430px!important;
-
+    .TurmasBlc{
         width: 225px!important;
+      left: 430px!important;
     }
-    .NotasBlc
-    {
+    .NotasBlc{
         width: 30vw!important;
     }
 
-    #tabelaAlunos,
-    #textAreas
-    {
-        width: 590px!important;
-        margin-left: 35px!important;
+    #tabelaAlunos , #textAreas{
+      width: 590px!important;
+      margin-left: 35px!important;
     }
-    #textCont
-    {
-        width: 295px!important;
-        margin-left: 35px!important;
+    #textCont{
+      width: 295px!important;
+      margin-left: 35px!important;
     }
 
-    #nometurma
-    {
-        width: 250px!important;
+    #nometurma{
+      width: 250px!important;
     }
 
-    #divDados
-    {
-        margin-left: 35px!important;
+    #divDados{
+      margin-left: 35px!important;
+    }
+
+    #divFiltrosConsQuest{
+      width: 900px!important;
+      text-align: left;
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 280px!important;
+    }
+
+    #divTabelaConsQuest{
+      border-top:1px solid #DDD;
+      margin-top:10px;
+      padding-top: 10px;
+      float:bottom!important;
+      border-left:0px!important;
+      margin-left:0px!important;
+      padding-left: 0px!important;
+    }
+
+    #tabelaUnica, #divTabelaConsQuest{
+      width: 870px!important;
+    }
+
+    div.calendar{
+      width: 910px!important;
     }
 }
 
 
-@media screen and (min-width: 1030px)
-{
-    #panel
-    {
+@media screen and (min-width: 1030px) {
+
+    #panel{
         left: -12%;
     }
-    #sid
-    {
+    #sid{
         z-index: 999;
     }
-    .priv > .modal-body
-    {
+    .priv > .modal-body{
         /*margin-left:-20px!important;*/
+
     }
-    #indexContent
-    {
-        left: -200px;
+    #indexContent{
+        left:-200px;
     }
+
 }
-@media screen and (max-width: 1030px)
-{
-    #pgName
-    {
+@media screen and (max-width: 1030px) {
+    #pgName{
         left: 75px;
     }
-    #cabecalho
-    {
-        width: 100vw!important;
+    #cabecalho{
         margin-right: -50px;
-
+        width: 100vw!important;
         background-color: white;
     }
-    .backTopper
-    {
-        left: -35px;
-
+    .backTopper{
         width: 105vw;
+        left: -35px;
     }
     /*cadQuest Pagina*/
-    #cadQuestContent
-    {
-        left: -45px!important;
-
+     #cadQuestContent{
         width: 100vw!important;
-    }
+        left: -45px!important;
+     }
 
-    .backPages
-    {
-        height: 105vh!important;
+     .backPages{
         margin-top: -50px!important;
-        margin-left: -125px;
         padding-top: 50px;
-    }
-    .layout
-    {
-        padding-right: 30px!important;
-    }
-    #cadquestCT
-    {
+            margin-left: -125px;
+            height: 105vh!important;
+     }
+     .layout{
+                padding-right: 30px!important;
+     }
+    #cadquestCT{
         margin-left: 225px!important;
     }
     /*------------*/
 
     /*INDEX PAGINA*/
-    .dashElements
-    {
+    .dashElements{
+        margin-left:-100px!important;
         left: 65px;
-
-        width: 80vh!important;
         height: 100vh!important;
-        margin-left: -100px!important;
+        width:80vh!important;
     }
-    .anotacoes
-    {
+    .anotacoes{
         width: 95vw!important;
         height: 300px!important;
     }
-    .clndNext
-    {
-        top: 370px;
-        right: 80px!important;
+    .clndNext{
+            top: 370px;
+            right: 80px!important;
     }
-    .NotasBlc
-    {
+    .NotasBlc{
         top: 370px!important;
-
         width: 55vw!important;
         height: 320px!important;
     }
-    ul li div
-    {
-        font-size: 1.1rem;
+    ul li div {
 
-        width: 150px;
         height: 150px;
+        width: 150px;
+        font-size: 1.1rem;
     }
-    .TurmasBlc
-    {
+    .TurmasBlc{
         /*right:      405px!important;*/
         /*height: 320px!important;*/
         top: 725px!important;
@@ -462,71 +417,73 @@
     /*------------*/
     /*------------*/
     /*------------*/
-    .priv > .modal-body
-    {
-        margin-left: 20%;
+    .priv > .modal-body{
+        margin-left:20%;
+
     }
-    #indexContent
-    {
+    #indexContent {
         position: absolute;
         left: 0;
-
-        width: 100vw!important;
-        margin-left: -200px;
+        margin-left:-200px;
+        width:100vw!important;
     }
-    #divDados
-    {
-        float: bottom!important;
-
-        margin: 50px 0 0 0!important;
-
-        border-top: 1px solid #ddd!important;
-        border-left: 0!important;
+    #divDados{
+      margin:50px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        width: 750px!important;
-        margin: 50px 0 0 0!important;
+    #tabelaAlunos{
+      width:750px!important;
+      margin: 50px 0px 0px 0px!important;
     }
 
-    #textCont
-    {
-        width: 375px!important;
-        margin-left: 0!important;
+    #textCont{
+      width: 375px!important;
+      margin-left: 0px!important;
     }
-    #textAreas
-    {
-        width: 750px!important;
-        margin-left: 0!important;
+    #textAreas{
+      width:750px!important;
+      margin-left: 0px!important;
     }
-    .correctConsTurma
-    {
-        margin-left: -50px;
-        padding-left: 0;
+    .correctConsTurma{
+      margin-left: -50px;
+      padding-left: 0px;
     }
+    #divFiltrosConsQuest, #tabelaUnica, #divTabelaConsQuest{
+      width: 750px!important;
+      margin-left: 0px!important;
+      padding-left: 0px!important;
+      border-left: 0px!important;
+
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 360px!important;
+    }
+
+    div.calendar{
+      margin-left: -100px!important;
+      width: 900px!important;
+    }
+
 }
 
 @media  screen and (max-width: 1024px) and (min-width: 1024px)
-                and (max-height: 768px) and (min-height: 768px)
-{
-    .clndNext
-    {
-        right: 25px!important;
-
-        height: 320px!important;
+                and (max-height: 768px) and (min-height: 768px){
+    .clndNext{
+            right: 25px!important;
+            height: 320px!important;
     }
-    .dashElements
-    {
-        width: 135vh!important;
+    .dashElements{
+        width:135vh!important;
     }
-    .NotasBlc
-    {
+    .NotasBlc{
         width: 35vw!important;
         /*height: 320px!important;*/
     }
-    .TurmasBlc
-    {
+    .TurmasBlc{
         /*right:      405px!important;*/
         /*height: 320px!important;*/
         top: 370px!important;
@@ -534,78 +491,73 @@
         /*width: 250px!important;*/
     }
 
-    #divDados
-    {
-        float: bottom!important;
-
-        margin: 50px 0 0 0!important;
-
-        border-top: 1px solid #ddd!important;
-        border-left: 0!important;
+    #divDados{
+      margin:50px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        width: 750px!important;
-        margin: 50px 0 0 0!important;
+    #tabelaAlunos{
+      width:750px!important;
+      margin: 50px 0px 0px 0px!important;
     }
 
-    #textCont
-    {
-        width: 375px!important;
-        margin-left: 0!important;
+    #textCont{
+      width: 375px!important;
+      margin-left: 0px!important;
     }
-    #textAreas
-    {
-        width: 750px!important;
-        margin-left: 0!important;
+    #textAreas{
+      width:750px!important;
+      margin-left: 0px!important;
     }
-    .correctConsTurma
-    {
-        margin-left: -50px;
-        padding-left: 0;
+    .correctConsTurma{
+      margin-left: -50px;
+      padding-left: 0px;
     }
+
+
+
 }
 @media screen and (max-width: 990px)
 {
-    .priv input
-    {
-        width: 75%;
+    .priv input {
+        width:75%;
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 30%;
+    .modal-header + #TituloPriv {
+        margin-left:30%;
     }
     #dropTarget
     {
-        border: 2px solid black!important;
+        border:2px solid black!important;
     }
     .perfilContent
     {
         width: 100%!important;
     }
-    #PerfilDados input,
-    #PerfilDados p
+    #PerfilDados input, #PerfilDados p
     {
         width: 30%;
-    }
-    #RightPart > h1
-    {
-        font-size: 2.5rem;
 
-        margin-left: 5px;
-        padding-bottom: 5px;
+    }
+    #RightPart >h1
+    {
+        font-size:2.5rem;
+        margin-left:5px;
+        padding-bottom:5px;
+
     }
     #Atualizar
     {
-        margin-top: -10px;
+        margin-top:-10px;
         margin-left: 130px;
     }
+
+
 }
-@media  screen and (max-width: 768px )
-{
+@media  screen and (max-width: 768px ) {
     /*cadQuest Pagina*/
-    /*#cadQuestContent{
+     /*#cadQuestContent{
         width: 100vw!important;
         left: -45px!important;
      }
@@ -629,587 +581,550 @@
         width: 415px!important;
     }
     */
-    .rating
-    {
+    .rating {
         width: 100px;
     }
-    #cadquestCT
-    {
+      #cadquestCT{
         margin-left: 75px!important;
     }
     /*------------*/
 
     /*PAGINA INDEX*/
-    ul li div
-    {
-        font-size: 1.1rem;
+    ul li div {
 
-        width: 130px;
         height: 130px;
+        width: 130px;
+        font-size: 1.1rem;
     }
-    .clndNext
-    {
-        right: 50px!important;
-
+    .clndNext{
         width: 300px;
         height: 580px!important;
+            right: 50px!important;
     }
-    .TurmasBlc
-    {
+    .TurmasBlc{
         top: 700px!important;
-
         height: 250px!important;
     }
     /*------------*/
-    #r2
-    {
-        padding-top: 60px!important;
+    #r2{
+        padding-top:60px!important;
     }
-    #Atualizar
-    {
-        margin-left: 118px;
+    #Atualizar {
+        margin-left:118px;
     }
-    .msg
-    {
-        width: 260px;
+    .msg{
+        width:260px;
     }
     /*PAGINA DE LOGINHO*/
-    .allLG
-    {
-        width: 600px;
+    .allLG{
+        width:600px;
     }
-    .loginSData
-    {
-        width: 340px;
+    .loginSData{
+        width:340px;
     }
-    #RightForm
-    {
-        width: 260px;
+    #RightForm{
+        width:260px;
     }
-    .txtBox
-    {
-        width: 220px!important;
+    .txtBox{
+        width:220px!important;
     }
-    #bt1
-    {
-        width: 220px!important;
-        height: 40px!important;
+    #bt1{
+        width:220px!important;
+        height:40px!important;
     }
-    #bt2
-    {
+    #bt2{
         margin-left: 60px;
+
     }
-    .loginSData p
-    {
-        font-size: 1.4rem;
+    .loginSData p{
+        font-size:1.4rem;
     }
-    #loginAlert
-    {
-        margin-left: 0;
+    #loginAlert{
+        margin-left:0;
     }
 
-    #divDados
-    {
-        float: bottom!important;
-
-        margin: 40px 0 0 0!important;
-
-        border-top: 1px solid #ddd!important;
-        border-left: 0!important;
+    #divDados{
+      margin:40px 0px 0px 0px!important;
+      float:bottom!important;
+      border-top:1px solid #DDD!important;
+      border-left: 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        width: 650px!important;
-        margin: 40px 0 0 0!important;
+    #tabelaAlunos{
+      width:650px!important;
+      margin: 40px 0px 0px 0px!important;
     }
 
-    #textCont
-    {
-        width: 325px!important;
-        margin-left: 0!important;
+    #textCont{
+      width: 325px!important;
+      margin-left: 0px!important;
     }
-    #textAreas
-    {
-        width: 650px!important;
-        margin-left: 0!important;
+    #textAreas{
+      width:650px!important;
+      margin-left: 0px!important;
     }
+
+div#consQuestContent .backpages{
+  margin-left: -200px;
 }
 
-@media  screen and (max-width: 765px )
-{
-    #PerfilDados input,
-    #PerfilDados p
-    {
+div#divFiltrosConsQuest .form-control{
+  width: 300px!important;
+}
+
+#divFiltrosConsQuest{
+  width: 620px;
+}
+
+#tabelaUnica, #divTabelaConsQuest{
+  width: 615px!important;
+}
+
+#divTabelaConsQuest{
+  border-top:1px solid #DDD;
+  margin-top:10px;
+  padding-top: 10px;
+  float:bottom!important;
+  border-left:0px!important;
+  margin-left:0px!important;
+  padding-left: 0px!important;
+}
+
+div.calendar{
+  margin-left: -125px!important;
+  width: 700px!important;
+}
+
+}
+
+@media  screen and (max-width: 765px ) {
+    #PerfilDados input, #PerfilDados p {
         width: 100%;
+
     }
 
-    #RightPart
-    {
-        margin-left: 350px!important;
+    #RightPart {
+        margin-left:350px!important;
     }
 
-    #divDados
-    {
-        text-align: center;
-    }
-
-    #tabelaAlunos
-    {
-        font-size: 12px!important;
-
-        width: 568px!important;
-        margin: 20px 0 10px 0!important;
-    }
-
-    #textCont
-    {
-        width: 284px!important;
-        margin-left: 0!important;
-    }
-    #textAreas
-    {
-        width: 568px!important;
-        margin-left: 0!important;
-    }
+#divDados{
+  text-align: center;
 }
 
-@media  screen and (max-width: 586px )
-{
-    .modal-header + #TituloPriv
-    {
-        margin-left: 22%;
+    #tabelaAlunos{
+      width:568px!important;
+      margin: 20px 0px 10px 0px!important;
+      font-size: 12px!important;
     }
-    .perfilContent
-    {
-        /*CONTAINER */
+
+    #textCont{
+      width: 284px!important;
+      margin-left: 0px!important;
+    }
+    #textAreas{
+      width:568px!important;
+      margin-left: 0px!important;
+    }
+
+    div#consQuestContent .backpages{
+      margin-left: -250px;
+    }
+
+div#divFiltrosConsQuest .form-control{
+  width: 280px!important;
+}
+
+#divTabelaConsQuest, #tabelaUnica{
+  width: 575px!important;
+}
+
+div.calendar{
+  margin-left: -135px!important;
+  width: 610px!important;
+}
+}
+
+@media  screen and (max-width: 586px ) {
+
+  .modal-header + #TituloPriv {
+        margin-left:22%;
+    }
+    .perfilContent { /*CONTAINER */
         height: 120%;
-
-        background-color: #f4f4f5 !important;
+        background-color: #F4F4F5 !important;
     }
 
-    #leftPart
-    {
-        margin-left: 70px !important;
-        /*PARTE COM A FOTO DO USUARIO*/
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         /*width:100%;*/
-
         background: none;
+        margin-left: 70px !important;
     }
 
-    #RightPart
-    {
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
+        color: #3d464d;
+        margin-left: 50px !important;
         /*border-top: 3px solid black;*/
         margin-top: 360px;
-        margin-left: 50px !important;
-        /*PARTE COM OS DADOS DO USUARIO*/
-
-        color: #3d464d;
     }
 
-    #dropTarget
-    {
-        /*IMAGEM DO PERFIL*/
+    #dropTarget { /*IMAGEM DO PERFIL*/
         width: 210px;
         height: 210px;
     }
 
-    .edpencil
-    {
-        /*LAPIS PRA EDITAR*/
+    .edpencil { /*LAPIS PRA EDITAR*/
         /*float: right;*/
         /*margin-right: 40px!important;*/
     }
 
-    #tituloPerfil
-    {
-        position: absolute;
-
-        margin-top: -340px !important;
-        margin-left: 27px !important;
-        /*MENSAGEM DO TOPO*/
-
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
         color: #3d464d;
+        position: absolute;
+        margin-left: 27px !important;
+        margin-top: -340px !important;
+
         /*top:0!important;*/
     }
 
-    .inputfile + label
-    {
-        /*BOTAO DE ATUALIZAR FOTO*/
+    .inputfile + label { /*BOTAO DE ATUALIZAR FOTO*/
         width: 210px;
         margin-top: 10px;
     }
 
-    #ModalConteudo .modal-header > .close
-    {
-        /*BOTAO DE FECHAR SUPERIOR*/
+    #ModalConteudo .modal-header > .close { /*BOTAO DE FECHAR SUPERIOR*/
         color: #3d464d;
     }
 
-    #PerfilDados p,
-    #PerfilDados input
-    {
-        /*INPUTS DE TEXTO E OS P'aragrafos'*/
+    #PerfilDados p, #PerfilDados input { /*INPUTS DE TEXTO E OS P'aragrafos'*/
         width: 270px !important;
     }
 
-    #RightPart #Atualizar
-    {
+    #RightPart #Atualizar { /*BOTAO DE ATUALIZAR DADOS*/
+        clear:both;
         position: relative;
-        /*BOTAO DE ATUALIZAR DADOS*/
-
-        clear: both;
         /*float: right;*/
-
         margin-right: -400px!important;
         /*margin-right: 50px;*/
+
+
         /*position: absolute!important;*/
         /*margin-right:-40!important;*/
     }
 
-    #divDados
-    {
-        margin: 20px 0 0 0!important;
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        font-size: 12px!important;
+        #tabelaAlunos{
+          width:508px!important;
+          margin: 20px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
 
-        width: 508px!important;
-        margin: 20px 0 10px 0!important;
-    }
+        #textCont{
+          width: 254px!important;
+          margin-left: 0px!important;
+        }
+        #textAreas{
+          width:508px!important;
+          margin-left: 0px!important;
+        }
 
-    #textCont
-    {
-        width: 254px!important;
-        margin-left: 0!important;
-    }
-    #textAreas
-    {
-        width: 508px!important;
-        margin-left: 0!important;
-    }
+        div#divFiltrosConsQuest .form-control{
+          width: 250px!important;
+        }
+
+         #divTabelaConsQuest, #tabelaUnica{
+           width: 515px!important;
+         }
+         div.calendar{
+           margin-left: -130px!important;
+           width: 530px!important;
+         }
 }
-@media screen and (max-width: 425px)
-{
+@media screen and (max-width: 425px){
     /*cadQuest Pagina*/
-    #cadQuestContent
-    {
+     #cadQuestContent{
         left: -70px!important;
-    }
-    .backPages
-    {
-        height: 230vh!important;
-    }
-    #cadquestCT
-    {
+     }
+  .backPages{
+            height: 230vh!important;
+     }
+    #cadquestCT{
         margin-left: 90px!important;
     }
-    #cadquestCT textarea,
-    .opsCadQuest
-    {
+    #cadquestCT textarea,  .opsCadQuest{
         width: 300px!important;
     }
-    .opsCadQuest
-    {
+     .opsCadQuest{
         float: left;
-    }
-    .btCadQuest
-    {
+     }
+     .btCadQuest{
         margin-left: -300px;
-    }
-    .lnAppear
-    {
-        float: left;
+     }
+     .lnAppear{
 
         width: 15px;
         height: 15px;
-    }
-    .lnAppearSpn
-    {
         float: left;
-    }
-    .layoutInner > h3
-    {
-        font-size: 3.5rem!important;
-
-        width: 400px!important;
-        margin-left: -15px!important;
-    }
+     }
+     .lnAppearSpn{
+        float: left;
+     }
+.layoutInner > h3{
+    margin-left: -15px!important;
+    width: 400px!important;
+    font-size: 3.5rem!important;
+}
 
     /*------------*/
     /*PAGINA DE LOGINHO*/
-    .loginSData
-    {
+    .loginSData{
         display: none;
     }
-    #RightForm
-    {
+    #RightForm{
+        margin-left: 0px;
         float: left;
-
-        width: 60%;
-        margin-left: 0;
-
+        width:60%;
         border-radius: 10px;
+
     }
-    #createUser
-    {
+    #createUser{
         border-bottom-left-radius: 10px;
+
     }
-    #bckbg
-    {
+    #bckbg{
+        margin-top:00px;
         /*background-position: 100%;*/
-        height: 100%!important;
-        margin-top: 00px;
+        height:100%!important;
     }
-    .txtBox
-    {
-        width: 300px!important;
-        margin-left: 10px;
+    .txtBox{
+        margin-left:10px;
+        width:300px!important;
     }
-    #bt1
-    {
-        width: 300px!important;
-        margin-left: -5px;
+    #bt1{
+        margin-left:-5px;
+        width:300px!important;
     }
-    #formLog > label
-    {
-        margin-left: 0;
+    #formLog > label{
+        margin-left:0px;
     }
-    #bt2
-    {
-        margin-left: 120px;
+    #bt2{
+        margin-left:120px;
     }
-    #loginAlert
-    {
-        margin-left: 50px;
+    #loginAlert {
+        margin-left:50px;
     }
-    #RightForm > #RFTitle
-    {
+    #RightForm > #RFTitle{
         display: flex;
-
-        margin-top: 50px;
-        margin-left: 60px;
-        padding-bottom: 10px;
-
-        color: #42b7e6;
+        color:#42B7E6;
+        margin-top:50px;
+        margin-left:60px;
+        padding-bottom:10px;
     }
-    #formLog
-    {
-        margin-top: 20px!important;
+    #formLog{
+        margin-top:20px!important;
     }
+
 }
 
-@media  screen and (max-width: 415px )
-{
+@media  screen and (max-width: 415px ) {
     /*CADASTRO QUESTAO*/
-    #cadQuestContent
-    {
+     #cadQuestContent{
         /*width: 100vw!important;*/
         left: -70px!important;
-    }
+     }
     /*----------------*/
     /*Pagina Index*/
-    .dashElements
-    {
+    .dashElements{
         left: 90px;
-
         height: 200vh!important;
         /*height: 100vh!important;*/
         /*width:80v/h!important;*/
     }
-    .backTopper
-    {
+    .backTopper{
         left: -10px;
     }
-    #imgUsr
-    {
+    #imgUsr{
         position: absolute;
-        top: 7px;
         right: -25px;
-    }
-    #NamUser
-    {
-        position: absolute;
         top: 7px;
-        right: 55px;
     }
-    .toggle-button
-    {
+    #NamUser{
+        position: absolute;
+        right: 55px;
+        top: 7px;
+    }
+    .toggle-button{
         left: 10px!important;
     }
-    #cabecalho .dropdown-menu
-    {
+    #cabecalho .dropdown-menu{
         top: 55px;
         left: -11px;
     }
-    .anotacoes
-    {
+    .anotacoes{
         top: 15px!important;
         left: 20px!important;
-
         height: 400px!important;
     }
-    ul#notes
-    {
-        padding-right: 0;
+    ul#notes{
         padding-left: 15px;
+        padding-right: 0;
     }
-    .clndNext
-    {
-        top: 430px;
-        left: 30px!important;
-
-        width: 393px!important;
-        height: 350px!important;
+    .clndNext{
+            width: 393px!important;
+            height: 350px!important;
+            top: 430px;
+            left: 30px!important;
     }
-    .NotasBlc
-    {
+    .NotasBlc{
+        width:  393px!important;
+        height: 250px!important;
         top: 800px!important;
         left: 20px!important;
-
-        width: 393px!important;
-        height: 250px!important;
     }
-    .TurmasBlc
-    {
-        top: 1065px!important;
+    .TurmasBlc{
         left: 30px;
-
         width: 393px!important;
         height: 200px!important;
+        top: 1065px!important;
     }
 
-    #skills
-    {
+         #skills{
         margin-top: -20px;
     }
 
     /*------------*/
-    #RightPart
-    {
-        /*PARTE COM OS DADOS DO USUARIO*/
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 60px !important;
     }
-    #tituloPerfil
-    {
-        /*MENSAGEM DO TOPO*/
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
         margin-left: 15px !important;
+
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 18%;
+    .modal-header + #TituloPriv {
+        margin-left:18%;
     }
 
-    .priv input
-    {
+    .priv input{
         width: 280px;
     }
-    .msg
-    {
-        width: 250px;
+    .msg{
+        width:250px;
     }
-    .priv > .modal-body
-    {
+    .priv > .modal-body {
         margin-left: 4%;
     }
 
-    #divDados
-    {
-        margin: 20px 0 0 0!important;
+#divDados{
+  margin: 20px 0px 0px 0px!important;
+}
+
+    #tabelaAlunos{
+      width:350px!important;
+      margin: 20px 0px 10px 0px!important;
+      font-size: 12px!important;
     }
 
-    #tabelaAlunos
-    {
-        font-size: 12px!important;
-
-        width: 350px!important;
-        margin: 20px 0 10px 0!important;
+    #textCont, #textAreas{
+      width: 350px!important;
+      margin-left: 0px!important;
     }
 
-    #textCont,
-    #textAreas
-    {
-        width: 350px!important;
-        margin-left: 0!important;
+    #divFiltrosConsQuest{
+      width: 320px!important;
+    }
+    #tabelaUnica, #divTabelaConsQuest{
+      width: 300px!important;
+      font-size: 12px;
+    }
+
+    div#consQuestContent h3{
+      font-size: 2.15em!important;
+    }
+
+    div#tabelaUnica_filter label input{
+      width: 100px;
+    }
+
+    div#tabelaUnica_filter label, div#tabelaUnica_wrapper label{
+      font-size: 12px;
+    }
+
+    div#divTabelaUnica .pagination{
+      width: 31px!important;
+      height: 61px!important;
+    }
+
+    div#consQuestContent .backpages{
+      margin-left: -200px;
+    }
+
+    div#divFiltrosConsQuest .form-control{
+      width: 300px!important;
+    }
+
+    div.calendar{
+      margin-left: -125px!important;
+      width: 390px!important;
+      font-size: 12px!important;
     }
 }
-@media  screen and (max-width: 400px )
-{
-    #leftPart
-    {
-        /*PARTE COM A FOTO DO USUARIO*/
+@media  screen and (max-width: 400px ) {
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 50px !important;
     }
 
-    #RightPart
-    {
-        /*PARTE COM OS DADOS DO USUARIO*/
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 40px !important;
     }
-    #tituloPerfil
-    {
-        /*MENSAGEM DO TOPO*/
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
         margin-left: 17px !important;
+
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 15%;
+    .modal-header + #TituloPriv {
+        margin-left:15%;
     }
-    .priv input
-    {
+    .priv input{
         width: 250px;
     }
-    .msg
-    {
-        width: 220px;
+    .msg{
+        width:220px;
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 20%;
+    .modal-header + #TituloPriv {
+        margin-left:20%;
     }
 
-    .priv > .modal-body
-    {
+    .priv > .modal-body {
         margin-left: 10%;
     }
     /*PAGINA INDEX*/
-    .anotacoes
-    {
+     .anotacoes{
         top: 15px!important;
         left: 20px!important;
-
         height: 400px!important;
     }
-    ul#notes
-    {
-        padding-right: 0;
+    ul#notes{
         padding-left: 5px;
+        padding-right: 0;
     }
-    ul li div
-    {
-        font-size: 1.2rem;
+    ul li div {
 
-        width: 120px;
         height: 120px;
+        width: 120px;
+        font-size: 1.2rem;
     }
-    .new-note
-    {
+    .new-note{
         right: 20px!important;
     }
-    .clndNext,
-    .NotasBlc,
-    .TurmasBlc
-    {
-        width: 355px!important;
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 355px!important;
     }
-    #skills
-    {
+    #skills{
         width: 120px!important;
         height: 120px!important;
     }
-    /*    .NotasBlc{
+/*    .NotasBlc{
         width:  393px!important;
         height: 250px!important;
         top: 800px!important;
@@ -1223,292 +1138,248 @@
     }
     /*------------*/
 }
-@media screen and (max-width: 375px)
-{
+@media screen and (max-width: 375px) {
     /*cadQuest Pagina*/
 
-    #cadquestCT
-    {
+    #cadquestCT{
         margin-left: 70px!important;
     }
     /*------------*/
-    #RightForm
-    {
-        margin-left: -22px;
+    #RightForm{
+        margin-left:-22px;
     }
-    #loginAlert
-    {
-        margin-left: 55px;
+    #loginAlert {
+        margin-left:55px;
     }
 
-    #divDados
-    {
-        margin: 20px 0 0 0!important;
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        font-size: 12px!important;
+        #tabelaAlunos{
+          width:320px!important;
+          margin: 10px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
 
-        width: 320px!important;
-        margin: 10px 0 10px 0!important;
-    }
+        #textAreas, #textCont{
+          width:320px!important;
+          margin-left: 0px!important;
+        }
 
-    #textAreas,
-    #textCont
-    {
-        width: 320px!important;
-        margin-left: 0!important;
-    }
+        div#consQuestContent .backpages{
+          margin-left: -225px;
+        }
+
+        div.calendar{
+          margin-left: -132px!important;
+          width: 350px!important;
+        }
+
 }
 
 
-@media  screen and (max-width: 361px )
-{
-    /*360width*/
-    #RightPart
-    {
-        /*PARTE COM OS DADOS DO USUARIO*/
+@media  screen and (max-width: 361px ) {  /*360width*/
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 35px !important;
     }
-    #leftPart
-    {
-        /*PARTE COM A FOTO DO USUARIO*/
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 45px !important;
     }
-    #tituloPerfil
-    {
-        /*MENSAGEM DO TOPO*/
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
         margin-left: 17px !important;
+
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 17%;
+    .modal-header + #TituloPriv {
+        margin-left:17%;
     }
-    .priv > .modal-body
-    {
+    .priv > .modal-body {
         margin-left: 7%;
     }
-    #RightForm
-    {
+    #RightForm{
         width: 345px;
+
     }
-    #RightForm > #RFTitle
-    {
-        margin-left: 50px;
+    #RightForm > #RFTitle{
+        margin-left:50px;
     }
-    .txtBox
-    {
-        margin-left: 0;
+    .txtBox{
+        margin-left:0px;
     }
-    #bt1
-    {
-        margin-left: -15px;
+    #bt1{
+        margin-left:-15px;
     }
-    #bt2
-    {
-        margin-left: 110px;
+    #bt2{
+        margin-left:110px;
     }
     /*PAGINA INDEX*/
-    .clndNext,
-    .NotasBlc,
-    .TurmasBlc
-    {
-        width: 342px!important;
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 342px!important;
     }
-    #pgName
-    {
+    #pgName{
         display: none;
     }
-    ul li div
-    {
-        font-size: 1.1rem;
+    ul li div {
 
-        width: 100px;
         height: 100px;
+        width: 100px;
+        font-size: 1.1rem;
     }
-    ul#notes
-    {
-        padding-right: 0;
+    ul#notes{
         padding-left: 20px;
+        padding-right: 0;
     }
-    .fa-calendar
-    {
+    .fa-calendar{
         right: 40px!important;
     }
-    .toggle-button
-    {
+     .toggle-button{
         left: 20px!important;
     }
-    #cabecalho .dropdown-menu
-    {
-        right: 0!important;
+    #cabecalho .dropdown-menu{
+    right: 0px!important;
     }
     /*------------*/
-}
-@media screen and (max-width: 325px)
-{
-    /*CADASTRO PAGINA QUESTAO*/
-    #cadquestCT
-    {
-        margin-left: 50px!important;
-    }
-    .layoutInner > h3
-    {
-        font-size: 2.6rem!important;
 
-        margin-left: 5px!important;
+    div#consQuestContent .backpages{
+      margin-left: -235px;
     }
+
+
+}
+@media screen and (max-width: 325px) {
+    /*CADASTRO PAGINA QUESTAO*/
+            #cadquestCT{
+        margin-left: 50px!important;
+        }
+        .layoutInner > h3{
+            margin-left: 5px!important;
+                font-size: 2.6rem!important;
+        }
     /*-----------------------*/
-    #RightForm > #RFTitle
-    {
-        margin-left: 30px;
+    #RightForm > #RFTitle{
+        margin-left:30px;
     }
-    #RightForm
-    {
+    #RightForm{
         width: 305px;
     }
 
-    #formLog > label
-    {
-        margin-left: -20px;
+    #formLog > label{
+        margin-left:-20px;
     }
-    .txtBox
-    {
-        width: 275px!important;
-        margin-left: -5px;
+    .txtBox{
+        margin-left:-5px;
+        width:275px!important;
     }
-    #bt1
-    {
-        width: 275px!important;
-        margin-left: -20px;
+    #bt1{
+        width:275px!important;
+        margin-left:-20px;
     }
-    #bt2
-    {
-        margin-left: 90px;
+    #bt2{
+        margin-left:90px;
     }
     /*INDEX PAGINA*/
 
-    ul li div
-    {
-        font-size: 1.1rem;
-
-        width: 100px;
+    ul li div {
         height: 100px;
+        width: 100px;
+        font-size: 1.1rem;
     }
-    ul#notes
-    {
+    ul#notes{
+        padding-left: 0px;
         padding-right: 0;
-        padding-left: 0;
     }
-    .clndNext,
-    .NotasBlc,
-    .TurmasBlc
-    {
-        width: 305px!important;
+    .clndNext, .NotasBlc, .TurmasBlc {
+            width: 305px!important;
     }
-    .TurmasBlc
-    {
+        .TurmasBlc{
         height: 150px!important;
     }
-    .fa-calendar
-    {
+    .fa-calendar{
         bottom: 30px!important;
     }
-    #legendaGrafico
-    {
+    #legendaGrafico {
         right: 20px!important;
     }
-    #skills
-    {
+    #skills{
         left: -50px!important;
     }
-    .dashElements
-    {
+    .dashElements{
         height: 215vh!important;
     }
     /*------------*/
 }
-@media  screen and (max-width: 321px )
-{
-    .perfilContent
-    {
-        /*CONTAINER */
+@media  screen and (max-width: 321px ) {
+    .perfilContent { /*CONTAINER */
         height: 140%;
     }
-    #leftPart
-    {
-        /*PARTE COM A FOTO DO USUARIO*/
+    #leftPart { /*PARTE COM A FOTO DO USUARIO*/
         margin-left: 25px !important;
     }
-    #RightPart
-    {
-        /*PARTE COM OS DADOS DO USUARIO*/
+    #RightPart { /*PARTE COM OS DADOS DO USUARIO*/
         margin-left: 25px !important;
     }
-    #tituloPerfil
-    {
-        /*MENSAGEM DO TOPO*/
+    #tituloPerfil { /*MENSAGEM DO TOPO*/
         margin-left: 8px !important;
+
     }
-    #ModalConteudo .modal-header > .close
-    {
-        /*BOTAO DE FECHAR SUPERIOR*/
-        font-size: 2rem;
+    #ModalConteudo .modal-header > .close { /*BOTAO DE FECHAR SUPERIOR*/
+        font-size:2rem;
     }
-    #PerfilDados p,
-    #PerfilDados input
-    {
-        /*INPUTS DE TEXTO E OS P'aragrafos'*/
+    #PerfilDados p, #PerfilDados input { /*INPUTS DE TEXTO E OS P'aragrafos'*/
         width: 250px !important;
     }
-    .modal-header + #TituloPriv
-    {
-        margin-left: 15%;
+    .modal-header + #TituloPriv {
+        margin-left:15%;
     }
-    .priv > .modal-body
-    {
+    .priv > .modal-body {
         margin-left: 1%;
     }
-    #divDados
-    {
-        margin: 20px 0 0 0!important;
+    #divDados{
+      margin: 20px 0px 0px 0px!important;
     }
 
-    #tabelaAlunos
-    {
-        font-size: 12px!important;
+        #tabelaAlunos{
+          width:280px!important;
+          margin: 10px 0px 10px 0px!important;
+          font-size: 12px!important;
+        }
 
-        width: 280px!important;
-        margin: 10px 0 10px 0!important;
-    }
+        #textCont{
+          width: 280px!important;
+          margin-left: 0px!important;
+        }
+        #textAreas{
+          width:280px!important;
+          margin-left: 0px!important;
+        }
 
-    #textCont
-    {
-        width: 280px!important;
-        margin-left: 0!important;
-    }
-    #textAreas
-    {
-        width: 280px!important;
-        margin-left: 0!important;
-    }
+        div#divFiltrosConsQuest .form-control{
+          width: 250px!important;
+        }
+
+        #tabelaUnica, #divTabelaConsQuest{
+          width: 250px!important;
+          font-size: 12px;
+        }
+
+        div.calendar{
+          margin-left: -125px!important;
+          width: 300px!important;
+        }
 }
 
-@media screen and (min-width: 1025px)
-{
-    .slideout-panel
-    {
+@media screen and (min-width: 1025px) {
+
+    .slideout-panel {
         margin-left: 256px;
     }
 
-    .slideout-menu
-    {
+    .slideout-menu {
         display: block;
     }
 
-    .toggle-button
-    {
+    .toggle-button{
         display: none;
     }
+
 }

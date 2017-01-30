@@ -3,14 +3,14 @@
   <% include ../partes/head %>
   <script>
 
-  //Pesquisa as questões
-   
     </script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+      <link rel="stylesheet" type="text/css" href="/assets/stylesheets/consQuest.css">
 </head>
 <body>
 
 <div class="all">
-
 
 
 <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
@@ -19,99 +19,103 @@
 
 </div>
 
+<main id="panel" class="allPage consquestPage">
+<div class="layout" id="consQuestContent">
+  <div class="backTopper">
+  </div>
+  <% include ../partes/topmenu.ejs %>
 
-<main id="panel" class="allPage ">
-<div class="backTopper">
-</div>
-<% include ../partes/topmenu.ejs %>
+  <div class="container-fluid " >
+      <span id="pgName"> Consultar
+        <span id="traco"> > </span>
+        <span id="pgAtual">Questões </span>
+      </span>
 
-<div class="container-fluid " >
-    <span id="pgName"> Consultar 
-      <span id="traco"> > </span>
-      <span id="pgAtual">Questões </span>
-    </span>
+      <!-- BOTAO PARA CELULAR -->
+      <button class="toggle-button no-border" data-toggle="button" >
+          <img id="hbmenu" src="/assets/images/menu.png">
+      </button>
+      <!-- ***************** -->
 
+          <div class="backPages correctConsTurma">
 
-    <!-- BOTAO PARA CELULAR -->
-    <button class="toggle-button no-border" data-toggle="button" >
-        <img id="hbmenu" src="/assets/images/menu.png">
-    </button>
+            <div id="consQuestCT" class="content layoutInner">
+              <H3>Consulta de questões</H3>
+              <div class="" style="float: left; position: relative;" id="divFiltrosConsQuest">
+  <br>
+              <form class="form-inline " method="get" name="consultaQuestForm">
 
-        <div class="container-fluid">
+                <select class="form-control " id="autor"  style="">
+                  <option  selected>Autor</option>
+                </select>
 
-          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
-            <H3>Consulta de questões</H3>
-            <br><div class="" style="float: left; position: relative;">
+                <select class="form-control " id="disciplina"  style="">
+                  <option  selected>Disciplina</option>
+                </select>
 
-            <form class="form-inline" method="get" name="consultaQuestForm">
+                <select class="form-control " id="materia"  style="">
+                  <option  selected>Matéria</option>
+                </select>
 
-              <select class="form-control" id="autor"  style="width:300px;">
-                <option disabled selected>Autor</option>
-              </select> &nbsp&nbsp
+                <select class="form-control " name="serie" id="serie" style="">
+                  <option selected >Série</option>
+                  <option>1º ano</option>
+                  <option>2º ano</option>
+                  <option>3º ano</option>
+                </select>
 
-              <select class="form-control" id="disciplina"  style="width:300px;">
-                <option disabled selected>Disciplina</option>
-              </select> &nbsp&nbsp <br><br>
+                <input class="form-control " type="text" name="creation" id="creation" value="" placeholder="Ano de criação" style= "">
 
-              <select class="form-control" id="materia"  style="width:300px;">
-                <option disabled selected>Matéria</option>
-              </select> &nbsp&nbsp
+                <select class="form-control " name="tipo" id="tipo"  style="">
+                  <option selected >Tipo</option>
+                  <option>Discursiva</option>
+                  <option>Objetiva</option>
+                </select>
 
-              <select class="form-control" name="serie" id="serie" style="width:300px;">
-                <option selected disabled>Série</option>
-                <option>1º ano</option>
-                <option>2º ano</option>
-                <option>3º ano</option>
-              </select>&nbsp&nbsp<br><br>
+                <select class="form-control " name="nivel" id="nivel" style="">
+                  <option selected >Nível</option>
+                  <option>Basica</option>
+                  <option>Média</option>
+                  <option>Avançada</option>
+                </select>
 
-              <input type="text" name="creation" id="creation" value="" placeholder="Ano de criação" class="form-control" style= " width:300px;"> &nbsp&nbsp
+                <input type="hidden" id="userMat" value="<%=userMat%>">
 
-              <select class="form-control" name="tipo" id="tipo"  style="width:300px;">
-                <option selected disabled>Tipo</option>
-                <option>Discursiva</option>
-                <option>Objetiva</option>
-              </select><br><br>
-
-              <select class="form-control" name="nivel" id="nivel" style="width:300px;">
-                <option selected disabled>Nível</option>
-                <option>Basica</option>
-                <option>Mediana</option>
-                <option>Avançada</option>
-              </select><br><br>
-
-              <input type="button"  name="btn-consultar" id="btn-consultar"  class="btn btn-default" value="Consultar">
-
-            </form>
-          </div>
-
+                <input type="button"  name="btn-consultar" id="btn-consultar"  class="btn btn-default" value="Consultar">
 
 
-            <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; float:left; height:100%; text-align: center;">
-              <table class="table" style="width:750px; margin-left: 50px;" id="tabelaUnica">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Codigo</th>
-                    <th>Enunciado</th>
-                    <th>Gabarito</th>
+              </form>
+            </div>
 
-                    <th class="celulasCB">Remover</th>
-                  </tr>
-                </thead>
-                <tbody id="tableQuestoes">
 
-                </tbody>
-              </table>
-              <span id="Message404" style="text-align:center; width: 750px; margin-left: 50px;"></span>
+
+              <div class="" style="position: relative;text-align: center;" id="divTabelaConsQuest">
+                <br>
+                <table  class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tabelaUnica" style="">
+<!--  A tabela tem que ta nessa estrutura de thead, tbody essas merdas e ,tbm, tem que ter essas classes -->
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th style="align:left; text-align:left; width:10%;">Codigo</th>
+                      <th style="align:left; text-align:left;">Enunciado</th>
+                      <th style="align:left; text-align:center;">Gabarito</th>
+                      <th id="btadd" style="align:left; width:10% text-align:center;"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableQuestoes">
+                  </tbody>
+                </table>
+                <span id="Message404" style="text-align:center; width: 750px; margin-left: 50px;"></span>
+
+              </div>
+
 
             </div>
 
 
-          </div>
 
 
-
-
-      </div>
+        </div>
+</div>
 
     </main>
     <script type="text/javascript" src="/assets/js/consquest.js"></script>

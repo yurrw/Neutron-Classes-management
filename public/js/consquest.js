@@ -8,6 +8,10 @@
         var nivel = $('#nivel').val();
         var serie = $('#serie').val();
 
+        var table = $('#tabelaUnica').DataTable();    //aqui eu inicializei a tabela.
+            table.destroy();              //aqui eu destrui. Pq caso contrario, ficaria repetindo dados toda vez que vc mudasse a materia. ok
+
+
         $.ajax({
           url: "/pescaconsul",
           type: "POST",
@@ -31,26 +35,45 @@
             console.log(data);
             console.log('process sucess');
             $("#tableQuestoes").empty();
-            $("#errorMessage").empty();
+            $("#Message404").empty();
             var possivelBotao; //Se o user for o autor, o botão de remover é inserido
 
             for(var i = 0; i < data.length; i++) {
-              if(data[i][3] == "<%= userMat %>")
-              possivelBotao = "<button class='btn btn-danger btn-block' onclick=removerQuest(this)>";
+              console.log($("#userMat").val());
+              console.log("Antes: "+data[i][3]);
+              if(data[i][3] == $("#userMat").val())
+              data[i][3] = "<button class='btn btn-danger btn-block' onclick=removerQuest(this) id='botaoRemoverConsQ'>Remover</button>";
               else
-              possivelBotao = "";
+              data[i][3] = " ";
+              console.log("Depois: "+data[i][3]);
 
-              $("#tableQuestoes").append($("<tr/>")
-              .append($("<td/>").val(data[i][2]).text(data[i][2]))
-              .append($("<td/>").val(data[i][0]).text(data[i][0]))
-              .append($("<td/>").val(data[i][1]).text(data[i][1]))
-              .append($("<td width='10px'/>")
-              .append($(possivelBotao).val("Remover").text("Remover"))));
-              console.log(data[i]);
             }
+
+            $("#tabelaUnica").dataTable({ //id da tabela
+              "iDisplayLength": 10,            // qtde de resuldados que vao aparecer
+              "bLengthChange": false,         // aqui vc pode abilitar se quer que apareca a mais resultados, olha.
+              data: data,                     //aqui vc passa os dados da tabela dentro de um array, sla.
+              columns: [                    //Aqui vc define as colunas
+                  { title: "Código" },
+                  { title: "Enunciado" },
+                  { title: "Gabarito" },
+                  { title: " " }
+              ],
+              //  "pagingType": "simple_numbers",
+              //ABAIXO PODE DEIXAR ASSIM MESMO hehe
+               "pagingType": "numbers",
+               "language": {
+                 "sSearch": "Pesquisar: ",
+                 "info": "página _PAGE_ de _PAGES_",
+                 "zeroRecords": "Nenhuma questão encontrada",
+                  "infoEmpty": "Nenhuma questão encontrada",
+                  "infoFiltered": " ",
+               },
+
+            });
+
           },
           error: function() {
-            console.log('Bundaaaaaaaaaaa');
             $("#tableQuestoes").empty();
             $("#Message404").empty();
             $("#Message404").append($("<div class='alert alert-danger' style='text-align: center;margin-left:50px;'>").text("Não há questões compatíveis com a consulta"));
@@ -80,7 +103,7 @@
             console.log(disciplina);
             console.log('process sucess');
             $("#materia").empty();
-            $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
+            $("#materia").append($("<option  selected />").val('Matéria').text('Matéria'));
             for(var i = 0; i < data.length; i++) {
               $("#materia").append($("<option />").val(data[i]).text(data[i]));
               console.log(data[i]);
@@ -131,7 +154,7 @@
     $(function pesqProfs(){
       $.post("/pesqProfs",function(data){
         $("#autor").empty();
-        $("#autor").append($("<option selected disabled/>").val('Autor').text('Autor'));
+        $("#autor").append($("<option selected />").val('Autor').text('Autor'));
         for(var i = 1; i < data.length; i++) {
           $("#autor").append($("<option />").val(data[i]).text(data[i]));
           console.log(data[i]);
@@ -143,7 +166,7 @@
     $(function pesqDisciplina(){
       $.post("/pesqDisc",function(data){
         $("#disciplina").empty();
-        $("#disciplina").append($("<option selected disabled/>").val('Disciplina').text('Disciplina'));
+        $("#disciplina").append($("<option selected />").val('Disciplina').text('Disciplina'));
         for(var i = 0; i < data.length; i++) {
         //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
           $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
