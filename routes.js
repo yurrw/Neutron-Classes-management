@@ -197,6 +197,7 @@ app.post('/',
             app.post('/pegaaula', ConsultCtrl.pegaPresenca);
             app.post('/consultandoProva', ConsultCtrl.consulProva);
             app.post('/UpPerfil', CadController.UpdatePerfil);
+            app.post('/upFile',multer({ dest: './upFile/'}).single('txt'), CadController.upFile);
             app.post('/UpFoto', CadController.UpFoto);
 
 

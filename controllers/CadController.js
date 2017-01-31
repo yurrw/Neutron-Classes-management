@@ -3,6 +3,53 @@ var multer     = require('multer');
 var crypto     = require('crypto');
 var nodemailer = require('nodemailer');
 
+function TxtToJson(callback , fileTxt){
+  //VER DIFERENÇA PRATICA DO CONST PRO VAR
+  var fs = require('fs')
+    , fileName = arguments[1]  //o mesmo que fileTxt
+    , conteudo; 
+
+  fs.readFile(arguments[1], 'utf8' , function( err, data) 
+    {
+        console.log("callback1")
+
+        if (err) return callback(err);
+
+        conteudo = data.split('\n');
+
+
+       // linhas.push(content.split(/[     ]+/))        
+   return callback(null, conteudo);
+
+
+    });
+
+}
+
+exports.upFile = function(req, res){
+
+  var fileUploaded = req.file.path;
+  console.log("TEXTO")
+  TxtToJson( function (err, content)
+  {
+    console.log(content[0]);
+
+  }, fileUploaded)
+  /*
+function tryMe (param1, param2) {
+    alert(param1 + " and " + param2);
+}
+
+function callbackTester (callback) {
+    callback (arguments[1], arguments[2]);
+}
+
+callbackTester (tryMe, "hello", "goodbye");
+  */
+
+  res.status(204).end();
+
+}
 
 var genRandomString = function(length){
           return crypto.randomBytes(Math.ceil(length/2))
@@ -117,7 +164,7 @@ exports.UpFoto = function(req,res){
 
                      });
 //                                                              return res.render();
-  return                                          res.render('paginas/index',{	user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
+  return                                          res.render('paginas/index',{  user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
                                         //@TODO: uma pagina de atualizar perfil mesmo, nao um modal.
                                         }
               });
@@ -189,44 +236,22 @@ exports.pesquisaDisc = function(req, res){
 };
 
 exports.cadnotas = function(req, res){
-
   var matricula  = req.body.matAlunos;
-  var provanotas = req.body.provanotas;
-  var testenotas = req.body.testenotas;
   var tri        = req.body.tri;
   var disciplina = req.body.disciplina;
-  var testenotasINT;
-  var provanotasINT;
-  var notatri;
-  var query1 = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri'"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+notatri[i]+"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+  var notaProva = req.body.notaProva;
+  var notaTeste = req.body.notaTeste;
 
+  for (var i = 0, len = notaProva.length; i < len; i++) {
 
-  for (var i = 0, len = provanotas.length; i < len; i++) {
-
-    connDB.query(query, function(err,rows)
-      {
-        testenotasINT[i] = parseInt(testenotas[i]);
-        provanotasINT[i] = parseInt(provanotas[i]);
-        notatri[i] = testenotasINT[i]+provanotasINT[i];
-        res.json("nice");
-      });
-
-
+    var notatri = parseInt(notaProva[i]) + parseInt(notaTeste[i]);
+    var query = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+    console.log(query);
+    connDB.query(query);
 
   }
+  res.json("dadosAtualizados");
 
-  // connDB.query(query, function(err,rows){
-  //   if (err)
-  //   console.log("deu ruim");
-  //   // req.flash('MSGCadQuest', err);
-  //   if (rows.length) {
-  //
-  //
-  //     // console.log(disciplinas);
-  //     res.json("NICE");
-  //   }
-  //
-  // });
 };
 
 exports.pesquisaDiscProfTurma = function(request, res){

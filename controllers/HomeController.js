@@ -21,7 +21,7 @@ exports.ttt = function(req, res){
         console.log(req);
 
 };
-var admTeste
+
 exports.calendario      =   function(request, response){
   response.render('paginas/calendario',{    user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha });
 

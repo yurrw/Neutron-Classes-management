@@ -44,8 +44,10 @@
             <% } %>
 
             <br>
-
-            <input type="button" value="1"> 
+            <form action="/upFile" method="POST" enctype="multipart/form-data">
+            <input type="file" name="txt" id="txt"   filename="txt" >
+              <input type="submit" value="1" >             
+            </form>
 
           </div>
 
