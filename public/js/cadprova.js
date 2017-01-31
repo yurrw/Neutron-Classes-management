@@ -29,7 +29,7 @@
       // console.log(disciplina);
       console.log('process sucess');
       $("#disciplina").empty();
-  $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
+  $("#disciplina").append($("<option disabled selected value='' />").val('Disciplina').text('Disciplina'));
       for(var i = 0; i < data.length; i++) {
         $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
       //  alert(data[i]);
@@ -46,7 +46,7 @@
     $("#disciplina").change(function(){
       var disciplina = $('#disciplina').val();
   $("#materia").empty();
-  $("#materia").append($("<option disabled selected />").val('Matéria').text('Matéria'));
+  $("#materia").append($("<option disabled selected value='' />").val('Matéria').text('Matéria'));
 
       $.ajax({
         url: "/pesqMat",  // AQUI É A URL QUE SERA ENVIADO

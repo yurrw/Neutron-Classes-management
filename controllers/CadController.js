@@ -189,44 +189,22 @@ exports.pesquisaDisc = function(req, res){
 };
 
 exports.cadnotas = function(req, res){
-
   var matricula  = req.body.matAlunos;
-  var provanotas = req.body.provanotas;
-  var testenotas = req.body.testenotas;
   var tri        = req.body.tri;
   var disciplina = req.body.disciplina;
-  var testenotasINT;
-  var provanotasINT;
-  var notatri;
-  var query1 = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri'"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+notatri[i]+"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+  var notaProva = req.body.notaProva;
+  var notaTeste = req.body.notaTeste;
 
+  for (var i = 0, len = notaProva.length; i < len; i++) {
 
-  for (var i = 0, len = provanotas.length; i < len; i++) {
-
-    connDB.query(query, function(err,rows)
-      {
-        testenotasINT[i] = parseInt(testenotas[i]);
-        provanotasINT[i] = parseInt(provanotas[i]);
-        notatri[i] = testenotasINT[i]+provanotasINT[i];
-        res.json("nice");
-      });
-
-
+    var notatri = parseInt(notaProva[i]) + parseInt(notaTeste[i]);
+    var query = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+    console.log(query);
+    connDB.query(query);
 
   }
+  res.json("dadosAtualizados");
 
-  // connDB.query(query, function(err,rows){
-  //   if (err)
-  //   console.log("deu ruim");
-  //   // req.flash('MSGCadQuest', err);
-  //   if (rows.length) {
-  //
-  //
-  //     // console.log(disciplinas);
-  //     res.json("NICE");
-  //   }
-  //
-  // });
 };
 
 exports.pesquisaDiscProfTurma = function(request, res){

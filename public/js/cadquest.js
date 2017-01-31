@@ -30,7 +30,7 @@
             console.log(disciplina);
             console.log('process sucess');
             $("#disciplina").empty();
-            $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
+            $("#disciplina").append($("<option disabled selected value='' />").val('Disciplina').text('Disciplina'));
             for(var i = 0; i < data.length; i++) {
               $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
               console.log(data[i]);
@@ -52,7 +52,7 @@
         var disciplina = $('#disciplina').val();
 
         $("#materia").empty();
-        $("#materia").append($("<option disabled selected />").val('Materia').text('Materia'));
+        $("#materia").append($("<option disabled selected value='' />").val('Materia').text('Materia'));
 
         console.log(disciplina);
 
@@ -98,7 +98,7 @@
           $('#dadosQuest').append($('<br />'));
           $('#dadosQuest').append($('<br />'));
 
-          $('#dadosQuest').append($('<input type="number" name="nLinhas" value="" placeholder="Linhas para resposta" class="form-control" style="width:200px;" required/>'));
+          $('#dadosQuest').append($('<input type="number" name="nLinhas" value="" placeholder="Linhas para resposta" class="form-control" style="width:200px;" min="1" required/>'));
           $('#dadosQuest').append(" ");
           $('#dadosQuest').append(" ");
 
@@ -131,7 +131,7 @@
           $('#dadosQuest').append($('<br />'));
 
           $('#dadosQuest').append($('<select class="form-control" name="gabarito" style="width:110px;" required/>')
-            .append($('<option disabled selected/>').val("Gabarito").text("Gabarito"))
+            .append($('<option disabled selected value=""/>').val("Gabarito").text("Gabarito"))
             .append($('<option/>').val("Opção A").text("Opção A"))
             .append($('<option/>').val("Opção B").text("Opção B"))
             .append($('<option/>').val("Opção C").text("Opção C"))
@@ -145,6 +145,3 @@
 
       });
     });
-
-
-
