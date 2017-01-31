@@ -49,7 +49,7 @@ $(function(){
     success: function(data) {
       console.log('process sucess');
       $("#disciplina").empty();
-      $("#disciplina").append($("<option disabled selected />").val('Disciplina').text('Disciplina'));
+      $("#disciplina").append($("<option disabled selected value="" />").val('Disciplina').text('Disciplina'));
       for(var i = 0; i < data.length; i++) {
         $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
         console.log(data[i]);
@@ -83,7 +83,7 @@ $(function(){
     success: function(data) {
       console.log('process sucess');
       $("#turma").empty();
-      $("#turma").append($("<option disabled selected />").val('Turma').text('Turma'));
+      $("#turma").append($("<option disabled selected value="" />").val('Turma').text('Turma'));
       for(var i = 0; i < data.length; i++) {
         $("#turma").append($("<option />").val(data[i]).text(data[i]));
         console.log(data[i]);
@@ -178,15 +178,15 @@ $(function(){
             <input type="text" id="prof" name="prof" value="<%= user %>" class="form-control" style="width:300px;" disabled required>&nbsp&nbsp
 
             <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
-              <option disabled selected value="1">Disciplina</option>
+              <option disabled selected value="" value="1">Disciplina</option>
             </select><br><br>
 
             <select class="form-control" id="turma" name="turma" style="width:300px;" required>
-              <option disabled selected value="1">Turma</option>
+              <option disabled selected value="" value="1">Turma</option>
             </select>&nbsp&nbsp
 
             <select class="form-control" id="avaliacao" name="avaliacao" style="width:300px;" required>
-              <option disabled selected value="1">Tipo de Avaliação</option>
+              <option disabled selected value="" value="1">Tipo de Avaliação</option>
               <option>Prova (7 pontos)</option>
               <option>Teste (3 pontos)</option>
             </select><br><br>
@@ -194,7 +194,7 @@ $(function(){
             <input type="number" id="ano" name="ano" value="" class="form-control" style="width:300px;" placeholder="Ano" min='1900'required>&nbsp&nbsp
 
             <select class="form-control" id="periodo" name="periodo" style="width:300px;" required>
-              <option disabled selected value="1">Período</option>
+              <option disabled selected value="" value="1">Período</option>
               <option>1ª Certificação</option>
               <option>2ª Certificação</option>
               <option>3ª Certificação</option>

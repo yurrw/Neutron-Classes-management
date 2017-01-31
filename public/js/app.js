@@ -12,7 +12,7 @@ function carregaCampos(){
     dados += '<input type="text" name="opcD" id="opcD" value="" placeholder="Opção D" class="form-control" style="width:610px;"><br><br>';
     dados += '<input type="text" name="opcE" id="opcE" value="" placeholder="Opção E" class="form-control" style="width:610px;"><br><br>';
     dados += '<select class="form-control" name="gabarito" style="width:110px;">';
-    dados += '<option disabled selected>Gabarito</option>';
+    dados += '<option disabled selected value="">Gabarito</option>';
     dados += '<option>A</option>';
     dados += '<option>B</option>';
     dados += '<option>C</option>';

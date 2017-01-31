@@ -52,13 +52,13 @@
           <div class="form-group row  col-md-12">
 
               <select class="form-control" id="visibilidade" name="visibilidade" style="width:300px;" required>
-                <option disabled selected>Visibilidade</option>
+                <option disabled selected value="">Visibilidade</option>
                 <option>Privada</option>
                 <option>Pública</option>
               </select>&nbsp&nbsp
 
               <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
-                <option disabled selected>Disciplina</option>
+                <option disabled selected value="">Disciplina</option>
               </select>&nbsp&nbsp
 
           </div>
@@ -66,11 +66,11 @@
           <div class="form-group row  col-md-12">
 
               <select class="form-control" id="materia" name="materia" style="width:300px;" required>
-                <option disabled selected>Materia</option>
+                <option disabled selected value="">Materia</option>
               </select>&nbsp&nbsp
 
               <select class="form-control" id="serie" name="serie" style="width:300px;" required>
-                <option disabled selected>Série</option>
+                <option disabled selected value="">Série</option>
                 <option>1º ano</option>
                 <option>2º ano</option>
                 <option>3º ano</option>
@@ -83,7 +83,7 @@
               <input type="number" id="criacao" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;" min="1837" required>&nbsp&nbsp
 
               <select class="form-control" id="tipo" name="tipo" style="width:300px;" required>
-                <option disabled selected>Tipo</option>
+                <option disabled selected value="">Tipo</option>
                 <option>Discursiva</option>
                 <option>Objetiva</option>
               </select>&nbsp&nbsp
@@ -115,13 +115,13 @@
 
 <div class="rating">
 
-    <input type="radio" id="star3" class="star" name="star" value="Dificil" />
+    <input type="radio" id="star3" class="star" name="star" value="Dificil" required/>
       <label class = "full" for="star3" title="Difícil"></label>
 
-    <input type="radio" id="star2" class="star" name="star" value="Media" />
+    <input type="radio" id="star2" class="star" name="star" value="Media" required/>
       <label class = "full" for="star2" title="Média"></label>
 
-    <input type="radio" id="star1" class="star" name="star" value="Facil" />
+    <input type="radio" id="star1" class="star" name="star" value="Facil" required/>
       <label class = "full" for="star1" title="Fácil"></label>
 
 </div>

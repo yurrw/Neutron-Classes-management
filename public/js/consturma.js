@@ -52,7 +52,7 @@
 
 
     $( function(){
-      $("#btn-consultar").click(function(){
+      $("#nometurma").change(function(){
         var  nometurma = $('#nometurma').val();
         $.ajax({
           url: "/pegaaluno",
