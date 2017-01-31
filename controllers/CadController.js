@@ -188,13 +188,54 @@ exports.pesquisaDisc = function(req, res){
   });
 };
 
+exports.cadnotas = function(req, res){
+
+  var matricula  = req.body.matAlunos;
+  var provanotas = req.body.provanotas;
+  var testenotas = req.body.testenotas;
+  var tri        = req.body.tri;
+  var disciplina = req.body.disciplina;
+  var testenotasINT;
+  var provanotasINT;
+  var notatri;
+  var query1 = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri'"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+notatri[i]+"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+
+
+  for (var i = 0, len = provanotas.length; i < len; i++) {
+
+    connDB.query(query, function(err,rows)
+      {
+        testenotasINT[i] = parseInt(testenotas[i]);
+        provanotasINT[i] = parseInt(provanotas[i]);
+        notatri[i] = testenotasINT[i]+provanotasINT[i];
+        res.json("nice");
+      });
+
+
+
+  }
+
+  // connDB.query(query, function(err,rows){
+  //   if (err)
+  //   console.log("deu ruim");
+  //   // req.flash('MSGCadQuest', err);
+  //   if (rows.length) {
+  //
+  //
+  //     // console.log(disciplinas);
+  //     res.json("NICE");
+  //   }
+  //
+  // });
+};
+
 exports.pesquisaDiscProfTurma = function(request, res){
 
-  var test = request.body.turminha;
+  var test = request.body.nometurma;
   console.log(test);
   var disciplinas = [];
   var query = "SELECT DISTINCT `disciplina_nome` FROM prof_turma, `disciplinas`, professor_disciplinas"+
-  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"' AND prof_turma.cod_turma='"+request.body.turminha+"'";
+  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"' AND prof_turma.cod_turma='"+request.body.nometurma+"'";
 console.log(query);
   connDB.query(query, function(err,rows){
     if (err)

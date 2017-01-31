@@ -175,6 +175,7 @@ app.post('/',
             app.post('/cadastroQuest', CadController.cadastroQuest);
             app.post('/cadastroProva', CadController.cadastroProva);
             app.post('/cadastroDiario', CadController.cadastroDiario);
+            app.post('/cadnotas', CadController.cadnotas);
             app.post('/deletarQuest', ConsultCtrl.removerQuest);
             app.post('/pesqMat', CadController.pesquisaMat);
             app.post('/pesqDisc', CadController.pesquisaDisc);

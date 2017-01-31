@@ -132,7 +132,7 @@ $( function() {
         timeout: 5000,
         complete: function() {},
         success: function(data) {
-          for (var i = 0 ; i < data.length; i++) {$('#turminha').append("<option>"+data[i].toString()+"</option>");}
+          for (var i = 0 ; i < data.length; i++) {$('#nometurma').append("<option>"+data[i].toString()+"</option>");}
         },
         error: function() {console.log('process error mostraturma');},
       });
@@ -146,21 +146,70 @@ $( function() {
         var testenotas = [];
         var provanotas = [];
 
-        $('#tabelaAlunos').each(function()
+        $($('#tabelaAlunos').find('input.teste')).each(function()
         {
-            testenotas.push($(this).find('input.teste').val());
-            console.log(testenotas);
+            testenotas.push($(this).val());
 
         });
+        console.log(testenotas);
 
         // $('#tabelaAlunos').each(function()
         $($('#tabelaAlunos').find('input.prova')).each(function()
         {
            provanotas.push($(this).val());
-           console.log(provanotas);
 
 
         });
+        console.log("---------");
+        console.log(provanotas);
+        var matriculasAlunosNotas= [];
+                var table = document.getElementById('tabelaAlunos');
+        // var row = parseInt(element.parentNode.parentNode.rowIndex);
+
+        for(var i=1; i<table.rows.length; i++)
+        {
+          console.log(table.rows[i].cells[1].innerHTML);
+          matriculasAlunosNotas.push(table.rows[i].cells[1].innerHTML)
+        }
+        //ESSE ALERT EXIBE A OPCAO SELECIONADA.
+        alert($("#tri").val());
+        alert($("#disciplina").val());
+        var testenotasINT = parseInt(testenotas);
+        var provanotasINT = parseInt(provanotas);
+        for (var i = 0, len = provanotas.length; i < len; i++) {
+          alert(provanotasINT[i]);
+        }
+
+        $.ajax({
+              url: "/cadnotas",  // AQUI É A URL QUE SERA ENVIADO
+              type: "POST",   //TIPO DE ENVIO
+              dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+              data:JSON.stringify({
+                  somanotas : go,
+                  matAlunos : matriculasAlunosNotas,
+                  notaProva : provanotas,
+                  notaTeste : testenotas,
+                  tri       : $("#tri").val(),
+                  disciplina: $("#disciplina").val()
+
+              }),
+
+              contentType: "application/json",
+              cache: false,
+              timeout: 5000,
+              complete: function() {
+                console.log('process complete');
+                location.reload();
+              },
+              success: function(data) {
+                console.log('process sucess');
+              },
+
+              error: function() {
+                console.log('process error');
+              },
+            });
+
 
 
 
@@ -198,13 +247,13 @@ $( function() {
 
     $( function(){
       $("#btn-consultarnota").click(function(){
-        var  turminha = $('#turminha').val();
+        var  nometurma = $('#nometurma').val();
         $.ajax({
           url: "/pegaaluno",
           type: "POST",
           dataType: "json",
           data:JSON.stringify({
-            turminha : turminha
+            nometurma : nometurma
           }),
           contentType: "application/json",
           cache: false,
@@ -242,7 +291,7 @@ $( function() {
       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
       data: JSON.stringify({
 
-          turminha   : turminha,
+          nometurma   : nometurma,
 
                }),
       contentType: "application/json",
