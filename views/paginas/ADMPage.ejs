@@ -45,6 +45,10 @@
 
             <br>
             <form action="/upFile" method="POST" enctype="multipart/form-data">
+            <select id="Tables" name="tabelaName">
+              <option disabled>Tabela</option>
+              <option disabled selected> </option>
+            </select>
             <input type="file" name="txt" id="txt"   filename="txt" >
               <input type="submit" value="1" >             
             </form>
@@ -60,6 +64,43 @@
 <!-- <script src="/assets/js/test.js"></script> -->
 
 <script>
+$(function() 
+{ 
+
+     $.ajax({
+         url: "/findTables", // AQUI É A URL QUE SERA ENVIADO
+         type: "POST", //TIPO DE ENVIO
+         dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+         contentType: "application/json",
+         cache: false,
+         timeout: 5000,
+         complete: function() {
+
+             console.log('process complete');
+
+         },
+
+         success: function(data) {
+
+            for(i in data)
+            {
+                  $('#Tables').append($('<option>', { 
+                                      value: data[i],
+                                      text : data[i]
+                                  }));
+            }
+
+            },
+
+         error: function() {
+             console.log('process error');
+         },
+     });
+
+
+});
+
+
 
 // Default Open
 var slideout = new Slideout({

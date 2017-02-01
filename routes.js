@@ -188,7 +188,7 @@ app.post('/',
             app.post('/getprova', ConsultCtrl.provaquests);
             app.post('/enviaremail', CadController.enviaremail);
 
-
+            app.post('/findTables', CadController.findTables);
             app.post('/mostraturma', ConsultCtrl.pesquisaturma);
 
             app.post('/pesqDiscProf',  CadController.pesquisaDiscProf);

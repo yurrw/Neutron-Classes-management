@@ -9,7 +9,7 @@ function TxtToJson(callback , fileTxt){
     , fileName = arguments[1]  //o mesmo que fileTxt
     , conteudo; 
 
-  fs.readFile(arguments[1], 'utf8' , function( err, data) 
+  fs.readFile(fileTxt, 'utf8' , function( err, data) 
     {
         console.log("callback1")
 
@@ -25,31 +25,71 @@ function TxtToJson(callback , fileTxt){
     });
 
 }
+function sqlQuery(qry, callback){
+    console.log(qry);
+    connDB.query(qry, function(err,rows){
+      if (err) return callback(err);
 
+      return callback(null,rows);
+ });
+}
+function sqlInsert(qry){
+    connDB.query(qry, function(err,rows){
+      if(err) return err;
+
+    });
+}
 exports.upFile = function(req, res){
 
   var fileUploaded = req.file.path;
-  console.log("TEXTO")
+  // console.log( req.body.tabelaName)
   TxtToJson( function (err, content)
   {
-    console.log(content[0]);
+   sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
+      for(k in content){
+        var lineTMP = content[k].split(/[     ]+/) ;
+
+        tamLine = lineTMP.length;
+        for(x in lineTMP){
+           lineTMP[x] = '"'+lineTMP[x]+'"';
+        }
+        if ( tamLine ==fields.length)
+         {
+            var query = "INSERT INTO "+req.body.tabelaName+" VALUES ("+lineTMP+")";
+            console.log(query);
+            // sqlInsert("query");
+         }
+         else {
+          console.log("Faltando campos na linha:" + k);
+         }
+        }
+  });
 
   }, fileUploaded)
-  /*
-function tryMe (param1, param2) {
-    alert(param1 + " and " + param2);
-}
-
-function callbackTester (callback) {
-    callback (arguments[1], arguments[2]);
-}
-
-callbackTester (tryMe, "hello", "goodbye");
-  */
 
   res.status(204).end();
 
 }
+exports.findTables = function(rq, rs) {
+  const qry = "SHOW TABLES IN sge";
+  var tabelas =[];
+    connDB.query(qry, function(err,rows){
+    if (err) rq.flash('MSGCadQuest', err);
+
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        tabelas.push(rows[i].Tables_in_sge);
+      }
+      rs.json(tabelas);
+    }
+    
+
+  });
+  // res.status(204).end();
+
+
+} 
 
 var genRandomString = function(length){
           return crypto.randomBytes(Math.ceil(length/2))
