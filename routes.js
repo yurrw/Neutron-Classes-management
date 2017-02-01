@@ -198,6 +198,7 @@ app.post('/',
             app.post('/consultandoProva', ConsultCtrl.consulProva);
             app.post('/UpPerfil', CadController.UpdatePerfil);
             app.post('/upFile',multer({ dest: './upFile/'}).single('txt'), CadController.upFile);
+            app.post('/deleteBD',multer({ dest: './deleteLog/'}).single('txt'), CadController.deleteBD);
             app.post('/UpFoto', CadController.UpFoto);
 
 

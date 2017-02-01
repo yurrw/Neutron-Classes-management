@@ -45,7 +45,7 @@
 
             <br>
             <form action="/upFile" method="POST" enctype="multipart/form-data">
-            <select id="Tables" name="tabelaName">
+            <select class="Tables" name="tabelaName">
               <option disabled>Tabela</option>
               <option disabled selected> </option>
             </select>
@@ -53,6 +53,14 @@
               <input type="submit" value="1" >             
             </form>
 
+            <form action="/deleteBD" method="POST" enctype="multipart/form-data">
+            <select class="Tables" name="tabelaNameDel">
+              <option disabled>Tabela</option>
+              <option disabled selected> </option>
+            </select>
+            <input type="file" name="txt" id="txt"   filename="txt" >
+              <input type="submit" value="2" >             
+            </form>
           </div>
 
       </div>
@@ -84,7 +92,7 @@ $(function()
 
             for(i in data)
             {
-                  $('#Tables').append($('<option>', { 
+                  $('.Tables').append($('<option>', { 
                                       value: data[i],
                                       text : data[i]
                                   }));

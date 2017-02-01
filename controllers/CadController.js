@@ -34,13 +34,30 @@ function sqlQuery(qry, callback){
  });
 }
 function sqlInsert(qry){
+  console.log('sqlInsert');
     connDB.query(qry, function(err,rows){
       if(err) return err;
 
     });
 }
-exports.upFile = function(req, res){
+function writeLog(data){
+  const fs = require('fs');
 
+  fs.writeFile('./tmp/LOGS.txt' , data , function (err){
+    if (err) return console.log(err);
+
+    console.log("LOG GRAVADO");
+  });
+ /*
+  fs = require('fs');
+fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+  if (err) return console.log(err);
+  console.log('Hello World > helloworld.txt');
+});
+*/
+}
+exports.upFile = function(req, res){
+  var  logs = [];
   var fileUploaded = req.file.path;
   // console.log( req.body.tabelaName)
   TxtToJson( function (err, content)
@@ -57,18 +74,61 @@ exports.upFile = function(req, res){
          {
             var query = "INSERT INTO "+req.body.tabelaName+" VALUES ("+lineTMP+")";
             console.log(query);
-            // sqlInsert("query");
+            logs[k] = "Linha "+k+" inserida com sucesso \n";
+
+            sqlInsert(query);
+
          }
          else {
           console.log("Faltando campos na linha:" + k);
+           logs[k]="Faltando campos na linha:" + k +"\n" ;
          }
         }
+        writeLog(logs);
   });
 
   }, fileUploaded)
 
   res.status(204).end();
 
+}
+exports.deleteBD = function(req,res){
+  var fileUploaded = req.file.path;
+
+    TxtToJson( function (err, content)
+  {
+    var lineTMP = content[k].split(/[     ]+/) ;
+
+    sqlInsert("Delete from "+req.body.tabelaNameDel+" where ");
+   sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
+      for(k in content){
+        var lineTMP = content[k].split(/[     ]+/) ;
+
+        tamLine = lineTMP.length;
+        for(x in lineTMP){
+           lineTMP[x] = '"'+lineTMP[x]+'"';
+        }
+        if ( tamLine ==fields.length)
+         {
+            var query = "INSERT INTO "+req.body.tabelaName+" VALUES ("+lineTMP+")";
+            console.log(query);
+            logs[k] = "Linha "+k+" inserida com sucesso \n";
+
+            sqlInsert(query);
+
+         }
+         else {
+          console.log("Faltando campos na linha:" + k);
+           logs[k]="Faltando campos na linha:" + k +"\n" ;
+         }
+        }
+        writeLog(logs);
+  });
+
+  }, fileUploaded)
+
+
+  res.status(204).end();
 }
 exports.findTables = function(rq, rs) {
   const qry = "SHOW TABLES IN sge";
