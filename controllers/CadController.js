@@ -354,7 +354,7 @@ exports.cadnotas = function(req, res){
           
   var notatri = parseInt(notaProva[this.i]) + parseInt(notaTeste[this.i]);
 
-          if (rows){
+          if (rows.length > 0){
 
     var update = "UPDATE aluno_nota_tri SET  tri"+tri+" ="+ notatri+" WHERE matricula ="+matricula[this.i]+" AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
           console.log(update);
