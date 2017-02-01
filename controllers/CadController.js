@@ -342,14 +342,72 @@ exports.cadnotas = function(req, res){
   var notaProva = req.body.notaProva;
   var notaTeste = req.body.notaTeste;
 
-  for (var i = 0, len = notaProva.length; i < len; i++) {
+  for(var i = 0; i < matricula.length; i++){
 
-    var notatri = parseInt(notaProva[i]) + parseInt(notaTeste[i]);
-    var query = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
-    console.log(query);
-    connDB.query(query);
+    console.log("Loop: "+i);
+        var select = "";
 
+
+        
+        connDB.query("SELECT * FROM aluno_nota_tri WHERE matricula ='"+matricula[this.i]+"' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )", function(err,rows){
+          if (err) console.log(err);
+          
+  var notatri = parseInt(notaProva[this.i]) + parseInt(notaTeste[this.i]);
+
+          if (rows){
+
+    var update = "UPDATE aluno_nota_tri SET  tri"+tri+" ="+ notatri+" WHERE matricula ="+matricula[this.i]+" AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
+          console.log(update);
+                      connDB.query(update,function(err, rows ){
+                        if (err) console.log(err);
+
+                      });
+          }else{
+  var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[this.i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+
+                connDB.query(insert, function(err,rows){
+
+                });
+          }
+     }.bind({i: i}));
+/*
+
+for (var i = 0; i < 10; i++) {
+  dummy(i, function(response) {
+    console.log("i = " + this.i + " , response = " + response);
+  }.bind( {i: i} ))
+
+*/
   }
+
+
+  /*for (var i = 0; i < matricula.length; i++) {
+console.log("Loop: "+i);
+  var notatri = parseInt(notaProva[i]) + parseInt(notaTeste[i]);
+        var first = "SELECT * FROM aluno_nota_tri WHERE matricula ='"+matricula[i]+"' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
+        var second = "UPDATE aluno_nota_tri SET  tri"+tri+" ="+ notatri+" WHERE matricula ="+matricula[i]+" AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
+        var third = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+
+     connDB.query(first, function(err,rows){
+          if (err) console.log(err);
+
+          if (rows){
+            connDB.query(second,function(err, rows ){
+              if (err) console.log(err);
+
+            });
+          }else{
+            connDB.query(third, function(err,rows){
+
+            });
+          }
+          console.log("post :");
+          console.log(first);
+          console.log(second);
+          console.log(third);
+     });
+
+  }*/
   res.json("dadosAtualizados");
 
 };

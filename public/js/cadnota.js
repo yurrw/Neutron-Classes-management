@@ -178,7 +178,6 @@ $( function() {
 
             console.log(matriculasAlunosNotas);
 
-
             //ESSE ALERT EXIBE A OPCAO SELECIONADA.
             alert($("#tri").val());
             alert($("#disciplina").val());
@@ -212,6 +211,7 @@ $( function() {
                     console.log('process error');
                   },
                 });
+            
         });
       });
 
