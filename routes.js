@@ -154,6 +154,7 @@ app.post('/',
     }
   });
             app.post('/notas', ConsultCtrl.GetNotas);
+            app.post('/pesqNotas', CadController.buscaNotas);
             app.post('/attPass',CadController.attPass);
             app.post('/cadastroQuest', CadController.cadastroQuest);
             app.post('/cadastroProva', CadController.cadastroProva);

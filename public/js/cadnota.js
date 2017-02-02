@@ -105,6 +105,8 @@
       $('#cadnota').hide();
       $('#tri').hide();
       $('#disciplina').hide();
+      $('#tabelaAlunos').hide();
+      $('#cadastrarNotas').hide();
 
       $.ajax({
         url: "/mostraturma",
@@ -164,7 +166,7 @@
             //ESSE ALERT EXIBE A OPCAO SELECIONADA.
                 // alert($("#tri").val());
                 // alert($("#disciplina").val());
-        
+
             $.ajax({
                   url: "/cadnotas",  // AQUI É A URL QUE SERA ENVIADO
                   type: "POST",   //TIPO DE ENVIO
@@ -194,10 +196,30 @@
                     console.log('process error');
                   },
                 });
-            
+
         });
       });
 
+      $(function(){
+        $("#tri").change(function(){
+          if ($("#tri").val() == 4) {
+            $(".teste").hide();
+            $(".teste").prop('required',false);
+          }
+          else {
+            $(".teste").show();
+            $(".teste").prop('required',true);
+          }
+          carregarNotas();
+        });
+      });
+
+
+      $(function(){
+        $("#disciplina").change(function(){
+          carregarNotas();
+        });
+      });
 
     $( function(){
       $("#nometurma").change(function(){
@@ -219,12 +241,14 @@
             alunos = data;
             $("#IzaMyLuv").empty();
             for(var i = 0; i < data.length; i++) {
+              $('#tabelaAlunos').show();
+              $('#cadastrarNotas').show();
               $("#IzaMyLuv").append($("<tr/>")
                 .append($("<td class='cellMeio' style='width:5%'/>").val(i+1).text(i+1))
                 .append($("<td class='cellMeio' style='width:15%'/>").val(data[i][1]).text(data[i][1]))
                 .append($("<td class='' style='width:50%'/>").val(data[i][0]).text(data[i][0]))
-                .append($("<td class='' style='width:15%; text-align:center;'/>").append($("<input type='number' style='text-align:center;' class='form-control teste' id='txtt' name='txtt' size='1' min='0' max='3' required/> ")))
-                .append($("<td class='' style='width:15%; text-align:center;'/>").append($("<input type='number' style='text-align:center;' class='form-control prova' id='txtp' name='txtp' size='1' min='0' max='7' required/> ")))
+                .append($("<td class='' style='width:15%; text-align:center;'/>").append($("<input type='number' style='text-align:center;' class='form-control teste' id='txtt"+i+"' name='txtt' size='1' min='0' max='3' required/> ")))
+                .append($("<td class='' style='width:15%; text-align:center;'/>").append($("<input type='number' style='text-align:center;' class='form-control prova' id='txtp"+i+"' name='txtp' size='1' min='0' max='7' required/> ")))
 
                 // .append($("<td />").val(data[i][2]).text(data[i][2]))
               );
@@ -272,6 +296,67 @@
 
     });
 
+
+function carregarNotas(){
+  if ($("#tri").val() && $("#disciplina").val()) {
+    $.ajax({
+      url: "/pesqNotas",  // AQUI É A URL QUE SERA ENVIADO
+      type: "POST",   //TIPO DE ENVIO
+      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
+      data: JSON.stringify({
+
+          disciplina  : $("#disciplina").val(),
+          trimestre   : $("#tri").val()
+
+               }),
+      contentType: "application/json",
+      cache: false,
+      timeout: 5000,
+      complete: function() {
+        console.log('process complete');
+      },
+      success: function(data) {
+        console.log(data);
+        console.log('process sucess');
+
+        if ($("#tri").val() != '4') {
+          $(".teste").val('');
+        }
+
+        $(".prova").val('');
+
+        for(var i = 0; i < data.length; i++)
+
+        switch ($("#tri").val()) {
+          case '1':
+            $("#txtt"+i).val(data[i].ttri1);
+            $("#txtp"+i).val(data[i].ptri1);
+            break;
+
+          case '2':
+            $("#txtt"+i).val(data[i].ttri2);
+            $("#txtp"+i).val(data[i].ptri2);
+            break;
+
+          case '3':
+            $("#txtt"+i).val(data[i].ttri3);
+            $("#txtp"+i).val(data[i].ptri3);
+            break;
+
+          case '4':
+            $("#txtp"+i).val(data[i].tri4);
+            console.log(data[i].tri4);
+            break;
+        }
+
+      },
+
+      error: function() {
+        console.log('process error');
+      },
+    });
+  }
+}
 
 
     // $( function(){
