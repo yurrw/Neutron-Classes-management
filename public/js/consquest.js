@@ -8,12 +8,12 @@
         var nivel = $('#nivel').val();
         var serie = $('#serie').val();
 
-        var table = $('#tabelaUnica').DataTable();    //aqui eu inicializei a tabela.
-            table.destroy();              //aqui eu destrui. Pq caso contrario, ficaria repetindo dados toda vez que vc mudasse a materia. ok
+        var table = $('#tabelaUnica').DataTable();    //inicializa a tabela.
+            table.destroy();              //destrói a tabela
 
 
         $.ajax({
-          url: "/pescaconsul",
+          url: "/pescaconsul",                        //função que pesquisa questões com base nos filtros 
           type: "POST",
           dataType: "json",
           data:JSON.stringify({
@@ -80,11 +80,11 @@
           },
         });
       });
-   
+
 
 
     //Pesquisa as matérias da disciplina selecionada
- 
+
       $("#disciplina").change(function(){
         var disciplina = $('#disciplina').val();
         console.log(disciplina);
