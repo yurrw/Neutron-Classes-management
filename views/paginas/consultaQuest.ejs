@@ -21,23 +21,23 @@
 
 <main id="panel" class="allPage consquestPage">
 <div class="layout" id="consQuestContent">
-  <div class="backTopper correctCadQuest">
+  <div class="backTopper correctConQuest">
   </div>
   <% include ../partes/topmenu.ejs %>
 
-  <div class="container-fluid " >
+  <div class="container-fluid  " id ="ccq" >
       <span id="pgName"> Consultar
         <span id="traco"> > </span>
         <span id="pgAtual">Questões </span>
       </span>
 
       <!-- BOTAO PARA CELULAR -->
-      <button class="toggle-button no-border" data-toggle="button" >
+      <button class="toggle-button no-border consQuest" data-toggle="button" >
           <img id="hbmenu" src="/assets/images/menu.png">
       </button>
       <!-- ***************** -->
 
-          <div class="backPages ">
+          <div class="backPages correctBG">
 
             <div id="consQuestCT" class="content layoutInner">
               <H1>Consulta de questões</H1>
@@ -94,10 +94,10 @@
                 <table  class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tabelaUnica" style="">
                   <thead class="thead-inverse">
                     <tr>
-                      <th style="align:left; text-align:left; width:10%;">Codigo</th>
-                      <th style="align:left; text-align:left;">Enunciado</th>
-                      <th style="align:left; text-align:center;">Gabarito</th>
-                      <th id="btadd" style="align:left; width:10% text-align:center;"></th>
+                      <th style="align:left; text-align:left; ">Codigo</th>
+                      <th style="align:left; text-align:left;  ">Enunciado</th>
+                      <th style="align:left; text-align:center; ">Gabarito</th>
+                      <th id="btadd" style="align:left; width:5%; text-align:center;"></th>
                     </tr>
                   </thead>
                   <tbody id="tableQuestoes">
@@ -119,7 +119,9 @@
     </main>
     <script type="text/javascript" src="/assets/js/consquest.js"></script>
     <script type="text/javascript" src="/assets/js/menu.js"></script>
-
+    <script type="text/javascript">
+      
+    </script>
 <% include ../partes/modal %>
 <% include ../partes/modalPriv %>
 

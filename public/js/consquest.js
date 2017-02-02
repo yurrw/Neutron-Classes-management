@@ -11,6 +11,12 @@
         var table = $('#tabelaUnica').DataTable();    //inicializa a tabela.
             table.destroy();              //destrói a tabela
 
+var width = $(window).width();
+console.log(width);
+if ((width < 415)) {
+  alert("Para melhor uso utilize resolucoes maiores");
+} 
+
 
         $.ajax({
           url: "/pescaconsul",                        //função que pesquisa questões com base nos filtros 

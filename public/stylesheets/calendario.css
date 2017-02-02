@@ -10,3 +10,9 @@ div.calendar{
     width: 125px!important;
     position: relative;
 }
+@media screen and (max-width: 1024px)
+{
+	#calendarioCT{
+		margin-left: 195px;
+	}
+}
