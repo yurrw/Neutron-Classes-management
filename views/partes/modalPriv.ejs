@@ -74,15 +74,15 @@ $(function()
         }
     });
   $("#AtualizarSenha").click(function(){
-    if ($("#NewOne").val()  &&   $("#NewOne2").val() &&  $("#oldOne").val() ){
-      if($("#NewOne").val() === $("#NewOne2").val() ){
+    if ($("#NewOne").val()  &&   $("#NewOne2").val() &&  $("#oldOne").val() ){      //checa se todos os campos estão preenchidos
+      if($("#NewOne").val() === $("#NewOne2").val() ){                              //checa se a senha nova está igual nos campos
       $.ajax({
       url: "/attPass",  // AQUI É A URL QUE SERA ENVIADO
       type: "POST",   //TIPO DE ENVIO
       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
       data:JSON.stringify({
-        oldOne: $("#oldOne").val(),
-        newOne: $("#NewOne").val(),
+        oldOne: $("#oldOne").val(),                                                //PASSA SENHA VELHA E NOVA PARA O CONTROLLER EXECUTAR A ALTERAÇÃO
+        newOne: $("#NewOne").val(),                                                //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       }),
 
       contentType: "application/json",
@@ -92,11 +92,11 @@ $(function()
         // console.log('process complete');
       },
       success: function(data) {
-            if(data =="updated"){
+            if(data =="updated"){                                                 //Caso a senha seja alterada com sucesso, a msg de sucesso aparecerá
           showMessage("#sucessoChangePassword");
 
             }
-            else if(data == "wrong"){
+            else if(data == "wrong"){                                             //Caso a senha não tenha sido alterada com sucesso, a msg de erro aparecerá
                    // alert("senhas diferentes");
                     //            $("#errorChangePassword").show();
                               showMessage("#errorChangePassword");
@@ -105,16 +105,16 @@ $(function()
 //          showMessage("sucessoChangePassword");
       },
 
-      error: function(x,k,b) {
+      error: function(x,k,b) {                                                    //Caso aja erro na requisição AJAX
             console.log(x+ " "+" "+k+" "+b);
           showMessage("#errorChangePasswordFull");
       },
     });
 
-  }else  showMessage("#newDiff");
+  }else  showMessage("#newDiff");                                                 //Caso as senhas novas sejam desiguais
     // alert("iguais");
     }else {
-              showMessage("#PreencherChangePassword");
+              showMessage("#PreencherChangePassword");                            //Caso todos os campos não estejam preenchidos
 
     }
 /*

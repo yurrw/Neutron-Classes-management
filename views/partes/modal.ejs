@@ -6,8 +6,8 @@ var drdg=0;
 
 $("#dropTarget").attr("src", "<%=photoID %>");
 	function fileSelect(evt) {
-	    evt.stopPropagation();
-	    evt.preventDefault();
+	    evt.stopPropagation();                                                     //impede que a função seja executada antes do tempo, impedindo eventos de acontecer
+	    evt.preventDefault();                                                      //para a ação padrão do elemento
 	    if (window.File && window.FileReader && window.FileList && window.Blob) {
 
 	      if (drdg==1){
@@ -90,7 +90,7 @@ var gamb;
          $("#editTeltxt").hide();
          $("#editNasctxt").hide();
 
-         $("#editNasc").click(function(){
+         $("#editNasc").click(function(){                                               //click que permite a edição do campo nascimento
 
            var clicks = $(this).data('clicks');
            if (clicks) {
@@ -106,7 +106,7 @@ var gamb;
 
         });
 
-         $("#editTel").click(function(){
+         $("#editTel").click(function(){                                               //click que permite a edição do campo telefone
 
            var clicks = $(this).data('clicks');
            if (clicks) {
@@ -122,7 +122,7 @@ var gamb;
 
         });
 
-        $("#editName").click(function(){
+        $("#editName").click(function(){                                               //click que permite a edição do campo nome
 
           var clicks = $(this).data('clicks');
           if (clicks) {
@@ -137,7 +137,7 @@ var gamb;
 
 
         });
-  $("#editEmail").click(function(){
+  $("#editEmail").click(function(){                                                    //click que permite a edição do campo email
 
 
 
@@ -161,7 +161,7 @@ var gamb;
             $("#editNametxt").hide();
           $("#nameUsr").show();
       });
-      $("#Atualizar").click(function(){
+      $("#Atualizar").click(function(){                                                                                             //função que atualiza o usuário se houver alguma alteração nos campos
        //  var test=  $("#EmailUsr").text() || "sexo";
       //  alert(test);
 
@@ -209,8 +209,7 @@ var gamb;
 
         <div class="modal-body" id="foto">
           <form enctype="multipart/form-data" method="post" action="/UpFoto">
-              <!-- <img src="/ups/thumbs/25-userPhoto-1481673375785.png"/> -->
-             <!-- <img src= src > -->
+
 
     		<div class="form-group" id="ph-user">
     		      <div class="newDatas">
@@ -229,7 +228,7 @@ var gamb;
                       <!--
                       @TODO: ATIVAR O BOTAO COM A FUNCIONALIDADE DE ENVIAR
                       -->
-                            <!--<input type="submit" name="env" Value="env">-->
+                            <input type="submit" class="btn btn-success no-border" name="env" Value="Salvar foto">        <!-- Salva foto -->
 
     		  </div>
           </div>
@@ -238,7 +237,7 @@ var gamb;
     </div>
         <div id="RightPart" class="container">
 
-            <h1 id="tituloPerfil">Perfil do usuario</h1>
+            <h1 id="tituloPerfil">Perfil do usuário</h1>
 
      <form id="PerfilDados">
     <div class="row" id="r1">
@@ -285,14 +284,7 @@ var gamb;
 
 
 
-			<!-- <div class="form-group">
-               <label for="recipient-name" class="form-control-label">Recipient:</label>
-               <input type="text" class="form-control" id="recipient-name">
-           </div>
-           <div class="form-group">
-              <label for="message-text" class="form-control-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-           </div> -->
+
      </form>
 
             <button type="submit" id="Atualizar" class="btn btn-primary no-border">Atualizar</button>
@@ -300,9 +292,10 @@ var gamb;
         </div>
 
     </div>
-        <div class="modal-footer no-border">
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-        </div>
+        <!-- <div class="modal-footer no-border">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> -->
+
 
 
 

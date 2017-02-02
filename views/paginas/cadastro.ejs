@@ -6,30 +6,32 @@
         <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadUser.css">
 
 
-       
+
         <% include ../partes/head %>
         <script>
-                
 
-            $( function() { 
 
-              var zedroguinha= "";
+            $( function() {
+
+              var matrula= "";
              $(".formCfoto").hide();
              //ANIMATION
 
 
 
-
+        //onlyNumber permite apenas números
         onlyNumber("#matricula");
         onlyNumber("#cpf");
         onlyNumber("#celular");
         onlyNumber("#datepicker");
 
         onlyLetter("#nome");
-        
-        validaCpf("#cpf");
-        validaNasc("#datepicker");
 
+        //formata cpf
+        validaCpf("#cpf");
+        //formata data
+        validaNasc("#datepicker");
+        //formata cel
         validaCelular("#celular");
 
         /*onlyNumber(campo);
@@ -50,14 +52,14 @@ function fileSelect(evt) {
 var files = evt.dataTransfer.files;
       }else var files =    evt.target.files;
 drdg=0;
- 
+
         var result = '';
         var file;
         for (var i = 0; file = files[i]; i++) {
               if (!file.type.match('image.*')) {
                 continue;
             }
- 
+
             reader = new FileReader();
             reader.onload = (function (tFile) {
                 return function (evt) {
@@ -66,7 +68,7 @@ drdg=0;
             }(file));
             reader.readAsDataURL(file);
             var mtrs=$('#matricula').val();
-           
+
             console.log(mtrs);
             result += '<li>' + mtrs + ' ' + file.size + ' bytes</li>';
         }
@@ -111,7 +113,7 @@ Array.prototype.forEach.call( inputs, function( input )
 });
 
 
- 
+
 var dropTarget = document.getElementById('dropTarget');
 dropTarget.addEventListener('dragover', dragOver, false);
 dropTarget.addEventListener('drop', fileSelect, false);
@@ -120,7 +122,7 @@ document.getElementById('userPhoto').addEventListener('change', fileSelect, fals
 
 
 
-
+//CONFIGURAÇÃO DO CALENDÁRIO
              $( "#datepicker" ).datepicker({
                    yearRange: '1900:2050',
                changeMonth: true,
@@ -138,30 +140,6 @@ document.getElementById('userPhoto').addEventListener('change', fileSelect, fals
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*POST TO SUBMIT----------------------------------------------------------------*/
 /*POST TO SUBMIT----------------------------------------------------------------*/
 /*POST TO SUBMIT----------------------------------------------------------------*/
@@ -169,13 +147,13 @@ document.getElementById('userPhoto').addEventListener('change', fileSelect, fals
 /*POST TO SUBMIT----------------------------------------------------------------*/
 /*POST TO SUBMIT----------------------------------------------------------------*/
 
- 
 
 
 
 
 
 
+    //No evento do click do botão cadastrar, serão colhidas as informações colocadas pelo usuário
              $("#btn-cad").click(function(){
   var    emailUser      = $('#email').val();
   var    senhaUser      = $('#senha').val();
@@ -210,18 +188,18 @@ $.ajax({
     timeout: 5000,
     complete: function(){
 
-      zedroguinha =  $('#matricula').val();
+      matrula =  $('#matricula').val();
                              document.getElementById("matriculaPost").innerHTML = $('#matricula').val();
                              $("#matriculaPost").val($('#matricula').val());
                              // console.log( $("#matriculaSend").val());
-                             $("#matriculaSend").val(zedroguinha);
+                             $("#matriculaSend").val(matrula);
                              document.getElementById("nomeBondeDoDeco").innerHTML      = $('#nome').val();
-                           
-                             
-                       
 
 
-                          $(".formCfoto").animate({height:'toggle'},200); //QUALQUER COISA MUDAR AQUI
+
+
+
+                          $(".formCfoto").animate({height:'toggle'},200);
                           $(".all").animate({height:'toggle'},200);
     },
     success: function(data){
@@ -237,7 +215,7 @@ $.ajax({
 
 
  });
- 
+
 
 
 });
@@ -250,11 +228,15 @@ $.ajax({
 
 
         </script>
+        <style>
+body {
+    background-color: #3DA9E3 !important; }
+</style>
     </head>
     <body>
     <div class="top1"></div>
     <main>
-        
+
         <div class="container all " style="background-color:#FEFEFE">
             <div class="col-sm-9 col-sm-offset-2">
             <br>
@@ -283,9 +265,9 @@ $.ajax({
                     </div>
 
           <div class="form-group date" data-provide="datepicker">
-           
+
               <input type="text" id="datepicker" class="form-control"  name="dataNasc"  placeholder="Data de Nascimento" required="required">
-           
+
               <input type="text"  id="alt-date"  name="data input-group-addon"  style="visibility: hidden;">
 
           </div>
@@ -309,24 +291,24 @@ $.ajax({
                         <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="required">
                     </div>
 
-                  
 
 
 
 
 
 
+
+                    <a href="/"><button type="submit" class="btn btn-default  " style="float:left; margin-bottom:50px;">Voltar</button></a>
 
                     <input type="button" id="btn-cad" class="btn btn-primary" style="float:right; margin-bottom:50px;" value="Cadastrar">
                 </form>
-              
-                       
-                        <br><br><br>
-                
-                        <br><br><br>
-                  
+
+
                         <br><br><br>
 
+                        <br><br><br>
+
+                        <br><br><br>
 
 
 
@@ -335,7 +317,7 @@ $.ajax({
 
 
 
-                <a href="/"><button type="submit" class="btn btn-default  " style="float:left; margin-bottom:50px;">Voltar</button></a>
+
                 <hr>
             </div>
         </div>
@@ -374,26 +356,28 @@ $.ajax({
 <!-- UPLOAD -->
 <!-- UPLOAD -->
 <!-- UPLOAD -->
+
+
 <form  id="uploadForm" action="/api/photo/" enctype="multipart/form-data"  class="formCfoto container " method="post">
 <div class="highlight">
  <h1 style="opacity:0.7;" >Só mais uns detalhes...</h1>
           <!-- <H1>Só mais um detalhe ...</H1> -->
 
 </div>
- <div class="newDatas">  
+ <div class="newDatas">
         <label for="userPhoto">
            <img id="dropTarget" ></img>
         </label>
   <br>
 <input type='file' name="userPhoto"  id="userPhoto" value="VIADAO"   filename="VIADAO" class="inputfile" name='userPhoto[]' />
 <label for="userPhoto" ><span>Selecionar Foto</span></label>
-                  
+
   </div>
 
 
-                    
 
-  <div class="dados_preCad"> 
+
+  <div class="dados_preCad">
     <label for="nome"      id="nomeBondeDoDeco">     </label><br>
     Matricula : <label for="matricula" id="matriculaPost"></label><br>
 
