@@ -442,7 +442,7 @@ ant;*/
  }
  a#cadlink{
     /*margin: 0 auto;*/
-    color: #e2e2e2;
+    color: #e2e2e2!important;
  }
   a#cadlink:hover{
     text-decoration: none;
