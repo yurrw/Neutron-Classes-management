@@ -60,6 +60,23 @@
 
               <div class="" style="position: relative;
                height: auto; text-align: center;" id="divDados">
+               <br>
+               <div class="col-xs-3">
+                 <select class="form-control" id="tri" name ="tri" type="select" required>
+                   <option selected disabled value="">Trimestre</option>
+               <option value="1"         >1ª Certificação</option>
+               <option value="2"         >2ª Certificação</option>
+               <option value="3"         >3ª Certificação</option>
+               <option value="4"         >Recuperação</option>
+                 </select>
+               </div>
+               <div class="">
+                 <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
+                   <option disabled selected value="" value="">Disciplina</option>
+                 </select>
+                 <br>
+               </div>
+
               <table class="table" style="" id="tabelaAlunos">
                 <thead class="thead-inverse" style="width:100%">
                   <tr>
@@ -79,18 +96,8 @@
               </table><br>
 
 
-              <div class="col-xs-3">
-                <select class="form-control" id="tri" name ="tri" type="select" required>
-                  <option selected disabled value="">Trimestre</option>
-            <option value="1"         >1ª Certificação</option>
-            <option value="2"         >2ª Certificação</option>
-            <option value="3"         >3ª Certificação</option>
-                </select>
-              </div>
-              <select class="form-control" id="disciplina" name="disciplina" style="width:300px;" required>
-                <option disabled selected value="" value="">Disciplina</option>
-              </select>&nbsp&nbsp
-              <button type="submit" class="btn btn-info">Cadastrar Notas</button>
+
+              <button type="submit" class="btn btn-info" id="cadastrarNotas">Cadastrar Notas</button>
 
 
 

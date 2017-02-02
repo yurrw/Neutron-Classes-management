@@ -7,9 +7,9 @@ function TxtToJson(callback , fileTxt){
   //VER DIFERENÇA PRATICA DO CONST PRO VAR
   var fs = require('fs')
     , fileName = arguments[1]  //o mesmo que fileTxt
-    , conteudo; 
+    , conteudo;
 
-  fs.readFile(fileTxt, 'utf8' , function( err, data) 
+  fs.readFile(fileTxt, 'utf8' , function( err, data)
     {
         console.log("callback1")
 
@@ -18,7 +18,7 @@ function TxtToJson(callback , fileTxt){
         conteudo = data.split('\n');
 
 
-       // linhas.push(content.split(/[     ]+/))        
+       // linhas.push(content.split(/[     ]+/))
    return callback(null, conteudo);
 
 
@@ -143,13 +143,13 @@ exports.findTables = function(rq, rs) {
       }
       rs.json(tabelas);
     }
-    
+
 
   });
   // res.status(204).end();
 
 
-} 
+}
 
 var genRandomString = function(length){
           return crypto.randomBytes(Math.ceil(length/2))
@@ -348,24 +348,39 @@ exports.cadnotas = function(req, res) {
       console.log("Loop: " + i);
       var select = "";
 
-
+      //Checa se já existe no banco
       var select = "SELECT * FROM aluno_nota_tri WHERE ano='"+n+"' AND  matricula ='" + matricula[i] + "' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "')";
       connDB.query(select, function(err, rows){
         if (err) console.log(err);
-
-        var notatri = parseInt(notaProva[this.i]) + parseInt(notaTeste[this.i]);
         console.log(rows);
-        if (rows.length > 0) {
 
-          var update = "UPDATE aluno_nota_tri SET  tri" + tri + " =" + notatri + " WHERE matricula =" + matricula[this.i] + " AND ano='"+n+"'AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "' )";
+        //Se existir, dá update
+        if (rows.length > 0) {
+          //4o trimestre só tem uma avaliação -> query diferente
+          if (tri == '4') {
+            var update = "UPDATE aluno_nota_tri SET  tri4 =" + notaProva[this.i] + " WHERE matricula =" + matricula[this.i] + " AND ano='"+n+"'AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "' )";
+          }
+          //Query para outros trimestres
+          else {
+            var update = "UPDATE aluno_nota_tri SET  ttri" + tri + " =" + notaTeste[this.i] + ", ptri" + tri + " =" + notaProva[this.i] + " WHERE matricula =" + matricula[this.i] + " AND ano='"+n+"'AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "' )";
+          }
+          console.log(update);
           connDB.query(update, function(err, rows) {
             if (err) console.log(err);
 
           });
+
+          //Se não existir, dá insert
         } else {
-
-          var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri" + tri + "`, ano) SELECT '" + matricula[this.i] + "', disciplina_id,'" + notatri + "','" + n + "' FROM disciplinas WHERE disciplina_nome = '" + disciplina + "' ";
-
+          //4o trimestre só tem uma avaliação -> query diferente
+          if (tri == '4') {
+            var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri4`, ano) SELECT '" + matricula[this.i] + "', disciplina_id,'" + notaProva[this.i] + "','" + n + "' FROM disciplinas WHERE disciplina_nome = '" + disciplina + "' ";
+          }
+          //Query para outros trimestres
+          else {
+            var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `ttri" + tri + "`, `ptri" + tri + "`, ano) SELECT '" + matricula[this.i] + "', disciplina_id,'" + notaTeste[this.i] + "','" + notaProva[this.i] + "','" + n + "' FROM disciplinas WHERE disciplina_nome = '" + disciplina + "' ";
+          }
+          console.log(insert);
           connDB.query(insert, function(err, rows) {
 
           });
@@ -405,6 +420,34 @@ console.log("Loop: "+i);
   }*/
   res.json("dadosAtualizados");
 
+};
+
+
+exports.buscaNotas = function(req, res){
+
+  var notas = [];
+  var x = req.body.trimestre;
+  var disciplina = req.body.disciplina;
+  var d = new Date();
+  var n = d.getFullYear();
+
+  if(x == '4')        var camposSelecionados = "tri4";
+  else                var camposSelecionados = "`ttri"+x+"`, `ptri"+x+"`";
+
+  var query = "SELECT "+camposSelecionados+" FROM `aluno_nota_tri` INNER JOIN aluno ON aluno_nota_tri.matricula = aluno.matricula WHERE disciplina_id = (SELECT `disciplina_id` FROM `disciplinas` WHERE disciplina_nome = '"+disciplina+"') AND ano = '"+n+"' ORDER BY nome";
+console.log(query);
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        notas.push(rows[i]);
+      }
+      console.log(notas);
+      res.json(notas);
+    }
+  });
 };
 
 exports.pesquisaDiscProfTurma = function(request, res){
