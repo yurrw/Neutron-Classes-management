@@ -8,21 +8,23 @@
 </script>
 <script type="text/javascript">
 
-   
-var novaRow = [];
-  var x = 0;
+
   function trocarTabela(element){
   $("#div2").show();
 
     var questRepetida = false;
     var table = document.getElementById('tableCandidatas');
+    var tableProva = document.getElementById('tableSelecionadas');
     var row = parseInt(element.parentNode.parentNode.rowIndex);
+    var selecionada;
 
-    novaRow[x] = '<tr word-wrap: break-word;><td style="text-align: left">'+ document.getElementById("materia").value +'</td><td style="text-align: left;">' + table.rows[row].cells[0].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[1].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[2].innerHTML + '</td><td><button class="btn btn-danger btn-block btn-removes" onclick="removerRow(this)">Remover</button></td></tr>';
+    selecionada =  '<tr word-wrap: break-word;><td style="text-align: left">'+ document.getElementById("materia").value +
+                  '</td><td style="text-align: left;">' + table.rows[row].cells[0].innerHTML + '</td><td style="text-align: center;">' +
+                  table.rows[row].cells[1].innerHTML + '</td><td style="text-align: center;">' + table.rows[row].cells[2].innerHTML +
+                  '</td><td><button class="btn btn-danger btn-block btn-removes" style="width:100%" onclick="removerRow(this)">Remover</button></td></tr>';
 
-    for(i = 0; i< novaRow.length-1; i++){
-      if (novaRow[x] == novaRow[i]) {
-
+     for(i = 1; i< tableProva.rows.length; i++){
+      if (table.rows[row].cells[0].innerHTML == tableProva.rows[i].cells[1].innerHTML) {
         alert("Questão já selecionada!");
         questRepetida = true;
         break;
@@ -30,16 +32,15 @@ var novaRow = [];
     }
 
     if (!questRepetida) {
-      document.getElementById("questSelecionadas").innerHTML += novaRow[x];
-      x++;
+      document.getElementById("questSelecionadas").innerHTML += selecionada;
     }
 
   }
 
   function removerRow(btn) {
-    x--;
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
+  console.log(row);
   novaRow[x] = "";
 }
 </script>
@@ -113,7 +114,7 @@ var novaRow = [];
                   <option disabled selected value="">Matéria</option>
                 </select><br><br>
                   <div id="tableQuestCandidatas">
-                    
+
                 <table  class="table table-bordered order-column hover table-responsive "  cellspacing="0" id="tableCandidatas">
 
                   <thead class="thead-inverse">
