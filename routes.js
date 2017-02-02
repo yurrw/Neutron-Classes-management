@@ -2,7 +2,6 @@ var HomeController = require('./controllers/HomeController');
 var CadController = require('./controllers/CadController');
 
 var ConsultCtrl = require('./controllers/ConsultCtrl');
-var TestCTRL = require('./controllers/TestCTRL');
 var bodyParser = require('body-parser').json();
 var multer              =   require('multer');
 var matrs     = "";
@@ -92,8 +91,8 @@ var fs = require('fs');
 
 
     /*INDEX*/
-            app.post('/SaveNotes', ConsultCtrl.SaveNts);
-            app.post('/delNTS',ConsultCtrl.DelNts);
+            app.post('/SaveNotes', CadController.SaveNts);
+            app.post('/delNTS',CadController.DelNts);
             app.post('/LoadNotes', ConsultCtrl.LoadNts);
 
 
@@ -154,22 +153,20 @@ app.post('/',
     }
   });
             app.post('/notas', ConsultCtrl.GetNotas);
-            app.post('/pesqNotas', CadController.buscaNotas);
+            app.post('/pesqNotas', ConsultCtrl.buscaNotas);
             app.post('/attPass',CadController.attPass);
             app.post('/cadastroQuest', CadController.cadastroQuest);
             app.post('/cadastroProva', CadController.cadastroProva);
             app.post('/cadastroDiario', CadController.cadastroDiario);
             app.post('/cadnotas', CadController.cadnotas);
-            app.post('/deletarQuest', ConsultCtrl.removerQuest);
-            app.post('/pesqMat', CadController.pesquisaMat);
-            app.post('/pesquisarMateria', CadController.pesquisarMateria);
-            app.post('/pesqDisc', CadController.pesquisaDisc);
-            app.post('/pesqDiscProfII', CadController.pesquisaDiscProf);
-            app.post('/pesqDiscProfIII', CadController.pesquisaDiscProfTurma);
-            app.post('/pesqQuest', CadController.pesquisaQuest);
+            app.post('/deletarQuest', CadController.removerQuest);
+            app.post('/pesqMat', ConsultCtrl.pesquisaMat);
+            app.post('/pesquisarMateria', ConsultCtrl.pesquisarMateria);
+            app.post('/pesqDisc', ConsultCtrl.pesquisaDisc);
+            app.post('/pesqDiscProfII', ConsultCtrl.pesquisaDiscProf);
+            app.post('/pesqDiscProfIII', ConsultCtrl.pesquisaDiscProfTurma);
+            app.post('/pesqQuest', ConsultCtrl.pesquisaQuest);
 
-            app.post('/pesca/:disciplina', TestCTRL.pesquisaMorte);
-            app.post('/pesca', TestCTRL.pesquisaMorte2);
 
             app.post('/pescaconsul', ConsultCtrl.pesquisateste);
             app.post('/getprova', ConsultCtrl.provaquests);
@@ -178,7 +175,7 @@ app.post('/',
             app.post('/findTables', CadController.findTables);
             app.post('/mostraturma', ConsultCtrl.pesquisaturma);
 
-            app.post('/pesqDiscProf',  CadController.pesquisaDiscProf);
+            app.post('/pesqDiscProf',  ConsultCtrl.pesquisaDiscProf);
             app.post('/pegaaluno', ConsultCtrl.listalunos);
             app.post('/pesqProfs', ConsultCtrl.pesquisaProfessores);
             app.post('/pegaaula', ConsultCtrl.pegaPresenca);
@@ -201,17 +198,7 @@ app.post('/',
 
         //app.post('/editEvento', CadController.editEvento);
 
-        /*-------------ADM-------------------------------------*/
-        /*-------------ADM__Consulta-------------------------- */
-        app.post('/ADMpesquisaDisc'   , ConsultCtrl.ADMpesquisaDisc);
-        app.post('/ADMpesquisaMateria', ConsultCtrl.ADMpesquisaMateria);
-        app.post('/ADMpesquisaturma'  , ConsultCtrl.ADMpesquisaturma);
-        app.post('/ADMpesquisaProf'   , ConsultCtrl.ADMpesquisaProf);
-        /*-------------ADM__Cadastro-------------------------- */
-        app.post('/ADMCadDisc'   , ConsultCtrl.ADMCadDisc);
-        app.post('/ADMCadMateria', ConsultCtrl.ADMCadMateria);
-        app.post('/ADMCadturma'  , ConsultCtrl.ADMCadturma);
-        app.post('/ADMCadProf'   , ConsultCtrl.ADMCadProf);
+        
 
 
 };

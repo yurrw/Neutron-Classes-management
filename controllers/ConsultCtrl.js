@@ -1,44 +1,66 @@
 var connDB = require('../models/mysqlmodule.js');
 
-exports.removerQuest   = 	function(req, res){
-      var questoes = [];
-      var qry =  "DELETE FROM `questoes` WHERE cod_quest = '"+ req.body.codigo_quest +"'" ;
-      connDB.query(qry,function(err,rows){
-        if (err)
-        req.flash('MSGCadQuest', err);
-        else {
-          console.log("Deletado! ");
-        }
-      });
+
+
+
+exports.buscaNotas = function(req, res){
+
+  var notas = [];
+  var x = req.body.trimestre;
+  var disciplina = req.body.disciplina;
+  var d = new Date();
+  var n = d.getFullYear();
+
+  if(x == '4')        var camposSelecionados = "tri4";
+  else                var camposSelecionados = "`ttri"+x+"`, `ptri"+x+"`";
+
+  var query = "SELECT "+camposSelecionados+" FROM `aluno_nota_tri` INNER JOIN aluno ON aluno_nota_tri.matricula = aluno.matricula WHERE disciplina_id = (SELECT `disciplina_id` FROM `disciplinas` WHERE disciplina_nome = '"+disciplina+"') AND ano = '"+n+"' ORDER BY nome";
+console.log(query);
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        notas.push(rows[i]);
+      }
+      console.log(notas);
+      res.json(notas);
+    }
+  });
 };
 
-exports.SaveNts = function(req,res){
+exports.pesquisaMat = function(request, res){
+  var materias = [];
 
-  var dados = [];
-  var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"'";
-    // console.log(req.body.obj[0].id);
+  connDB.query("SELECT * FROM `materia`, disciplinas WHERE materia.disciplina_id = disciplinas.disciplina_id AND disciplinas.disciplina_nome = '"+ request.body.disciplina +"'",function(err,rows){
+    if (err){
+      request.flash('MSGCadQuest', err);}
+    if (rows.length) {
+      for (var i = 0, len = rows.length; i < len; i++) {
+        materias.push(rows[i].nome);
+      }
+      res.json(materias);
+    }
+  });
+};
 
-  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
-  for (var i=0; i< req.body.obj.length ; i++){
-    console.log(req.body.obj[i].id);
-    var qry = "INSERT INTO `lembretes`( `ID`,`user`, `content`)  VALUES ('"+req.body.obj[i].id+"','"+req.user.matricula+"','"+req.body.obj[i].conteudo+"')";
-       connDB.query(qry,function(err,rows){
-       if (err) console.log(err);
-    });
-  }
-  // */
-  return res.json("all ok");
-
-  // console.log("NOTAS SALVAS");
+exports.pesquisarMateria = function(req, res){
+  var materias = [];
+  console.log(req.body.obj);
+  connDB.query("SELECT * FROM `materia`, disciplinas WHERE materia.disciplina_id = disciplinas.disciplina_id AND disciplinas.disciplina_nome = '"+ req.body.obj +"'",function(err,rows){
+    if (err){
+      req.flash('MSGCadQuest', err);}
+    if (rows.length) {
+      for (var i = 0, len = rows.length; i < len; i++) {
+        materias.push(rows[i].nome);
+      }
+      res.json(materias);
+    }
+  });
 
 };
-exports.DelNts  = function (req,res){
-    console.log(req.body);
-    var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"' AND ID='"+req.body.obj+"'";
 
-    // connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
-
-}
 exports.LoadNts = function(req,res){
   var dados = [];
   console.log("MUSICA DE BARAO");
@@ -253,6 +275,90 @@ exports.pesquisaturma	=	function(req, res){
 
 
 };
+
+
+exports.pesquisaDisc = function(req, res){
+
+  var disciplinas = [];
+  var query = "SELECT DISTINCT disciplina_nome FROM `disciplinas`  ORDER BY disciplinas.disciplina_nome ";
+
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        disciplinas.push(rows[i].disciplina_nome);
+      }
+      console.log(disciplinas);
+      res.json(disciplinas);
+    }
+
+  });
+};
+
+exports.pesquisaDiscProf = function(request, res){
+
+  var disciplinas = [];
+  var query = "SELECT `disciplina_nome` FROM `disciplinas`, professor_disciplinas"+
+  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"'";
+
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        disciplinas.push(rows[i].disciplina_nome);
+      }
+      res.json(disciplinas);
+    }
+
+  });
+};
+
+exports.pesquisaQuest = function(request, response){
+  var questoes = [];
+  console.log(request.body.materia);
+
+  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.user.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
+    if (err)
+    request.flash('MSGCadQuest', err);
+    if (rows.length) {
+      for (var i = 0, len = rows.length; i < len; i++) {
+        questoes.push([rows[i].enunciado, rows[i].nivel, rows[i].tipo, rows[i].cod_quest]);
+      }
+      response.json(questoes);
+    }
+  });
+};
+
+
+
+
+
+exports.pesquisaDiscProfTurma = function(request, res){
+
+  var test = request.body.nometurma;
+  console.log(test);
+  var disciplinas = [];
+  var query = "SELECT DISTINCT `disciplina_nome` FROM prof_turma, `disciplinas`, professor_disciplinas"+
+  " WHERE professor_disciplinas.disciplina_id = disciplinas.disciplina_id AND professor_disciplinas.matricula = '"+ request.user.matricula +"' AND prof_turma.cod_turma='"+request.body.nometurma+"'";
+console.log(query);
+  connDB.query(query, function(err,rows){
+    if (err)
+    req.flash('MSGCadQuest', err);
+    if (rows.length) {
+
+      for (var i = 0, len = rows.length; i < len; i++) {
+        disciplinas.push(rows[i].disciplina_nome);
+      }
+      res.json(disciplinas);
+    }
+
+  });
+};
+
 exports.pesquisaDiscProf = function(req, res){
 
   var consulDisc = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
