@@ -464,6 +464,21 @@ exports.pesquisaMat = function(request, res){
     }
   });
 };
+exports.pesquisarMateria = function(req, res){
+  var materias = [];
+  console.log(req.body.obj);
+  connDB.query("SELECT * FROM `materia`, disciplinas WHERE materia.disciplina_id = disciplinas.disciplina_id AND disciplinas.disciplina_nome = '"+ req.body.obj +"'",function(err,rows){
+    if (err){
+      req.flash('MSGCadQuest', err);}
+    if (rows.length) {
+      for (var i = 0, len = rows.length; i < len; i++) {
+        materias.push(rows[i].nome);
+      }
+      res.json(materias);
+    }
+  });
+
+};
 
 exports.pesquisaQuest = function(request, response){
   var questoes = [];

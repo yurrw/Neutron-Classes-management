@@ -161,6 +161,7 @@ app.post('/',
             app.post('/cadnotas', CadController.cadnotas);
             app.post('/deletarQuest', ConsultCtrl.removerQuest);
             app.post('/pesqMat', CadController.pesquisaMat);
+            app.post('/pesquisarMateria', CadController.pesquisarMateria);
             app.post('/pesqDisc', CadController.pesquisaDisc);
             app.post('/pesqDiscProfII', CadController.pesquisaDiscProf);
             app.post('/pesqDiscProfIII', CadController.pesquisaDiscProfTurma);

@@ -104,7 +104,29 @@ $(campoId).keydown(function(){
 
 }
 
+    /*-------------------------------------------- 
+      ajaxCall : FAZ REQUISICAO AJAX PELO POST
+          uri  : url que sera chamada
+          obj  : dados que serao enviados
+          asnc : se será assincrono ou nao
+    ----------------------------------------------*/
 
+    function ajaxCall(uri, obj = " ", asnc = true) {
+      return $.ajax({                                                               // Retorna o Resultado da funcao ajax
+        url: uri,                                                                   // Url que será direcionado 
+        type: "POST",                                                               // Tipo de envio
+        dataType: "json",                                                           // Tipo de dado que será enviado
+        data: JSON.stringify({
+          obj
+        }), //dados enviados
+
+        contentType: "application/json",                                            // Tipo de dados passados
+        cache: false,                                                               // Nega cache ao browser
+        timeout: 5000,                                                              // Espera até 5000 mls 
+        async: asnc
+      });
+
+    }
 /*<script>
 jQuery.fn.extend({
   check: function() {
