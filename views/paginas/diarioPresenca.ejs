@@ -1,482 +1,111 @@
-﻿<html lang="pt">
+<html lang="pt">
 <head>
-    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
-    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/diario.css">
-    <% include ../partes/head %>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/diario.css">
+  <!-- Cabeçalho  -->
+  <% include ../partes/head %>
 
-       <script>
+  <script type="text/javascript" src="/assets/js/diarioPresensa.js"></script>
 
-
-
-
-   $(function() {
-
-    //   $(".time_element").timepicki();
-      	$('#horaStart').timepicki({
-		show_meridian:false,
-        custom_classes:"correctTimer",
-		min_hour_value:7,
-		max_hour_value:18,
-		step_size_minutes:15,
-		overflow_minutes:true,
-		increase_direction:'up',
-		disable_keyboard_mobile: true,
-        start_time: ["07", "000", "AM"],
-        });
-
-    $('#initAula').hide();
-      $("#disc").hide();
-      $("#data").hide();
-      $("#dadoos").hide();
-       $('#txtSelectedDate').val($.datepicker.formatDate('dd/mm/yy', new Date()));
-
-
-               $.ajax({
-                   url: "/mostraturma", // AQUI É A URL QUE SERA ENVIADO
-                   type: "POST", //TIPO DE ENVIO
-                   dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                   contentType: "application/json",
-                   cache: false,
-                   timeout: 5000,
-                   complete: function() {
-                       //called when complete
-                   },
-
-                   success: function(data) {
-                       var ginea = data +" ";
-                       var spt = ginea.split(",");
-                        for(var x=0; x< spt.length; x++){
-                          $("#numturma").append('<option value='+spt[x]+'>'+spt[x]+'</option> ');
-                        }
-                       var name = [];
-                       name = data;
-                       //document.getElementById("btn-mostraturma").innerHTML = name.toString();
-                      // nometurma
-                       console.log('process sucess');
-                   },
-
-                   error: function() {
-                       console.log('process error');
-                   },
-               });
-
-               $("#txtSelectedDate").datepicker({
-                   yearRange: '1900:2050',
-                   changeMonth: true,
-                   changeYear: true,
-                   altFormat: "dd/mm/yy",
-                   dateFormat: "dd/mm/yy",
-                   altField: "#alt-date"
-               });
-               $("#consultaDiarioTurma").click(function(){
-                $("#data").show();
-                $("#dadoos").show();
-                brotheragem();
-
-               });
-
-               $("#numturma").change(function() {
-                   $('#initAula').show();
-      $("#disc").show();
-    
-                    $('#nomedisciplina').empty();
-                   $.ajax({
-
-                           url: "/pesqDiscProf",
-                           type: "POST", //TIPO DE ENVIO
-                           dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                           contentType: "application/json",
-                           cache: false,
-                           timeout: 5000,
-                           complete: function() {
-                               //called when complete
-                               console.log('process complete');
-                           },
-
-                           success: function(data) {
-                               console.log(data);
-                               var opcoes = [];
-                               opcoes = data;
-
-
-
-                          var mySelect = $('#nomedisciplina');
-                          $.each(opcoes, function(val, text) {
-                              mySelect.append(
-                                  $('<option></option>').html(text)
-                              );
-                          });
-
-
-
-                               console.log('process sucess');
-
-
-                           },
-
-                           error: function() {
-                               console.log('process error');
-                           },
-                       });
-                 });
-
-
-var brotheragem = function() {
-    var nometurma = $('#numturma').val();
-    var data = $('#txtSelectedDate').val();
-    var hora = $('#horaStart').val();
-  var disc = $('#nomedisciplina').val();
-
-
-    $.ajax({
-        url: "/pegaaula", // AQUI É A URL QUE SERA ENVIADO
-        type: "POST", //TIPO DE ENVIO
-        dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-        data: JSON.stringify({
-            txtSelectedDate: data,
-            disciplina: disc,
-            nometurma: nometurma,
-            initHour : hora
-        }),
-        contentType: "application/json",
-        cache: false,
-        timeout: 5000,
-        complete: function() {
-            console.log('process complete');
-        },
-
-        success: function(data) {
-
-
-
-
-            console.log('process sucess');
-            $("#IzaMyLuv").empty();
-            var tamanho = data.length;
-            var txt = "";
-            for (var i = 0; i < data.length; i++) {
-                if (!(i == data.length - 1)) {
-                    if (data[i][2] == "true") {
-
-                        $("#IzaMyLuv").append($("<tr>")  
-                            .append($("<td />").val(i + 1).text(i + 1))
-
-                            .append($("<td/>").val(data[i][1]).text(data[i][1]))
-                            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-                            .append($("<td  style='text-align:center;' > ")
-                            .append($(" <input type='checkbox' class='chkPresenca' id='chk' name='chk' value='true' /> ").prop('checked', true))
-                            .append($("</td>")))
-                            ).append($("</tr>"));
-                    } else {
-                        $("#IzaMyLuv").append($("<tr>")
-                            .append($("<td />").val(i + 1).text(i + 1))
-
-                            .append($("<td/>").val(data[i][1]).text(data[i][1]))
-                            .append($("<td style='text-align:center;'/>").val(data[i][0]).text(data[i][0]))
-                              .append($("<td  style='text-align:center;'>")
-                            .append($("<input type='checkbox'  class='chkPresenca' id='chk' name='chk' value='true' /> ").prop('checked', false))
-                              .append($("</td>")))
-                            ).append($("</tr>"));
-
-
-                    }
-                } else {
-                    $('#textAreas').val(data[i][0]);
-                }
-
-
-
-
-                //$('#textAreas').val(data[tamanho])
-            }
-
-
-        },
-
-        error: function() {
-
-            $('#textAreas').val("");
-
-
-            console.log('process error');
-        },
-    });
-
-
-
-}
-
-
-                      $("#btDiaAnterior").click(function() {
-
-
-                   var data = $("#txtSelectedDate").datepicker("getDate");
-                   $("#txtSelectedDate").datepicker("setDate", new Date(data.getFullYear(), data.getMonth(), data.getDate() - 1));
-
-           brotheragem();
-
-               });
-               $("#btDiaPosterior").click(function() {
-                   var data = $("#txtSelectedDate").datepicker("getDate");
-                   $("#txtSelectedDate").datepicker("setDate", new Date(data.getFullYear(), data.getMonth(), data.getDate() + 1));
-           brotheragem();
-
-               });
-
-
-              $("#btAreas").click(function() {
-                  var nometurma = $('#numturma').val();
-                  var data = $('#txtSelectedDate').val();
-                  var coment = $('#textAreas').val();
-                  var hora = $('#horaStart').val();
-
-                  var nomedisciplina = $('#nomedisciplina').val();
-
-                  //      var i = 1;
-
-                  //      $('input[type=checkbox]').each(function() {
-
-
-
-
-                  //          if (this.checked) {
-
-                  //              //   console.log("value='"+i+"'");
-                  //              $("#chkHidden[alt='" + i + "']").prop('disabled', true);
-                  //              console.log('desabilitou ');
-                  //          } else {
-                  //              //   document.getElementById("chkHidden").disabled=false;
-                  //              // console.log('false');
-
-                  //          }
-                  //          i++;
-
-
-                  //      });
-
-
-
-                  var table = document.getElementById('tabletop');
-
-                  var checks = [];
-                  $('input[type=checkbox]').each(function() {
-                      //if(this.checked){
-                      checks.push(this.checked);
-
-                      //   }
-
-                  });
-
-
-
-
-                  var tabela = [];
-
-
-
-
-                  for (var r = 1, i = 0; r < table.rows.length; r++, i++) {
-                      tabela[i] = table.rows[r].cells[1].innerHTML;
-
-
-                  }
-
-
-                  // console.log(table);
-
-
-                  $.ajax({
-                      url: "/cadastroDiario", // AQUI É A URL QUE SERA ENVIADO
-                      type: "POST", //TIPO DE ENVIO
-                      dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-                      data: JSON.stringify({
-                          chk: chk,
-
-                          txtSelectedDate  : data,
-                          nomedisciplina   : nomedisciplina,
-                          textAreas        : coment,
-                          turma            : nometurma,
-                          matriculas       : tabela,
-                          chks             : checks,
-                          comentario       : coment,
-                          initHour         : hora
-
-                      }),
-                      contentType: "application/json",
-                      cache: false,
-                      timeout: 5000,
-                      complete: function() {
-                          console.log('process complete');
-                      },
-
-                      success: function(data) {
-
-
-                          console.log('process sucess');
-                      },
-
-                      error: function() {
-                          console.log('process error');
-                      },
-                  });
-
-
-
-              });
-
-
-
-   });
-
-
-</script>
 </head>
 <body >
-<div class="all">
+  <div class="all">
+    <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+      <!-- Menu Lateral -->
+      <% include ../partes/sidemenu.ejs %>
+    </div>
 
-
-
-<div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
-<% include ../partes/sidemenu.ejs %>
-</div>
-
-</div>
-<main id="panel" class="allPage cadquestPage ">
+  </div>
+  <main id="panel" class="allPage cadquestPage ">
     <div id="cadQuestContent" class="layout">
-<div class="backTopper correctDiarioPresenca">
-</div>
-<% include ../partes/topmenu.ejs %>
-        <div class="container-fluid">
-     <span id="pgName"> Neutron
+      <div class="backTopper correctDiarioPresenca">
+      </div>
+      <!-- Menu superior -->
+      <% include ../partes/topmenu.ejs %>
+
+      <div class="container-fluid">
+        <span id="pgName"> Neutron
           <span id="traco"> > </span>
           <span id="pgAtual">Presença </span>
         </span>
 
-
         <!-- BOTAO PARA CELULAR -->
         <button class="toggle-button no-border" data-toggle="button" >
-            <img id="hbmenu" src="/assets/images/menu.png">
+          <img id="hbmenu" src="/assets/images/menu.png">
         </button>
 
-
-          <div class="backPages">
+        <div class="backPages">
           <div class="content layoutInner " id="diarioCT" >
-
             <H1>Diário de Presença</H1>
 
             <br>
 
             <form class="form-inline" name="cadastroDiario" id="formDiario" method="post">
-            <input type="hidden" value= <%= userMat %> name="matriculaProf">
-                <div id="divTurma" class='form-group'>
-        Turma: <select class="form-control" id="numturma" name="turma" >
-              <option disabled selected value="">Turma</option>
-              <option id="btn-mostraturma" disabled></option>
-            </select>&nbsp&nbsp
-</div>
-          <div id="disc" class='form-group'>
-              Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" >
-                <option disabled selected value="">Disciplina</option>
-                <option id="btn-mostradisc"></option>
-              </select>&nbsp&nbsp
-          </div>
-          <div id="initAula" class='form-group'>
-            <input placeholder='Às' type="text" name="timepicker" class="time_element form-control" style="width:200px;"   id="horaStart"/>     
+              <input type="hidden" value= <%= userMat %> name="matriculaProf">
+              <div id="divTurma" class='form-group'>
+                Turma: <select class="form-control" id="numturma" name="turma" >                    <!-- Input para selecionar turmas -->
+                  <option disabled selected value="">Turma</option>
+                  <option id="btn-mostraturma" disabled></option>
+                </select>&nbsp&nbsp
+              </div>
+              <div id="disc" class='form-group'>
+                Disciplina: <select class="form-control" id="nomedisciplina" name="nomedisciplina" >    <!-- Input para selecionar disciplinas -->
+                  <option disabled selected value="">Disciplina</option>
+                  <option id="btn-mostradisc"></option>
+                </select>&nbsp&nbsp
+              </div>
+              <div id="initAula" class='form-group'>
+                <input placeholder='Às' type="text" name="timepicker" class="time_element form-control" style="width:200px;"   id="horaStart"/>  <!-- Input para hora da aula -->
 
-          </div>
-          <input type="button" value="Pesquisar" id="consultaDiarioTurma"   class="btn btn-default">
-          
-
-
+              </div>
+              <input type="button" value="Pesquisar" id="consultaDiarioTurma"   class="btn btn-default">    <!-- Botão para consultar turmas de acordo com os filtros oferecidos -->
 
               <div id="dadoos">
-                        <div id="data">
-                            <button class="btn btn-primary" type="button" id="btDiaAnterior">
-                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <div id="data">
+                  <button class="btn btn-primary" type="button" id="btDiaAnterior">                                 <!-- Volta um dia -->
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 
-                            </button>
-                            <input class="form-control" type="text" id="txtSelectedDate" name="txtSelectedDate" disabled />
-                            <button class="btn btn-primary" type="button" id="btDiaPosterior">
-                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                  </button>
+                  <input class="form-control" type="text" id="txtSelectedDate" name="txtSelectedDate" disabled />   <!-- Mostra a data selecionada -->
+                  <button class="btn btn-primary" type="button" id="btDiaPosterior">                                <!-- Avança um dia -->
+                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
 
-                            </button>
-                        </div>
+                  </button>
+                </div>
 
-              <table class="table" name="tabletop" id="tabletop" style="">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th class="celulasCB" style="width:10%" >#</th>
-                    <th class="celulasCB" style="width:15%" >Matrícula</th>
-                    <th class="celulasCB"  style="width:25%; text-align:center" >Nome</th>
-                    <th class="celulasCB"  style="width:5%; text-align:center" >Presença</th>
+                <table class="table" name="tabletop" id="tabletop" style="">                                        <!-- Table onde será exibido os dados da pesquisa -->
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th class="celulasCB" style="width:10%" >#</th>
+                      <th class="celulasCB" style="width:15%" >Matrícula</th>
+                      <th class="celulasCB"  style="width:25%; text-align:center" >Nome</th>
+                      <th class="celulasCB"  style="width:5%; text-align:center" >Presença</th>
 
 
-                  </tr>
+                    </tr>
 
-                </thead>
-                <tbody id="IzaMyLuv">
+                  </thead>
+                  <tbody id="tablebody">
 
-                </tbody>
-              </table>
-              <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea>
-              <br>
-              <input type='button' id="btAreas" type="button" value="Gravar" class="btn btn-primary">
+                  </tbody>
+                </table>
+                <textarea rows="10" cols="50" id="textAreas" name="textAreas"> </textarea>                <!-- Área onde será inserido o comentário sobre a aula determinada -->
+                <br>
+                <input type='button' id="btAreas" type="button" value="Gravar" class="btn btn-primary">   <!-- Grava  a aula no BD -->
               </div>
 
             </form>
 
-            </div>
-</div>
-
-
-
-
+          </div>
+        </div>
       </div>
     </div>
     <br><br>
-    </main>
+  </main>
+  <script type="text/javascript" src="/assets/js/menu.js"></script>
 
-<script>
-
-// Default Open
-var slideout = new Slideout({
-'panel': document.getElementById('panel'),
-'menu': document.getElementById('sid'),
-'padding': 270,
-'tolerance': 70,
-'easing': 'cubic-bezier(.51,2,.81,.41)',
-});
-slideout.open();
-
-// Toggle button
-$(".toggle-button").click(function() {
-// alert("oila");
-slideout.toggle();
-});
-
-
-
-
-$(document).ready(function() {
-
-$(window).resize(function(){
-    if ($(window).width() <= 1024){
-        // slideout.close();
-        // slideout.close();
-        slideout.close();
-
-    }else {
-        slideout.open();
-    }
-});
-});
-
-
-
-
-</script>
-<% include ../partes/modal %>
-<% include ../partes/modalPriv %>
+  <% include ../partes/modal %>
+  <% include ../partes/modalPriv %>
 </body>
 
 </html>
