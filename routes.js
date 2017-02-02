@@ -167,8 +167,10 @@ app.post('/',
             app.post('/pesqDiscProfII', CadController.pesquisaDiscProf);
             app.post('/pesqDiscProfIII', CadController.pesquisaDiscProfTurma);
             app.post('/pesqQuest', CadController.pesquisaQuest);
+
             app.post('/pesca/:disciplina', TestCTRL.pesquisaMorte);
             app.post('/pesca', TestCTRL.pesquisaMorte2);
+
             app.post('/pescaconsul', ConsultCtrl.pesquisateste);
             app.post('/getprova', ConsultCtrl.provaquests);
             app.post('/enviaremail', CadController.enviaremail);

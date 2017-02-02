@@ -29,3 +29,23 @@ div#divFiltrosConsQuest .form-control{
 #tabelaUnica{
   width: 750px;
 }
+.correctCadQuest{
+  margin-left: -150px;
+}
+.consquestPage{
+  margin-left: 65px!important;
+}
+@media screen and (max-width: 1024px){
+  .consquestPage{
+    margin-left: 00px!important;
+  }
+
+.backPages{
+  margin-left: -260px;
+}
+#consQuestCT{
+  margin-left: 165px;
+}
+
+
+}
