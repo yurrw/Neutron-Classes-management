@@ -1,20 +1,3 @@
-
-
-$( function() {
-
-
-
-
-
-});
-
-
-
-
-
-
-
-
 // $("#cadnota").click(function() {
 // var nometurma = $('#nometurma').val();
 //        var trimestre= $('#textAreas').val();
@@ -179,9 +162,9 @@ $( function() {
             console.log(matriculasAlunosNotas);
 
             //ESSE ALERT EXIBE A OPCAO SELECIONADA.
-            alert($("#tri").val());
-            alert($("#disciplina").val());
-
+                // alert($("#tri").val());
+                // alert($("#disciplina").val());
+        
             $.ajax({
                   url: "/cadnotas",  // AQUI É A URL QUE SERA ENVIADO
                   type: "POST",   //TIPO DE ENVIO

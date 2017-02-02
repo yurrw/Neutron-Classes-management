@@ -95,6 +95,10 @@
       width: 1300px!important;
     }
 
+    .alert-CadQuest{
+        width: 68vh!important;
+    }
+
 }
 @media screen and (max-width: 1440px){
     /*CADQUEST PAGINA*/
@@ -249,6 +253,9 @@
     div.calendar{
       width: 996px!important;
     }
+        .alert-CadQuest{
+        width: 80vh!important;
+    }
 }
 @media only screen and (max-width: 1367px) {
     .modal-header + #TituloPriv {
@@ -328,6 +335,9 @@
 
     div.calendar{
       width: 910px!important;
+    }
+            .alert-CadQuest{
+        width: 85vh!important;
     }
 }
 
@@ -468,7 +478,9 @@
       margin-left: -100px!important;
       width: 900px!important;
     }
-
+            .alert-CadQuest{
+        width: 45vh!important;
+    }
 }
 
 @media  screen and (max-width: 1024px) and (min-width: 1024px)
@@ -557,6 +569,9 @@
 
 }
 @media  screen and (max-width: 768px ) {
+                .alert-CadQuest{
+        width: 60vh!important;
+    }
     /*cadQuest Pagina*/
      /*#cadQuestContent{
         width: 100vw!important;
@@ -691,11 +706,14 @@ div#divFiltrosConsQuest .form-control{
   padding-left: 0px!important;
 }
 
-div.calendar{
-  margin-left: -125px!important;
-  width: 700px!important;
-}
-
+    div.calendar{
+      margin-left: -125px!important;
+      width: 700px!important;
+    }
+    #cadquestCT{
+        margin-left: 110px!important;  
+        width: 100%; 
+    }
 }
 
 @media  screen and (max-width: 765px ) {
@@ -1070,6 +1088,16 @@ div.calendar{
       width: 390px!important;
       font-size: 12px!important;
     }
+    #cadquestCT{
+        margin-left: 113px!important;  
+        /*width: 100%; */
+    }
+    .alert-CadQuest{
+        width: 41vh!important;
+    }
+        .alert-CadQuest{
+        width: 45vh!important;
+    }
 }
 @media  screen and (max-width: 400px ) {
     #leftPart { /*PARTE COM A FOTO DO USUARIO*/
@@ -1176,6 +1204,13 @@ div.calendar{
           margin-left: -132px!important;
           width: 350px!important;
         }
+    #cadquestCT{
+        margin-left: 95px!important;  
+        /*width: 100%; */
+    }
+    .alert-CadQuest{
+        width: 45vh!important;
+    }
 
 }
 
@@ -1244,7 +1279,17 @@ div.calendar{
     div#consQuestContent .backpages{
       margin-left: -235px;
     }
-
+            #cadquestCT{
+        margin-left: 85px!important;  
+        /*width: 100%; */
+    }
+     #cadquestCT > h1{
+        font-size: 3rem!important;
+        margin-left: 20px!important;
+     }
+    .alert-CadQuest{
+        width: 47vh!important;
+    }
 
 }
 @media screen and (max-width: 325px) {
@@ -1367,6 +1412,18 @@ div.calendar{
           margin-left: -125px!important;
           width: 300px!important;
         }
+            #cadquestCT{
+        margin-left: 65px!important;  
+        /*width: 100%; */
+    }
+     #cadquestCT > h1{
+        font-size: 3rem!important;
+        margin-left: 20px!important;
+     }
+    .alert-CadQuest{
+        width: 53vh!important;
+    }
+
 }
 
 @media screen and (min-width: 1025px) {

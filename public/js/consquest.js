@@ -1,4 +1,4 @@
- $( function() {
+ $( function(){
       $("#btn-consultar").click(function(){
         var autor = $('#autor').val();
         var disciplina = $('#disciplina').val();
@@ -80,11 +80,11 @@
           },
         });
       });
-    });
+   
 
 
     //Pesquisa as matérias da disciplina selecionada
-    $( function() {
+ 
       $("#disciplina").change(function(){
         var disciplina = $('#disciplina').val();
         console.log(disciplina);

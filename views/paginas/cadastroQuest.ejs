@@ -33,17 +33,18 @@
         <img id="hbmenu" src="/assets/images/menu.png">
     </button>
     <!-- ***************** -->
-
+  
           <div class="backPages">
 
           <div class="content layoutInner " id="cadquestCT" >
             <h1>Cadastrar questões</h1>
 
-            <% if(message.length > 0){ %>
-                <div class="alert alert-info" style="text-align: center;"><%= message %></div>
-            <% } %>
+
 
             <br>
+             <% if(message.length > 0){ %> 
+              <div class="alert alert-info alert-CadQuest" style="text-align: center;"><%= message %></div> 
+            <% } %> 
 
             <form class="form-inline" method="Post" action="/cadastroQuest" name="formulario" id="formulario">
 

@@ -335,53 +335,46 @@ exports.pesquisaDisc = function(req, res){
   });
 };
 
-exports.cadnotas = function(req, res){
-  var matricula  = req.body.matAlunos;
-  var tri        = req.body.tri;
-  var disciplina = req.body.disciplina;
-  var notaProva = req.body.notaProva;
-  var notaTeste = req.body.notaTeste;
+exports.cadnotas = function(req, res) {
+    var matricula = req.body.matAlunos;
+    var tri = req.body.tri;
+    var disciplina = req.body.disciplina;
+    var notaProva = req.body.notaProva;
+    var notaTeste = req.body.notaTeste;
+          var d = new Date();
+          var n = d.getFullYear();
+    for (var i = 0; i < matricula.length; i++) {
 
-  for(var i = 0; i < matricula.length; i++){
-
-    console.log("Loop: "+i);
-        var select = "";
+      console.log("Loop: " + i);
+      var select = "";
 
 
-        
-        connDB.query("SELECT * FROM aluno_nota_tri WHERE matricula ='"+matricula[this.i]+"' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )", function(err,rows){
-          if (err) console.log(err);
-          
-  var notatri = parseInt(notaProva[this.i]) + parseInt(notaTeste[this.i]);
+      var select = "SELECT * FROM aluno_nota_tri WHERE ano='"+n+"' AND  matricula ='" + matricula[i] + "' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "')";
+      connDB.query(select, function(err, rows){
+        if (err) console.log(err);
 
-          if (rows.length > 0){
+        var notatri = parseInt(notaProva[this.i]) + parseInt(notaTeste[this.i]);
+        console.log(rows);
+        if (rows.length > 0) {
 
-    var update = "UPDATE aluno_nota_tri SET  tri"+tri+" ="+ notatri+" WHERE matricula ="+matricula[this.i]+" AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
-          console.log(update);
-                      connDB.query(update,function(err, rows ){
-                        if (err) console.log(err);
+          var update = "UPDATE aluno_nota_tri SET  tri" + tri + " =" + notatri + " WHERE matricula =" + matricula[this.i] + " AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '" + disciplina + "' )";
+          connDB.query(update, function(err, rows) {
+            if (err) console.log(err);
 
-                      });
-          }else{
-            var d = new Date();
-var n = d.getFullYear();
-  var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`, ano) SELECT '"+matricula[this.i]+"', disciplina_id,'"+ notatri +"','"+n+"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+          });
+        } else {
 
-                connDB.query(insert, function(err,rows){
+          var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri" + tri + "`, ano) SELECT '" + matricula[this.i] + "', disciplina_id,'" + notatri + "','" + n + "' FROM disciplinas WHERE disciplina_nome = '" + disciplina + "' ";
 
-                });
-          }
-     }.bind({i: i}));
-/*
+          connDB.query(insert, function(err, rows) {
 
-for (var i = 0; i < 10; i++) {
-  dummy(i, function(response) {
-    console.log("i = " + this.i + " , response = " + response);
-  }.bind( {i: i} ))
+          });
+        }
+      }.bind({
+        i: i
+      }));
 
-*/
-  }
-
+    }
 
   /*for (var i = 0; i < matricula.length; i++) {
 console.log("Loop: "+i);
