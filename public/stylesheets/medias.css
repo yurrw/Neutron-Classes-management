@@ -27,7 +27,7 @@
     }
     .dashElements{
         left: 0;
-        height:50vw!important;
+        height:55vw!important;
     }
     .anotacoes{
         margin-left: 10px;
@@ -162,6 +162,7 @@
     }
 }
 /*PRINCIPAL EM NOTEBOOKS*/
+
 @media screen and (max-width: 1367px) {
       #cabecalho .dropdown-menu{
     right: 45px;
@@ -178,10 +179,10 @@
     /*---------------*/
     /*INDEX PAGINA*/
     .dashElements{
-        left: 10;
+        left: 15;
         margin-left: 0;
         height: 51.6vw!important;
-        width:81.5vw!important;
+        width:83vw!important;
     }
 
     .anotacoes{
@@ -208,7 +209,7 @@
         font-size: 1.1rem;
     }
     .TurmasBlc{
-        right: 405px!important;
+        right: 423px!important;
         height: 320px!important;
         top: 370px!important;
         width: 250px!important;
@@ -1304,7 +1305,7 @@ div.calendar{
         left: -50px!important;
     }
     .dashElements{
-        height: 215vh!important;
+        height: 225vh!important;
     }
     /*------------*/
 }

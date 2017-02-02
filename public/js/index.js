@@ -1,222 +1,259 @@
 (function($, window, document) {
 
+  $(function() {                                                              
 
-  $(function() { // Quando a página estiver carregada
-
-      var count = 0;
-      var xerox        = 0;
-      var notes        = $("#notes");
-
-      var anotacoesLocal = localStorage.getItem("notes");
-
-      if(anotacoesLocal){
-          var anotacoesArray = JSON.parse(anotacoesLocal);
-              count          = anotacoesArray.length;
-
-              for (var y=0; y < count ; y++ ){
-                  var anotacaoArmazenada = anotacoesArray[y];
-                  addNewNote(anotacaoArmazenada.Colour,anotacaoArmazenada.Conteudo , anotacaoArmazenada.Index);
-              }
-      }
-
-
-   /*-------------------------------------------- 
-     FAZ REQUISICAO AJAX PELO POST
-     Parametro uri  : url que sera chamada
-     Parametro obj  : dados que serao enviados
-   ----------------------------------------------*/
-    function ajaxCall(uri, obj= " ",asnc = true){
-        return $.ajax({
-                url         : uri,                      //url que será direcionado 
-                type        : "POST",                   //tipo de envio
-                dataType    : "json",                   //tipo de dado que será enviado
-                data        : JSON.stringify({obj}),  //dados enviados
+    var count = 0;                                                                  // QTDE de lembretes
+    var notes = $("#notes");                                                        //
+    var ctx   = document.getElementById('skills').getContext('2d');                 // Grafico
+    var anotacoesLocal = localStorage.getItem("notes");                             // Pega o valor dessa 'Chave'      
     
-                contentType : "application/json", //
-                cache       : false,                    //nega cache ao browser
-                timeout     : 5000,                     //espera até 5000 mls 
-                async       : asnc
-              });  
+    /*-------------------------------------------- 
+      ajaxCall : FAZ REQUISICAO AJAX PELO POST
+          uri  : url que sera chamada
+          obj  : dados que serao enviados
+          asnc : se será assincrono ou nao
+    ----------------------------------------------*/
 
-    }
-    function svNotes(){
+    function ajaxCall(uri, obj = " ", asnc = true) {
+      return $.ajax({                                                               // Retorna o Resultado da funcao ajax
+        url: uri,                                                                   // Url que será direcionado 
+        type: "POST",                                                               // Tipo de envio
+        dataType: "json",                                                           // Tipo de dado que será enviado
+        data: JSON.stringify({
+          obj
+        }), //dados enviados
 
-        var anotacoesArray = new Array();
-
-        notes.find("li > div").each(function (i, e){
-            var conteudo = $(e).find("textarea.note-content");
-            anotacoesArray.push({Index: i, Conteudo: conteudo.val() });
-        });
-
-        var jsonParse= JSON.stringify(anotacoesArray);
-        /*
-        console.log("SVNOTES");
-
-        var keys = Object.keys(anotacoesArray);
-        var last = keys[keys.length-1];
-            console.log(last);
-        */ 
-       localStorage.setItem("notes", jsonParse);
-       
-        var lembretesConteudo = $(".note-content");
-
-        var anotacoesData = [];
-        lembretesConteudo.each(function(i , e ) {  
-          // var content = ;
-          // alert($(this).val());
-            anotacoesData.push({
-                id:i,
-                conteudo: $(this).val()
-            });
-        }
-         );
-
-        /*
-        var myAssociativeArr = [];
-        for (var i=0; i < idArray.length; i++) {
-        myAssociativeArr.push({
-            id: idArray[i],
-            lname: lnameArray[i],
-            fname: fnameArray[i]
-        });
-        }
-
-        */
-         ajaxCall("/SaveNotes",anotacoesData);
-      
-    }
-
-      // pega referência da lista de notas
-
-      //clicar em nova nota adiciona nota na lista
-      // $(".new-note").click(function ()
-      $(".new-note").click(function ()
-      {
-          var QTDEAnotacoes = 0;
-  
-          notes.find("li > div").each(function (i, e){
-              QTDEAnotacoes++;
-          });
-          if (!(QTDEAnotacoes ===4)){
-            addNewNote(null, null, QTDEAnotacoes);
-          }else alert("Favor deletar uma nota antes de continuar");
+        contentType: "application/json",                                            // Tipo de dados passados
+        cache: false,                                                               // Nega cache ao browser
+        timeout: 5000,                                                              // Espera até 5000 mls 
+        async: asnc
       });
 
+    }
 
+    /*-------------------------------------------- 
+       Salva a nota no : LocalStorage e no DB
+    ----------------------------------------------*/
 
-      // adiciona nota na lista se nçao tiver nenhuma
-      if (count === 0) {
-        addNewNote(null, null, 0);
+    function svNotes() {
+
+      var anotacoesArray = [];                                                    
+
+      notes.find("li > div").each(function(i, e) {                                 // Procura todas as notas e seus conteudos                           
+        var conteudo = $(e).find("textarea.note-content");
+        anotacoesArray.push({
+          Index: i,
+          Conteudo: conteudo.val()
+        });
+      });
+
+      var jsonParse = JSON.stringify(anotacoesArray);                               // Converte pra Json as 'data' das anotacoes
+
+      localStorage.setItem("notes", jsonParse);                                     // Grava o valor no localStorage: KeyName, KeyValue
+
+      var lembretesConteudo = $(".note-content");                                   
+      var anotacoesData = [];                                                       // Guardara o conteudo de todos os lembretes
+
+      lembretesConteudo.each(function(i, e) {                                       // Grava os lembretes no obj anotacoesData
+
+        anotacoesData.push({
+          id: i,
+          conteudo: $(this).val()
+        });
+      });
+
+      ajaxCall("/SaveNotes", anotacoesData);                                        // Salva Anotacoes no BD                                     
+
+    }
+
+    /*-------------------------------------------- 
+        Gera o padrao de um novo lembrete
+          classC  : Cor do lembrete
+          content : Conteudo do novo lembrete
+          ID      : ID do novo lembrete         
+    ----------------------------------------------*/
+    function novaNota(classC, content, ID) {
+
+      if (!classC) {                                                                // Checa se uma ClassC foi passada
+        classC = "colour" + Math.ceil(Math.random() * 4);                           // Gera uma classe de cor randomicamente 
       }
 
-      function addNewNote(classC,content,ID) {
+      
+      notes.append( 
+                    "<li><div  class='tryteste " + classC + "' >" +                 // Adiciona nova nota para final da lista de notas
+                    "<input type='hidden' value=" + ID + " class='idNote'>" +
+                    "<textarea class='note-content' />" +
+                    "<i class='fa fa-trash-o close-notes' aria-hidden='true'></i>" +
+                    "</div></li>"
+                  );
+      
+      var newNote = notes.find("li:last");                                          // linka a nova nota com o ultimo/seu botão de fechar
 
-            if(!classC){
-                classC = "colour" + Math.ceil(Math.random() * 4);
+      newNote.find(".close-notes").click(function() {                               // Fecha a nota      
+        ajaxCall('/delNTS', newNote.find("input.idNote").val());                    // Deleta Nota do banco 
+        newNote.remove();                                                           // Deleta do localStorage
+        svNotes();                                                                  // Salva a nova conjuntura de notas
+      });
+
+      cadNovaNota(newNote);                                                         // Chama Funcao de cad/gravar 
+
+      
+      if (content) {                                                                // Se um conteúdo for dado, coloca como conteúdo da nova nota
+        newNote.find("textarea.note-content").val(content);
+      }
+        svNotes();                                                                  // Salvar
+    }
+
+    /*-------------------------------------------- 
+        Salva nota ao bd
+          noteElement : ultima nota adicionada
+    ----------------------------------------------*/
+    function cadNovaNota(noteElement) {
+      var div = noteElement.children("div");
+
+      div.hover(function() {
+        svNotes();                                                                  // Salva nota
+      });
+
+    }
+
+    if (anotacoesLocal) {                                                           // Verifica a existencia de anotacoes no LocalStorage
+      var anotacoesArray = JSON.parse(anotacoesLocal);                              // Converte-as para json
+      count = anotacoesArray.length;                                                
+
+      for (var y = 0; y < count; y++) {                                             // Cadastra as notas do localStorage /json na tela
+        var anotacaoArmazenada = anotacoesArray[y];
+        novaNota(anotacaoArmazenada.Colour, anotacaoArmazenada.Conteudo, anotacaoArmazenada.Index);
+      }
+    }
+
+    $(".new-note").click(function() {                                               // Clicar em nova nota adiciona nota na lista
+      var QTDEAnotacoes = 0;                                                        // Responsavel pela qtde de lembretes da pagina
+
+      notes.find("li > div").each(function(i, e) {
+        QTDEAnotacoes++;                                                            // Chega no total de lembretes existentes
+      });
+      if (!(QTDEAnotacoes === 4)) {
+        novaNota(null, null, QTDEAnotacoes);                                        // Adiciona nova Nota
+      } else alert("Favor deletar uma nota antes de continuar");
+    });
+
+
+
+  
+    if (count === 0) {                                                               // adiciona nota na lista se nçao tiver nenhuma
+      novaNota(null, null, 0);
+    }
+
+
+
+
+    /*-------------------------------------------- 
+      Abaixo são feitas as requisicoes iniciais
+        da página index. 
+        : Turmas, lembretes, eventos e notas
+    ----------------------------------------------*/
+    $.when(ajaxCall("/mostraturma"), ajaxCall("/LoadNotes"), ajaxCall("/pesquisaEvento"), ajaxCall("/notas")).done(function(turmas, notes, evts, grades) {
+      
+      /*PREENCHE O CAMPO DA TURMA */
+      var turma = $("#turma");
+
+      turma.append('<div style="display: inline-block;>');                         // Acrescenta div com as turmas dentro da div mae
+
+      for (var i = 0; i < turmas[0].length; i++) {
+        turma.append('<div >' + turmas[0][i] + '</div>');
+      }
+
+      turma.append('</div>');
+
+      /* PREENCHE OS EVENTOS */
+      if (evts[0])                                                                 // Checa se existem eventos gravados
+      {
+        var evt = $(".eventos");                                                    
+
+        for (var i = evts[0].length - 1; i >= 0; i--) {
+          //PEGA A DATA DE INICIO DO EVENTO
+          mes        = evts[0][i].startsAt.split('-')[1];                          // Mes do evento 
+          dia        = evts[0][i].startsAt.split('-')[2][0] + "" + evts[0][i].startsAt.split('-')[2][1];    // Dia do evento
+          dataEvento = " " + dia + "/" + mes + " ";                                // Data Completa do evento
+
+          // Poem no html as seguintes divs
+          evt.append('<div class="evento "  onclick="openDesc(' + i + ')" id=' + i + ' ><p><span>' + dataEvento + '</span><b>' + evts[0][i].titulo + '</p></div>');
+          $("#" + i + "").append('<div class="descEvt" id="subDesc' + i + '"><p>' + evts[0][i].descricao + '</p></div><br>');
+        }
+      }
+
+      /*PREENCHE OS LEMBRETES DO PROFESSOR*/
+      if (notes[0])                                                                // Checa se foram retornadas anotacoes 
+      {     
+
+        if (localStorage.getItem("notes") == null) {                               // Checa se existem itens gravados no localStorage
+          for (var i = 0; i < notes[0].length; i++) {                              
+            var storedNote = notes[0][i];
+
+            novaNota(null, storedNote[0], i);                                      // Chama Funcao de cadastrar nova nota
+          }
+        }
+
+
+      }
+
+      /*CARREGA AS NOTAS DOS ALUNOS*/
+      if(grades[0])                                                                // Checa se foram obtidas notas do banco
+      {
+          var  total   = grades[0].length                                          // Total de notas obtidas do banco
+             , arrSete  = []                                                       // Array com notas de 7 acima
+             , arrCinco = []                                                       // Arr   com notas entre 5 e 7
+             , arrZero  = [];                                                      // Arr   com notas abaixo de 5
+
+          for (var i = 0; i < total; i++) {
+
+            if (grades[0][i] >= 7) 
+            {
+              arrSete.push([grades[i]]); 
+
+            } else if (grades[0][i] < 7 && grades[0][i] <= 5)
+              {
+                arrCinco.push([grades[0][i]]);
+              } else {
+                arrZero.push([grades[0][i]]);
+                }
+
+          }
+          var seteMedia = parseFloat((arrSete.length * 100) / total);              // Float com notas acima de 7
+          var cincoMedia = parseFloat((arrCinco.length * 100) / total);            // Float com notas entre 5 e 7 
+          var zeroMedia = parseFloat((arrZero.length * 100) / total);              // Float com notas acima de 0
+          var pieData = [{                                                         // Objeto com os dados do grafico
+              value: seteMedia,
+              label: 'Notas maiores que 7',
+              color: '#00a2ff'
+            },
+            {
+              value: cincoMedia,
+              label: 'Notas entre 5-7',
+              color: '#19cfa2'
+            },
+            {
+              value: zeroMedia,
+              label: 'Notas menores que 5',
+              color: '#ff3f57'
             }
+          ];
 
-          // adiciona nova nota para final da lista de notas
-          notes.append("<li><div  class='tryteste "+classC+"' >" +
-              "<input type='hidden' value="+ID+" class='idNote'>"+
-              "<textarea class='note-content' />" +
-              "<i class='fa fa-trash-o close-notes' aria-hidden='true'></i>"+
-              "</div></li>");
-          // linka a nova nota com seu botão de fechar
-          var newNote = notes.find("li:last");
-
-          newNote.find(".close-notes").click(function () {
-              ajaxCall('/delNTS',newNote.find("input.idNote").val());
-              newNote.remove();
-              svNotes();
-          });
-
-          // hook up event handlers <-- sei lá || pra mostrar/esconder botão de fechar
-          addNoteEvent(newNote);
-
-          // se um conteúdo for dado, coloca como conteúdo da nova nota
-          if (content) {
-              newNote.find("textarea.note-content").val(content);
-          }
-
-          // salvar
-           svNotes();
+          var skillsChart = new Chart(ctx).Pie(pieData);                           // Inicializa o gráfico                 
+        
       }
-      function addNoteEvent(noteElement) {
-          var div = noteElement.children("div");
+      /*PRÓXIMOS EVENTOS DO PROFESSOR*/
 
-          div.hover(function () {
-              svNotes();
-          });
+      $(".descEvt").toggle();                                                      //"Esconde" a descricao dos eventos
 
-      }
-
-
-
-        /*      
-        if(localStorage.getItem("notes") === null)
-        {
-          alert('oi');
-        }else{
-          alert('Ola');
-        }
-        */
-
-             //O CODIGO SEGUINTE FAZ AS REQUISIÇÕES INICIAIS DA PÁGINA. AS QUAIS SOLICITARÃO, AS TURMAS DO PROFESSOR, SEUS LEMBRETES, E OS PROXIMOS EVENTOS.
-     $.when(ajaxCall("/mostraturma"), ajaxCall("/LoadNotes"), ajaxCall("/pesquisaEvento")).done(function( data,data2,evts ){
-
-        var turma  = $("#turma");
-        /*PREENCHE O CAMPO DA TURMA */
-        turma.append('<div style="display: inline-block;>');      
-        for (var i = 0 ; i <data[0].length; i++) {  
-                turma.append('<div >'+data[0][i]+'</div>');            
-               }
-        turma.append('</div>');
-
-        if(evts[0]){
-           var evt = $(".eventos");
-           for (var i= evts[0].length -1 ; i>=0; i--){
-             //PEGA A DATA DE INICIO DO EVENTO
-              mes = evts[0][i].startsAt.split('-')[1];
-              dia = evts[0][i].startsAt.split('-')[2][0]+""+evts[0][i].startsAt.split('-')[2][1];
-              data=" "+ dia+"/"+mes+" ";
-                          //</b> - '+evts[0][i].descricao+'
-                          evt.append('<div class="evento "  onclick="openDesc('+i+')" id='+i+' ><p><span>'+data+'</span><b>'+evts[0][i].titulo+'</p></div>');
-               $("#"+i+"").append('<div class="descEvt" id="subDesc'+i+'"><p>'+evts[0][i].descricao+'</p></div><br>');
-          }
-        }
-            /*PREENCHE OS LEMBRETES DO PROFESSOR*/
-        if(data2[0]){
-
-                if(localStorage.getItem("notes") == null)
-                  {
-                                   for (var i = 0; i <data2[0].length; i++) {
-                           var storedNote = data2[0][i];
-                         console.log(storedNote);
-                        addNewNote(null, storedNote[0], i);
-                     }
-                  }
-
-
-        }
-        /*PRÓXIMOS EVENTOS DO PROFESSOR*/
-
-         $(".descEvt").toggle();
-
-     });
-
-          // $("#0","#1","#2","#3","#4").click(function(){
-          //     alert('ola');
-          // });
-
-
-
+    });
 
 
 
 
   });
 
-   // The rest of the code goes here!
+  //Funções nao onload aqui : 
 
 }(window.jQuery, window, document));
-	

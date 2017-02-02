@@ -363,7 +363,9 @@ exports.cadnotas = function(req, res){
 
                       });
           }else{
-  var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[this.i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
+            var d = new Date();
+var n = d.getFullYear();
+  var insert = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`, ano) SELECT '"+matricula[this.i]+"', disciplina_id,'"+ notatri +"','"+n+"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
 
                 connDB.query(insert, function(err,rows){
 

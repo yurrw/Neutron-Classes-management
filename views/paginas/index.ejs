@@ -1,335 +1,135 @@
 <html lang="pt">
 <head>
-<% include ../partes/head %>
-<meta charset="utf-8">
-<meta http-equiv="cleartype" content="on">
-<meta name="MobileOptimized" content="320">
-<meta name="HandheldFriendly" content="True">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
+    <% include ../partes/head %>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
 
-<style>
 
-/*.panel{left: 0;position: relative;float: left;}*/
-</style>
 </head>
+
 <body id="indBack">
 
-
-<div class="all">
-
-
-
-<div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
-<% include ../partes/sidemenu.ejs %>
-</div>
-
-</div>
-
-<main id="panel" class="allPage indall">
-<div id="indexContent">
-<div class="backTopper">
-</div>
-<% include ../partes/topmenu.ejs %>
-
-<div class="container-fluid " >
-    <span id="pgName"> Neutron 
-      <span id="traco"> > </span>
-      <span id="pgAtual">Início </span>
-    </span>
-
-
-    <!-- BOTAO PARA CELULAR -->
-    <button class="toggle-button no-border" data-toggle="button" >
-        <img id="hbmenu" src="/assets/images/menu.png">
-    </button>
-    <div class="greyBG2">
-
-    <div class="dashElements">
-
-
-        <!--CALENDARIO-->
-  <div class="">
-      <div class="bloco anotacoes">
-          <div class="blocoCnt">
-              <p><span>ANOTACOES</span></p>
-
-              <!--NOTAS DO PROFESSOR-->
-              <div class="content ">
-                    <i class="fa fa-plus new-note" aria-hidden="true"></i>
-
-                  <ul id="notes" >
-
-                  </ul>
-                  <!-- <input type="button" value="tc" id="tc"> -->
-
-              </div>
-
-
-          </div>
-      </div>
-  <div class="bloco col-md-4 clndNext">
-      <div class="blocoCnt">
-          <p><span>Próximos Eventos</span></p>
-
-          <div class="eventos" >
-          </div>
-
-          <a href="/calendario">     <i class="fa fa-calendar" aria-hidden="true" ></i></a>
-
+   <!-- MENU LATERAL -->
+    <div class="all">
+      <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+        <% include ../partes/sidemenu.ejs %>
       </div>
 
+    </div>
+   <!-- FIM DO MENU LATERAL -->
 
-
-      </div>
-
-
-
-<div class="row">
-<div class="bloco col-md-4 NotasBlc">
-<div class="blocoCnt">
-<p><span>Notas dos Alunos</span></p>
-<br>
-<div id="legendaGrafico">
-    <div class="blockNotaGrafico1 blockNotaGrafico"></div>
-     <span> Acima de 7</span>
-      <br><br>
-    <div class="blockNotaGrafico2 blockNotaGrafico"></div>
-     <span> Entre 5 e 7</span>
-      <br><br>
-    <div class="blockNotaGrafico3 blockNotaGrafico"></div>
-     <span> Abaixo de 5</span>
-
-
-</div>
-<!--GRAFICO-->
-   <canvas id="skills" width="300" height="300"></canvas>
-</div>
-</div>
-        <!--TURMAS DO PROFESSOR-->
-
-<div class="bloco col-md-4 TurmasBlc">
-    <div class="blocoCnt">
-        <p><span>Minhas Turmas</span></p>
-        <br>
-           <div id="turma"></div>
-
-          <a href="/consultaTurma">
-<br>
-           <i class="fa fa-users" aria-hidden="true"></i> </a>
-           <br><br>
-</div>
-</div>
-
-
-
-                    </div>
-                        </div>
-
-                    </div>
-
-
-</div>
-
-
-
-
-                    <!--TURMAS DO PROFESSOR-->
-    <!-- <div class="bloco">
-                   <p>Turmas</p>
-                   <div id="turma"></div>
-     </div>-->
-
-    <!--    CALENDARIO DO BOSTAO DO RENAN
-          <div class="col-md-3 teste" >
-          </div>
-
-
-          <div class="bloco2" >
-            <p>Eventos do Calendario</p>
-            <div class="eventos" >
-              <div id="evento" >
-              </div>
-            </div>
-
-          </div> -->
-
-
-
-
-    <!--NOTAS DO PROFESSOR-->
-    <!--  <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
-        <div id="controls">
-          <img id="btnNew" src="/assets/images/newnote.png"/>
-          <img id="btnSave" src="/assets/images/save.png"/>
+    <main id="panel" class="allPage indall">
+      <div id="indexContent">
+        <div class="backTopper">
         </div>
-      <ul id="notes">
+        <!-- TOP BAR -->
+        <% include ../partes/topmenu.ejs %>
+        <!-- FIM TOP BAR -->
 
-      </ul>
-      <input type="button" value="tc" id="tc">
-
-
-        </div> -->
-
-
-</div>
-</div>
-</main>
-
-<!--@TODO: criar um footer talvez-->
-<!--  <div class="footer">
-  <footer>
-      <% include ../partes/footer %>
-  </footer>
-</div>
--->
+          <div class="container-fluid ">
+            <span id="pgName"> Neutron 
+              <span id="traco"> > </span>
+              <span id="pgAtual">Início </span>
+            </span>
 
 
+            <!-- BOTAO PARA CELULAR -->
+            <button class="toggle-button no-border" data-toggle="button">
+              <img id="hbmenu" src="/assets/images/menu.png">
+            </button>
+            <!-- FIM DO BOTAO PARA CELULAR -->
+            <div class="greyBG2"> <!-- PLANO DE FUNDO -->
 
-<script src="/assets/js/Chart.js"></script>
+              <div class="dashElements"><!-- BACK DOS ELEMENTOS -->
+                <div>
+                <!-- ANOTACOES  -->
+                  <div class="bloco anotacoes">
+                    <div class="blocoCnt">
+                      <p><span>ANOTACOES</span></p>
 
-<script>
-var ctx = document.getElementById('skills').getContext('2d');
+                      <!--NOTAS DO PROFESSOR-->
+                      <div class="content ">
+                        <i class="fa fa-plus new-note" aria-hidden="true"></i>
+                        <ul id="notes"> </ul>
+                      </div>
+                    </div>
+                  </div>
+                <!-- FIM DAS ANOTACOES  -->
+               
+                <!-- EVENTOS DO CALENDARIO  -->
+                  <div class="bloco col-md-4 clndNext">
+                    <div class="blocoCnt">
+                      <p><span>Próximos Eventos</span>
+                      </p>
 
-notas_alunos();
-function notas_alunos() {
+                      <div class="eventos">
+                      </div>
 
-$.ajax({
-  url:"/notas",
-  type:"POST",
-  dataType:"json",
-  contentType: "application/json",
-  data:{
+                      <a href="/calendario"> <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </a>
 
-  },
-   cache:false,
-   timeout:5000,
-   complete: function(){},
-   success: function(data){
-    if (data) {
-      var datal = data.length;
+                    </div>
+                  </div>
+                <!-- FIM DOS EVENTOS DO CALENDARIO  -->
 
-      var mrSete=[];
-      var mrCinco=[];
-      var mrZero=[];
-
-
-      for (var i = 0, len = datal; i < len; i++) {
-
-        if(data[i]>=7)
-        {
-          mrSete.push([data[i]]);
-        }
-
-        else if(data[i] <7 && data[i]<=5)
-        {
-          mrCinco.push([data[i]]);
-        }
-        else
-        {
-          mrZero.push([data[i]]);
-        }
-
-      }
-
-      var total = datal;
-      var seteper = parseFloat((mrSete.length*100)/total);
-      var cincoper = parseFloat((mrCinco.length*100)/total);
-      var zeroper = parseFloat((mrZero.length*100)/total);
-      var pieData = [
-         {
-
-            value: seteper,
-            label: 'Notas maiores que 7',
-            color: '#00a2ff'
-         },
-         {
-            value: cincoper,
-            label: 'Notas entre 5-7',
-            color: '#19cfa2'
-         },
-         {
-            value: zeroper,
-            label: 'Notas menores que 5',
-            color: '#ff3f57'
-         }
-      ];
-
-      var context = document.getElementById('skills').getContext('2d');
-        var skillsChart = new Chart(context).Pie(pieData);
-    /*    var myLineChart = Chart.Line(ctx, {
-            data: data,
-            options: options
-        });
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-        });
-*/
-     }
-
-  },
-  error: function(err,xtr,status){ console.log(status)},
-});
+                  <div class="row">
+                  <!--GRAFICO-->
+                    <div class="bloco col-md-4 NotasBlc">
+                      <div class="blocoCnt">
+                        <p><span>Notas dos Alunos</span>
+                        </p>
+                        <br>
+                        <div id="legendaGrafico">
+                          <div class="blockNotaGrafico1 blockNotaGrafico"></div>
+                          <span> Acima de 7</span>
+                          <br>
+                          <br>
+                          <div class="blockNotaGrafico2 blockNotaGrafico"></div>
+                          <span> Entre 5 e 7</span>
+                          <br>
+                          <br>
+                          <div class="blockNotaGrafico3 blockNotaGrafico"></div>
+                          <span> Abaixo de 5</span>
+                        </div>
+                        <canvas id="skills" width="300" height="300"></canvas>
+                      </div>
+                    </div>
+                  <!--FIM GRAFICO-->
+                 
+                  <!--TURMAS DO PROFESSOR-->
+                    <div class="bloco col-md-4 TurmasBlc">
+                      <div class="blocoCnt">
+                        <p><span>Minhas Turmas</span>
+                        </p>
+                        <br>
+                        <div id="turma"></div>
+                        <a href="/consultaTurma">
+                          <br>
+                          <i class="fa fa-users" aria-hidden="true"></i>
+                        </a>
+                        <br>
+                        <br>
+                      </div>
+                    </div>
+                  <!--FIM TURMAS DO PROFESSOR-->
 
 
-}
+                  </div>
+                </div>
 
+              </div>
 
+            </div>
+          </div>
+      </div>
+    </main>
 
+    <script src="/assets/js/Chart.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+    <script type="text/javascript" src="/assets/js/menu.js"></script>
 
+    <% include ../partes/modal %>
+    <% include ../partes/modalPriv %>
 
-// var skillsChart = new Chart(context).Pie(pieData);
-</script>
-<!-- SCRIPTS JS/JQUERY -->
-
-<script type="text/javascript" src="/assets/js/index.js"></script>
-<!-- <script src="/assets/js/test.js"></script> -->
-
-<script>
-
-// Default Open
-var slideout = new Slideout({
-'panel': document.getElementById('panel'),
-'menu': document.getElementById('sid'),
-'padding': 270,
-'tolerance': 70,
-'easing': 'cubic-bezier(.51,2,.81,.41)',
-});
-slideout.open();
-
-// Toggle button
-$(".toggle-button").click(function() {
-// alert("oila");
-slideout.toggle();
-});
-
-
-
-
-$(document).ready(function() {
-
-$(window).resize(function(){
-    if ($(window).width() <= 1024){
-        // slideout.close();
-        // slideout.close();
-        slideout.close();
-
-    }else {
-        slideout.open();
-    }
-});
-});
-
-
-
-
-</script>
-<% include ../partes/modal %>
-<% include ../partes/modalPriv %>
-
-</body>
+  </body>
 
 </html>

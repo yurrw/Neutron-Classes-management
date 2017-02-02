@@ -78,9 +78,12 @@
     margin-left:30px;
 }
 .eventos{
+    cursor:pointer;
     padding-top:30px;
 }
 .evento{
+    cursos:pointer!important;
+
     margin-left:35px;
     /*display: block;*/
     /*height:5%;*/
@@ -88,7 +91,6 @@
 
 }
 .evento >p{
-
     font-size:1.5rem;
 
 }
@@ -155,11 +157,12 @@
     left:30px;
     height:320px;
     width:1050px;
+    mouse:pointer;
 }
 .TurmasBlc{
     position: absolute;
     top:400px;
-    right: 630px;
+    right: 647px;
     width: 400px;
     height: 425px;
 }

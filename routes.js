@@ -10,18 +10,6 @@ var connDB    = require('./models/mysqlmodule.js');
 
 module.exports = function(app,passport) {
 
-
-
-
-
-
-
-// var upload2 = upload;
-
-
-
-
-
 app.post('/api/photo/',function(req,res){
    var archName ="";
 
@@ -103,14 +91,12 @@ var fs = require('fs');
 
 
 
-/*
-        //Pagninas Principais
-        app.get('/consultaTurma/:Turma', function (request, response) {
-  // res.send(req.params)
-  response.render('paginas/consultaTurma',{   turma: request.params ,user: request.user.username,userMat: request.user.matricula, photoID: request.user.photoID, email: request.user.email, data_nasc: request.user.data_nasc, tel_cel: request.user.tel_cel,  senha: request.user.senha     });
+    /*INDEX*/
+            app.post('/SaveNotes', ConsultCtrl.SaveNts);
+            app.post('/delNTS',ConsultCtrl.DelNts);
+            app.post('/LoadNotes', ConsultCtrl.LoadNts);
 
-})
-*/
+
             app.get('/index',isLogged,HomeController.index);
             app.get('/admin',isLogged,HomeController.admin);
             app.get('/teste',isLogged,HomeController.teste);
@@ -168,9 +154,6 @@ app.post('/',
     }
   });
             app.post('/notas', ConsultCtrl.GetNotas);
-            app.post('/SaveNotes', ConsultCtrl.SaveNts);
-            app.post('/delNTS',ConsultCtrl.DelNts);
-            app.post('/LoadNotes', ConsultCtrl.LoadNts);
             app.post('/attPass',CadController.attPass);
             app.post('/cadastroQuest', CadController.cadastroQuest);
             app.post('/cadastroProva', CadController.cadastroProva);

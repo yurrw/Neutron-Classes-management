@@ -59,7 +59,7 @@ exports.LoadNts = function(req,res){
 };
 exports.GetNotas = function(req,res){
   var aluno_data_turma=[];
-  console.log("MUSICA DE HAUSHDUASHDUASDUSAD");
+
   var sql="SELECT DISTINCT turma.cod_turma FROM turma, prof_turma WHERE matricula = '"+req.user.matricula+"' AND turma.cod_turma = prof_turma.cod_turma";
   connDB.query(sql,function(err,rows){
     if (rows.length) {
@@ -273,8 +273,8 @@ exports.pesquisaDiscProf = function(req, res){
 exports.provaquests = function(req, res){
 
   var consulquests = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var consultipos =[];
-  var izao  =[];
+  var consultipos  = [];
+  var questoes     = [];
 
       connDB.query("select questoes.tipo,questoes.cod_quest,enunciado, op1,op2,op3,op4,op5, quant_linhas, linhas_visiveis from questoes, prova_questoes where prova_questoes.cod_prova = '"+ req.body.variola +"' AND questoes.cod_quest = prova_questoes.cod_quest  ",function(err,rows){
         for (var i = 0, len = rows.length; i < len; i++)
@@ -291,10 +291,10 @@ exports.provaquests = function(req, res){
             tmp['quant_linhas'] = rows[i].quant_linhas;
             tmp['linhas_visiveis'] = rows[i].linhas_visiveis;
 
-            izao.push(tmp);
+            questoes.push(tmp);
       }
 
-      res.json(izao);
+      res.json(questoes);
 
   });
 };
