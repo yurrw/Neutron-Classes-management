@@ -228,7 +228,7 @@ exports.attPass = function(req, res){
       }
 };
 
-exports.removerQuest   = 	function(req, res){
+exports.removerQuest   =  function(req, res){
       var questoes = [];
       var qry =  "DELETE FROM `questoes` WHERE cod_quest = '"+ req.body.codigo_quest +"'" ;
       connDB.query(qry,function(err,rows){

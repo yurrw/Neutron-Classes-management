@@ -40,7 +40,6 @@ var novaRow = [];
     x--;
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
-  console.log(row);
   novaRow[x] = "";
 }
 </script>
@@ -79,8 +78,11 @@ var novaRow = [];
           <div class="content layoutInner" id="cadprovaCT">
             <h3>Cadastro de Provas</h3>
             <br>
+            <!-- <div class="" style="float: left; position: relative;"> -->
 
               <form class="form-inline"  method="Post" action="" name="cadastroProvas">
+
+                <!--<input type="text" disabled id="autor" value=<%= user %> placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp-->
 
                 <select class="form-control" id="disciplina" name="disciplina"  required>
                   <option disabled selected value="">Disciplina</option>
@@ -155,8 +157,8 @@ var novaRow = [];
 <script type="text/javascript" src="/assets/js/menu.js"></script>
 
 
-    <% include ../partes/modal %>
-    <% include ../partes/modalPriv %>
+      <% include ../partes/modal %>
+<% include ../partes/modalPriv %>
     </body>
 
     </html>

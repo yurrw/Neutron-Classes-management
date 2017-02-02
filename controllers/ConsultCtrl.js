@@ -316,7 +316,25 @@ exports.pesquisaDiscProf = function(request, res){
 
   });
 };
+/*
+exports.pesquisaDiscProf = function(req, res){
+  
 
+  var consulDisc = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
+  connDB.query("select disciplina from prof_turma where matricula = '"+req.body.matricula+"' ",function(err,rows){
+    for (var i = 0, len = rows.length; i < len; i++)
+      {
+
+        consulDisc.push( rows[i].disciplina );
+      }
+      console.log(consulDisc);
+  res.json(consulDisc);
+
+  });
+
+
+};
+*/
 exports.pesquisaQuest = function(request, response){
   var questoes = [];
   console.log(request.body.materia);
@@ -359,22 +377,7 @@ console.log(query);
   });
 };
 
-exports.pesquisaDiscProf = function(req, res){
 
-  var consulDisc = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  connDB.query("select disciplina from prof_turma where matricula = '"+req.body.matricula+"' ",function(err,rows){
-    for (var i = 0, len = rows.length; i < len; i++)
-      {
-
-        consulDisc.push( rows[i].disciplina );
-      }
-      console.log(consulDisc);
-  res.json(consulDisc);
-
-  });
-
-
-};
 
 exports.provaquests = function(req, res){
 
@@ -598,6 +601,7 @@ exports.ADMpesquisaturma = function(req,res){
   console.log("\ncolsulta ADM turmas inicio");
   var consulTurmas = [];
   connDB.query(" SELECT `cod_turma`, `anoserie` FROM `turma` ",function(err,rows){
+    console.log();
   for (var i = 0, len = rows.length; i < len; i++)
   {
     consulTurmas.push(rows[i].cod_turma);  //+"-"+rows[i].anoserie
