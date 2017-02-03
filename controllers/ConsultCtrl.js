@@ -337,9 +337,8 @@ exports.pesquisaDiscProf = function(req, res){
 */
 exports.pesquisaQuest = function(request, response){
   var questoes = [];
-  console.log(request.body.materia);
 
-  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.user.username +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
+  connDB.query("SELECT questoes.enunciado, questoes.nivel, questoes.tipo, questoes.cod_quest FROM `questoes`, disciplinas, materia WHERE materia.nome = '"+ request.body.materia + "' AND materia.materia_id = questoes.materia_id AND (autor = '"+ request.user.matricula +"' || visibilidade = 'Púb') GROUP BY enunciado",function(err,rows){
     if (err)
     request.flash('MSGCadQuest', err);
     if (rows.length) {
@@ -475,19 +474,16 @@ exports.consulProva = function(req, res){
   var possivelWhere = "";
 
 
-  if(!(req.body.disciplina == "" || req.body.serie == null || req.body.serie == undefined))//No meu passa como undefined D:
+  if(!(req.body.disciplina == "" || req.body.serie == null || req.body.serie == undefined))
    {
      whereDiscPart =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas WHERE disciplina_nome =  '" + req.body.disciplina + "')"+
                           " AND disciplinas.disciplina_id= provas.cod_disciplina";
      x++;
    }
 
-
-
-
    if(!(req.body.serie == "" || req.body.serie == null || req.body.serie == undefined))
    {
-     if (x > 0) {//Se já tiver filtrado pela disciplina.... Tendeu? sim, eu acho. Achar já é o sufuci
+     if (x > 0) {
        andSerie = " AND";
      }
      andSerie += " provas.anoserie = '" + req.body.serie + "'";
@@ -508,9 +504,9 @@ exports.consulProva = function(req, res){
    if(!(req.body.autor == "" || req.body.tipo == null || req.body.tipo == undefined))
    {
      if (x >0) {
-       andMuchaCosaAutor = " AND";//Seria esse aqui... Estranho não, agr simmuito bem, jovem :D Tava só te testando :D aham
-     }//Jumento
-     andMuchaCosaAutor += " provas.matricula IN (SELECT matricula FROM profs where nome = '" + req.body.autor + "' )";//Qie IN é esse? pra pegar a matrícula do prof pelo nome. Se funciona, tá bom
+       andMuchaCosaAutor = " AND";
+     }
+     andMuchaCosaAutor += " provas.matricula IN (SELECT matricula FROM profs where nome = '" + req.body.autor + "' )";
 
    }
 
@@ -521,14 +517,14 @@ exports.consulProva = function(req, res){
    var resolveSporra =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas '" + whereDiscPart + "') AND"
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "SELECT DISTINCT provas.nome, provas.tipo_avaliacao, provas.anoserie, provas.matricula  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
+  var qry = "SELECT DISTINCT provas.nome, provas.tipo_avaliacao, provas.anoserie, provas.matricula, cod_prova  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
   console.log(qry);
   connDB.query(qry,function(err,rows){
       for (var i = 0, len = rows.length; i < len; i++)
         {
           //console.log()
           //listaalunos.push(rows[i].nome);
-        listaalunos.push([rows[i].nome, rows[i].tipo_avaliacao, rows[i].anoserie]);
+        listaalunos.push([rows[i].nome, rows[i].tipo_avaliacao, rows[i].anoserie, rows[i].cod_prova]);
 
             }
             console.log(listaalunos);

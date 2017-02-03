@@ -10,87 +10,11 @@
 
   $( function() {
     $("#tableProvasSelecionadas").hide();                                                                  //esconde a tableProvasSelecionadas
-
-    $("#disciplina").change(function(){
-      var disciplina = $('#disciplina').val();
-
-      /*-------------------------------------------- 
-        ajax : FAZ REQUISICAO AJAX PELO POST
-        uri  : url que sera chamada
-        type : como sera passado os dados
-        dataType: como sera lido aos datas          
-      ----------------------------------------------*/
-
-      $.ajax({
-        url: "/pesqMat",  // AQUI É A URL QUE SERA ENVIADO
-        type: "POST",   //TIPO DE ENVIO
-        dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-        data:JSON.stringify({
-          disciplina: disciplina
-        }),
-        contentType: "application/json",
-        cache: false,
-        timeout: 5000,
-        complete: function() {
-          console.log('process complete');
-        },
-        success: function(data) {
-          console.log(disciplina);
-          console.log('process sucess');
-          $("#materia").empty();                                                                              //esvasia a liasta de materias
-          $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));              //preenche a lista com mateias no select
-          for(var i = 0; i < data.length; i++) {
-            $("#materia").append($("<option />").val(data[i]).text(data[i]));
-          }
-        },
-        error: function() {
-          console.log('process error');
-        },
-      });
-    });
-  });
-
-  $( function() {
-    $("#materia").change(function(){
-      var materia = $('#materia').val();
-      $.ajax({
-          url: "/pesqQuest",                                                                                 // AQUI É A URL QUE SERA ENVIADO
-          type: "POST",                                                                                      //TIPO DE ENVIO
-          dataType: "json",                                                                                  //TIPO DE DADO QUE SERA PASSADO
-          data:JSON.stringify({
-            materia: materia
-          }),
-          contentType: "application/json",
-          cache: false,
-          timeout: 5000,
-          complete: function() {
-            console.log('process complete');
-          },
-          success: function(data) {                                                                                   //retorna o resultado da consulta 
-            //console.log(materia);
-            //console.log('process sucess');
-            $("#questCandidatas").empty();
-            for(var i = 0; i < data.length; i++) {
-                $("#questCandidatas").append($("<tr/>")                                                               //adiciona os dados da consulta à tabela
-                  .append($("<td/>").val(data[i][0]).text(data[i][0]))
-                  .append($("<td style='text-align:center;'/>").val(data[i][1]).text(data[i][1]))
-                  .append($("<td style='text-align:center;'/>").val(data[i][2]).text(data[i][2]))
-                  .append($("<td  style='align:right; width:100px;'/>")
-                    .append($("<button class='btn btn-primary btn-block' onclick='trocarTabela(this)'>").text("Adicionar"))
-                    ));
-              //console.log(data[i]);
-            }
-          },
-
-          error: function() {
-            console.log('process error :materia > pesqQuest');
-          },
-        });
-    });
   });
 
 
-  $(function pesqDisciplina(){                                                                          //psquisa as disciplinas 
+
+  $(function pesqDisciplina(){                                                                          //psquisa as disciplinas
     $.post("/pesqDisc",function(data){
       $("#disciplina").empty();
       $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));   //adiciona as disciplinas ao select
@@ -101,7 +25,7 @@
     });
   });
 
-  $(function(){  
+  $(function(){
     $("#consultarProva").click(function(){                                                                              //função consulta a prova confore o formulario preenchido
       var buscafiltrada = [$("#autor").val(), $("#disciplina").val(), $("#serie").val(), $("#tipo").val()];
 
@@ -109,16 +33,16 @@
       condicionais referentes ao preenchimento do formulario
       ************************/
 
-      if(buscafiltrada[0] != "" && buscafiltrada[1] != null){ var autor = buscafiltrada[0];}
+      if(buscafiltrada[0] != "" && buscafiltrada[0] != null){ var autor = buscafiltrada[0];}
       else{var autor = "";}
 
       if(buscafiltrada[1] != "" && buscafiltrada[1] != "Disciplina" && buscafiltrada[1] != null){ var disciplina = buscafiltrada[1];}
       else{var disciplina = "";}
 
-      if(buscafiltrada[2] != "" && buscafiltrada[1] != "Série" && buscafiltrada[1] != null) { var serie = buscafiltrada[2];}
+      if(buscafiltrada[2] != "" && buscafiltrada[2] != "Série" && buscafiltrada[2] != null) { var serie = buscafiltrada[2];}
       else{ var serie = "";}
 
-      if(buscafiltrada[3] != "" && buscafiltrada[1] != "Tipo" && buscafiltrada[1] != null){ var tipo = buscafiltrada[3];}
+      if(buscafiltrada[3] != "" && buscafiltrada[3] != "Tipo" && buscafiltrada[3] != null){ var tipo = buscafiltrada[3];}
       else{ var tipo = "";}
 
       console.log("------------------------");
@@ -133,7 +57,7 @@
       for(var r = 1; r < table.rows.length; r++)
         dados[r] = table.rows[r].cells[1].innerHTML;
 
-      $.ajax({                                                                                      //faz a requisisãopra consulta 
+      $.ajax({                                                                                      //faz a requisisãopra consulta
         url: "/consultandoProva",  // AQUI É A URL QUE SERA ENVIADO
         type: "POST",   //TIPO DE ENVIO
         dataType: "json", //TIPO DE DADO QUE SERA PASSADO
@@ -153,10 +77,11 @@
         success: function(data) {
           //console.log(disciplina);
           //console.log('process sucess');
-          $("#tbprova").empty();                                                                        
+          $("#tbprova").empty();
           for(var i = 0; i < data.length; i++) {
-            $("#tbprova").append($("<tr/>")                                                             //adiciona os dados as celulas 
+            $("#tbprova").append($("<tr/>")                                                             //adiciona os dados as celulas
              .append($("<td />").val(data[i][1]).text(data[i][0]))
+             .append($("<td />").val(data[i][0]).text(data[i][3]))
              .append($("<td />").val(data[i][0]).text(data[i][1]))
              .append($("<td />").val(data[i][2]).text(data[i][2]))
              .append($("<td  />")
@@ -165,12 +90,6 @@
             //console.log(data[i]);
           }
           $("#tableProvasSelecionadas").show();
-          $("#materia").empty();
-          $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
-            for(var i = 0; i < data.length; i++) {
-              $("#materia").append($("<option />").val(data[i]).text(data[i]));
-              //console.log(data[i]);
-            }
           },
           error: function() {
             console.log('process error');
@@ -179,19 +98,19 @@
     });
   });
 
-  var novaRow = [];                                                                                     //objeto contador de linhas 
+  var novaRow = [];                                                                                     //objeto contador de linhas
 
   function doIt(element) {
     var table = document.getElementById('tableProvasSelecionadas');
     var row =table.rows.length;
     // console.log(row);
-    console.log(table.rows[row-1].cells[0].innerHTML);
+    console.log("------------"+table.rows[row-1].cells[1].innerHTML);
 
     var nomeTMP = row-1;
     var nome= String(nomeTMP);
     var nome2= JSON.stringify(nomeTMP);
 
-    $.ajax({                                                                                            //requisição 
+    $.ajax({                                                                                            //requisição
       url: "/getprova",  // AQUI É A URL QUE SERA ENVIADO
       type: "POST",   //TIPO DE ENVIO
       dataType: "json", //TIPO DE DADO QUE SERA PASSADO
@@ -232,7 +151,7 @@
                 nlinhas = "";
                 break;
               }
-              else 
+              else
               {
                 var number = parseInt(data[i].quant_linhas);
                 console.log(number);
@@ -258,13 +177,13 @@
 
           CABEÇALHO PARA IMPRESSO DO PDF
 
-        **************************************************************************/        
+        **************************************************************************/
         var cab = [];
         cab [0] = "COLÉGIO PEDRO II     -     CAMPUS SÃO CRISTÓVÃO III                                               NOTA:\n";
         cab [1] = "COORDENADOR: ______________________________                  \n";
         cab [2] = "PROFESSOR: ________________________________         DATA:      /      /\n";
         cab [3] = "ALUNO: _____________________________________         TURMA: ________   N°: ___\n\n\n";
-   
+
         var pdfdoc = { content: [cab,ginha, ], }                                                                          //insere os dados no arquico pdf: capechalho e corpo
         pdfMake.createPdf(pdfdoc).open();                                                                                 //abre o aquivo pdf
         //console.log('process sucess');
