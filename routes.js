@@ -72,10 +72,10 @@ app.post('/api/photo/',function(req,res){
                           console.log(err);
 
 
-                          console.log("UPOU NAS CARALHA");
+                          console.log("UPOU");
 
                     });
-                                                              res.end("File has been uploaded");
+                                                              res.redirect('/login');
                                                             }
               });
 });
@@ -198,7 +198,7 @@ app.post('/',
 
         //app.post('/editEvento', CadController.editEvento);
 
-        
+
 
 
 };
