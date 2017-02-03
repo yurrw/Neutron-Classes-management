@@ -75,7 +75,7 @@ app.post('/api/photo/',function(req,res){
                           console.log("UPOU");
 
                     });
-                                                              res.redirect('/login');
+                                                              res.redirect('/index');
                                                             }
               });
 });
