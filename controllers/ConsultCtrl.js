@@ -19,7 +19,7 @@ console.log(query);
   connDB.query(query, function(err,rows){
     if (err)
     req.flash('MSGCadQuest', err);
-    if (rows.length) {
+    if (rows.length > 0) {
 
       for (var i = 0, len = rows.length; i < len; i++) {
         notas.push(rows[i]);
@@ -318,7 +318,7 @@ exports.pesquisaDiscProf = function(request, res){
 };
 /*
 exports.pesquisaDiscProf = function(req, res){
-  
+
 
   var consulDisc = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
   connDB.query("select disciplina from prof_turma where matricula = '"+req.body.matricula+"' ",function(err,rows){

@@ -71,11 +71,11 @@ app.post('/api/photo/',function(req,res){
                         if (err)
                           console.log(err);
 
+                          console.log("UPOU");
 
-                  
 
                     });
-                                                              res.end("File has been uploaded");
+                                                             res.redirect('/index');
                                                             }
               });
 });
@@ -199,7 +199,7 @@ app.post('/',
 
         //app.post('/editEvento', CadController.editEvento);
 
-        
+
 
 
 };

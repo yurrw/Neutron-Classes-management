@@ -8,7 +8,7 @@
 
 #contfluids > span {padding-left: 110px;}
 #div2{
-	position: absolute; 
+	position: absolute;
 	/*border-left:1px solid #DDD;*/
 	right: 70px;
 	top: 160px;
@@ -21,10 +21,10 @@
 #tableQuestCandidatas{
 	width: 680px;
 }
-#hrCadProva{	
+#hrCadProva{
 	border: 0.3px solid #DDD;
  	width:680px;
- 	margin-left:0px;	
+ 	margin-left:0px;
 }
 #tableCandidatas_filter > label{
 	position: absolute!important;
@@ -60,20 +60,20 @@
 		width: 510px!important;
 	}
 	.pagination{
-		right:-35px; 
+		right:-35px;
 	}
 	#tableCandidatas_filter > label{
 	right: 124px!important;
 	top: -75px;
 	}
-	#tableSelecionadas{width: 500px;}	
+	#tableSelecionadas{width: 500px;}
 	#div2{right: 180px;}
 
 }
 @media screen and (max-width: 1440px){
 	#cadprovaCT{
 	margin-left: -100px!important;
-		
+
 	}
 }
 @media screen and (max-width: 1366px){
@@ -94,6 +94,10 @@
 	}
 	#div2{right: 160px;}
 
+	#cadprovaCT{
+		margin-left: -10px!important;
+	}
+
 }
 @media screen and (max-width: 1024px){
 	.correctCadProva{
@@ -102,15 +106,15 @@
 	#cadprovaCT{
 		margin-left: 300px!important;
 	}
-	#hrCadProva{	
+	#hrCadProva{
 		width: 465px!important;
-	}	
+	}
 		#tableCandidatas{
 		width: 465px!important;
 	}
 	#tableQuestCandidatas{
 		width: 620px!important;
-	}	
+	}
 	#div2{right: 295px;top: 800px!important;}
 	#tableSelecionadas{width: 465px!important;}
 
@@ -123,12 +127,12 @@
 		margin-left: 30px;
 	}
 	#div2{right: 160px;}
-	
+
 }
 @media screen and (max-width: 414px){
 		#cadprovaCT{
 			margin-left: 135px!important;
-		}	
+		}
 		#cadprovaCT > h3{
 
 			margin-left: -55px!important;
@@ -136,7 +140,7 @@
 		#hrCadProva{
 			margin-left: -05px;
 			width: 235px!important;
-		}	
+		}
 		#tableCandidatas{
 			width: 300px!important;
 			margin-left: -70px;
@@ -145,11 +149,11 @@
 				position: absolute;
 		width: 300px!important;
 		top: 650px;
-	}	
+	}
 	.btn-pass{
 		font-size: 1.3rem;
 		width: 80px!important;
-	}	
+	}
 
 	#div2{
 		top: 1100px!important;
@@ -174,7 +178,7 @@
 		top: -80px!important;
 		right: 90px!important;
 		width: 225px;
-	}	
+	}
 
 }
 @media screen and (max-width: 412px){
@@ -193,10 +197,10 @@
 		}
 		#cadprovaCT{
 			margin-left: 115px!important;
-		}	
+		}
 		#tableCandidatas{
 		margin-left: -72px!important;
-		}	
+		}
 
 		.btn-removes{
 		width: 60px!important;
@@ -206,15 +210,15 @@
 	#tableSelecionadas{
 		font-size: 1.1rem;
 		width: 200px!important;
-		
-	}	
+
+	}
 	#div2{right: 115px!important;}
 
 }
 @media screen and (max-width: 360px){
 		#cadprovaCT{
 			margin-left: 107px!important;
-		}	
+		}
 		#cadprovaCT > h3{
 			margin-left: -57px!important;
 		}
@@ -224,8 +228,8 @@
 		}
 		#tableCandidatas{
 		margin-left: -67px!important;
-		}	
+		}
 		.pagination{
 			right: -130px!important;
-		}	
+		}
 }
