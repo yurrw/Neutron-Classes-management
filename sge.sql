@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jan-2017 às 22:44
+-- Generation Time: 03-Fev-2017 às 07:46
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -25,7 +25,6 @@ SET time_zone = "+00:00";
 --
 -- Estrutura da tabela `aluno`
 --
-
 
 CREATE TABLE `aluno` (
   `matricula` varchar(5) NOT NULL,
@@ -56,7 +55,6 @@ INSERT INTO `aluno` (`matricula`, `nome`, `data_nasc`, `email`, `data_mod`) VALU
 -- Estrutura da tabela `aluno_nota`
 --
 
-DROP TABLE IF EXISTS `aluno_nota`;
 CREATE TABLE `aluno_nota` (
   `matricula` varchar(5) NOT NULL,
   `disciplina_id` int(5) NOT NULL,
@@ -82,23 +80,41 @@ INSERT INTO `aluno_nota` (`matricula`, `disciplina_id`, `nota`, `ano_letivo`, `d
 -- Estrutura da tabela `aluno_nota_tri`
 --
 
-DROP TABLE IF EXISTS `aluno_nota_tri`;
 CREATE TABLE `aluno_nota_tri` (
   `matricula` varchar(15) NOT NULL,
   `disciplina_id` varchar(2) NOT NULL,
-  `tri1` float DEFAULT NULL,
-  `tri2` float DEFAULT NULL,
-  `tri3` float DEFAULT NULL,
-  `tri4` int(11) DEFAULT NULL
+  `ttri1` float DEFAULT NULL,
+  `ptri1` float DEFAULT NULL,
+  `ttri2` float DEFAULT NULL,
+  `ptri2` float DEFAULT NULL,
+  `ttri3` float DEFAULT NULL,
+  `ptri3` float DEFAULT NULL,
+  `tri4` float DEFAULT NULL,
+  `ano` char(5) NOT NULL,
+  `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `aluno_nota_tri`
 --
 
-INSERT INTO `aluno_nota_tri` (`matricula`, `disciplina_id`, `tri1`, `tri2`, `tri3`, `tri4`) VALUES
-('12345', '1', 8, 9, 7, NULL),
-('98712', '1', 5, 7, 4, NULL);
+INSERT INTO `aluno_nota_tri` (`matricula`, `disciplina_id`, `ttri1`, `ptri1`, `ttri2`, `ptri2`, `ttri3`, `ptri3`, `tri4`, `ano`, `data_mod`) VALUES
+('11223', '1', 2, 3, 3, 4, 3, 7, 1, '2017', '2017-02-02 15:15:12'),
+('11223', '2', 1, 1, 2, 2, 3, 7, 0, '2017', '2017-02-02 16:45:29'),
+('12345', '1', 2, 3, 3, 4, 0, 4, 1, '2017', '2017-02-02 15:15:12'),
+('12345', '2', 3, 1, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('12346', '1', 2, 3, 3, 4, 1, 5, 1, '2017', '2017-02-02 15:15:12'),
+('12346', '2', 1, 1, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('12347', '1', 2, 3, 3, 4, 2, 6, 1, '2017', '2017-02-02 15:15:12'),
+('12347', '2', 3, 1, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('12348', '1', 2, 3, 3, 4, 0, 0, 1, '2017', '2017-02-02 15:15:11'),
+('12348', '2', 1, 1, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('12349', '1', 2, 3, 3, 4, 1, 1, 1, '2017', '2017-02-02 15:15:11'),
+('12349', '2', 1, 7, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('24043', '1', 2, 3, 3, 4, 2, 2, 1, '2017', '2017-02-02 15:15:12'),
+('24043', '2', 1, 7, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29'),
+('98712', '1', 2, 3, 3, 4, 3, 3, 1, '2017', '2017-02-02 15:15:12'),
+('98712', '2', 1, 1, 2, 2, 3, 3, 0, '2017', '2017-02-02 16:45:29');
 
 -- --------------------------------------------------------
 
@@ -106,7 +122,6 @@ INSERT INTO `aluno_nota_tri` (`matricula`, `disciplina_id`, `tri1`, `tri2`, `tri
 -- Estrutura da tabela `calendario`
 --
 
-DROP TABLE IF EXISTS `calendario`;
 CREATE TABLE `calendario` (
   `cod_evento` int(11) NOT NULL,
   `matricula` int(10) NOT NULL,
@@ -137,9 +152,6 @@ INSERT INTO `calendario` (`cod_evento`, `matricula`, `evento`, `descricao`, `dat
 (9, 10, 'Palestra sobre LP3', 'foder at? o talo', '2016-10-23 13:30:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
 (10, 10, 'Palestra sobre angular', 'foder at? o talo', '2016-10-27 13:30:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
 (11, 10, 'aula sobre c#', 'foder at? o talo', '2016-10-25 13:30:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(12, 10, 'kaka de xana', 'foder at? o talo', '2016-10-10 05:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(13, 10, 'ppk bucete ', 'foder at? o talo', '2016-10-02 09:00:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkSeaGre', 'IN313', '2016-12-21 23:01:19'),
-(14, 10, 'yuri dao a', 'foder at? o talo', '2016-08-20 00:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
 (16, 10, 'renan lixo', 'foder at? o talo', '2016-11-03 02:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
 (17, 10, 'renan lixo', 'foder at? o talo', '2016-09-09 09:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
 (18, 10, 'renan lixo', 'foder at? o talo', '2016-09-09 09:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
@@ -186,13 +198,14 @@ INSERT INTO `calendario` (`cod_evento`, `matricula`, `evento`, `descricao`, `dat
 (63, 10, 'natal', 'uhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', '2016-12-24 13:00:00', '2016-12-25 08:00:00', 'false', '#DC143C', '#CD5C5C', 'undefi', '2016-12-21 23:01:19'),
 (64, 10, 'semana familia', '?......................', '2016-12-27 13:00:00', '2016-12-28 08:00:00', 'false', '#4169E1', '#1E90FF', 'undefi', '2016-12-21 23:01:19'),
 (65, 10, 'Virada de ano', 'Fam?lia  ', '2017-01-03 05:00:00', '2017-02-03 22:00:00', 'false', '#008000', '#00FA9A', 'undefi', '2017-01-14 02:20:14'),
-(66, 10, 'Moana - Disney', 'Renan é um bostao', '2017-02-01 08:00:00', '2017-02-01 08:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2017-01-14 18:20:23'),
+(66, 10, 'Moana - Disney', 'Renan é um bostao', '2017-02-07 08:00:00', '2017-02-07 08:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2017-02-03 05:02:39'),
 (67, 10, 'Evento', 'Renan nao faz nada', '2017-01-31 08:00:00', '2017-01-31 09:00:00', 'false', '#708090', '#B0C4DE', 'undefi', '2017-01-14 22:51:42'),
 (68, 10, 'Algo bem louco', 'Renan está fora', '2017-01-30 08:00:00', '2017-01-30 09:00:00', 'false', '#4169E1', '#1E90FF', 'undefi', '2017-01-14 18:20:33'),
-(69, 10, 'Algo bem louco de novo ', 'Renan é um bostinha', '2017-02-02 08:00:00', '2017-02-02 08:00:00', 'false', '#DC143C', '#CD5C5C', 'undefi', '2017-01-14 18:20:17'),
+(69, 10, 'Algo bem louco de novo ', 'Renan é um bostinha', '2017-02-06 08:00:00', '2017-02-06 08:00:00', 'false', '#DC143C', '#CD5C5C', 'undefi', '2017-02-03 05:02:27'),
 (70, 10, 'Algo bem louco de novo outra time', 'Renan é inutil', '2017-01-28 08:00:00', '2017-01-29 08:00:00', 'false', '#008000', '#00FA9A', 'undefi', '2017-01-14 18:20:38'),
 (72, 10, 'Eventos Repetidos ', 'boom', '2016-12-27 08:00:00', '2016-12-30 22:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2016-12-21 23:01:19'),
-(73, 10, 'SLA, a vida n?o ? feita s? de ilus?o', 'boom', '2016-12-27 07:00:00', '2016-12-31 07:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2016-12-21 23:01:19');
+(73, 10, 'SLA, a vida n?o ? feita s? de ilus?o', 'boom', '2016-12-27 07:00:00', '2016-12-31 07:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2016-12-21 23:01:19'),
+(74, 10, 'ENTREGA DO TCC', 'Entrega', '2017-02-03 07:00:00', '2017-02-03 12:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2017-02-03 06:12:51');
 
 -- --------------------------------------------------------
 
@@ -200,7 +213,6 @@ INSERT INTO `calendario` (`cod_evento`, `matricula`, `evento`, `descricao`, `dat
 -- Estrutura da tabela `disciplinas`
 --
 
-DROP TABLE IF EXISTS `disciplinas`;
 CREATE TABLE `disciplinas` (
   `disciplina_id` int(5) NOT NULL,
   `disciplina_nome` varchar(16) NOT NULL
@@ -243,7 +255,6 @@ INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`) VALUES
 -- Estrutura da tabela `lembretes`
 --
 
-DROP TABLE IF EXISTS `lembretes`;
 CREATE TABLE `lembretes` (
   `ID` int(11) NOT NULL,
   `user` varchar(15) NOT NULL,
@@ -255,7 +266,9 @@ CREATE TABLE `lembretes` (
 --
 
 INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
-(0, '10', 'yuri');
+(0, '10', 'teste01'),
+(1, '10', 'teste05'),
+(2, '10', 'Matheseu');
 
 -- --------------------------------------------------------
 
@@ -263,7 +276,6 @@ INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
 -- Estrutura da tabela `materia`
 --
 
-DROP TABLE IF EXISTS `materia`;
 CREATE TABLE `materia` (
   `materia_id` int(5) NOT NULL,
   `nome` text NOT NULL,
@@ -288,7 +300,6 @@ INSERT INTO `materia` (`materia_id`, `nome`, `descricao`, `disciplina_id`) VALUE
 -- Estrutura da tabela `professor_disciplinas`
 --
 
-DROP TABLE IF EXISTS `professor_disciplinas`;
 CREATE TABLE `professor_disciplinas` (
   `matricula` varchar(10) NOT NULL,
   `disciplina_id` varchar(5) NOT NULL,
@@ -309,7 +320,6 @@ INSERT INTO `professor_disciplinas` (`matricula`, `disciplina_id`, `ano_letivo`)
 -- Estrutura da tabela `profs`
 --
 
-DROP TABLE IF EXISTS `profs`;
 CREATE TABLE `profs` (
   `matricula` varchar(10) NOT NULL,
   `nome` char(100) NOT NULL,
@@ -328,6 +338,7 @@ INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`
 ('', '', '0000-00-00', '', '', '4@4.com', '2016-12-14 21:46:46'),
 ('1', 'Jacinto', '1946-09-06', '1', '1', 'jacintao@gmail.com', '2016-09-22 04:31:13'),
 ('10', 'Jesus', '1010-10-10', '101.010.101-01', '(10)10101-0101', 'jc10@hot10mail.com', '2017-01-02 21:43:08'),
+('123123', 'JoseTeste', '2312-12-31', '123.412.341-23', '(12)33123-1231', '1231@gmail.com', '2017-02-03 05:55:21'),
 ('2', 'Nunes', '0000-00-00', '2', '(22)22222-2222', '2@gmail.com', '2016-11-27 04:25:44'),
 ('2222222222', '2222222222222222', '0000-00-00', '127', '(22)22222-2222', '22222222222@2.com', '2016-10-25 00:41:18'),
 ('25', 'Kithdris', '0000-00-00', '127', '(12)34567-8900', 'u7@tera.com', '2016-12-13 23:56:05'),
@@ -342,12 +353,12 @@ INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`
 -- Estrutura da tabela `prof_diario`
 --
 
-DROP TABLE IF EXISTS `prof_diario`;
 CREATE TABLE `prof_diario` (
   `cod_aula` int(12) NOT NULL COMMENT 'codigo associado a questao ( cahave primaria)',
   `matricula` varchar(10) NOT NULL,
   `turma` varchar(7) NOT NULL,
   `data` date NOT NULL,
+  `horaStart` char(5) NOT NULL,
   `disciplina_id` varchar(10) NOT NULL,
   `comentario` text NOT NULL,
   `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -357,15 +368,8 @@ CREATE TABLE `prof_diario` (
 -- Extraindo dados da tabela `prof_diario`
 --
 
-INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `disciplina_id`, `comentario`, `data_mod`) VALUES
-(11, '10', 'IN313', '2016-10-19', '2', 'sdsssssssssssss', '2016-12-21 23:46:52'),
-(12, '10', 'IN314', '2016-10-19', '2', 'renanviado', '2016-12-21 23:47:46'),
-(13, '10', 'IN313', '2016-10-20', '2', 'undefined', '2016-12-21 23:47:46'),
-(14, '10', 'IN313', '2016-10-21', '2', 'undefined', '2016-12-21 23:47:46'),
-(15, '10', 'IN313', '2016-10-22', '2', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2016-12-21 23:47:46'),
-(16, '10', 'IN313', '2016-12-26', '4', 'FODA-LIVRE', '2016-12-26 23:10:13'),
-(17, '10', 'IN313', '2016-12-26', '5', 'FODA-LIVRE', '2016-12-26 23:10:13'),
-(18, '10', 'IN313', '2016-12-26', '6', 'FODA-LIVRE', '2016-12-26 23:10:13');
+INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `horaStart`, `disciplina_id`, `comentario`, `data_mod`) VALUES
+(34, '10', 'IN313', '2017-01-28', '07:15', '2', '  teste26', '2017-01-28 23:42:55');
 
 -- --------------------------------------------------------
 
@@ -373,7 +377,6 @@ INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `disciplina
 -- Estrutura da tabela `prof_diario_aluno`
 --
 
-DROP TABLE IF EXISTS `prof_diario_aluno`;
 CREATE TABLE `prof_diario_aluno` (
   `cod_aula` varchar(10) NOT NULL,
   `matricula` varchar(5) NOT NULL,
@@ -386,63 +389,38 @@ CREATE TABLE `prof_diario_aluno` (
 --
 
 INSERT INTO `prof_diario_aluno` (`cod_aula`, `matricula`, `presente`, `data_mod`) VALUES
-('11', '12348', 'true', '2016-10-20 00:03:52'),
-('11', '12349', 'false', '2016-10-20 00:03:52'),
-('11', '24043', 'true', '2016-10-20 00:03:52'),
-('11', '98712', 'false', '2016-10-20 00:03:52'),
-('11', '12345', 'true', '2016-10-20 00:03:52'),
-('11', '12346', 'false', '2016-10-20 00:03:52'),
-('11', '12347', 'true', '2016-10-20 00:03:52'),
-('11', '11223', 'false', '2016-10-20 00:03:52'),
-('12', '11223', 'false', '2016-10-20 01:20:10'),
-('13', '12348', 'true', '2016-10-20 02:36:10'),
-('13', '12349', 'false', '2016-10-20 02:36:10'),
-('13', '24043', 'false', '2016-10-20 02:36:10'),
-('13', '98712', 'false', '2016-10-20 02:36:10'),
-('13', '12345', 'false', '2016-10-20 02:36:10'),
-('13', '12346', 'false', '2016-10-20 02:36:10'),
-('13', '12347', 'false', '2016-10-20 02:36:10'),
-('13', '11223', 'true', '2016-10-20 02:36:10'),
-('14', '12348', 'true', '2016-10-20 02:45:37'),
-('14', '12349', 'false', '2016-10-20 02:45:37'),
-('14', '24043', 'false', '2016-10-20 02:45:37'),
-('14', '98712', 'false', '2016-10-20 02:45:37'),
-('14', '12345', 'true', '2016-10-20 02:45:37'),
-('14', '12346', 'false', '2016-10-20 02:45:37'),
-('14', '12347', 'false', '2016-10-20 02:45:37'),
-('14', '11223', 'false', '2016-10-20 02:45:37'),
-('15', '12348', 'true', '2016-10-20 03:02:11'),
-('15', '12349', 'false', '2016-10-20 03:02:11'),
-('15', '24043', 'false', '2016-10-20 03:02:11'),
-('15', '98712', 'false', '2016-10-20 03:02:11'),
-('15', '12345', 'false', '2016-10-20 03:02:11'),
-('15', '12346', 'false', '2016-10-20 03:02:11'),
-('15', '12347', 'false', '2016-10-20 03:02:11'),
-('15', '11223', 'false', '2016-10-20 03:02:11'),
-('16', '12348', 'true', '2016-12-26 23:10:13'),
-('17', '12348', 'true', '2016-12-26 23:10:13'),
-('18', '12348', 'true', '2016-12-26 23:10:13'),
-('16', '12349', 'true', '2016-12-26 23:10:13'),
-('17', '12349', 'true', '2016-12-26 23:10:13'),
-('18', '12349', 'true', '2016-12-26 23:10:13'),
-('16', '24043', 'true', '2016-12-26 23:10:13'),
-('17', '24043', 'true', '2016-12-26 23:10:13'),
-('18', '24043', 'true', '2016-12-26 23:10:13'),
-('16', '98712', 'false', '2016-12-26 23:10:13'),
-('17', '98712', 'false', '2016-12-26 23:10:13'),
-('18', '98712', 'false', '2016-12-26 23:10:13'),
-('16', '12345', 'true', '2016-12-26 23:10:13'),
-('17', '12345', 'true', '2016-12-26 23:10:13'),
-('18', '12345', 'true', '2016-12-26 23:10:13'),
-('16', '12346', 'true', '2016-12-26 23:10:13'),
-('17', '12346', 'true', '2016-12-26 23:10:13'),
-('18', '12346', 'true', '2016-12-26 23:10:13'),
-('16', '12347', 'true', '2016-12-26 23:10:14'),
-('17', '12347', 'true', '2016-12-26 23:10:14'),
-('18', '12347', 'true', '2016-12-26 23:10:14'),
-('16', '11223', 'true', '2016-12-26 23:10:14'),
-('17', '11223', 'true', '2016-12-26 23:10:14'),
-('18', '11223', 'true', '2016-12-26 23:10:14');
+('31', '12348', 'true', '2017-01-28 18:11:22'),
+('31', '12349', 'false', '2017-01-28 18:11:22'),
+('31', '24043', 'false', '2017-01-28 18:11:22'),
+('31', '98712', 'false', '2017-01-28 18:11:22'),
+('31', '12345', 'false', '2017-01-28 18:11:22'),
+('31', '12346', 'false', '2017-01-28 18:11:23'),
+('31', '12347', 'false', '2017-01-28 18:11:23'),
+('31', '11223', 'false', '2017-01-28 18:11:23'),
+('32', '12348', 'true', '2017-01-28 18:11:35'),
+('32', '12349', 'false', '2017-01-28 18:11:35'),
+('32', '24043', 'false', '2017-01-28 18:11:35'),
+('32', '98712', 'false', '2017-01-28 18:11:35'),
+('32', '12345', 'false', '2017-01-28 18:11:35'),
+('32', '12346', 'false', '2017-01-28 18:11:36'),
+('32', '12347', 'false', '2017-01-28 18:11:36'),
+('32', '11223', 'true', '2017-01-28 18:11:36'),
+('33', '12348', 'true', '2017-01-28 20:59:48'),
+('33', '12349', 'false', '2017-01-28 20:59:49'),
+('33', '24043', 'false', '2017-01-28 20:59:49'),
+('33', '98712', 'false', '2017-01-28 20:59:49'),
+('33', '12345', 'false', '2017-01-28 20:59:49'),
+('33', '12346', 'false', '2017-01-28 20:59:49'),
+('33', '12347', 'false', '2017-01-28 20:59:49'),
+('33', '11223', 'true', '2017-01-28 20:59:49'),
+('34', '12348', 'false', '2017-01-28 23:42:55'),
+('34', '12349', 'false', '2017-01-28 23:42:55'),
+('34', '24043', 'false', '2017-01-28 23:42:55'),
+('34', '98712', 'false', '2017-01-28 23:42:55'),
+('34', '12345', 'false', '2017-01-28 23:42:55'),
+('34', '12346', 'false', '2017-01-28 23:42:55'),
+('34', '12347', 'false', '2017-01-28 23:42:56'),
+('34', '11223', 'true', '2017-01-28 23:42:56');
 
 -- --------------------------------------------------------
 
@@ -450,7 +428,6 @@ INSERT INTO `prof_diario_aluno` (`cod_aula`, `matricula`, `presente`, `data_mod`
 -- Estrutura da tabela `prof_turma`
 --
 
-DROP TABLE IF EXISTS `prof_turma`;
 CREATE TABLE `prof_turma` (
   `matricula` varchar(10) NOT NULL,
   `cod_turma` varchar(5) NOT NULL,
@@ -473,7 +450,6 @@ INSERT INTO `prof_turma` (`matricula`, `cod_turma`, `disciplina`, `ano_letivo`) 
 -- Estrutura da tabela `provas`
 --
 
-DROP TABLE IF EXISTS `provas`;
 CREATE TABLE `provas` (
   `cod_prova` int(12) NOT NULL,
   `nome` varchar(30) NOT NULL,
@@ -493,7 +469,12 @@ INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anose
 (2, '', '10', '1', '1º an', 'Prova', '2017-01-05 15:36:08'),
 (3, '', '10', '2', '1º an', 'Prova', '2017-01-05 15:36:08'),
 (4, '', '10', '3', '1º an', 'Prova', '2017-01-05 15:36:08'),
-(5, '10', '10', '2', 'null', 'null', '2017-01-13 18:38:59');
+(5, '10', '10', '2', 'null', 'null', '2017-01-13 18:38:59'),
+(6, '10', '10', '2', 'null', 'null', '2017-01-23 23:56:17'),
+(7, '10', '10', '2', 'null', 'null', '2017-01-25 00:21:40'),
+(8, '10', '10', '2', 'null', 'null', '2017-01-25 19:20:55'),
+(9, '10', '10', '2', 'null', 'null', '2017-01-25 19:21:15'),
+(10, 'Prova Do tcc', '10', '2', '3º an', 'Prova', '2017-02-03 06:01:32');
 
 -- --------------------------------------------------------
 
@@ -501,7 +482,6 @@ INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anose
 -- Estrutura da tabela `prova_questoes`
 --
 
-DROP TABLE IF EXISTS `prova_questoes`;
 CREATE TABLE `prova_questoes` (
   `cod_prova` varchar(10) NOT NULL,
   `cod_quest` varchar(7) NOT NULL
@@ -560,7 +540,46 @@ INSERT INTO `prova_questoes` (`cod_prova`, `cod_quest`) VALUES
 ('2', '21'),
 ('3', '21'),
 ('4', '21'),
-('5', '21');
+('5', '21'),
+('1', '27'),
+('2', '27'),
+('3', '27'),
+('4', '27'),
+('5', '27'),
+('6', '27'),
+('1', '4'),
+('2', '4'),
+('3', '4'),
+('4', '4'),
+('5', '4'),
+('6', '4'),
+('1', '27'),
+('2', '27'),
+('3', '27'),
+('4', '27'),
+('5', '27'),
+('6', '27'),
+('7', '27'),
+('1', '29'),
+('2', '29'),
+('3', '29'),
+('4', '29'),
+('5', '29'),
+('6', '29'),
+('7', '29'),
+('8', '29'),
+('9', '29'),
+('10', '29'),
+('1', '28'),
+('2', '28'),
+('3', '28'),
+('4', '28'),
+('5', '28'),
+('6', '28'),
+('7', '28'),
+('8', '28'),
+('9', '28'),
+('10', '28');
 
 -- --------------------------------------------------------
 
@@ -568,7 +587,6 @@ INSERT INTO `prova_questoes` (`cod_prova`, `cod_quest`) VALUES
 -- Estrutura da tabela `questoes`
 --
 
-DROP TABLE IF EXISTS `questoes`;
 CREATE TABLE `questoes` (
   `cod_quest` int(12) NOT NULL COMMENT 'codigo associado a questao ( cahave primaria)',
   `autor` varchar(50) NOT NULL COMMENT 'autor da questao; ou cod_prof ou enem,uff etc ',
@@ -616,7 +634,9 @@ INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, 
 (24, 'undefined', 'Fácil', 'Discursiva', '2', '1', 'mnfdklmgklmkdlk', NULL, NULL, NULL, NULL, NULL, 'ppppppppppoooooooooooooooooooooooooooooowwwwwwwwww', '1837', '3º ano', 'Púb', '8', 0, '2017-01-11 19:03:19'),
 (25, '10', 'Fácil', 'Discursiva', '2', '1', 'ddddddddddd', NULL, NULL, NULL, NULL, NULL, 'ddddddddddddddddddddddddddddd', '1964', '2º ano', 'Pri', '9', 1, '2017-01-11 19:06:14'),
 (26, '10', 'Média', 'Discursiva', '2', '1', 'Aheooooooooooo', NULL, NULL, NULL, NULL, NULL, 'Sim, sim', '1860', '2º ano', 'Pri', '12', 1, '2017-01-13 15:48:45'),
-(27, '10', 'Média', 'Discursiva', '2', '1', 'aiushdas', NULL, NULL, NULL, NULL, NULL, '6128736', '2017', '3º ano', 'Púb', '2', 0, '2017-01-20 19:09:28');
+(27, '10', 'Média', 'Discursiva', '2', '1', 'aiushdas', NULL, NULL, NULL, NULL, NULL, '6128736', '2017', '3º ano', 'Púb', '2', 0, '2017-01-20 19:09:28'),
+(28, '10', 'Dificil', 'Discursiva', '2', '1', 'teste', NULL, NULL, NULL, NULL, NULL, 'oi', '2017', '3º ano', 'Púb', '2', 1, '2017-02-03 05:57:35'),
+(29, '10', 'Media', 'Objetiva', '2', '1', 'fsdf', 'asdf', 'asdf', 'asdf', 'asdf', 'afd', 'Opção C', '2017', '3º ano', 'Púb', '', 0, '2017-02-03 06:00:34');
 
 -- --------------------------------------------------------
 
@@ -624,7 +644,6 @@ INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, 
 -- Estrutura da tabela `tipo_prova`
 --
 
-DROP TABLE IF EXISTS `tipo_prova`;
 CREATE TABLE `tipo_prova` (
   `tipo_avaliacao` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -647,7 +666,6 @@ INSERT INTO `tipo_prova` (`tipo_avaliacao`) VALUES
 -- Estrutura da tabela `turma`
 --
 
-DROP TABLE IF EXISTS `turma`;
 CREATE TABLE `turma` (
   `cod_turma` varchar(5) NOT NULL,
   `anoserie` varchar(6) NOT NULL,
@@ -669,7 +687,6 @@ INSERT INTO `turma` (`cod_turma`, `anoserie`, `email`, `sala`) VALUES
 -- Estrutura da tabela `turma_aluno`
 --
 
-DROP TABLE IF EXISTS `turma_aluno`;
 CREATE TABLE `turma_aluno` (
   `cod_turma` varchar(5) NOT NULL,
   `matricula` varchar(5) NOT NULL,
@@ -697,7 +714,6 @@ INSERT INTO `turma_aluno` (`cod_turma`, `matricula`, `ano_letivo`) VALUES
 -- Estrutura da tabela `user_photo`
 --
 
-DROP TABLE IF EXISTS `user_photo`;
 CREATE TABLE `user_photo` (
   `matricula` varchar(10) NOT NULL,
   `photoID` text NOT NULL,
@@ -709,8 +725,10 @@ CREATE TABLE `user_photo` (
 --
 
 INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
+('', '/uploads/', '2017-02-03 03:37:34'),
 ('1', './uploads/1-userPhoto-1481671598038.png', '2016-12-13 23:26:38'),
 ('10', '/uploads/10-userPhoto-1483162242715.jpg', '2016-12-31 05:30:42'),
+('123123', '/uploads/123123-userPhoto-1486101338951.jpg', '2017-02-03 05:55:38'),
 ('2', '/uploads/2-userPhoto-1480221932190.jpg', '2016-11-27 05:29:36'),
 ('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15'),
 ('3', './uploads/3-userPhoto-1481670373902.png', '2016-12-13 23:06:13'),
@@ -724,13 +742,12 @@ INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `matricula` varchar(10) NOT NULL,
   `username` varchar(50) NOT NULL,
   `salt` char(200) NOT NULL,
   `senha` char(129) NOT NULL,
-  `permissao` varchar(10) NOT NULL,
+  `permissao` varchar(15) NOT NULL,
   `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -739,10 +756,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `data_mod`) VALUES
-('1', 'UM', '', '[object Object]', 'Professor', '2016-12-13 23:26:28'),
 ('10', 'Jesus', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Professor', '2016-12-22 18:15:38'),
+('123123', 'JoseTeste', 'd749f6fd686ed248', 'fb74401a82ad00ff88559d44f96ffee4e842ae25e2a3252c16577e36d94fe0acfee8d7cee8ec402fa769dd4144d46f635d10fbffbd73ecb7bbc3fb77da9e2605', 'Professor', '2017-02-03 05:55:21'),
 ('2', 'Matheus viadao', '', '2', 'Professor', '2016-11-27 04:45:26'),
-('25', 'Kithdris', 'f5711934de245e1b', '554f89c9e39ee963f83e1ca4a7dace2c8ebe28104e20fb9c87126e04caabba8f0386b92b7ab88d7b795c02e822f496335d7a497e787d4b12e36fccdb1c278594', 'Professor', '2016-12-13 23:56:05'),
+('25', 'ADM', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Administrador', '2017-01-30 01:00:50'),
 ('3', 'Junes', '', '3', 'Professor', '2016-12-13 23:05:58'),
 ('4', 'Quatro', '', 'undefined', 'Professor', '2016-12-13 23:24:09'),
 ('4343', 'fsfsdfds', '959b1512369f5e66', '145131d4d73918de4f5bcef09ad589d5055f2ac333267449236655f55c93aa407f985fea217e0f9bd05bbd573ba3ac6d6c69ce1b206cd5c003fac61fbf2da908', 'Professor', '2016-12-14 17:12:14'),
@@ -751,11 +768,6 @@ INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `d
 --
 -- Indexes for dumped tables
 --
---
--- Indexes for table `turma`
---
-ALTER TABLE `turma`
-  ADD PRIMARY KEY (`cod_turma`);
 
 --
 -- Indexes for table `aluno`
@@ -773,7 +785,7 @@ ALTER TABLE `aluno_nota`
 -- Indexes for table `aluno_nota_tri`
 --
 ALTER TABLE `aluno_nota_tri`
-  ADD PRIMARY KEY (`matricula`,`disciplina_id`);
+  ADD PRIMARY KEY (`matricula`,`disciplina_id`,`ano`);
 
 --
 -- Indexes for table `calendario`
@@ -836,6 +848,12 @@ ALTER TABLE `questoes`
   ADD PRIMARY KEY (`cod_quest`);
 
 --
+-- Indexes for table `turma`
+--
+ALTER TABLE `turma`
+  ADD PRIMARY KEY (`cod_turma`);
+
+--
 -- Indexes for table `user_photo`
 --
 ALTER TABLE `user_photo`
@@ -855,7 +873,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `calendario`
 --
 ALTER TABLE `calendario`
-  MODIFY `cod_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `cod_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
@@ -865,17 +883,17 @@ ALTER TABLE `disciplinas`
 -- AUTO_INCREMENT for table `prof_diario`
 --
 ALTER TABLE `prof_diario`
-  MODIFY `cod_aula` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=19;
+  MODIFY `cod_aula` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `provas`
 --
 ALTER TABLE `provas`
-  MODIFY `cod_prova` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_prova` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `questoes`
 --
 ALTER TABLE `questoes`
-  MODIFY `cod_quest` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=28;
+  MODIFY `cod_quest` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
