@@ -15,7 +15,7 @@ function TxtToJson(callback , fileTxt){
 
         if (err) return callback(err);
 
-        conteudo = data.split('\n');
+        conteudo = data.split('\r\n');
 
 
        // linhas.push(content.split(/[     ]+/))
@@ -34,7 +34,7 @@ function sqlQuery(qry, callback){
  });
 }
 function sqlInsert(qry){
-  console.log('sqlInsert');
+  console.log(qry);
     connDB.query(qry, function(err,rows){
       if(err) return err;
 
@@ -43,7 +43,7 @@ function sqlInsert(qry){
 function writeLog(data){
   const fs = require('fs');
 var date = new Date();
-var hora_agora = date.getHours();
+var hora_agora = date.getTime();
 
   fs.writeFile('./tmp/LOGS'+hora_agora+'.txt' , data , function (err){
     if (err) return console.log(err);
@@ -53,7 +53,15 @@ var hora_agora = date.getHours();
 
 }
 exports.putBD = function(req, res){
-  req.body.txtAr;
+  // req.body.obj;
+
+  
+   sqlQuery(req.body.obj , function (err){
+      if (err)   res.status(204).end();
+
+     writeLog(req.body.obj + " ---POR :" + req.user.matricula);
+   });
+   
 }
 exports.upFile = function(req, res){
   var  logs = [];
@@ -63,8 +71,8 @@ exports.upFile = function(req, res){
   {
    sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
       for(k in content){
-        var lineTMP = content[k].split(/[     ]+/) ;
-
+        var lineTMP = content[k].split(/\s{5}/g) ;
+// /^\s{0,2}/
         tamLine = lineTMP.length;
         for(x in lineTMP){
            lineTMP[x] = '"'+lineTMP[x]+'"';
@@ -79,6 +87,9 @@ exports.upFile = function(req, res){
 
          }
          else {
+          console.log(tamLine);
+          console.log(fields.length);
+          console.log(lineTMP);
           console.log("Faltando campos na linha:" + k);
            logs[k]="Faltando campos na linha:" + k +"\n" ;
          }
@@ -97,12 +108,18 @@ exports.deleteBD = function(req,res){
     TxtToJson( function (err, content)
   {
      for(k in content){
+      // console.log(content);
    //   console.log(content.length);
-    var lineTMP = content[k].split(/[     ]+/) ;
 
-    sqlInsert("Delete from "+req.body.tabelaNameDel+" where "+lineTMP[0]+"="+lineTMP[1]+" ", function(err, fields){
+    var lineTMP = content[k].split(/\s{5}/g) ;
+    // var lineTMP2 = content[k].split(/[     ]+/).split('/r') ;
+      console.log(lineTMP);
+    
+      var del =   "Delete from "+req.body.tabelaNameDel+" where "+lineTMP[0]+"='"+lineTMP[1]+"'";
+    sqlInsert(del, function(err, fields){
         if (err){ }
     });
+    
   }
  /*
    sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
@@ -515,7 +532,7 @@ connDB.query(qryDEL,function(err,rows){
 
 exports.cadastroProva   = function(request, response, next){
   var dados = request.body.dados;
-  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.user.matricula+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
+  var qry= "INSERT INTO `provas`(`nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`)  SELECT '"+request.body.nomeP+"', `matricula`,`disciplina_id` , '"+ request.body.serie +"','"+ request.body.tipo +"' FROM `profs`,`disciplinas` WHERE nome = '"+ request.user.username +"' AND  disciplina_nome = '"+ request.body.disciplina +"'  " ;
   var confirm= 0;
   connDB.query(qry,function(err,rows){
     if (err){
@@ -669,19 +686,17 @@ exports.cadastroQuest   = function(request, response, next){
       request.flash('MSGCadQuest', err);
     } //Aqui ele retorna a msg se a qstao ja existir
     if (rows.length) {
-      request.flash('MSGCadQuest', 'Questão já existente!'); //Aqui ele retorna a msg se a qstao ja existir
+      request.flash('MSGCadQuest', 'Questão já existente!');
+      return  response.redirect('/cadastroQuest');
     }
     else {
       if(tipo == "Discursiva")
       {
         var query  =  "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`," +
                       " `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, quant_linhas, linhas_visiveis) " +
-
                       "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, " +
                       "'"+ enunciado +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"', '"+ nLinhas +"', "+ apLinhas +" " +
-
                       "FROM disciplinas, materia " +
-
                       "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
 
       }
@@ -693,33 +708,13 @@ exports.cadastroQuest   = function(request, response, next){
           d : request.body.opcD,
           e : request.body.opcE,
          }
-        var insertClause  = "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) ";
-        var selectClause  = "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, '"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"', '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' ";
-        var fromClause    = "FROM disciplinas, materia ";
-        var whereClause   = "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
-        connDB.query(insertClause + selectClause + fromClause + whereClause, function(err,rows){
-          if(err){
-            request.flash('MSGCadQuest', 'Erro ao cadastrar');
-          return  response.redirect('/cadastroQuest');
-
-            }else{
-              request.flash('MSGCadQuest', 'Questao Cadastrada!');
-              return  response.redirect('/cadastroQuest');
-
-
-            }
-                    });
-         var query  =  "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`," +
-                       " `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) "; +
-
-                       "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, " +
-                       "'"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"', " +
-                       "'"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' " +
-
-                       "FROM disciplinas, materia " +
-
-                       "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
-
+        var query  = "INSERT INTO `questoes`(`autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`,"+
+                      " `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`) "+
+                      "SELECT '"+ autor +"', '"+ nivel +"', '"+ tipo +"', disciplinas.disciplina_id, materia.materia_id, "+
+                      "'"+ enunciado +"', '"+ opcoes.a +"', '"+ opcoes.b +"', '"+ opcoes.c +"', '"+ opcoes.d +"', '"+ opcoes.e +"'"+
+                      ", '"+ gabarito +"', '"+ anoC +"', '"+ serie +"', '"+ visibilidade +"' "+
+                      "FROM disciplinas, materia "+
+                      "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
       }
 
       console.log(query);
@@ -727,8 +722,8 @@ exports.cadastroQuest   = function(request, response, next){
       connDB.query(query, function(err,rows){
         if(err){
           request.flash('MSGCadQuest', 'Erro ao cadastrar');
+          console.log(err);
         return  response.redirect('/cadastroQuest');
-          console.log("ERRO");
 
           }else{
             request.flash('MSGCadQuest', 'Questao Cadastrada!');

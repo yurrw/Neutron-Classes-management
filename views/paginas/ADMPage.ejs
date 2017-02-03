@@ -86,7 +86,15 @@
 <script>
 $(function() 
 { 
-
+$("#textAr").keypress(function(e) {
+    if(e.which == 13) {
+      if($("#textAr").val()){
+        var res = $("#textAr").val();
+                     ajaxCall("/putBD",res);
+                     $('#textAr').val('');
+      }
+    }
+});
      $.ajax({
          url: "/findTables", // AQUI É A URL QUE SERA ENVIADO
          type: "POST", //TIPO DE ENVIO

@@ -1,0 +1,8 @@
+DELETE FROM aluno WHERE matricula = '1119' 
+
+ 
+
+
+
+DELETE FROM aluno WHERE matricula = '1119'
+asd ---POR :25

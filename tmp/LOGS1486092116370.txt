@@ -1,0 +1,2 @@
+INSERT INTO aluno VALUES ('1119','teste09','1970-10-04','teste9','2016-10-06 18:43:30')
+DELETE FROM aluno WHERE matricula = '1119' ---POR :25

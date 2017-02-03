@@ -1,0 +1,1 @@
+INSERT INTO aluno VALUES ('1118','teste09','1970-10-04','teste9','2016-10-06 18:43:30') ---POR :25
