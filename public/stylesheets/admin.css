@@ -7,7 +7,7 @@ textarea {
     width: 50%;
     height: 40%;
     margin-top: 50px;
-	margin-left: 150px;
+	margin-left: 345px;
  resize:none;
 }
 .tables{
@@ -20,6 +20,13 @@ textarea {
 	float: right;
 }
 #CTAdmin{
-	margin-left: 225px;
+    margin: 0 auto;
+	/*margin-left: 225px;*/
 	width: 700px;
+}
+.correctAdm{
+    margin-left: 30px;
+}
+#Admadmin > span#pgName{
+    margin-left: 330px;
 }

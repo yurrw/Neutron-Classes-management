@@ -3,8 +3,31 @@ var multer     = require('multer');
 var crypto     = require('crypto');
 var nodemailer = require('nodemailer');
 
+
+var genRandomString = function(length){
+          return crypto.randomBytes(Math.ceil(length/2))
+                       .toString('hex')   //Converte para Hexadecimal
+                       .slice(0,length);  //Retorna a qtde requerida de  caracteres
+};
+var sha512 = function(password, salt){
+    var hash = crypto.createHmac('sha512', salt); //Hash SHA512
+    hash.update(password);
+    var value = hash.digest('hex');
+    return {
+        salt:salt,
+        passwordHash:value
+    };
+};
+function saltHashPassword(senha) {
+    var salt = genRandomString(16); /* tamanho da salt = 16 */
+    var passwordData = sha512(senha, salt);
+    return passwordData;
+
+}
+
+
 function TxtToJson(callback , fileTxt){
-  //VER DIFERENÇA PRATICA DO CONST PRO VAR
+ 
   var fs = require('fs')
     , fileName = arguments[1]  //o mesmo que fileTxt
     , conteudo;
@@ -16,17 +39,13 @@ function TxtToJson(callback , fileTxt){
         if (err) return callback(err);
 
         conteudo = data.split('\r\n');
-
-
-       // linhas.push(content.split(/[     ]+/))
    return callback(null, conteudo);
 
 
     });
-
+   
 }
 function sqlQuery(qry, callback){
-    console.log(qry);
     connDB.query(qry, function(err,rows){
       if (err) return callback(err);
 
@@ -53,7 +72,7 @@ var hora_agora = date.getTime();
 
 }
 exports.putBD = function(req, res){
-  // req.body.obj;
+
 
   
    sqlQuery(req.body.obj , function (err){
@@ -72,7 +91,6 @@ exports.upFile = function(req, res){
    sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
       for(k in content){
         var lineTMP = content[k].split(/\s{5}/g) ;
-// /^\s{0,2}/
         tamLine = lineTMP.length;
         for(x in lineTMP){
            lineTMP[x] = '"'+lineTMP[x]+'"';
@@ -87,9 +105,7 @@ exports.upFile = function(req, res){
 
          }
          else {
-          console.log(tamLine);
-          console.log(fields.length);
-          console.log(lineTMP);
+
           console.log("Faltando campos na linha:" + k);
            logs[k]="Faltando campos na linha:" + k +"\n" ;
          }
@@ -108,12 +124,10 @@ exports.deleteBD = function(req,res){
     TxtToJson( function (err, content)
   {
      for(k in content){
-      // console.log(content);
-   //   console.log(content.length);
 
     var lineTMP = content[k].split(/\s{5}/g) ;
-    // var lineTMP2 = content[k].split(/[     ]+/).split('/r') ;
-      console.log(lineTMP);
+
+
     
       var del =   "Delete from "+req.body.tabelaNameDel+" where "+lineTMP[0]+"='"+lineTMP[1]+"'";
     sqlInsert(del, function(err, fields){
@@ -121,32 +135,6 @@ exports.deleteBD = function(req,res){
     });
     
   }
- /*
-   sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
-      for(k in content){
-        var lineTMP = content[k].split(/[     ]+/) ;
-
-        tamLine = lineTMP.length;
-        for(x in lineTMP){
-           lineTMP[x] = '"'+lineTMP[x]+'"';
-        }
-        if ( tamLine ==fields.length)
-         {
-            var query = "INSERT INTO "+req.body.tabelaName+" VALUES ("+lineTMP+")";
-            console.log(query);
-            logs[k] = "Linha "+k+" inserida com sucesso \n";
-
-            sqlInsert(query);
-
-         }
-         else {
-          console.log("Faltando campos na linha:" + k);
-           logs[k]="Faltando campos na linha:" + k +"\n" ;
-         }
-        }
-        writeLog(logs);
-  });
-*/
   }, fileUploaded)
 
 
@@ -157,25 +145,20 @@ exports.SaveNts = function(req,res){
 
   var dados = [];
   var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"'";
-    // console.log(req.body.obj[0].id);
+      sqlInsert(qryDEL, function(err, fields){
+        if (err){console.log("erro ao dar delete no banco:"+err); }
+      });
 
-  connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
   for (var i=0; i< req.body.obj.length ; i++){
-    console.log(req.body.obj[i].id);
     var qry = "INSERT INTO `lembretes`( `ID`,`user`, `content`)  VALUES ('"+req.body.obj[i].id+"','"+req.user.matricula+"','"+req.body.obj[i].conteudo+"')";
-       connDB.query(qry,function(err,rows){
-       if (err) console.log(err);
-    });
+    sqlInsert(qry);
   }
-  // */
-  return res.json("all ok");
 
-  // console.log("NOTAS SALVAS");
+  return   res.status(204).end();
 
 };
 
 exports.DelNts  = function (req,res){
-    console.log(req.body);
     var qryDEL = "DELETE FROM lembretes WHERE user = '"+req.user.matricula+"' AND ID='"+req.body.obj+"'";
 
     // connDB.query(qryDEL, function(err,rows){if(err)console.log("erro ao dar delete no banco:"+err);});
@@ -203,28 +186,6 @@ exports.findTables = function(rq, rs) {
 
 }
 
-var genRandomString = function(length){
-          return crypto.randomBytes(Math.ceil(length/2))
-                       .toString('hex')   //Converte para Hexadecimal
-                       .slice(0,length);  //Retorna a qtde requerida de  caracteres
-};
-var sha512 = function(password, salt){
-    var hash = crypto.createHmac('sha512', salt); //Hash SHA512
-    hash.update(password);
-    var value = hash.digest('hex');
-    return {
-        salt:salt,
-        passwordHash:value
-    };
-};
-function saltHashPassword(senha) {
-    var salt = genRandomString(16); /* tamanho da salt = 16 */
-    var passwordData = sha512(senha, salt);
-    return passwordData;
-    console.log('UserPassword = '+senha);
-    console.log('Passwordhash = '+passwordData.passwordHash);
-    console.log('\nSalt = '+passwordData.salt);
-}
 
 
 exports.attPass = function(req, res){
@@ -264,12 +225,8 @@ exports.removerQuest   =  function(req, res){
 
 
 exports.UpFoto = function(req,res){
-   var archName ="";
-
-     var fs = require('fs');
-
-
-
+      var archName ="";
+      var fs = require('fs');
       var guardar =   multer.diskStorage({
                             destination: function (req, file, callback) {
                               callback(null, './uploads');
@@ -287,75 +244,43 @@ exports.UpFoto = function(req,res){
                           var date = new Date();
                           var data = Date.now();
                           archName =  '-' + file.fieldname + '-' + data +'.'+ext[1];
-                          console.log(archName);
-                          console.log("------------------------------------------");
 
-                              // archName =  matrs + '-' + file.fieldname + '-' + data +'.'+ext[1];
 
                               callback(null, archName);
-                          /*
-                          var d = new Date(year, month, day, hour, minute, second, millisecond);
-                          */
+
                         }
                     });
 
     var upload = multer({ storage : guardar}).any();
 
          upload(req,res,function(err) {
-                                        if(err) {
-                                            console.log(err);
-                                            return res.end("Error uploading file.");
-                                        } else {
-
-                                          // console.log(req.body);
-
-                                           matrs = req.user.matricula;
-                                        var archName_Copy= './uploads/'+matrs+archName;
-                                        var upcurl= '/uploads/'+matrs+archName;
-
-                                            fs.rename('./uploads/'+archName , archName_Copy, function(err) {
-                                                if ( err ) console.log('ERROR NA COPIA : ' + err);
-                                            });
-
-
-
-                       var qry= "UPDATE user_photo SET photoID ='"+upcurl+"' Where matricula= '"+req.user.matricula+"' " ;
-                       console.log(qry);
-                       connDB.query(qry,function(err,rows){
+              if(err) {
+                  console.log(err);
+                  return res.end("Error uploading file.");
+              } else {
+                  matrs = req.user.matricula;
+                  var archName_Copy= './uploads/'+matrs+archName;
+                  var upcurl= '/uploads/'+matrs+archName;
+                  
+                  fs.rename('./uploads/'+archName , archName_Copy, function(err) {
+                      if ( err ) console.log('ERROR NA COPIA : ' + err);
+                    });
+                  
+                  var qry= "UPDATE user_photo SET photoID ='"+upcurl+"' Where matricula= '"+req.user.matricula+"' " ;
+                      connDB.query(qry,function(err,rows){
                          if (err)
                            console.log(err);
-
-
-                          console.log("UPOU NAS CARALHA");
-
                      });
-//                                                              return res.render();
-  return                                          res.render('paginas/index',{  user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
-                                        //@TODO: uma pagina de atualizar perfil mesmo, nao um modal.
+//                                                           
+  return  res.render('paginas/index',{  user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
+                               
                                         }
               });
 
-// console.log('hi');
-// var sql = "UPDATE usuario SET username ='"+req.body.nome+"' Where matricula= '"+req.user.matricula+"' ";
-// var sql2 = "UPDATE user_photo`SET photoID ='"+req.body.nome+"' Where matricula= '"+req.user.matricula+"' ";
-// var sql3 = "UPDATE profs SET nome ='"+req.body.nome+"',data_nasc='"+req.body.dnasc+"', tel_cel='"+req.body.tel_cel+"',email='"+req.body.email+"'  Where matricula= '"+req.user.matricula+"' ";
-// console.log(process);
 
-//     connDB.query(sql,function(err,rows){
-//       if (err)
-//         console.log('errou');
-
-//       console.log('oi');
-//       req.user.username=req.body.nome;
-//       user =req.body.nome;
-//       console.log(req.user);
-//     // res.render('paginas/index',{ user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
-
-//     });
 };
 
 exports.UpdatePerfil = function(req,res){
-// console.log('hi');
  var sql = "UPDATE usuario SET username ='"+req.body.nome+"' Where matricula= '"+req.user.matricula+"' ";
  var sql2 = "UPDATE profs SET nome ='"+req.body.nome+"',data_nasc='"+req.body.data_nasc+"', tel_cel='"+req.body.tel_cel+"',email='"+req.body.email+"'  Where matricula= '"+req.user.matricula+"' ";
  console.log(sql2);
@@ -364,8 +289,6 @@ exports.UpdatePerfil = function(req,res){
        if (err)
          console.log('errou');
 
-      // console.log('oi');
-         //@TODO : Retirar o parametro 'rows'
          connDB.query(sql2,function(err,rows)
          {
            if(err)
@@ -374,10 +297,6 @@ exports.UpdatePerfil = function(req,res){
              res.json("dadosAtualizados");
 
          });
-     //     req.user.username=req.body.nome;
-     //     user =req.body.nome;
-     //     console.log(req.user);
-     //     res.render('paginas/index',{ user: req.user.username,userMat: req.user.matricula, photoID: req.user.photoID, email: req.user.email, data_nasc: req.user.data_nasc, tel_cel: req.user.tel_cel,  senha: req.user.senha });
      });
 
 };
@@ -439,33 +358,6 @@ exports.cadnotas = function(req, res) {
 
     }
 
-  /*for (var i = 0; i < matricula.length; i++) {
-console.log("Loop: "+i);
-  var notatri = parseInt(notaProva[i]) + parseInt(notaTeste[i]);
-        var first = "SELECT * FROM aluno_nota_tri WHERE matricula ='"+matricula[i]+"' AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
-        var second = "UPDATE aluno_nota_tri SET  tri"+tri+" ="+ notatri+" WHERE matricula ="+matricula[i]+" AND  disciplina_id IN (SELECT disciplina_id  FROM  disciplinas WHERE  disciplina_nome = '"+disciplina+"' )";
-        var third = "INSERT INTO `aluno_nota_tri`(`matricula`, `disciplina_id`, `tri"+tri+"`) SELECT '"+matricula[i]+"', disciplina_id,'"+ notatri +"' FROM disciplinas WHERE disciplina_nome = '"+disciplina+"' ";
-
-     connDB.query(first, function(err,rows){
-          if (err) console.log(err);
-
-          if (rows){
-            connDB.query(second,function(err, rows ){
-              if (err) console.log(err);
-
-            });
-          }else{
-            connDB.query(third, function(err,rows){
-
-            });
-          }
-          console.log("post :");
-          console.log(first);
-          console.log(second);
-          console.log(third);
-     });
-
-  }*/
   res.json("dadosAtualizados");
 
 };
@@ -480,13 +372,6 @@ exports.cadastroDiario  = function(request,response, next){
   var qryDEL        = "DELETE FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id IN (SELECT disciplinas.disciplina_id from disciplinas where disciplina_nome LIKE '"+request.body.nomedisciplina+"') AND data = '"+dataformatada+"' AND  horaStart= '"+request.body.initHour+"'";
   var qry2DEL       = "DELETE FROM prof_diario_aluno WHERE cod_aula IN (SELECT cod_aula FROM prof_diario WHERE turma = '"+request.body.turma+"' AND matricula = '"+request.user.matricula+"' AND disciplina_id = '"+request.body.nomedisciplina+"' AND data = '"+dataformatada+"' AND horaStart = '"+request.body.initHour+"')";
 
-  console.log("------------------------------------");
-  console.log(qryDEL);
-  console.log("------------------------------------");
-  console.log(qry2DEL);
-  console.log("------------------------------------");
-  console.log(qry);
-  console.log("------------------------------------");
 
   connDB.query(qry2DEL,function(err,rows){
     if (err)
@@ -588,10 +473,7 @@ exports.cadastroNotas   = function(request, response, next){
 };
 
 exports.enviaremail = function(req, res){
-  console.log("**********************************************************");
-  console.log(req.body.textCont);
-  console.log(req.body.textAreas);
-  console.log(req.body.turman);
+
   var emailt = [];
   var emailp = [];
   var queryMailTurma = "SELECT DISTINCT email FROM turma WHERE cod_turma='"+req.body.turman+"'";
@@ -603,26 +485,12 @@ exports.enviaremail = function(req, res){
 
         emailt.push(rows[0].email);
 
-      console.log(emailt);
 
     }
 
   });
 
-  // var queryMailProf = "SELECT DISTINCT email FROM profs WHERE nome = '"+req.user.username+"'";
-  // connDB.query(queryMailProf, function(err,rows){
-  //
-  //   if (rows.length) {
-  //
-  //
-  //       emailp.push(rows[0].email);
-  //
-  //     console.log(emailp);
-  //
-  //   }
-  // });
 
-  // var transporter = nodemailer.createTransport('smtps://matheusnunes.games@gmail.com:huntersdream@smtp.gmail.com');
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -632,12 +500,12 @@ exports.enviaremail = function(req, res){
 });
 
 
-// setup e-mail data with unicode symbols
+// Email configs
 var mailOptions = {
-    from: req.user.username +'<neutronsge@gmail.com>', // sender address
-    to: emailt, // list of receivers
-    subject: req.body.tituloCT, // Subject line
-    text: req.body.emailCT, // plaintext body
+    from: req.user.username +'<neutronsge@gmail.com>', // Endereço de email
+    to: emailt, // para
+    subject: req.body.tituloCT, // Titulo
+    text: req.body.emailCT, // corpo
     html: req.body.emailCT // html body
 };
 
@@ -670,7 +538,7 @@ exports.cadastroQuest   = function(request, response, next){
   var nLinhas        =    request.body.nLinhas;
   var apLinhas;
 
-  console.log(nivel);
+
 
   if(request.body.linhasAparentes === undefined){
     apLinhas = false;
@@ -717,7 +585,7 @@ exports.cadastroQuest   = function(request, response, next){
                       "WHERE disciplinas.disciplina_nome = '"+ disciplina +"' AND materia.nome = '"+ materia +"'";
       }
 
-      console.log(query);
+  
 
       connDB.query(query, function(err,rows){
         if(err){
@@ -737,10 +605,6 @@ exports.cadastroQuest   = function(request, response, next){
 
     }
 
-      // res.render('index', { messages: req.flash('info') });
-      //request.flash('MSGCadQuest', 'Questao Cadastrada!');
-
-  //return   request.flash('MSGCadQuest', 'Dados Gravados com sucesso');
 
   });
 

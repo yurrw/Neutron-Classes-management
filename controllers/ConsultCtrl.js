@@ -1,7 +1,13 @@
 var connDB = require('../models/mysqlmodule.js');
 
 
+function sqlPesquisar(qry, callback){
+    connDB.query(qry, function(err,rows){
+      if (err) return callback(err);
 
+      return callback(null,rows);
+ });
+}
 
 exports.buscaNotas = function(req, res){
 
@@ -62,53 +68,41 @@ exports.pesquisarMateria = function(req, res){
 };
 
 exports.LoadNts = function(req,res){
-  var dados = [];
-  console.log("MUSICA DE BARAO");
-  var qry ="SELECT ID,content FROM lembretes WHERE user = '"+req.user.matricula+"'";
-  console.log(qry);
-  connDB.query(qry,function(err,rows){
-    if(err) console.log(err);
-  if (rows.length) {
-    for (var i = 0, len = rows.length; i < len; i++) {
-      dados.push([rows[i].content,rows[i].ID]);
-      // console.log(dados[i]);
-    }
-    // console.log(dados);
-  }
-    res.json(dados);
+  var dados = [];                                                                     // Futuros Resultados
+  var qry ="SELECT ID,content FROM lembretes WHERE user = '"+req.user.matricula+"'";  // qry
 
+  sqlPesquisar(qry, function (err, rows){                                             // Função que faz a pesquisa no banco de dados 
+    if (err) console.log(err);    
+    if (rows.length) {
+      for (var i = 0, len = rows.length; i < len; i++) {
+        dados.push([rows[i].content,rows[i].ID]);
+      }
+    }
+    res.json(dados);
   });
+
 };
 exports.GetNotas = function(req,res){
   var aluno_data_turma=[];
 
   var sql="SELECT DISTINCT turma.cod_turma FROM turma, prof_turma WHERE matricula = '"+req.user.matricula+"' AND turma.cod_turma = prof_turma.cod_turma";
-  connDB.query(sql,function(err,rows){
+  sqlPesquisar(sql, function (err, rows){                                             // Função que faz a pesquisa no banco de dados 
     if (rows.length) {
-      for (var i = 0, len = rows.length; i < len; i++) {
+      for (var i = 0; i < rows.length; i++) {
         aluno_data_turma.push([rows[i].cod_turma]);
       }
-      console.log("====================================");
-      console.log("====================================");
-      console.log("====================================");
-      console.log("====================================");
-      console.log(aluno_data_turma);
       var aluno_data = [];
       var sql2="SELECT nota FROM prof_turma, aluno_nota  WHERE prof_turma.matricula = '"+req.user.matricula+"' AND prof_turma.cod_turma ='"+aluno_data_turma+"' ";
-      console.log(sql2);
-      connDB.query(sql2,function(err,rows){
-        if(err){
-          console.log("errrrou"+ err);
-        }
-        if (rows.length) {
-          for (var i = 0, len = rows.length; i < len; i++) {
-            aluno_data.push([rows[i].nota]);
-          }
-          console.log(aluno_data);
-          res.json(aluno_data);
-        }
-      });
-      // res.json(aluno_data);
+           sqlPesquisar(sql2, function (err, rows){
+              if(err) console.log(err);
+              if (rows.length) {
+                for (var i = 0, len = rows.length; i < len; i++) {
+                  aluno_data.push([rows[i].nota]);
+                }
+                res.json(aluno_data);
+              }
+           });
+
     }
   });
 };
@@ -249,30 +243,17 @@ exports.listalunos	=	function(req, res){
 };
 
 exports.pesquisaturma	=	function(req, res){
-
-  var consulTurmas = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var sql= "select distinct cod_turma from prof_turma where matricula = '"+req.user.matricula+"'  ";
-  connDB.query(sql,function(err,rows){
-    if (err) console.log(err);
-    for (var i = 0, len = rows.length; i < len; i++)
+  var consulTurmas = [];                                                                                   // ARRAY QUE VAI COMPORTAR OS RESULTADOS .
+  var sql= "select distinct cod_turma from prof_turma where matricula = '"+req.user.matricula+"'  ";       // Query 
+  sqlPesquisar(sql, function (err, rows){                                                                  // Função que faz a pesquisa no banco de dados 
+    if (err) console.log(err);    
+      for (var i = 0; i < rows.length; i++)                                                                // Preenche o array do resultado
       {
 
         consulTurmas.push(rows[i].cod_turma);
       }
-      console.log(consulTurmas);
-      console.log(sql);
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-      console.log("++++++++++++++++++++++++++++++++++++++++++++");
-  res.json(consulTurmas);
-
+      res.json(consulTurmas);
   });
-
 
 };
 
@@ -517,7 +498,7 @@ exports.consulProva = function(req, res){
    var resolveSporra =  " provas.cod_disciplina = (SELECT disciplina_id FROM disciplinas '" + whereDiscPart + "') AND"
 
   var listaalunos = [];  // AQUI FOI CRIADO UM ARRAY QUE VAI COMPORTAR OS RESULTADOS .
-  var qry = "SELECT DISTINCT provas.nome, provas.tipo_avaliacao, provas.anoserie, provas.matricula, cod_prova  FROM provas, profs, disciplinas " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
+  var qry = "SELECT DISTINCT provas.nome, provas.tipo_avaliacao, provas.anoserie, provas.matricula, cod_prova  FROM provas, profs, disciplinas  WHERE " + possivelWhere + whereDiscPart +  andSerie + andTipo + andMuchaCosaAutor;
   console.log(qry);
   connDB.query(qry,function(err,rows){
       for (var i = 0, len = rows.length; i < len; i++)
@@ -536,16 +517,15 @@ exports.consulProva = function(req, res){
 };
 /*----------------- calendario ----------------------*/
 exports.pesquisaEvento  = function(req, res){
-  console.log("\ncolsulta eventos pedido");
-  var eventos = [];
+    var eventos = [];
     var dataHj = new Date().toJSON().split('T'); //Pega a Data do dia da pessoa
     var qry = "SELECT  `cod_evento`, `evento`, `descricao`, `datahora`, `cor`, `cor2`,`turma`,`datafim`, `allday`" +
               " FROM `calendario`" +
               "WHERE `matricula`='"+req.user.matricula+"' AND datahora > '"+dataHj[0]+"' ORDER BY datahora DESC LIMIT 10 ";
 
-     console.log(qry);
+ sqlPesquisar(qry, function (err, rows){  
+    if(err) console.log(err);
 
-  connDB.query(qry,function(err,rows){
     for (var i = 0, len = rows.length; i < len; i++)
     {
         eventos.push({
@@ -566,126 +546,27 @@ exports.pesquisaEvento  = function(req, res){
         });
     }
     res.json(eventos);
-    //console.log(eventos+"\n"+qry);
-    console.log("   consulta evento entregue \n");
+ });
 
+};
+
+
+/*
+
+  var consulTurmas = [];                                                                                   // ARRAY QUE VAI COMPORTAR OS RESULTADOS .
+  var sql= "select distinct cod_turma from prof_turma where matricula = '"+req.user.matricula+"'  ";       // Query 
+  sqlPesquisar(sql, function (err, rows){                                                                  // Função que faz a pesquisa no banco de dados 
+    if (err) console.log(err);    
+      for (var i = 0; i < rows.length; i++)                                                                // Preenche o array do resultado
+      {
+
+        consulTurmas.push(rows[i].cod_turma);
+      }
+      res.json(consulTurmas);
   });
 
-};
 
-/*----------------ADM__pesquisa------------------*/
-exports.ADMpesquisaDisc = function(req,res){
-  console.log("\ncolsulta ADM dics inicio");
-
-  var consulDisc = [];
-  connDB.query("SELECT DISTINCT `disciplina_nome`  FROM `disciplinas` ",function(err,rows){
-  for (var i = 0, len = rows.length; i < len; i++)
-  {
-    consulDisc.push( rows[i].disciplina_nome ); //+"-"+rows[i].anoserie
-  }
-  //console.log(consulDisc);
-  res.json(consulDisc);
-  });
-
-  console.log("\tcolsulta ADM disc fim\n");
-};
-
-exports.ADMpesquisaMateria = function(req,res){
-};
-
-exports.ADMpesquisaturma = function(req,res){
-  console.log("\ncolsulta ADM turmas inicio");
-  var consulTurmas = [];
-  connDB.query(" SELECT `cod_turma`, `anoserie` FROM `turma` ",function(err,rows){
-    console.log();
-  for (var i = 0, len = rows.length; i < len; i++)
-  {
-    consulTurmas.push(rows[i].cod_turma);  //+"-"+rows[i].anoserie
-  }
-  //console.log(consulTurmas);
-  res.json(consulTurmas);
-  });
-
-  console.log("\tcolsulta ADM turmas fim\n");
-};
-
-exports.ADMpesquisaProf = function(req,res){
-  console.log("\ncolsulta ADM profs inicio");
-
-  var nomes = [];
-  connDB.query("SELECT `nome` FROM `profs` ",function(err,rows){
-  for (var i = 0, len = rows.length; i < len; i++)
-  {
-    nomes.push( rows[i].nome ); //+"-"+rows[i].anoserie
-  }
-  //console.log(nomes);
-  res.json(nomes);
-  });
-
-  console.log("\tcolsulta ADM profs fim\n");
-};
-
-
-
-/*----------------ADM__cadastro------------------*/
-exports.ADMCadDisc = function(req,res){
-  console.log("\cadastrado disciplina - inicio ");
-
-  //var matricula= request.user.matricula;
-  var materia = req.body.AddDisc_disciplina;
-  var serie   = req.body.AddDisc_serie;
-
-  var qry = "INSERT INTO `disciplinas`(`disciplina_nome`, `anoserie`) VALUES ('"+materia+"','"+serie+"')";
-  connDB.query(qry,function(err,rows){
-    if (err){ req.flash('MSGCadQuest', err);}
-    else { console.log("\tcadastrado disciplina - fim\n");}
-  });
-
-  // return res.render('paginas/teste', {message: req.flash('MSGCadQuest','Dados Gravados Com sucesso'), user: request.user.username});
-};
-
-exports.ADMCadMateria = function(req,res){
-  console.log("\cadastrado disciplina - inicio");
-
-
-  var materia = req.body.addMateria_meteria;
-  var disc    = req.body.addMateria_disciplina;
-  var serie   = req.body.addMateria_serie;
-  var descr   = req.body.addMateria_descri;
-  var disc_id;
-  /* procurar o desciplina_id*/
-
-
-  connDB.query("SELECT disciplina_id FROM disciplinas WHERE disciplina_nome='"+disc+"' and disciplinas.anoserie ='"+serie+"'",function(err,rows){
-  for (var i = 0, len = rows.length; i < len; i++)
-    {
-      disc_id.push( rows[i].disciplina_id);
-       console.log(disc_id);
-    }
-  });
-
-  /*cadastra a materia*/
-  var inser = "INSERT INTO `materia`(`nome`, `descricao`, `disciplina_id`) VALUES ('"+materia+"','"+descr+"','"+disc_id+"')";
-  console.log(inser);
-  connDB.query(inser,function(err,rows){
-      if (err){ console.log(err);}
-      else { console.log("\tcadastrado disciplina - fim\n");}
-  })
-};
-
-exports.ADMCadturma = function(req,res){
-  console.log("\cadastrado disciplina - inicio ");
-
-  console.log("\tcadastrado disciplina - fim\n");
-};
-
-exports.ADMCadProf = function(req,res){
-  console.log("\cadastrado disciplina - inicio ");
-
-  console.log("\tcadastrado disciplina - fim\n");
-};
-
-
+*/
 
 
 //     var lines = process.stdout.getWindowSize()[1];

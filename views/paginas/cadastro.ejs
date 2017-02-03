@@ -1,393 +1,90 @@
 <!-- views/signup.ejs -->
 <!doctype html>
 <html>
-    <head>
-        <title>Cadastro</title>
-        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadUser.css">
-
-
-
-        <% include ../partes/head %>
-        <script>
-
-
-            $( function() {
-
-              var matrula= "";
-             $(".formCfoto").hide();
-             //ANIMATION
-
-
-
-        //onlyNumber permite apenas números
-        onlyNumber("#matricula");
-        onlyNumber("#cpf");
-        onlyNumber("#celular");
-        onlyNumber("#datepicker");
-
-        onlyLetter("#nome");
-
-        //formata cpf
-        validaCpf("#cpf");
-        //formata data
-        validaNasc("#datepicker");
-        //formata cel
-        validaCelular("#celular");
-
-        /*onlyNumber(campo);
-        onlyNumber(campo);
-        onlyNumber(campo);
-*/
-
-
-
-
-var drdg=0;
-function fileSelect(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-
-      if (drdg==1){
-var files = evt.dataTransfer.files;
-      }else var files =    evt.target.files;
-drdg=0;
-
-        var result = '';
-        var file;
-        for (var i = 0; file = files[i]; i++) {
-              if (!file.type.match('image.*')) {
-                continue;
-            }
-
-            reader = new FileReader();
-            reader.onload = (function (tFile) {
-                return function (evt) {
-                     dropTarget.src = evt.target.result;
-                };
-            }(file));
-            reader.readAsDataURL(file);
-            var mtrs=$('#matricula').val();
-
-            console.log(mtrs);
-            result += '<li>' + mtrs + ' ' + file.size + ' bytes</li>';
-        }
-    } else {
-        alert('The File APIs are not fully supported in this browser.');
-    }
-}
- function dragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy';
-    drdg=1;
-}
-
-
-
-
-
-
-
-
-
-var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-  var label  = input.nextElementSibling,
-    labelVal = label.innerHTML;
-
-  input.addEventListener( 'change', function( e )
-  {
-    var fileName = '';
-    if( this.files && this.files.length > 1 )
-      fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-    else
-      fileName = e.target.value.split( '\\' ).pop();
-      console.log(fileName);
-    if( fileName )
-      label.querySelector( 'span' ).innerHTML = fileName;
-    else
-      label.innerHTML = labelVal;
-  });
-});
-
-
-
-var dropTarget = document.getElementById('dropTarget');
-dropTarget.addEventListener('dragover', dragOver, false);
-dropTarget.addEventListener('drop', fileSelect, false);
-
-document.getElementById('userPhoto').addEventListener('change', fileSelect, false);
-
-
-
-//CONFIGURAÇÃO DO CALENDÁRIO
-             $( "#datepicker" ).datepicker({
-                   yearRange: '1900:2050',
-               changeMonth: true,
-               changeYear: true,
-               altFormat: "yy-mm-dd",
-               altField: "#alt-date",
-               dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-               dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-               dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-               monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-               monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-               nextText: 'Próximo',
-               prevText: 'Anterior'
-             });
-
-
-
-/*POST TO SUBMIT----------------------------------------------------------------*/
-/*POST TO SUBMIT----------------------------------------------------------------*/
-/*POST TO SUBMIT----------------------------------------------------------------*/
-/*POST TO SUBMIT----------------------------------------------------------------*/
-/*POST TO SUBMIT----------------------------------------------------------------*/
-/*POST TO SUBMIT----------------------------------------------------------------*/
-
-
-
-
-
-
-
-    //No evento do click do botão cadastrar, serão colhidas as informações colocadas pelo usuário
-             $("#btn-cad").click(function(){
-  var    emailUser      = $('#email').val();
-  var    senhaUser      = $('#senha').val();
-  var    matriculaUser  = $('#matricula').val();
-  var    nomeUser       = $('#nome').val();
-  var    categoriaUser  = $('#categoria').val();
-  var    dataUser       = $('#alt-date').val();
-  var    cpfUser        = $('#cpf').val();
-  var    celularUser    = $('#celular').val();
-
-$.ajax({
-    url: "/cadastro",
-    type: "POST",
-    dataType: "json",
-    async: false, //desabilita assinconicidade
-    data:JSON.stringify({
-      email: emailUser,
-      senha:senhaUser,
-      matricula:matriculaUser,
-      nome:nomeUser,
-      categoria:categoriaUser,
-      data:dataUser,
-      cpf:cpfUser,
-      celular:celularUser,
-
-
-
-      //VARIAVEIS
-    }),
-    contentType: "application/json",
-    cache: false,
-    timeout: 5000,
-    complete: function(){
-
-      matrula =  $('#matricula').val();
-                             document.getElementById("matriculaPost").innerHTML = $('#matricula').val();
-                             $("#matriculaPost").val($('#matricula').val());
-                             // console.log( $("#matriculaSend").val());
-                             $("#matriculaSend").val(matrula);
-                             document.getElementById("nomemat").innerHTML    = $('#nome').val();
-
-
-
-
-
-                          $(".formCfoto").animate({height:'toggle'},200);
-                          $(".all").animate({height:'toggle'},200);
-    },
-    success: function(data){
-
-    },
-    error: function(){
-
-    },
-
-});
-
-
-
-
- });
-
-
-
-});
-
-
-
-
-
-
-
-
-        </script>
-        <style>
-body {
-    background-color: #3DA9E3 !important; }
-</style>
-    </head>
-    <body>
+  <head>
+    <title>Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadUser.css">
+    <% include ../partes/head %>
+    <style>
+      body {
+      background-color: #3DA9E3 !important; }
+    </style>
+  </head>
+  <body>
     <div class="top1"></div>
     <main>
-
-        <div class="container all " style="background-color:#FEFEFE">
-            <div class="col-sm-9 col-sm-offset-2">
-            <br>
-                <h1 style="opacity:0.8;"> Cadastro </h1> <br>
-
-                <% if (message.length > 0) { %>
-                <div class="alert alert-danger"><%= message %></div>
-                <% } %>
-
-                <!-- LOGIN FORM -->
-                <form  method="post" name="formCad" class="formCad">
-                 <div class="form-group">
-                        <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Matricula" required="required">
-                    </div>
-                     <div class="form-group">
-                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" maxlength="14" required="required">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required="required">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular" required="required">
-                    </div>
-
-          <div class="form-group date" data-provide="datepicker">
-
-              <input type="text" id="datepicker" class="form-control"  name="dataNasc"  placeholder="Data de Nascimento" required="required">
-
-              <input type="text"  id="alt-date"  name="data input-group-addon"  style="visibility: hidden;">
-
-          </div>
-                    <div class="form-group">
-                        <label>Categoria</label><br>
-                        <select class="selectpicker show-tick" name="categoria" id="categoria" required="required" >
-                            <option value="Professor">Professor</option>
-                            <option value="Aluno">Aluno</option>
-                            <option value="adm">Administrador</option>
-                        </select>
-                    </div>
-
-
-
-                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" id="email"   placeholder="Email" required="required">
-                    </div>
-
-                    <div class="form-group">
-                        <!-- Verificar se password funciona -->
-                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="required">
-                    </div>
-
-
-
-
-
-
-
-
-                    <a href="/"><button type="button" class="btn btn-default  " style="float:left; margin-bottom:50px;">Voltar</button></a>
-
-                    <input type="button" id="btn-cad" class="btn btn-primary" style="float:right; margin-bottom:50px;" value="Cadastrar">
-                </form>
-
-
-                        <br><br><br>
-
-                        <br><br><br>
-
-                        <br><br><br>
-
-
-
-
-
-
-
-
-
-                <hr>
+      <div class="container all " style="background-color:#FEFEFE">
+        <div class="col-sm-9 col-sm-offset-2">
+          <br>
+          <h1 style="opacity:0.8;"> Cadastro </h1>
+          <br>
+          <% if (message.length > 0) { %>
+          <div class="alert alert-danger"><%= message %></div>
+          <% } %>
+          <!-- LOGIN FORM -->
+          <form  method="post" name="formCad" class="formCad">
+            <div class="form-group">
+              <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Matricula" required />
             </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF" maxlength="14" required />
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+              <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular" required />
+            </div>
+            <div class="form-group date" data-provide="datepicker">
+              <input type="text" id="datepicker" class="form-control"  name="dataNasc"  placeholder="Data de Nascimento" required />
+              <input type="text"  id="alt-date"  name="data input-group-addon"  style="visibility: hidden;">
+            </div>
+            <div class="form-group">
+              <label>Categoria</label><br>
+              <select class="selectpicker show-tick" name="categoria" id="categoria" required />
+                <option value="Professor">Professor</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email"   placeholder="Email" required />
+            </div>
+            <div class="form-group">
+              <!-- Verificar se password funciona -->
+              <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required />
+            </div>
+            <a href="/"><button type="button" class="btn btn-default  " style="float:left; margin-bottom:50px;">Voltar</button></a>
+            <input type="button" id="btn-cad" class="btn btn-primary" style="float:right; margin-bottom:50px;" value="Cadastrar">
+          </form>
+          <br><br><br>
+          <br><br><br>
+          <br><br><br>
+          <hr>
         </div>
+      </div>
     </main>
-
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-<!-- UPLOAD -->
-
-
-<form  id="uploadForm" action="/api/photo/" enctype="multipart/form-data"  class="formCfoto container " method="post">
-<div class="highlight">
- <h1 style="opacity:0.7;" >Só mais uns detalhes...</h1>
-          <!-- <H1>Só mais um detalhe ...</H1> -->
-
-</div>
- <div class="newDatas">
+    <!-- UPLOAD -->
+    <form  id="uploadForm" action="/api/photo/" enctype="multipart/form-data"  class="formCfoto container " method="post">
+      <div class="highlight">
+        <h1 style="opacity:0.7;" >Só mais uns detalhes...</h1>
+      </div>
+      <div class="newDatas">
         <label for="userPhoto">
-           <img id="dropTarget" ></img>
+        <img id="dropTarget" ></img>
         </label>
-  <br>
-<input type='file' name="userPhoto"  id="userPhoto" value="VIADAO"   filename="VIADAO" class="inputfile" name='userPhoto[]' />
-<label for="userPhoto" ><span>Selecionar Foto</span></label>
-
-  </div>
-
-
-
-
-  <div class="dados_preCad">
-    <label for="nome"      id="nomemat">     </label><br>
-    Matricula : <label for="matricula" id="matriculaPost"></label><br>
-
-    <input type="hidden" name="matriculaSend" id="matriculaSend">
-
-  <br>
-  </div>
-
-    <input type="submit" style="float: right;" value="Finalizar" name="submit" class="enviado"  >
-
-                </form>
-    </body>
+        <br>
+        <input type='file' name="userPhoto"  id="userPhoto" value="VIADAO"   filename="VIADAO" class="inputfile" name='userPhoto[]' />
+        <label for="userPhoto" ><span>Selecionar Foto</span></label>
+      </div>
+      <div class="dados_preCad">
+        <label for="nome"      id="nomemat">     </label><br>
+        Matricula : <label for="matricula" id="matriculaPost"></label><br>
+        <input type="hidden" name="matriculaSend" id="matriculaSend">
+        <br>
+      </div>
+      <input type="submit" style="float: right;" value="Finalizar" name="submit" class="enviado"  >
+    </form>
+    <script type="text/javascript" src="/assets/js/cad.js"></script>
+  </body>
 </html>

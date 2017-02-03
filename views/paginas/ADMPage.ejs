@@ -11,29 +11,19 @@
 
 
 
-    <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
-    <% include ../partes/sidemenu.ejs %>
-    </div>
-
   </div>
 
 <main id="panel" class="allPage cadquestPage">
     <div id="cadQuestContent" class="layout">
-  <div class="backTopper">
+  <div class="backTopper correctAdm">
   </div>
   <% include ../partes/topmenu.ejs %>
 
-        <div class="container-fluid">
-            <span id="pgName"> Criar
-              <span id="traco"> > </span>
-              <span id="pgAtual"> Questao </span>
+        <div class="container-fluid" id="Admadmin">
+            <span id="pgName"> Administrador
             </span>
 
-    <!-- BOTAO PARA CELULAR -->
-    <button class="toggle-button no-border" data-toggle="button" >
-        <img id="hbmenu" src="/assets/images/menu.png">
-    </button>
-    <!-- ***************** -->
+
 
           <div class="backPages">
 
@@ -130,38 +120,9 @@ $("#textAr").keypress(function(e) {
 
 
 
-// Default Open
-var slideout = new Slideout({
-'panel': document.getElementById('panel'),
-'menu': document.getElementById('sid'),
-'padding': 270,
-'tolerance': 70,
-'easing': 'cubic-bezier(.51,2,.81,.41)',
-});
-slideout.open();
-
-// Toggle button
-$(".toggle-button").click(function() {
-// alert("oila");
-slideout.toggle();
-});
 
 
 
-
-$(document).ready(function() {
-
-$(window).resize(function(){
-    if ($(window).width() <= 1024){
-        // slideout.close();
-        // slideout.close();
-        slideout.close();
-
-    }else {
-        slideout.open();
-    }
-});
-});
 
 
 

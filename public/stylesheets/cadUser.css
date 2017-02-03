@@ -1,99 +1,168 @@
- body {
-     background-color: #56AEDA!important;
-     font-family: Roboto, Arial, Tahoma, Sans-serif;
- }
- main {
-     z-index: 15;
-     margin: 5% 0 0 0px;
- }
- .all {
-     border-radius: 2px;
-     -webkit-box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
-     -moz-box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
-     box-shadow: 0px 10px 78px 13px rgba(0, 0, 0, 0.23);
- }
+ body
+{
+    font-family: Roboto, Arial, Tahoma, Sans-serif;
 
-#userPhoto {} 
-.inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
+    background-color: #56aeda!important;
+}
+main
+{
+    z-index: 15;
+
+    margin: 5% 0 0 0;
+}
+.all
+{
+    border-radius: 2px;
+    -webkit-box-shadow: 0 10px 78px 13px rgba(0, 0, 0, .23);
+       -moz-box-shadow: 0 10px 78px 13px rgba(0, 0, 0, .23);
+            box-shadow: 0 10px 78px 13px rgba(0, 0, 0, .23);
+}
+
+
+.inputfile
+{
     position: absolute;
     z-index: -1;
+
+    overflow: hidden;
+
+    width: .1px;
+    height: .1px;
+
+    opacity: 0;
 }
-.inputfile + label {
+.inputfile + label
+{
     color: #f1e5e6;
-    background-color: #44BD33;
+    background-color: #44bd33;
 }
-.inputfile + label {
+.inputfile + label
+{
     font-size: 1.25em;
-    width: 220px;
-    text-align: center;
     font-weight: 700;
-    color: white;
-    background-color: #44BD33;
+
     display: inline-block;
+
+    width: 220px;
+
+    text-align: center;
+
+    color: white;
+    background-color: #44bd33;
 }
 .inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: #2F8423;
+.inputfile + label:hover
+{
+    background-color: #2f8423;
 }
-.inputfile + label {
+.inputfile + label
+{
     cursor: pointer;
     /* "hand" cursor */
 }
-.dados_preCad {
-    margin-left: -10px!important;
-    text-align: center;
+.dados_preCad
+{
     font-size: 1.1em;
-    text-transform: uppercase;
     font-weight: 600;
 
-}
-.dados_preCad>label {
- 
-    font-weight: 600;
- 
-}
-.highlight {
-    padding: 0px 0 150px;
-    background-size: cover;
+    margin-left: -10px!important;
+
     text-align: center;
-    color: #000;
+    text-transform: uppercase;
 }
-.highlight h1 {
+.dados_preCad > label
+{
+    font-weight: 600;
+}
+.highlight
+{
+    padding: 0 0 150px;
+
+    text-align: center;
+
+    color: #000;
+    background-size: cover;
+}
+.highlight h1
+{
     font-family: 'Varela Round', sans-serif;
-    font-weight: 700;
     /*text-transform: uppercase;*/
     font-size: 3.5rem;
+    font-weight: 700;
 }
-#uploadForm{
-    background-color:white;
-    height:650px;
+#uploadForm
+{
     display: block;
+
+    height: 650px;
     padding: 50px;
-}
-.newDatas{
-     margin-left: 39%;
-     margin-top: -10%;
 
+    background-color: white;
 }
-#dropTarget{
+.newDatas
+{
+    margin-top: -10%;
+    margin-left: 39%;
+}
+#dropTarget
+{
     width: 220px;
-    height: 250px; 
+    height: 250px;
+
     border: 1px #ccc solid;
-
 }
-.dados_preCad{
-     margin-left: 40%;
-
+.dados_preCad
+{
+    margin-left: 40%;
 }
-.top1{
-    width: 100%;
-    height: 200px;
-    background-color: #2C405C;
-    display: block;
+.top1
+{
     position: absolute;
     z-index: -999;
+
+    display: block;
+
+    width: 100%;
+    height: 200px;
+
+    background-color: #2c405c;
 }
+@media  screen and (max-width: 1024px)
+{
+    .newDatas
+    {
+        margin-left: 37%;
+    }
+}
+@media  screen and (max-width: 768px)
+{
+    .newDatas
+    {
+        margin-left: 33%;
+    }
+}
+@media  screen and (max-width: 414px)
+{
+    .newDatas
+    {
+        margin-top: -100px;
+        margin-left: 17%;
+    }
+}
+@media  screen and (max-width: 375px)
+{
+    .newDatas
+    {
+        margin-left: 13%;
+    }
+}
+@media  screen and (max-width: 320px)
+{
+    .newDatas
+    {
+        margin-left: 0%;
+    }
+}
+
+
+

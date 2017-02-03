@@ -1,105 +1,71 @@
-var HomeController = require('./controllers/HomeController');
-var CadController = require('./controllers/CadController');
-
-var ConsultCtrl = require('./controllers/ConsultCtrl');
-var bodyParser = require('body-parser').json();
-var multer              =   require('multer');
-var matrs     = "";
-var connDB    = require('./models/mysqlmodule.js');
+var HomeController = require('./controllers/HomeController');       // Maioria dos Controllers chamados
+var CadController  = require('./controllers/CadController');
+var ConsultCtrl    = require('./controllers/ConsultCtrl');
+var bodyParser     = require('body-parser').json();
+var multer         =   require('multer');
+var matrs          = "";
+var connDB         = require('./models/mysqlmodule.js');
 
 module.exports = function(app,passport) {
 
-app.post('/api/photo/',function(req,res){
-   var archName ="";
-
-     var fs = require('fs');
-
-
-
-      var guardar =   multer.diskStorage({
+app.post('/api/photo/',function(req,res){                           // Api pra gravar a foto
+  var archName ="";
+  var fs = require('fs');
+  var guardar =   multer.diskStorage({                              // Multer seta onde vai gravar o arquivo, seu nome de arquivo, e o callback
                             destination: function (req, file, callback) {
                               callback(null, './uploads');
                             },
                             filename: function (req, file, callback) {
 
+                              var matriculando=    req.body.matriculaSend;
+                              var fileName    =    file.originalname;
+                              var ext         =    fileName.split(".");
 
-
-                          console.log("------------------------------------------");
-
-                          var matriculando=    req.body.matriculaSend;
-                          var fileName    =    file.originalname;
-                          var ext         =    fileName.split(".");
-
-                          var date = new Date();
-                          var data = Date.now();
-                          archName =  '-' + file.fieldname + '-' + data +'.'+ext[1];
-                          console.log(archName);
-                          console.log("------------------------------------------");
-
-                              // archName =  matrs + '-' + file.fieldname + '-' + data +'.'+ext[1];
-
+                              var date = new Date();
+                              var data = Date.now();
+                              archName =  '-' + file.fieldname + '-' + data +'.'+ext[1];
                               callback(null, archName);
-                          /*
-                          var d = new Date(year, month, day, hour, minute, second, millisecond);
-                          */
+      
                         }
                     });
 
-    var upload = multer({ storage : guardar}).any();
+    var upload = multer({ storage : guardar}).any();          
 
-         upload(req,res,function(err) {
-                                        if(err) {
-                                            console.log(err);
-                                            return res.end("Error uploading file.");
-                                        } else {
+         upload(req,res,function(err){
+              if(err) {
+                console.log(err);
+                return res.end("Error uploading file.");
+              } else {
+                  matrs = req.body.matriculaSend;
+                  var archName_Copy= './uploads/'+matrs+archName;
+                  var upcurl= '/uploads/'+matrs+archName;
 
-                                          // console.log(req.body);
+                    fs.rename('./uploads/'+archName , archName_Copy, function(err) {
+                        if ( err ) console.log('ERROR NA COPIA : ' + err);
+                    });
 
-                                           matrs = req.body.matriculaSend;
-                                        var archName_Copy= './uploads/'+matrs+archName;
-                                        var upcurl= '/uploads/'+matrs+archName;
-
-                                            fs.rename('./uploads/'+archName , archName_Copy, function(err) {
-                                                if ( err ) console.log('ERROR NA COPIA : ' + err);
-                                            });
-
-
-
-                      var qry= "INSERT INTO `user_photo` (`matricula`, `photoID`) VALUES ('"+matrs+"','"+upcurl+"')" ;
-                      console.log(qry);
-                      connDB.query(qry,function(err,rows){
+                  var qry= "INSERT INTO `user_photo` (`matricula`, `photoID`) VALUES ('"+matrs+"','"+upcurl+"')" ;
+                    
+                    connDB.query(qry,function(err,rows){
                         if (err)
                           console.log(err);
-
-                          console.log("UPOU");
-
-
                     });
-                                                             res.redirect('/index');
-                                                            }
-              });
+               res.redirect('/index');
+              }
+         });
 });
-
-
-
 
 var fs = require('fs');
 
 
-
-
-
-
-    /*INDEX*/
-            app.post('/SaveNotes', CadController.SaveNts);
-            app.post('/delNTS',CadController.DelNts);
-            app.post('/LoadNotes', ConsultCtrl.LoadNts);
+            app.post('/SaveNotes', CadController.SaveNts);  
+           
+            app.post('/LoadNotes', ConsultCtrl.LoadNts); 
 
 
             app.get('/index',isLogged,HomeController.index);
             app.get('/admin',isLogged,HomeController.admin);
-            app.get('/teste',isLogged,HomeController.teste);
-            app.post('/ttt',isLogged,HomeController.ttt)
+
             app.get('/cadastro',HomeController.cadastro);
             app.get('/', HomeController.login);
             app.get('/logout', HomeController.logOut);
@@ -116,46 +82,31 @@ var fs = require('fs');
             app.get('/consultaProvas',isLogged, HomeController.consultaProvas);
             app.get('/ADMPage',isLogged, HomeController.ADMPage);
 
-
-
-
-                app.post('/cadastro', passport.authenticate('cadastro', {
+            app.post('/cadastro', passport.authenticate('cadastro', {
                         successRedirect : '/',
                         failureRedirect : '/cadastro',
                         failureFlash : true
                          }));
+            app.post('/',
+              passport.authenticate('login',{
+                 failureRedirect : '/',
+                  failureFlash : true
+              }),
+              function(req, res) {
+                //Autenticacao deu certo
+                if(req.user.permissao == "Professor") // Checa a permissao do user
+                {
+                res.redirect('/index');
 
- /*               app.post('/', passport.authenticate('login', {
-                successRedirect : '/index',
-                failureRedirect : '/',
-                failureFlash : true,
-                }), function(req,user, res){
-                  console.log("testemiddle");
-                  console.log(req + user +res);
-                });
-*/
-
-app.post('/',
-  passport.authenticate('login',{
-     failureRedirect : '/',
-      failureFlash : true
-  }),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    if(req.user.permissao == "Professor")
-    {
-    res.redirect('/index');
-
-    }else if(req.user.permissao == "Administrador")
-    {
-      res.redirect('/admin');
-    }
-  });
-            app.post('/notas', ConsultCtrl.GetNotas);
+                }else if(req.user.permissao == "Administrador")
+                {
+                  res.redirect('/admin');
+                }
+              });
+            app.post('/notas', ConsultCtrl.GetNotas); 
             app.post('/pesqNotas', ConsultCtrl.buscaNotas);
             app.post('/attPass',CadController.attPass);
-            app.post('/cadastroQuest', CadController.cadastroQuest);
+            app.post('/cadastroQuest', CadController.cadastroQuest); 
             app.post('/cadastroProva', CadController.cadastroProva);
             app.post('/cadastroDiario', CadController.cadastroDiario);
             app.post('/cadnotas', CadController.cadnotas);
@@ -173,7 +124,7 @@ app.post('/',
             app.post('/enviaremail', CadController.enviaremail);
 
             app.post('/findTables', CadController.findTables);
-            app.post('/mostraturma', ConsultCtrl.pesquisaturma);
+            app.post('/mostraturma', ConsultCtrl.pesquisaturma); 
 
             app.post('/pesqDiscProf',  ConsultCtrl.pesquisaDiscProf);
             app.post('/pegaaluno', ConsultCtrl.listalunos);
@@ -192,18 +143,17 @@ app.post('/',
 
 
       /*-----------Calendario---------------------------------*/
-        app.post('/pesquisaEvento', ConsultCtrl.pesquisaEvento);
+        app.post('/pesquisaEvento', ConsultCtrl.pesquisaEvento); //Te,
         app.post('/cadastroEvento', CadController.cadastroEvento);
         app.post('/editEvento', CadController.editEvento);
 
 
-        //app.post('/editEvento', CadController.editEvento);
 
 
 
 
 };
-function isLogged(request, response, next) {
+function isLogged(request, response, next) {      
     if (request.isAuthenticated())
       return next();
 

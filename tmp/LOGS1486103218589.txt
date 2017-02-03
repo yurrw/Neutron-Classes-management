@@ -1,0 +1,1 @@
+DELETE FROM usuario where matricula='1' ---POR :25

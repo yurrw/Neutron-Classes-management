@@ -6,8 +6,6 @@
     var notes = $("#notes");                                                        //
     var ctx   = document.getElementById('skills').getContext('2d');                 // Grafico
     var anotacoesLocal = localStorage.getItem("notes");                             // Pega o valor dessa 'Chave'      
-    
-
 
     /*-------------------------------------------- 
        Salva a nota no : LocalStorage e no DB
@@ -68,7 +66,6 @@
       var newNote = notes.find("li:last");                                          // linka a nova nota com o ultimo/seu botão de fechar
 
       newNote.find(".close-notes").click(function() {                               // Fecha a nota      
-        ajaxCall('/delNTS', newNote.find("input.idNote").val());                    // Deleta Nota do banco 
         newNote.remove();                                                           // Deleta do localStorage
         svNotes();                                                                  // Salva a nova conjuntura de notas
       });
@@ -116,15 +113,9 @@
       } else alert("Favor deletar uma nota antes de continuar");
     });
 
-
-
-  
     if (count === 0) {                                                               // adiciona nota na lista se nçao tiver nenhuma
       novaNota(null, null, 0);
     }
-
-
-
 
     /*-------------------------------------------- 
       Abaixo são feitas as requisicoes iniciais

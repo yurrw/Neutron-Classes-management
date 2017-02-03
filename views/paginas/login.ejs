@@ -2,132 +2,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <% include ../partes/head %>
-
-    <style >
+  <%include ../partes/head %>
+  <style>
         body
         {
-            /*background-color:#56AEDA;*/
             overflow: hidden ;
-            /*background-attachment: fixed;*/
-            /*background-position: center;*/
-            /**/
             background: transparent;
         }
         main
         {
-            /*z-index: 15;*/
             margin: 8% 0 0 0px;
 
         }
 
 
-    </style>
-
+  </style>
+  <title></title>
 </head>
-
 <body>
-
-<div id="bckbg">            </div>
-<div id="bckbgFundo">                </div>
-
-<main>
-
-    <div class="container " class="cd-index cd-main-content" id="tudoLogin" >
-        <div class="col-sm-12 " >
-
-            <div class="allLG"  >
-
-                <div class="contlog">
-
-                    <div class="loginSData">
-                        <h1>Neutron</h1>
-                        <p>Uma forma rápida de gerenciar seu trabalho</p>
-                        <hr>
-
-                        <br>
-                        <div id="features">
-
-
-                            <i class="fa fa-check-square-o"></i>
-                            <span>Marque presença online</span>
-                            <br>
-
-                            <i class="fa fa-file-o" aria-hidden="true"></i>
-                            <span>Crie suas provas online</span>
-                            <br>
-
-                            <i class="fa fa-bug" aria-hidden="true"></i>
-                            <span>Cheio de bugs</span>
-                            <br>
-                            <!--
+  <div id="bckbg"></div>
+  <div id="bckbgFundo"></div>
+  <main>
+    <div class="cd-index cd-main-content" id="tudoLogin">
+      <div class="col-sm-12">
+        <div class="allLG">
+          <div class="contlog">
+            <div class="loginSData">
+              <h1>Neutron</h1>
+              <p>Uma forma rápida de gerenciar seu trabalho</p>
+              <hr>
+              <br>
+              <div id="features">
+                <i class="fa fa-check-square-o"></i> <span>Marque presença online</span><br>
+                <i aria-hidden="true" class="fa fa-file-o"></i> <span>Crie suas provas online</span><br>
+                <!-- <i aria-hidden="true" class="fa fa-bug"></i> <span>Cheio de bugs</span><br> -->
+                
                                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                                         <span>Feito com amor</span>
                                                         <br>
-
+<!--
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         <span>Cadastre as notas online</span>
                                                         <br>
-                            -->                         </div>
-                    </div>
-
-
-                    <!-- LOGIN FORM -->
-                    <div id="RightForm">
-                        <h1 id="RFTitle" >Neutron</h1>
-
-                        <form action="/" method="post" id="formLog" name="formLog" >
-                            <label>Coloque seus dados </label>
-                            <div class="form-group row" id="matr">
-                                <input type="text" class="form-control txtBox"  name="matricula" id="matricula"  placeholder="&#xf007;  Matrícula" required="required" autofocus/>
-                            </div>
-
-
-                            <div class="form-group row" id="senha">
-                                <input type="password" class="form-control txtBox"  name="senha" placeholder="&#xf023;   Senha"    required="required"/>
-                            </div>
-
-                            <br>
-
-                            <div class="form-group">
-                                <button type="submit"   id="bt1" class="btn btn-primary form-control ">Entrar</button>
-                            </div>
-                            <!-- MESSAGEM DE LOGIN -->
-                            <% if (message.length > 0) { %>
-                            <div class="alert " id="loginAlert"><%= message %></div>
-                            <% } %>
-                            <div  id="createUser" style="text-align:center; padding: 40px;">
-                                <a href="/cadastro" id="cadlink" >Cadastre-se</a>
-
-
-                            </div>
-
-                        </form>
-
-
-
-                    </div>
-
-
-                    <hr>
-
+                            -->
+              </div>
+            </div><!-- LOGIN FORM -->
+            <div id="RightForm">
+              <h1 id="RFTitle">Neutron</h1>
+              <form action="/" id="formLog" method="post" name="formLog">
+                <label>Coloque seus dados</label>
+                <div class="form-group row" id="matr">
+                  <input class="form-control txtBox" id="matricula" name="matricula" placeholder="&#xf007; Matrícula" required="required" type="text">
                 </div>
-
+                <div class="form-group row" id="senha">
+                  <input class="form-control txtBox" name="senha" placeholder="&#xf023; Senha" required="required" type="password">
+                </div><br>
+                <div class="form-group">
+                  <button class="btn btn-primary form-control" id="bt1" type="submit">Entrar</button>
+                </div><!-- MESSAGEM DE LOGIN -->
+                <%if (message.length > 0) { %>
+                <div class="alert" id="loginAlert">
+                  <%= message %>
+                </div><%} %>
+                <div id="createUser" style="text-align:center; padding: 40px;">
+                  <a href="/cadastro" id="cadlink">Cadastre-se</a>
+                </div>
+              </form>
             </div>
+            <hr>
+          </div>
         </div>
-
+      </div>
     </div>
-</main>
-
-
-
-<script >
+  </main>
+  <script>
     $(function(){
         var campo= "#matricula";
         onlyNumber(campo);
     });
 
-</script>
-
+  </script>
 </body>
 </html>
