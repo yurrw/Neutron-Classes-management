@@ -72,7 +72,7 @@ app.post('/api/photo/',function(req,res){
                           console.log(err);
 
 
-                          console.log("UPOU NAS CARALHA");
+                  
 
                     });
                                                               res.end("File has been uploaded");
@@ -183,6 +183,7 @@ app.post('/',
             app.post('/UpPerfil', CadController.UpdatePerfil);
             app.post('/upFile',multer({ dest: './upFile/'}).single('txt'), CadController.upFile);
             app.post('/deleteBD',multer({ dest: './deleteLog/'}).single('txt'), CadController.deleteBD);
+            app.post('/putBD',CadController.putBD);
             app.post('/UpFoto', CadController.UpFoto);
 
 

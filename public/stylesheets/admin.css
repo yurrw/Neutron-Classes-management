@@ -1,0 +1,25 @@
+textarea {
+    background-color: #000;
+    border: 1px solid #000;
+    color: #00ff00;
+    padding: 8px;
+    font-family: courier new;
+    width: 50%;
+    height: 40%;
+    margin-top: 50px;
+	margin-left: 150px;
+ resize:none;
+}
+.tables{
+	width: 300px;
+}
+#blc1{
+	float: left;
+}
+#blc2{
+	float: right;
+}
+#CTAdmin{
+	margin-left: 225px;
+	width: 700px;
+}

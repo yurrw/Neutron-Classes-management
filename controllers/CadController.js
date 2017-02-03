@@ -42,19 +42,18 @@ function sqlInsert(qry){
 }
 function writeLog(data){
   const fs = require('fs');
+var date = new Date();
+var hora_agora = date.getHours();
 
-  fs.writeFile('./tmp/LOGS.txt' , data , function (err){
+  fs.writeFile('./tmp/LOGS'+hora_agora+'.txt' , data , function (err){
     if (err) return console.log(err);
 
     console.log("LOG GRAVADO");
   });
- /*
-  fs = require('fs');
-fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
-  if (err) return console.log(err);
-  console.log('Hello World > helloworld.txt');
-});
-*/
+
+}
+exports.putBD = function(req, res){
+  req.body.txtAr;
 }
 exports.upFile = function(req, res){
   var  logs = [];
@@ -97,9 +96,15 @@ exports.deleteBD = function(req,res){
 
     TxtToJson( function (err, content)
   {
+     for(k in content){
+   //   console.log(content.length);
     var lineTMP = content[k].split(/[     ]+/) ;
 
-    sqlInsert("Delete from "+req.body.tabelaNameDel+" where ");
+    sqlInsert("Delete from "+req.body.tabelaNameDel+" where "+lineTMP[0]+"="+lineTMP[1]+" ", function(err, fields){
+        if (err){ }
+    });
+  }
+ /*
    sqlQuery("SHOW COLUMNS from "+req.body.tabelaName+" ", function(err, fields){
       for(k in content){
         var lineTMP = content[k].split(/[     ]+/) ;
@@ -124,7 +129,7 @@ exports.deleteBD = function(req,res){
         }
         writeLog(logs);
   });
-
+*/
   }, fileUploaded)
 
 
