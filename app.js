@@ -1,6 +1,6 @@
 /*
 	SISTEMA ESCOLAR
-	BY: YURR, LEO, NUNES, ...., RENAN
+	BY: YURR, LEO, NUNES, RENAN
 	"Entrega o teu caminho ao SENHOR, confia nele, e o mais Ele fará."
 	"Confia no pai"
 
@@ -21,15 +21,14 @@ var multer	 			=	require('multer');
 /*CONFIGS*/
 
 	/*Cookies,logs,...*/
-
-			app.use(morgan('dev'));								//	Mostra as chamadas
-			app.use(cookieParser()); 							//	cookies(autenticação e pá)
-			app.use(bodyParser.urlencoded({
-  extended: true
-}));
-			app.use(bodyParser.json());
-
-			app.use(flash()); 									//	mensagens flash gravadas na sessao
+	app.use(morgan('dev'));								//	Mostra as chamadas
+	app.use(cookieParser()); 							//	cookies(autenticação e pá)
+	app.use(bodyParser.urlencoded({
+ 	    extended: true
+	}));
+	
+	app.use(bodyParser.json());
+	app.use(flash()); 									//	mensagens flash gravadas na sessao
 
 		/*Rota*/
 			/*Passport*/
