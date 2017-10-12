@@ -7,19 +7,19 @@
  *
  *----------------------------------------------------------------*/
 
-var express			=	require('express');               //  Handles express
-var app 			=	express();
+var express =	require('express');                   //  Handles express
+var app     = express();
 
-var port 			=	process.env.PORT || 3000;         //  Setting up apps' port
+var port =	process.env.PORT || 3000;                 //  Setting up apps' port
 
-var passport		= 	require('passport');              //  Handles login
-var flash   		= 	require('connect-flash');         //  Handles flash-messages	
+var passport   = 	require('passport');              //  Handles login
+var flash      = 	require('connect-flash');         //  Handles flash-messages	
 
-var morgan			=	require('morgan');				  //  Login's stuff
+var morgan      =	require('morgan');				  //  Login's stuff
 //var cookieParser	=	require('cookie-parser');		  //
-var bodyParser		=	require('body-parser');			    
-var	session 		=	require('express-session');
-var multer	 		=	require('multer');				  //  Handles photos' upload
+var bodyParser  =	require('body-parser');			    
+var	session     =	require('express-session');
+var multer      =	require('multer');				  //  Handles photos' upload
 
 /*  CONFIGs  */
 
