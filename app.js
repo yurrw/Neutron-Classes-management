@@ -1,49 +1,57 @@
-/*
-	SISTEMA ESCOLAR
-	BY: YURR, LEO, NUNES, RENAN
-	"Entrega o teu caminho ao SENHOR, confia nele, e o mais Ele fará."
-	"Confia no pai"
+/*----------------------------------------------------------------
+ *	NEUTRON CLASSES'S MANAGEMENT
+ *  Main Authors:  Yuri, Matheus Nunes
+ *  Co-Authors  :  Renan Valani, Leonardo Noia
+ *  Written:       08/2016
+ *  Last updated:  11/10/2017
+ *
+ *----------------------------------------------------------------*/
 
-*/
-var express				=	require('express');						//	'importa' o express e o instancia.
-var app 				=	express();
-var port 				=	process.env.PORT || 3000;				//	'Seta' qual porrta vai ser chamada
+var express			=	require('express');               //  Handles express
+var app 			=	express();
 
-var passport			= 	require('passport');
-var flash   			= 	require('connect-flash');
+var port 			=	process.env.PORT || 3000;         //  Setting up apps' port
 
-var morgan				=	require('morgan');						//	Morgan detalha no console
-var cookieParser		=	require('cookie-parser');
-var bodyParser			=	require('body-parser');					//	Body-parser pega as infos dos forms
-var	session 			=	require('express-session');
-var multer	 			=	require('multer');
+var passport		= 	require('passport');              //  Handles login
+var flash   		= 	require('connect-flash');         //  Handles flash-messages	
 
-/*CONFIGS*/
+var morgan			=	require('morgan');				  //  Login's stuff
+//var cookieParser	=	require('cookie-parser');		  //
+var bodyParser		=	require('body-parser');			    
+var	session 		=	require('express-session');
+var multer	 		=	require('multer');				  //  Handles photos' upload
 
-	/*Cookies,logs,...*/
-	app.use(morgan('dev'));								//	Mostra as chamadas
-	app.use(cookieParser()); 							//	cookies(autenticação e pá)
-	app.use(bodyParser.urlencoded({
- 	    extended: true
-	}));
-	
-	app.use(bodyParser.json());
-	app.use(flash()); 									//	mensagens flash gravadas na sessao
+/*  CONFIGs  */
 
-		/*Rota*/
-			/*Passport*/
-			require('./config/passport')(passport);
-			app.use(session({ secret: 'ylrm'})); 				// Mudar sempre
-			app.use(passport.initialize());
-			app.use(passport.session());
+//  Handles logging request details
+app.use(morgan('dev'));								
+//app.use(cookieParser()); 							      //	cookies(autenticação e pá)
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-			/*Engine*/
-				app.set('view engine', 'ejs');						//	configura a engine view
-				app.use('/assets', express.static(__dirname + '/public'));
-				app.use('/uploads'	 , express.static(__dirname + '/uploads'));
-				require('./routes')(app, passport);					//	Referença pro routes.js
+//  set up json to be used
+app.use(bodyParser.json());
 
-	app.listen(port);											//	ABRE SERVIDOR
+//	Save flash messages
+app.use(flash()); 									
 
-	console.log('Server em :' + port);
+/*Routes*/
+	//Initialize PassPort middleware Auth
+	require('./config/passport')(passport);
+	app.use(session({ secret: 'ylrm'})); 				//TODO:: CHANGE IT 
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	//Set up view engine, ejs
+	app.set('view engine', 'ejs');	
+	app.use('/assets', express.static(__dirname + '/public'));
+	app.use('/uploads'	 , express.static(__dirname + '/uploads'));
+	//Join passport configs with routes
+	require('./routes')(app, passport);
+
+//  Runs app
+app.listen(port);											
+
+console.log('Server running on port  :' + port);
