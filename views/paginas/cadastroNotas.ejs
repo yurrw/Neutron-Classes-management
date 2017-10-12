@@ -1,12 +1,8 @@
 <html lang="pt">
 <head>
   <% include ../partes/head %>
-  <script>
-
-
-  </script>
 <link rel="stylesheet" type="text/css" href="/assets/stylesheets/cadquest.css">
-  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/consTurma.css">
+<link rel="stylesheet" type="text/css" href="/assets/stylesheets/consTurma.css">
 
 </head>
 <body id="Cdq">
@@ -55,9 +51,6 @@
 
 
               </div>
-
-
-
               <div class="" style="position: relative;
                height: auto; text-align: center;" id="divDados">
                <br>
@@ -94,22 +87,11 @@
                 <p></p>
               </table><br>
 
-
-
               <button type="submit" class="btn btn-info" id="cadastrarNotas">Cadastrar Notas</button>
-
-
-
 <br><br>
-
-
-
-    <!--<input id="btAreas" type="button" value="Enviar" class="btn btn-primary"> -->
             </div>
 
           </div>
-
-
         </div>
       </div>
     </form>
@@ -119,7 +101,7 @@
 
 <script>
 
-// Default Open
+// Set up slideout
 var slideout = new Slideout({
 'panel': document.getElementById('panel'),
 'menu': document.getElementById('sid'),
@@ -127,33 +109,23 @@ var slideout = new Slideout({
 'tolerance': 70,
 'easing': 'cubic-bezier(.51,2,.81,.41)',
 });
-slideout.open();
 
+slideout.open();
 // Toggle button
 $(".toggle-button").click(function() {
-// alert("oila");
-slideout.toggle();
+    slideout.toggle();
 });
-
-
-
 
 $(document).ready(function() {
 
-$(window).resize(function(){
-    if ($(window).width() <= 1024){
-        // slideout.close();
-        // slideout.close();
-        slideout.close();
-
-    }else {
-        slideout.open();
-    }
+    $(window).resize(function(){
+        if ($(window).width() <= 1024){
+            slideout.close();
+        }else {
+            slideout.open();
+        }
+    });
 });
-});
-
-
-
 </script>
 
 <% include ../partes/modal %>

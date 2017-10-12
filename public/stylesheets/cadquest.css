@@ -1,16 +1,11 @@
 .layoutInner{
-	margin-top: 110px;
-	/*margin-left: 200px;*/
-
+  margin-top: 110px;
 }
 .backPages{
-     color: #3d464d;
-        /*background-color: black!important;*/
-    width:90vw!important;
-    height:60vh;
-    background-color: #f6f8fa;
-    /*margin-top: -100px;*/
-    /*margin-left: -80px;*/
+  color: #3d464d;
+  width:90vw!important;
+  height:60vh;
+  background-color: #f6f8fa;
 }
 .container-fluid{
   background-color: #f6f8fa!important;
@@ -20,33 +15,23 @@
 }
 .layout{
 
-    position: absolute;
-    display: block;
-    width: 85vw;
-    left: 170px;
-        padding-left:60px;
-    /*padding-right:20px;*/
-/*  
-    display: block;
-    width:85vw;
-    left:170px;
-    @TODO: os paddings estao dando erro nas resolucoes pra celular
-    padding-left:30px;
-    padding-right:30px;*/
+  position: absolute;
+  display: block;
+  width: 85vw;
+  left: 170px;
+  padding-left:60px;
+
 
 }
 .layoutInner > h3 {
-	color: #3d464d;
-    font-size: 4rem;
-    padding-bottom: 15px;
-
-    font-family: 'Montserrat', sans-serif;
-
+  color: #3d464d;
+  font-size: 4rem;
+  padding-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 #lvlQuest{
   margin-left:-80px;
 }
-
 .alert-CadQuest{
     width: 65vh;
 }

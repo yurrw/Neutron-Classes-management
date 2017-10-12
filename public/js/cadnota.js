@@ -1,106 +1,3 @@
-// $("#cadnota").click(function() {
-// var nometurma = $('#nometurma').val();
-//        var trimestre= $('#textAreas').val();
-//
-//       var nomedisciplina= $('#nomedisciplina').val();
-//
-// //      var i = 1;
-//
-// //      $('input[type=checkbox]').each(function() {
-//
-//
-//
-//
-// //          if (this.checked) {
-//
-// //              //   console.log("value='"+i+"'");
-// //              $("#chkHidden[alt='" + i + "']").prop('disabled', true);
-// //              console.log('desabilitou ');
-// //          } else {
-// //              //   document.getElementById("chkHidden").disabled=false;
-// //              // console.log('false');
-//
-// //          }
-// //          i++;
-//
-//
-// //      });
-//
-//
-//
-// var table = document.getElementById('tabletop');
-//
-// var checks =[];
-//     $('input[type=checkbox]').each(function(){
-//             //if(this.checked){
-//                   checks.push(this.checked);
-//
-//          //   }
-//
-//     });
-//
-//
-//
-//
-//         var tabela = [];
-//
-//
-//
-//
-// for(var r = 1, i =0 ; r < table.rows.length; r++,i++){
-//   tabela[i] = table.rows[r].cells[1].innerHTML;
-//
-//
-// }
-//
-//
-//  // console.log(table);
-//
-//
-//      $.ajax({
-//          url: "/cadastroDiario", // AQUI É A URL QUE SERA ENVIADO
-//          type: "POST", //TIPO DE ENVIO
-//          dataType: "json", //TIPO DE DADO QUE SERA PASSADO
-//          data: JSON.stringify({
-//           chk:chk,
-//
-//              txtSelectedDate:data,
-//              nomedisciplina:nomedisciplina,
-//              textAreas:coment,
-//              turma: nometurma,
-//              matriculas:tabela,
-//              chks:checks,
-//           comentario:coment
-//
-//          }),
-//          contentType: "application/json",
-//          cache: false,
-//          timeout: 5000,
-//          complete: function() {
-//              console.log('process complete');
-//          },
-//
-//          success: function(data) {
-//
-//
-//              console.log('process sucess');
-//          },
-//
-//          error: function() {
-//              console.log('process error');
-//          },
-//      });
-//
-//
-//
-//  });
-
-
-
-
-
-
-
     $(function(){
       $('#cadnota').hide();
       $('#tri').hide();
@@ -163,16 +60,12 @@
 
             console.log(matriculasAlunosNotas);
 
-            //ESSE ALERT EXIBE A OPCAO SELECIONADA.
-                // alert($("#tri").val());
-                // alert($("#disciplina").val());
-
+         
             $.ajax({
                   url: "/cadnotas",  // AQUI É A URL QUE SERA ENVIADO
                   type: "POST",   //TIPO DE ENVIO
                   dataType: "json", //TIPO DE DADO QUE SERA PASSADO
                   data:JSON.stringify({
-                      // somanotas : go,
                       matAlunos : matriculasAlunosNotas,
                       notaProva : provanotas,
                       notaTeste : testenotas,
@@ -357,25 +250,3 @@ function carregarNotas(){
     });
   }
 }
-
-
-    // $( function(){
-    //   $("#contact").on('click', function(){
-    //     console.log("Aheooooooooooo");
-    //     );
-    // });
-
-
-    // $(document).on('change', '[type=checkbox]',function(e){
-    //   var umaChecked = $('input[name="chk"]:checked').length > 0;
-    //   if (umaChecked){ //NAO TA CERTO MASSSSSSSSSS FUNCIONA
-    //     $('#textCont').show();
-    //     $('#textAreas').show();
-    //     $('#btAreas').show();
-    //   }
-    //   else{
-    //     $('#textCont').hide();
-    //     $('#textAreas').hide();
-    //     $('#btAreas').hide();
-    //   }
-    // });

@@ -2,13 +2,9 @@
 
 /*NOTAS ABAIXO--------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
-
 .hide {
 	display: none;
 }
-
-
 
 /************************
  *      N O T A S       *
@@ -96,11 +92,6 @@ ul#notes li div:hover ,  ul#notes li div:focus {
 	z-index:999!important;
 
 }
-/*.tryteste:hover .close-notes .new-note {
-z-index: 99999;
-background-color: black!important;
-}*/
-
 .close-notes{
 	position: absolute;
 	right:10px;
@@ -108,50 +99,3 @@ background-color: black!important;
 	z-index:999;
 
 }
-/*
-.new-note{
-	position: absolute;
-	/*left: 10px;*/
-	/*top: 10px;*
-	color: black;
-
-	font-size: 3rem!important;
-	/*z-index:-999;
-}
-
-ul li:nth-child(even) div {
-  -o-transform:rotate(4deg);
-  -webkit-transform:rotate(4deg);
-  -moz-transform:rotate(4deg);
-  position:relative;
-  top:5px;
-}
-
-ul li:nth-child(3n) div {
-  -o-transform:rotate(-3deg);
-  -webkit-transform:rotate(-3deg);
-  -moz-transform:rotate(-3deg);
-  position:relative;
-  top:-5px;
-}
-
-ul li:nth-child(5n) div {
-  -o-transform:rotate(5deg);
-  -webkit-transform:rotate(5deg);
-  -moz-transform:rotate(5deg);
-  position:relative;
-  top:-10px;
-}
-
-ul#notes li div:hover, ul#notes li div:focus {
-  -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
-  -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
-  box-shadow:10px 10px 7px rgba(0,0,0,.7);
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  position:relative;
-  z-index:5;
-}
-
-*/

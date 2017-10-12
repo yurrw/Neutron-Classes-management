@@ -29,20 +29,17 @@ function consulQuest(){
   if (tipo != "Autor") {
     var dados = '<button type="submit" name="cadastrar" class="btn btn-default">Cadastrar</button>';
     document.getElementById("dadosQuest").innerHTML = dados;
-
   }
 
 }
-
 
 function campoPreenchido(formulario, campo, mensagem){
   var valorDoCampo = document.forms[formulario][campo].value;
   if ((valorDoCampo == null || valorDoCampo == "")){
       return false;
-    }
-    else {
+  }else {
       return true;
-    }
+  }
 }
 function onlyNumber(numeroCamp){
 
@@ -127,23 +124,3 @@ $(campoId).keydown(function(){
       });
 
     }
-/*<script>
-jQuery.fn.extend({
-  check: function() {
-    return this.each(function() {
-      this.checked = true;
-    });
-  },
-  uncheck: function() {
-    return this.each(function() {
-      this.checked = false;
-    });
-  }
-});
- */
- 
-// Use the newly created .check() method
-/*$( "input[type='checkbox']" ).check();
-</script>
- */
-     

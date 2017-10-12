@@ -572,31 +572,6 @@
                 .alert-CadQuest{
         width: 60vh!important;
     }
-    /*cadQuest Pagina*/
-     /*#cadQuestContent{
-        width: 100vw!important;
-        left: -45px!important;
-     }
-
-     .backPages{
-        margin-top: -50px!important;
-        padding-top: 50px;
-            margin-left: -110px;
-            height: 105vh!important;
-     }
-     .layout{
-                padding-right: 30px!important;
-     }
-    #cadquestCT{
-        margin-left: 200px!important;
-    }
-    #cadquestCT select , #cadquestCT input {
-            width: 200px!important;
-    }
-    #cadquestCT textarea{
-        width: 415px!important;
-    }
-    */
     .rating {
         width: 100px;
     }

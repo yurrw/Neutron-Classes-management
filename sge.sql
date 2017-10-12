@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Fev-2017 às 07:46
--- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Oct 12, 2017 at 06:08 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `aluno`
+-- Table structure for table `aluno`
 --
 
 CREATE TABLE `aluno` (
@@ -35,24 +37,21 @@ CREATE TABLE `aluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `aluno`
+-- Dumping data for table `aluno`
 --
 
 INSERT INTO `aluno` (`matricula`, `nome`, `data_nasc`, `email`, `data_mod`) VALUES
-('01671', 'Leo', '0000-00-00', 'leonanci99@gmail.com', '2016-10-06 21:43:30'),
-('11223', 'Yuri', '1998-08-12', 'yurimedeiros33@gmail.com', '2016-10-06 21:42:00'),
 ('12345', 'Seiya', '1973-12-01', 'seiya_pegasus@cdzmail.com', '0000-00-00 00:00:00'),
 ('12346', 'Shiryu', '1970-10-04', 'shiryu_dragao@cdzmail.com', '2016-10-06 22:21:35'),
 ('12347', 'Shun', '1973-02-23', 'shun_andromeda@cdzmail.com', '2016-10-06 22:21:20'),
 ('12348', 'Hyoga', '1971-11-12', 'hyoga_cisne@cdzmail.com', '2016-10-06 22:23:07'),
 ('12349', 'Ikki', '1970-07-06', 'ikki_fenix@cdzmail.com', '2016-10-06 22:24:05'),
-('24043', 'Matheus', '1998-11-25', 'matheus.pegasus25@hotmail.com', '2016-10-06 21:42:15'),
 ('98712', 'Renan', '1657-03-12', 'fatlani@gmail.com', '2016-10-06 21:44:31');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `aluno_nota`
+-- Table structure for table `aluno_nota`
 --
 
 CREATE TABLE `aluno_nota` (
@@ -64,7 +63,7 @@ CREATE TABLE `aluno_nota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='INCOMPLETO';
 
 --
--- Extraindo dados da tabela `aluno_nota`
+-- Dumping data for table `aluno_nota`
 --
 
 INSERT INTO `aluno_nota` (`matricula`, `disciplina_id`, `nota`, `ano_letivo`, `data_mod`) VALUES
@@ -77,7 +76,7 @@ INSERT INTO `aluno_nota` (`matricula`, `disciplina_id`, `nota`, `ano_letivo`, `d
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `aluno_nota_tri`
+-- Table structure for table `aluno_nota_tri`
 --
 
 CREATE TABLE `aluno_nota_tri` (
@@ -95,7 +94,7 @@ CREATE TABLE `aluno_nota_tri` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `aluno_nota_tri`
+-- Dumping data for table `aluno_nota_tri`
 --
 
 INSERT INTO `aluno_nota_tri` (`matricula`, `disciplina_id`, `ttri1`, `ptri1`, `ttri2`, `ptri2`, `ttri3`, `ptri3`, `tri4`, `ano`, `data_mod`) VALUES
@@ -119,7 +118,7 @@ INSERT INTO `aluno_nota_tri` (`matricula`, `disciplina_id`, `ttri1`, `ptri1`, `t
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `calendario`
+-- Table structure for table `calendario`
 --
 
 CREATE TABLE `calendario` (
@@ -136,81 +135,10 @@ CREATE TABLE `calendario` (
   `data_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `calendario`
---
-
-INSERT INTO `calendario` (`cod_evento`, `matricula`, `evento`, `descricao`, `datahora`, `datafim`, `allday`, `cor`, `cor2`, `turma`, `data_mod`) VALUES
-(1, 10, 'Livros de info', 'foder at? o talo', '2016-10-10 11:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 22:59:13'),
-(2, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-11 08:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkKhaki ', 'IN313', '2016-12-21 22:59:24'),
-(3, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-11 13:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkKhaki ', 'IN313', '2016-12-21 22:59:28'),
-(4, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-21 16:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkSeaGre', 'IN313', '2016-12-21 22:59:35'),
-(5, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-21 14:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkSeaGre', 'IN313', '2016-12-21 22:59:41'),
-(6, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-11 14:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkSeaGre', 'IN313', '2016-12-21 22:59:50'),
-(7, 10, 'aula cobre placa mae', 'foder at? o talo', '2016-10-11 14:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkSeaGre', 'IN313', '2016-12-21 22:59:55'),
-(8, 10, 'Palestra sobre carreira ', 'foder at? o talo', '2016-10-30 13:30:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:00:02'),
-(9, 10, 'Palestra sobre LP3', 'foder at? o talo', '2016-10-23 13:30:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(10, 10, 'Palestra sobre angular', 'foder at? o talo', '2016-10-27 13:30:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(11, 10, 'aula sobre c#', 'foder at? o talo', '2016-10-25 13:30:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(16, 10, 'renan lixo', 'foder at? o talo', '2016-11-03 02:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(17, 10, 'renan lixo', 'foder at? o talo', '2016-09-09 09:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(18, 10, 'renan lixo', 'foder at? o talo', '2016-09-09 09:00:00', '0000-00-00 00:00:00', '', 'BurlyWood ', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(19, 10, 'r6ct7vyubinok', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(20, 10, 'r6ct7vyubinok', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(21, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(22, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(23, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(24, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(25, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(26, 10, 'c7tuvibojnk', 'foder at? o talo', '2016-06-06 09:09:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(27, 10, 'Programa com o matheus - 100reais -1h', 'foder at? o talo', '2016-10-20 10:30:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(28, 10, 'Dar pro Gabriel Daumas-Free', 'foder at? o talo', '2016-10-20 11:00:00', '0000-00-00 00:00:00', '', 'BlueViolet', 'DarkKhaki ', 'IN313', '2016-12-21 23:01:19'),
-(29, 10, 'oi', 'foder at? o talo', '2016-10-20 05:05:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkOrange', 'IN313', '2016-12-21 23:01:19'),
-(30, 10, 'dsfsdf', 'foder at? o talo', '2016-10-22 23:25:00', '0000-00-00 00:00:00', '', 'CadetBlue ', 'DarkSeaGre', 'IN313', '2016-12-21 23:01:19'),
-(33, 10, 'oioioi', 's', '2016-11-27 14:50:00', '0000-00-00 00:00:00', '', '#708090', '#B0C4DE', 'IN313', '2016-12-21 23:01:19'),
-(34, 10, 'renan lindo', '', '2016-11-20 10:10:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', 'IN313', '2016-12-21 23:01:19'),
-(35, 10, '3333333333333333', '', '2016-11-26 14:50:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(36, 10, '3333333333333333', '', '2016-11-26 14:50:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(37, 10, '3333333333333333', '', '2016-11-26 14:50:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(38, 10, '3333333333333333', '', '2016-11-26 14:50:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(39, 10, 'ug ihj', '', '2016-11-28 13:50:00', '0000-00-00 00:00:00', '', '#DC143C', '#CD5C5C', 'IN313', '2016-12-21 23:01:19'),
-(40, 10, 'ug ihj', '', '2016-11-28 13:50:00', '0000-00-00 00:00:00', '', '#DC143C', '#CD5C5C', 'IN313', '2016-12-21 23:01:19'),
-(41, 10, 'ug ihj', '', '2016-11-28 13:50:00', '0000-00-00 00:00:00', '', '#DC143C', '#CD5C5C', 'IN313', '2016-12-21 23:01:19'),
-(42, 10, 'xcyvubino', '', '2016-11-25 15:59:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(43, 10, 'xxt', '', '2016-11-13 15:00:00', '0000-00-00 00:00:00', '', '#4169E1', '#1E90FF', 'IN313', '2016-12-21 23:01:19'),
-(44, 10, 'ppk bucete ', '', '2016-11-29 13:00:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', 'IN313', '2016-12-21 23:01:19'),
-(46, 10, 'ppk bucet', 'ssss45467890-\r\n\r\nsfasf8ygpas\r\nasfljahsvaushfv\r\n\r\nasfas?kcjba', '2016-11-30 11:00:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', 'IN313', '2016-12-21 23:01:19'),
-(47, 10, 'ppk bucet', 'ssss45467890-\r\n\r\nsfasf8ygpas\r\nasfljahsvaushfv\r\n\r\nasfas?kcjba', '2016-11-28 11:00:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', 'IN313', '2016-12-21 23:01:19'),
-(48, 10, 'cyguvhibjnlk?', 'x7ctuvibojnpk', '2016-11-21 16:55:00', '0000-00-00 00:00:00', '', '#800080', '#DDA0DD', 'IN313', '2016-12-21 23:01:19'),
-(49, 10, '!!!!!!!!!!!!!!!!!!!!!!!11', 'fssss', '2016-11-06 15:00:00', '0000-00-00 00:00:00', '', '#f0f0f0', '#f0f0f0', 'undefi', '2016-12-21 23:01:19'),
-(50, 10, '!!!!!!!!!!!!!!!!!!!!!!!11', 'fssss', '2016-11-06 13:00:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', '? unde', '2016-12-21 23:01:19'),
-(51, 10, 'CUVIHOJ', 'undefined', '2016-11-12 19:52:00', '0000-00-00 00:00:00', '', '#f0f0f0', '#f0f0f0', 'undefi', '2016-12-21 23:01:19'),
-(52, 10, 'CUVIHOJ', '', '2016-11-12 17:52:00', '0000-00-00 00:00:00', '', '#4169E1', '#1E90FF', '? unde', '2016-12-21 23:01:19'),
-(53, 10, 'CUVIHOJ', 'undefined', '2016-11-19 16:00:00', '0000-00-00 00:00:00', '', '#f0f0f0', '#f0f0f0', 'undefi', '2016-12-21 23:01:19'),
-(54, 10, 'CUVIHOJ', '', '2016-11-19 14:00:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', '? unde', '2016-12-21 23:01:19'),
-(55, 10, 'CUVIHOJ', '', '2016-11-19 14:00:00', '0000-00-00 00:00:00', '', '#FFD700', '#EEE8AA', '? unde', '2016-12-21 23:01:19'),
-(56, 10, 'renan lindo', 'ssssssssssssssssssssssssssssssssssssss', '2016-11-05 18:45:00', '0000-00-00 00:00:00', '', '#f0f0f0', '#f0f0f0', 'undefi', '2016-12-21 23:01:19'),
-(57, 10, 'renan lindo', 'ssssssssssssssssssssssssssssssssssssss', '2016-11-05 16:45:00', '0000-00-00 00:00:00', '', '#008000', '#00FA9A', 'IN313', '2016-12-21 23:01:19'),
-(58, 10, 'oi oi', 'ola', '2016-12-19 18:00:00', '0000-00-00 00:00:00', '', '#800080', '#DDA0DD', 'undefi', '2016-12-21 23:01:19'),
-(59, 10, 'oi oi', 'ola', '2016-12-03 16:00:00', '0000-00-00 00:00:00', '', '#4169E1', '#1E90FF', 'IN313', '2016-12-21 23:01:19'),
-(61, 10, 'novo pc', '16/12/16', '2016-12-16 18:00:00', '2016-12-22 14:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2016-12-21 23:01:19'),
-(62, 10, '17/12/16 ', '?  hoje', '2016-12-17 18:00:00', '2016-12-18 18:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2016-12-21 23:01:19'),
-(63, 10, 'natal', 'uhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', '2016-12-24 13:00:00', '2016-12-25 08:00:00', 'false', '#DC143C', '#CD5C5C', 'undefi', '2016-12-21 23:01:19'),
-(64, 10, 'semana familia', '?......................', '2016-12-27 13:00:00', '2016-12-28 08:00:00', 'false', '#4169E1', '#1E90FF', 'undefi', '2016-12-21 23:01:19'),
-(65, 10, 'Virada de ano', 'Fam?lia  ', '2017-01-03 05:00:00', '2017-02-03 22:00:00', 'false', '#008000', '#00FA9A', 'undefi', '2017-01-14 02:20:14'),
-(66, 10, 'Moana - Disney', 'Renan é um bostao', '2017-02-07 08:00:00', '2017-02-07 08:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2017-02-03 05:02:39'),
-(67, 10, 'Evento', 'Renan nao faz nada', '2017-01-31 08:00:00', '2017-01-31 09:00:00', 'false', '#708090', '#B0C4DE', 'undefi', '2017-01-14 22:51:42'),
-(68, 10, 'Algo bem louco', 'Renan está fora', '2017-01-30 08:00:00', '2017-01-30 09:00:00', 'false', '#4169E1', '#1E90FF', 'undefi', '2017-01-14 18:20:33'),
-(69, 10, 'Algo bem louco de novo ', 'Renan é um bostinha', '2017-02-06 08:00:00', '2017-02-06 08:00:00', 'false', '#DC143C', '#CD5C5C', 'undefi', '2017-02-03 05:02:27'),
-(70, 10, 'Algo bem louco de novo outra time', 'Renan é inutil', '2017-01-28 08:00:00', '2017-01-29 08:00:00', 'false', '#008000', '#00FA9A', 'undefi', '2017-01-14 18:20:38'),
-(72, 10, 'Eventos Repetidos ', 'boom', '2016-12-27 08:00:00', '2016-12-30 22:00:00', 'false', '#800080', '#DDA0DD', 'undefi', '2016-12-21 23:01:19'),
-(73, 10, 'SLA, a vida n?o ? feita s? de ilus?o', 'boom', '2016-12-27 07:00:00', '2016-12-31 07:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2016-12-21 23:01:19'),
-(74, 10, 'ENTREGA DO TCC', 'Entrega', '2017-02-03 07:00:00', '2017-02-03 12:00:00', 'false', '#FFD700', '#EEE8AA', 'undefi', '2017-02-03 06:12:51');
-
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `disciplinas`
+-- Table structure for table `disciplinas`
 --
 
 CREATE TABLE `disciplinas` (
@@ -219,7 +147,7 @@ CREATE TABLE `disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `disciplinas`
+-- Dumping data for table `disciplinas`
 --
 
 INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`) VALUES
@@ -252,7 +180,7 @@ INSERT INTO `disciplinas` (`disciplina_id`, `disciplina_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `lembretes`
+-- Table structure for table `lembretes`
 --
 
 CREATE TABLE `lembretes` (
@@ -262,18 +190,16 @@ CREATE TABLE `lembretes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `lembretes`
+-- Dumping data for table `lembretes`
 --
 
 INSERT INTO `lembretes` (`ID`, `user`, `content`) VALUES
-(0, '10', 'teste01'),
-(1, '10', 'teste05'),
-(2, '10', 'Matheseu');
+(0, '10', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `materia`
+-- Table structure for table `materia`
 --
 
 CREATE TABLE `materia` (
@@ -284,7 +210,7 @@ CREATE TABLE `materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `materia`
+-- Dumping data for table `materia`
 --
 
 INSERT INTO `materia` (`materia_id`, `nome`, `descricao`, `disciplina_id`) VALUES
@@ -297,7 +223,7 @@ INSERT INTO `materia` (`materia_id`, `nome`, `descricao`, `disciplina_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `professor_disciplinas`
+-- Table structure for table `professor_disciplinas`
 --
 
 CREATE TABLE `professor_disciplinas` (
@@ -307,7 +233,7 @@ CREATE TABLE `professor_disciplinas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `professor_disciplinas`
+-- Dumping data for table `professor_disciplinas`
 --
 
 INSERT INTO `professor_disciplinas` (`matricula`, `disciplina_id`, `ano_letivo`) VALUES
@@ -317,7 +243,7 @@ INSERT INTO `professor_disciplinas` (`matricula`, `disciplina_id`, `ano_letivo`)
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `profs`
+-- Table structure for table `profs`
 --
 
 CREATE TABLE `profs` (
@@ -331,26 +257,21 @@ CREATE TABLE `profs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `profs`
+-- Dumping data for table `profs`
 --
 
 INSERT INTO `profs` (`matricula`, `nome`, `data_nasc`, `cpf`, `tel_cel`, `email`, `data_mod`) VALUES
-('', '', '0000-00-00', '', '', '4@4.com', '2016-12-14 21:46:46'),
 ('1', 'Jacinto', '1946-09-06', '1', '1', 'jacintao@gmail.com', '2016-09-22 04:31:13'),
 ('10', 'Jesus', '1010-10-10', '101.010.101-01', '(10)10101-0101', 'jc10@hot10mail.com', '2017-01-02 21:43:08'),
 ('123123', 'JoseTeste', '2312-12-31', '123.412.341-23', '(12)33123-1231', '1231@gmail.com', '2017-02-03 05:55:21'),
 ('2', 'Nunes', '0000-00-00', '2', '(22)22222-2222', '2@gmail.com', '2016-11-27 04:25:44'),
-('2222222222', '2222222222222222', '0000-00-00', '127', '(22)22222-2222', '22222222222@2.com', '2016-10-25 00:41:18'),
 ('25', 'Kithdris', '0000-00-00', '127', '(12)34567-8900', 'u7@tera.com', '2016-12-13 23:56:05'),
-('3', 'Junes', '0000-00-00', '127', '(22)22222-2222', '3@3.com.br', '2016-12-13 23:05:58'),
-('4', 'Quatro', '0000-00-00', '127', '(44)44444-4444', '4@4.com', '2016-12-13 23:24:09'),
-('4343', 'fsfsdfds', '0000-00-00', '127', '(32)33333-3333', '3333333333333333333333', '2016-12-14 17:12:14'),
-('5', 'CINCO', '0000-00-00', '127', '(55)55555-5555', '5@5.com', '2016-12-13 23:30:41');
+('3', 'Junes', '0000-00-00', '127', '(22)22222-2222', '3@3.com.br', '2016-12-13 23:05:58');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `prof_diario`
+-- Table structure for table `prof_diario`
 --
 
 CREATE TABLE `prof_diario` (
@@ -365,7 +286,7 @@ CREATE TABLE `prof_diario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `prof_diario`
+-- Dumping data for table `prof_diario`
 --
 
 INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `horaStart`, `disciplina_id`, `comentario`, `data_mod`) VALUES
@@ -374,7 +295,7 @@ INSERT INTO `prof_diario` (`cod_aula`, `matricula`, `turma`, `data`, `horaStart`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `prof_diario_aluno`
+-- Table structure for table `prof_diario_aluno`
 --
 
 CREATE TABLE `prof_diario_aluno` (
@@ -385,7 +306,7 @@ CREATE TABLE `prof_diario_aluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `prof_diario_aluno`
+-- Dumping data for table `prof_diario_aluno`
 --
 
 INSERT INTO `prof_diario_aluno` (`cod_aula`, `matricula`, `presente`, `data_mod`) VALUES
@@ -425,7 +346,7 @@ INSERT INTO `prof_diario_aluno` (`cod_aula`, `matricula`, `presente`, `data_mod`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `prof_turma`
+-- Table structure for table `prof_turma`
 --
 
 CREATE TABLE `prof_turma` (
@@ -436,7 +357,7 @@ CREATE TABLE `prof_turma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `prof_turma`
+-- Dumping data for table `prof_turma`
 --
 
 INSERT INTO `prof_turma` (`matricula`, `cod_turma`, `disciplina`, `ano_letivo`) VALUES
@@ -447,7 +368,7 @@ INSERT INTO `prof_turma` (`matricula`, `cod_turma`, `disciplina`, `ano_letivo`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `provas`
+-- Table structure for table `provas`
 --
 
 CREATE TABLE `provas` (
@@ -461,7 +382,7 @@ CREATE TABLE `provas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `provas`
+-- Dumping data for table `provas`
 --
 
 INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anoserie`, `tipo_avaliacao`, `data_mod`) VALUES
@@ -469,17 +390,12 @@ INSERT INTO `provas` (`cod_prova`, `nome`, `matricula`, `cod_disciplina`, `anose
 (2, '', '10', '1', '1º an', 'Prova', '2017-01-05 15:36:08'),
 (3, '', '10', '2', '1º an', 'Prova', '2017-01-05 15:36:08'),
 (4, '', '10', '3', '1º an', 'Prova', '2017-01-05 15:36:08'),
-(5, '10', '10', '2', 'null', 'null', '2017-01-13 18:38:59'),
-(6, '10', '10', '2', 'null', 'null', '2017-01-23 23:56:17'),
-(7, '10', '10', '2', 'null', 'null', '2017-01-25 00:21:40'),
-(8, '10', '10', '2', 'null', 'null', '2017-01-25 19:20:55'),
-(9, '10', '10', '2', 'null', 'null', '2017-01-25 19:21:15'),
-(10, 'Prova Do tcc', '10', '2', '3º an', 'Prova', '2017-02-03 06:01:32');
+(5, 'Prova Do tcc', '10', '2', '3º an', 'Prova', '2017-10-12 05:36:51');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `prova_questoes`
+-- Table structure for table `prova_questoes`
 --
 
 CREATE TABLE `prova_questoes` (
@@ -488,7 +404,7 @@ CREATE TABLE `prova_questoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `prova_questoes`
+-- Dumping data for table `prova_questoes`
 --
 
 INSERT INTO `prova_questoes` (`cod_prova`, `cod_quest`) VALUES
@@ -584,7 +500,7 @@ INSERT INTO `prova_questoes` (`cod_prova`, `cod_quest`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `questoes`
+-- Table structure for table `questoes`
 --
 
 CREATE TABLE `questoes` (
@@ -610,7 +526,7 @@ CREATE TABLE `questoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `questoes`
+-- Dumping data for table `questoes`
 --
 
 INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, `materia_id`, `enunciado`, `op1`, `op2`, `op3`, `op4`, `op5`, `gabarito`, `ano_letivo`, `anoserie`, `visibilidade`, `quant_linhas`, `linhas_visiveis`, `data_mod`) VALUES
@@ -618,7 +534,6 @@ INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, 
 (5, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'EU NÃO AGUENTO MAIS ERROS5', '', '', '', '', '', 'asdjsauhdsakjdh', '2016', '3º ano', 'Púb', '', 0, '2016-10-13 04:10:51'),
 (7, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Portugues é uma droga?', '', '', '', '', '', 'sim', '2016', '3º ano', 'Pri', '', 0, '2017-01-06 22:59:46'),
 (8, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', '1212', '', '', '', '', '', 'asdasd', '2016', '1º ano', 'Pri', '', 0, '2016-10-14 17:15:07'),
-(9, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'Yuri dá o curdistao', '', '', '', '', '', 'SIM', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:19:22'),
 (10, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'ghgvheh', '', '', '', '', '', '452642', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:38:24'),
 (11, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'vbnvbnvbn', '', '', '', '', '', 'asdasdasd', '2016', '3º ano', 'Púb', '', 0, '2016-12-10 03:44:52'),
 (13, 'Jacinto', 'Mediana', 'Discursiva', '2', '1', 'yuiyuiyui', '', '', '', '', '', 'undefined', 'unde', '3º ano', 'Púb', '', 0, '2016-12-10 03:49:14'),
@@ -627,11 +542,6 @@ INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, 
 (17, 'Jacinto', 'Mediana', 'DiscursivaCALC', '3', '2', 'Quanto  é 1+1?', NULL, NULL, NULL, NULL, NULL, '2', '2016', '3º ano', 'Púb', '', 0, '2016-12-12 22:04:28'),
 (18, 'Jesus', 'Média', 'Discursiva', '2', '1', 'dsghuihfduih', NULL, NULL, NULL, NULL, NULL, 'huhsdfaiudshiadshdsaiudsa', '1851', '2º ano', 'Pri', '16', 1, '2017-01-06 22:26:19'),
 (19, 'Jesus', 'Média', 'Discursiva', '2', '1', 'lllllllllllllllllll', NULL, NULL, NULL, NULL, NULL, 'lllllllllllllllllllllll', '1837', '2º ano', 'Pri', '-9', 0, '2017-01-06 22:45:20'),
-(20, 'undefined', 'Média', 'Discursiva', '2', '1', 'hufsahfsuhdsa', NULL, NULL, NULL, NULL, NULL, 'kkkkkkk', '1930', '2º ano', 'Púb', '11', 1, '2017-01-11 18:53:12'),
-(21, 'undefined', 'Média', 'Discursiva', '2', '1', 'ewrewrwe', NULL, NULL, NULL, NULL, NULL, 'rwerewrrrrrrrrrrrrrrrrrr', '1980', '2º ano', 'Pri', '1', 1, '2017-01-11 18:54:49'),
-(22, 'undefined', 'Difícil', 'Discursiva', '2', '1', 'tdsdstrrfdsf', NULL, NULL, NULL, NULL, NULL, 'fffffffffffffffffffffffffffffffffff', '1837', '2º ano', 'Pri', '1', 0, '2017-01-11 18:57:59'),
-(23, 'undefined', 'Média', 'Discursiva', '2', '1', 'gbffbfv', NULL, NULL, NULL, NULL, NULL, 'oooooooooooooooooooooooooo', '1837', '2º ano', 'Pri', '1', 0, '2017-01-11 19:02:11'),
-(24, 'undefined', 'Fácil', 'Discursiva', '2', '1', 'mnfdklmgklmkdlk', NULL, NULL, NULL, NULL, NULL, 'ppppppppppoooooooooooooooooooooooooooooowwwwwwwwww', '1837', '3º ano', 'Púb', '8', 0, '2017-01-11 19:03:19'),
 (25, '10', 'Fácil', 'Discursiva', '2', '1', 'ddddddddddd', NULL, NULL, NULL, NULL, NULL, 'ddddddddddddddddddddddddddddd', '1964', '2º ano', 'Pri', '9', 1, '2017-01-11 19:06:14'),
 (26, '10', 'Média', 'Discursiva', '2', '1', 'Aheooooooooooo', NULL, NULL, NULL, NULL, NULL, 'Sim, sim', '1860', '2º ano', 'Pri', '12', 1, '2017-01-13 15:48:45'),
 (27, '10', 'Média', 'Discursiva', '2', '1', 'aiushdas', NULL, NULL, NULL, NULL, NULL, '6128736', '2017', '3º ano', 'Púb', '2', 0, '2017-01-20 19:09:28'),
@@ -641,7 +551,7 @@ INSERT INTO `questoes` (`cod_quest`, `autor`, `nivel`, `tipo`, `disciplina_id`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_prova`
+-- Table structure for table `tipo_prova`
 --
 
 CREATE TABLE `tipo_prova` (
@@ -649,7 +559,7 @@ CREATE TABLE `tipo_prova` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tipo_prova`
+-- Dumping data for table `tipo_prova`
 --
 
 INSERT INTO `tipo_prova` (`tipo_avaliacao`) VALUES
@@ -663,7 +573,7 @@ INSERT INTO `tipo_prova` (`tipo_avaliacao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turma`
+-- Table structure for table `turma`
 --
 
 CREATE TABLE `turma` (
@@ -674,7 +584,7 @@ CREATE TABLE `turma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `turma`
+-- Dumping data for table `turma`
 --
 
 INSERT INTO `turma` (`cod_turma`, `anoserie`, `email`, `sala`) VALUES
@@ -684,7 +594,7 @@ INSERT INTO `turma` (`cod_turma`, `anoserie`, `email`, `sala`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `turma_aluno`
+-- Table structure for table `turma_aluno`
 --
 
 CREATE TABLE `turma_aluno` (
@@ -694,7 +604,7 @@ CREATE TABLE `turma_aluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `turma_aluno`
+-- Dumping data for table `turma_aluno`
 --
 
 INSERT INTO `turma_aluno` (`cod_turma`, `matricula`, `ano_letivo`) VALUES
@@ -711,7 +621,7 @@ INSERT INTO `turma_aluno` (`cod_turma`, `matricula`, `ano_letivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user_photo`
+-- Table structure for table `user_photo`
 --
 
 CREATE TABLE `user_photo` (
@@ -721,25 +631,17 @@ CREATE TABLE `user_photo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `user_photo`
+-- Dumping data for table `user_photo`
 --
 
 INSERT INTO `user_photo` (`matricula`, `photoID`, `data_mod`) VALUES
-('', '/uploads/', '2017-02-03 03:37:34'),
-('1', './uploads/1-userPhoto-1481671598038.png', '2016-12-13 23:26:38'),
 ('10', '/uploads/10-userPhoto-1483162242715.jpg', '2016-12-31 05:30:42'),
-('123123', '/uploads/123123-userPhoto-1486101338951.jpg', '2017-02-03 05:55:38'),
-('2', '/uploads/2-userPhoto-1480221932190.jpg', '2016-11-27 05:29:36'),
-('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15'),
-('3', './uploads/3-userPhoto-1481670373902.png', '2016-12-13 23:06:13'),
-('4', './uploads/4-userPhoto-1481671459790.jpg', '2016-12-13 23:24:19'),
-('5', './uploads/5-userPhoto-1481671845619.png', '2016-12-13 23:30:45'),
-('undefined', '/uploads/undefined-userPhoto-1481978806952.jpg', '2016-12-17 12:46:46');
+('25', './uploads/25-userPhoto-1481673375785.png', '2016-12-13 23:56:15');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -752,18 +654,12 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`matricula`, `username`, `salt`, `senha`, `permissao`, `data_mod`) VALUES
-('10', 'Jesus', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Professor', '2016-12-22 18:15:38'),
-('123123', 'JoseTeste', 'd749f6fd686ed248', 'fb74401a82ad00ff88559d44f96ffee4e842ae25e2a3252c16577e36d94fe0acfee8d7cee8ec402fa769dd4144d46f635d10fbffbd73ecb7bbc3fb77da9e2605', 'Professor', '2017-02-03 05:55:21'),
-('2', 'Matheus viadao', '', '2', 'Professor', '2016-11-27 04:45:26'),
-('25', 'ADM', 'cb8db5a7dde1e057', '5fd64c12c9b59eed8be670daeec7734b226f5699d459d5c8dd02e0f2e7945f8e35ce6745ff0bdc39ff4b6c4936bb4efa2b2817f79f0ad54354876cb0f649f164', 'Administrador', '2017-01-30 01:00:50'),
-('3', 'Junes', '', '3', 'Professor', '2016-12-13 23:05:58'),
-('4', 'Quatro', '', 'undefined', 'Professor', '2016-12-13 23:24:09'),
-('4343', 'fsfsdfds', '959b1512369f5e66', '145131d4d73918de4f5bcef09ad589d5055f2ac333267449236655f55c93aa407f985fea217e0f9bd05bbd573ba3ac6d6c69ce1b206cd5c003fac61fbf2da908', 'Professor', '2016-12-14 17:12:14'),
-('5', 'CINCO', '', '015d28774aa75420e1af0b54489652f4013ee2f0a640e62000b54a7595b4f726749c7769cfe9314b5457cb857d76f800db186aede22ed12bd12545f81a70fa28', 'Professor', '2016-12-13 23:30:41');
+('10', 'Jesus', '07dd16ba40d8735f', '71eedb8d0069cba18ea93144855ca878f5c1860a668dc48716bc6ca6f29615af51ceb31b9cf538b2ce008dc744b408e78dfc2ae11097b18199e6161aecb570ea', 'Professor', '2017-10-12 05:31:23'),
+('25', 'ADM', '07dd16ba40d8735f', '71eedb8d0069cba18ea93144855ca878f5c1860a668dc48716bc6ca6f29615af51ceb31b9cf538b2ce008dc744b408e78dfc2ae11097b18199e6161aecb570ea', 'Administrador', '2017-10-12 06:05:51');
 
 --
 -- Indexes for dumped tables
@@ -874,26 +770,32 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `calendario`
   MODIFY `cod_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
   MODIFY `disciplina_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
 --
 -- AUTO_INCREMENT for table `prof_diario`
 --
 ALTER TABLE `prof_diario`
   MODIFY `cod_aula` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=35;
+
 --
 -- AUTO_INCREMENT for table `provas`
 --
 ALTER TABLE `provas`
   MODIFY `cod_prova` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `questoes`
 --
 ALTER TABLE `questoes`
   MODIFY `cod_quest` int(12) NOT NULL AUTO_INCREMENT COMMENT 'codigo associado a questao ( cahave primaria)', AUTO_INCREMENT=30;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
