@@ -4,18 +4,11 @@
 <head>
   <%include ../partes/head %>
   <style>
-        body
-        {
+        body{
             overflow: hidden ;
             background: transparent;
         }
-        main
-        {
-            margin: 8% 0 0 0px;
-
-        }
-
-
+        main{margin: 8% 0 0 0px;}
   </style>
   <title></title>
 </head>
@@ -35,22 +28,17 @@
               <div id="features">
                 <i class="fa fa-check-square-o"></i> <span>Marque presença online</span><br>
                 <i aria-hidden="true" class="fa fa-file-o"></i> <span>Crie suas provas online</span><br>
-                <!-- <i aria-hidden="true" class="fa fa-bug"></i> <span>Cheio de bugs</span><br> -->
-                
-                                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                                        <span>Feito com amor</span>
-                                                        <br>
-<!--
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        <span>Cadastre as notas online</span>
-                                                        <br>
-                            -->
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <span>Feito com amor</span>
+                <br>
               </div>
+
             </div><!-- LOGIN FORM -->
             <div id="RightForm">
               <h1 id="RFTitle">Neutron</h1>
+
               <form action="/" id="formLog" method="post" name="formLog">
-                <label>Coloque seus dados</label>
+                <label style="color:#555">Coloque seus dados</label>
                 <div class="form-group row" id="matr">
                   <input class="form-control txtBox" id="matricula" name="matricula" placeholder="&#xf007; Matrícula" required="required" type="text">
                 </div>
@@ -68,6 +56,7 @@
                   <a href="/cadastro" id="cadlink">Cadastre-se</a>
                 </div>
               </form>
+           
             </div>
             <hr>
           </div>

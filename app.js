@@ -19,7 +19,7 @@ var morgan      = require('morgan');                //  Login's stuff
 var bodyParser  = require('body-parser');
 var session     = require('express-session');
 var multer      = require('multer');                //  Handles photos' upload
-var cookieParser= require('cookie-parser');		   //
+var cookieParser= require('cookie-parser');		    //
 
 /*  CONFIGs  */
 //  Handles logging request details
