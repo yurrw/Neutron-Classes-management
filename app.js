@@ -22,7 +22,6 @@ var multer      = require('multer');                //  Handles photos' upload
 //var cookieParser	=	require('cookie-parser');		  //
 
 /*  CONFIGs  */
-
 //  Handles logging request details
 app.use(morgan('dev'));								
 //app.use(cookieParser()); 							      //	cookies(autenticação e pá)
@@ -31,25 +30,25 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-//  set up json to be used
+//  Set up json to be used
 app.use(bodyParser.json());
 
-//	Save flash messages
+//  Save flash messages
 app.use(flash()); 									
 
 /*Routes*/
-	//Initialize PassPort middleware Auth
-	require('./config/passport')(passport);
-	app.use(session({ secret: 'ylrm'})); 				//TODO:: CHANGE IT 
-	app.use(passport.initialize());
-	app.use(passport.session());
+//  Initialize PassPort middleware Auth
+require('./config/passport')(passport);
+app.use(session({ secret: 'ylrm'})); 				//TODO:: CHANGE IT 
+app.use(passport.initialize());
+app.use(passport.session());
 
-	//Set up view engine, ejs
-	app.set('view engine', 'ejs');	
-	app.use('/assets', express.static(__dirname + '/public'));
-	app.use('/uploads'	 , express.static(__dirname + '/uploads'));
-	//Join passport configs with routes
-	require('./routes')(app, passport);
+//Set up view engine, ejs
+app.set('view engine', 'ejs');	
+app.use('/assets', express.static(__dirname + '/public'));
+app.use('/uploads'	 , express.static(__dirname + '/uploads'));
+//Join passport configs with routes
+require('./routes')(app, passport);
 
 //  Runs app
 app.listen(port);											
